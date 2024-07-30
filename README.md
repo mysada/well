@@ -13,6 +13,7 @@ This is a Laravel-based beauty website project designed by Mydasa.
 
 ### Server
 - 15.156.92.60
+- http://team2.uwpace.ca/
 
 ## Requirements
 
