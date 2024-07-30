@@ -20,3 +20,12 @@ This is a Laravel-based beauty website project designed by Mydasa.
 - PHP >= 8.0
 - Composer
 - Laravel >= 8.x
+
+## Deployment
+
+```bash
+sudo chown -R www-data:www-data storage
+sudo chmod -R 775 storage
+sudo chmod g+s storage
+```
+
