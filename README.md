@@ -17,6 +17,6 @@ This is a Laravel-based beauty website project designed by Mydasa.
 
 ## Requirements
 
-- PHP >= 7.4
+- PHP >= 8.0
 - Composer
 - Laravel >= 8.x
