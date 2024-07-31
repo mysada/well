@@ -3,7 +3,7 @@
 ## Overview
 
 This is a Laravel-based beauty website project designed by Mydasa. 
-### Members
+### Mydasa Members
 
 - Manish
 - Aman
