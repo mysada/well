@@ -34,6 +34,12 @@ The detailed view mockup provides an detailed look at a single item. It includes
 
 ![Detailed view of the products](../design-mockup/Detail.jpg)
 
+#### About Us
+
+The About Us page mockup introduces our organization, highlights our values, and provides multiple methods to reach us. It is designed to build trust and connect with users.
+
+![About us page design mockup](../design-mockup/About_us.jpg)
+
 ## 6. User Personas/Use Case Statements
 
 ## 7. Sitemap
