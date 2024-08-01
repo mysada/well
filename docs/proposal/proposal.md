@@ -10,6 +10,7 @@
 ## 6. User Personas/Use Case Statements
 ## 7. Sitemap
 ## 8. Server
+![Sample Image](./images/server.jpg)
 ### Ubuntu Server
 - Ubuntu (a popular Linux distribution known for its stability and     user-friendliness)
 
@@ -20,6 +21,7 @@
 - Certbot is an open-source tool for automatically using Let's Encrypt certificates     on manually administrated websites to enable HTTPS.
 
 ## 9. Security on the Server
+![Sample Image](./images/server_security.jpg)
 
 ### Load Balancers
 - **Function**: Distributes incoming network traffic across multiple servers to ensure no single server becomes overwhelmed.
