@@ -55,13 +55,23 @@ The About Us page mockup introduces our organization, highlights our values, and
 
 #### Header
 
+![Header section](../design-mockup/design-components/header.jpg)
+
 #### Footer
+
+![Footer section](../design-mockup/design-components/footer.jpg)
 
 #### Home Banner
 
+![Banner section](../design-mockup/design-components/banner.jpg)
+
 #### Category Section
 
+![Category section of home page](../design-mockup/design-components/home_category.jpg)
+
 #### Card Design for List View
+
+![Header section](../design-mockup/design-components/header.jpg)
 
 #### Detail
 
