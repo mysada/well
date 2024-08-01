@@ -82,7 +82,6 @@
 7. Security requirements document and penetration testing report
 8. Post-launch maintenance and support plan
 
-
 ## 4. Technologies
 ### Frontend
 
@@ -118,7 +117,6 @@
 
 
 ## 6. User Personas/Use Case Statements
-# User Personas
 
 ### 1. Jane Doe (28, Female)
 ![Sample Image](./images/guest_user.jpg)
@@ -136,8 +134,6 @@
 ### 2. John Smith (35, Male)
 ![Sample Image](./images/authenticated_user.jpg)
 **Role:** Authenticated User
-### Certbot
-- Certbot is an open-source tool for automatically using Let's Encrypt certificates     on manually administrated websites to enable HTTPS.
 
 ## 7. Sitemap
 
