@@ -249,6 +249,7 @@ The About Us page mockup introduces our organization, highlights our values, and
 
 ### 7.2 Backend Panel
 ![Sample Image](./images/admin_sitepmap_1.jpg)
+![Sample Image](./images/admin_sitemap_2.jpg)
 
 ## 8. Server
 ![Sample Image](./images/server.jpg)
