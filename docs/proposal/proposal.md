@@ -18,9 +18,24 @@
 ![Sample Image](./images/target_audience.jpg)
 
 
+## 3. Project Details
+
+- **Project Name:** Well - Health & Personal Care
+- **Project Duration:** 2 Weeks
 
 ### Scope of Work:  User / Guest (Frontend)
 ![Sample Image](./images/project_details_user.jpg)
+
+### Deliverables
+
+1. Functional Web Application for all listed features
+2. High-fidelity design mock-ups
+3. UI/UX design specifications
+4. Database schema and setup scripts
+5. Frontend and backend code
+6. Integration with payment gateway
+7. Security requirements document and penetration testing report
+8. Post-launch maintenance and support plan
 
 
 ### Admin Dashboard
@@ -69,19 +84,6 @@
 - **Delete**
   - Remove order
 
-## 3. Project Details
-
-### Deliverables
-
-1. Functional Web Application for all listed features
-2. High-fidelity design mock-ups
-3. UI/UX design specifications
-4. Database schema and setup scripts
-5. Frontend and backend code
-6. Integration with payment gateway
-7. Security requirements document and penetration testing report
-8. Post-launch maintenance and support plan
-
 ## 4. Technologies
 ### Frontend
 
@@ -122,18 +124,50 @@
 ![Sample Image](./images/guest_user.jpg)
 **Role:** Guest User
 
-### Description
+#### Description
 - **Demographics:** Unauthenticated users, potentially new visitors.
 - **Needs:** Explore products, read reviews, and learn about the website's offerings.
 - **Behaviour:** Browses products without making purchases, might consider signing up for an account.
 
-### Use Case Statement
+#### Use Case Statement
 - **As a Guest**, Jane wants to browse a variety of health and beauty products so that she can decide whether to sign up and make a purchase.
-  ache2
 
 ### 2. John Smith (35, Male)
 ![Sample Image](./images/authenticated_user.jpg)
 **Role:** Authenticated User
+
+#### Description
+- **Demographics:** Registered users, both male and female, aged 18-55.
+- **Needs:** Access personalized recommendations, track orders, and manage their account.
+- **Behaviour:** Regularly logs in to purchase products, leaves reviews, and participates in the loyalty program.
+
+#### Use Case Statement
+- **As an Authenticated User**, John wants to view his order history so that he can track his past purchases and reorder products easily.
+
+### 3. Erik Wilson
+![Sample Image](./images/CSR_persona.jpg)
+**Role:** Customer Service Representative (CSR)
+
+#### Description
+- **Demographics:** Employees of the company responsible for handling customer inquiries.
+- **Needs:** Access to user accounts and order details to provide support.
+- **Behaviour:** Logs in to assist customers with their queries, resolves issues related to orders, and processes returns.
+
+#### Use Case Statement
+- **As a CSR**, Erik wants to access customer order details so that he can assist customers with any issues they may have.
+
+### 4. Joe Root
+![Sample Image](./images/admin_persona.jpg)
+**Role:** Admin
+
+#### Description
+- **Demographics:** Site administrators responsible for managing the website.
+- **Needs:** Full access to all site functionalities to manage products, users, and orders.
+- **Behaviour:** Regularly updates product listings, manages user accounts, and monitors sales and website performance.
+
+#### Use Case Statement
+- **As an Admin**, Joe wants to add new products to the catalogue so that he can keep the website's offerings up to date.
+
 
 ## 7. Sitemap
 
