@@ -1,6 +1,7 @@
 ![Sample Image](./images/head.png)
 
 # Well - Health & Personal Care Web Application Development
+
 - Created By: Team MYDASA
 - Created For: Steve George
 - Date: 31 July, 2024
@@ -16,22 +17,11 @@
 
 ![Sample Image](./images/target_audience.jpg)
 
-## 3. Project Details
 
-* Project Name: Well - Health & Personal Care
-* Project Duration: 2 Weeks
 
 ### Scope of Work:  User / Guest (Frontend)
 ![Sample Image](./images/project_details_user.jpg)
 
-1. **Product Listing**
-2. **User Accounts**
-3. **Shopping Cart**
-4. **Checkout**
-5. **Order Tracking**
-6. **Customer Reviews**
-7. **Search Products**
-8. **Newsletter Signup**
 
 ### Admin Dashboard
 ![Sample Image](./images/project_detail_admin.jpg)
@@ -79,7 +69,9 @@
 - **Delete**
   - Remove order
 
-## Deliverables
+## 3. Project Details
+
+### Deliverables
 
 1. Functional Web Application for all listed features
 2. High-fidelity design mock-ups
@@ -139,43 +131,13 @@
 
 ### Use Case Statement
 - **As a Guest**, Jane wants to browse a variety of health and beauty products so that she can decide whether to sign up and make a purchase.
+  ache2
 
 ### 2. John Smith (35, Male)
 ![Sample Image](./images/authenticated_user.jpg)
 **Role:** Authenticated User
-
-### Description
-- **Demographics:** Registered users, both male and female, aged 18-55.
-- **Needs:** Access personalized recommendations, track orders, and manage their account.
-- **Behaviour:** Regularly logs in to purchase products, leaves reviews, and participates in the loyalty program.
-
-### Use Case Statement
-- **As an Authenticated User**, John wants to view his order history so that he can track his past purchases and reorder products easily.
-
-### 3. Erik Wilson
-![Sample Image](./images/CSR_persona.jpg)
-**Role:** Customer Service Representative (CSR)
-
-### Description
-- **Demographics:** Employees of the company responsible for handling customer inquiries.
-- **Needs:** Access to user accounts and order details to provide support.
-- **Behaviour:** Logs in to assist customers with their queries, resolves issues related to orders, and processes returns.
-
-### Use Case Statement
-- **As a CSR**, Erik wants to access customer order details so that he can assist customers with any issues they may have.
-
-### 4. Joe Root
-![Sample Image](./images/admin_persona.jpg)
-**Role:** Admin
-
-### Description
-- **Demographics:** Site administrators responsible for managing the website.
-- **Needs:** Full access to all site functionalities to manage products, users, and orders.
-- **Behaviour:** Regularly updates product listings, manages user accounts, and monitors sales and website performance.
-
-### Use Case Statement
-- **As an Admin**, Joe wants to add new products to the catalogue so that he can keep the website's offerings up to date.
-
+### Certbot
+- Certbot is an open-source tool for automatically using Let's Encrypt certificates     on manually administrated websites to enable HTTPS.
 
 ## 7. Sitemap
 
@@ -214,7 +176,6 @@
 ## 10. Database
 ## 11. Value Adds
 ## 12. Revised ERD for Value Adds
-
 
 ## 13. Our Team
 ### Manish Kumar
