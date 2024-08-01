@@ -6,6 +6,10 @@
 - Created For: Steve George
 - Date: 31 July, 2024
 
+[toc]
+
+
+
 ## 1. Project Overview
 - WELL - Health & Personal Care is an e-commerce website that provides a wide range of health and personal care products. Our offerings include health supplements, personal care products, and organic supplements. The primary goal is to create a user-friendly, secure, and visually appealing platform where customers can easily find and purchase products that enhance their health and beauty.
 
@@ -369,29 +373,29 @@ The About Us page mockup introduces our organization, highlights our values, and
 
 ![Sample Image](./images/database_ERD.png)
 
-### 11. Value Adds
+## 11. Value Adds
 
-## BRANDS and VENDORS
+### BRANDS and VENDORS
 
 To enhance the "WELL" Health & Beauty e-commerce platform, we have added two key features:
 
-## BRANDS Table
+### BRANDS Table
 
 - **Attributes**: ID, BrandName, Description, ProductID
     - **Benefit**: Allows products to be categorized by brand, enabling brand-specific promotions and improved customer experience.
 
-## VENDORS Table
+### VENDORS Table
 
 - **Attributes**: ID, VendorName, ContactPerson, ContactEmail, ContactPhone, ProductID
     - **Benefit**: Supports multiple vendors, facilitating marketplace expansion with diverse product offerings and competitive pricing.
 
-## Marketplace Expansion
+### Marketplace Expansion
 
 These features prepare "WELL" for future growth in a marketplace. By supporting multiple brands and vendors, the platform can offer a wider variety of products, attract more customers, and create new revenue streams through vendor partnerships. This strategic addition positions "WELL" for scalability and long-term success in the competitive e-commerce landscape.
 
-### 12. Revised ERD for Value Adds
+## 12. Revised ERD for Value Adds
 
-## Changes to the ERD
+### Changes to the ERD
 
 1. **Addition of BRANDS Table**: Each product can be associated with one brand, and a brand can have multiple products. This introduces a one-to-many relationship between the BRANDS table and the PRODUCTS table.
 2. **Addition of VENDORS Table**: Each product can be associated with one vendor, and a vendor can supply multiple products. This creates a one-to-many relationship between the VENDORS table and the PRODUCTS table.
