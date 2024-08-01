@@ -1,9 +1,10 @@
 # Proposal Outline
 
 ## Levita Beauty
-*From:* Team Mydasa  
-*To:* Steve George  
-*Date:* Jun 30 2024
+
+_From:_ Team Mydasa  
+_To:_ Steve George  
+_Date:_ Jun 30 2024
 
 ## 1. Description of Your Project
 
@@ -25,23 +26,39 @@ Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor 
 
 This provides a brief overview of the type of features and functionality that the project will include.
 
-- This is a short bullet description of a feature or piece of functionality
-- This is a short bullet description of a feature or piece of functionality
-- This is a short bullet description of a feature or piece of functionality
-- This is a short bullet description of a feature or piece of functionality
-- This is a short bullet description of a feature or piece of functionality
-- This is a short bullet description of a feature or piece of functionality
-- This is a short bullet description of a feature or piece of functionality
-- This is a short bullet description of a feature or piece of functionality
-- This is a short bullet description of a feature or piece of functionality
-- This is a short bullet description of a feature or piece of functionality
-- This is a short bullet description of a feature or piece of functionality
+-   This is a short bullet description of a feature or piece of functionality
+-   This is a short bullet description of a feature or piece of functionality
+-   This is a short bullet description of a feature or piece of functionality
+-   This is a short bullet description of a feature or piece of functionality
+-   This is a short bullet description of a feature or piece of functionality
+-   This is a short bullet description of a feature or piece of functionality
+-   This is a short bullet description of a feature or piece of functionality
+-   This is a short bullet description of a feature or piece of functionality
+-   This is a short bullet description of a feature or piece of functionality
+-   This is a short bullet description of a feature or piece of functionality
+-   This is a short bullet description of a feature or piece of functionality
 
 ## 4. Proposed Design Solution
 
-This is a very brief rationale of the design, to be followed by a handful of simple screenshots of the designed pages.
+### Design Mockups
 
-Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+Here are the design mockups for our project:
+
+#### Landing Page
+
+![Landing page design mockup](../design-mockup/Landing_page.jpg)
+
+#### List View
+
+![List view page design mockup](../design-mockup/List_view.jpg)
+
+#### Detailed View
+
+![Detailed view of the products](../design-mockup/Detail.jpg)
+
+#### About Us
+
+![About us page design mockup](../design-mockup/About_us.jpg)
 
 ## 5. User Personas/Use Case Statements
 
@@ -63,8 +80,8 @@ This is a brief description of the course an admin user might take through the s
 
 These should be accurate and detailed.
 
-- **Front end**
-- **Back end**
+-   **Front end**
+-   **Back end**
 
 ## 7. Server
 
@@ -72,27 +89,29 @@ This describes the type of server that was installed, the version number, where 
 
 Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
 
-- This is a specific piece of software or extension that was installed
-- This is a specific piece of software or extension that was installed
-- This is a specific piece of software or extension that was installed
-- This is a specific piece of software or extension that was installed
-- This is a specific piece of software or extension that was installed
-- This is a specific piece of software or extension that was installed
-- This is a specific piece of software or extension that was installed
+-   This is a specific piece of software or extension that was installed
+-   This is a specific piece of software or extension that was installed
+-   This is a specific piece of software or extension that was installed
+-   This is a specific piece of software or extension that was installed
+-   This is a specific piece of software or extension that was installed
+-   This is a specific piece of software or extension that was installed
+-   This is a specific piece of software or extension that was installed
 
 ## 8. Security
 
 This describes the security that was implemented on the server, and that will be implemented in the project.
 
 **On the Server**
-- incididunt ut labore et dolore magna aliqua
-- incididunt ut labore et dolore magna aliqua
-- incididunt ut labore et dolore magna aliqua
+
+-   incididunt ut labore et dolore magna aliqua
+-   incididunt ut labore et dolore magna aliqua
+-   incididunt ut labore et dolore magna aliqua
 
 **In the Web App**
-- incididunt ut labore et dolore magna aliqua
-- incididunt ut labore et dolore magna aliqua
-- incididunt ut labore et dolore magna aliqua
+
+-   incididunt ut labore et dolore magna aliqua
+-   incididunt ut labore et dolore magna aliqua
+-   incididunt ut labore et dolore magna aliqua
 
 ## 9. Value Adds
 
@@ -114,8 +133,8 @@ Here is a brief description of our team, and a description of the primary role s
 
 **Team Mydasa:**
 
-- Manish: Project Manager, Back-end, Server
-- Aman: Database, Front-end
-- YongDong: Git manager, Back-end, Server
-- Shivangi: Front-end, Design
-- Dongqing:  Design, Front-end
+-   Manish: Project Manager, Back-end, Server
+-   Aman: Database, Front-end
+-   YongDong: Git manager, Back-end, Server
+-   Shivangi: Front-end, Design
+-   Dongqing: Design, Front-end
