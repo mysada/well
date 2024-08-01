@@ -4,7 +4,8 @@
 
 We choose green(#00AB7A) as our brand color
 
-####Reasons:
+#### Reasons
+
 1.Green is commonly associated with nature, plants, and the environment. This connection makes it an ideal choice our brand as we want to emphasize natural, high-quality, and organic products
 
 2.Green has a calming and soothing effect on the mind. It can reduce stress and promote relaxation. For our personal care brand, using green can help convey a sense of peace.
