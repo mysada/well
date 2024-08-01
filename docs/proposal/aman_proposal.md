@@ -61,5 +61,6 @@
 - **ShoppingCart to CartItems**: Each shopping cart can have multiple items.
 - **Wishlist to WishlistItems**: Each wishlist can have multiple items.
 
+![Sample Image](./images/database_ERD.png)
 
 
