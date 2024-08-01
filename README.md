@@ -21,6 +21,27 @@ This is a Laravel-based beauty website project designed by Mydasa.
 - Composer
 - Laravel >= 8.x
 
+## Run Locally
+1. Copy `.env.example` to `.env` and setup   
+
+2. Run following code to create tables and import data
+
+   ```bash	
+   php artisan migrate:refresh
+   ```
+
+3. Start laravel server
+
+   ```bash
+   php artisan serve
+   ```
+
+4. Start Vite
+
+   ```bash
+   npm run dev
+   ```
+
 ## Deployment
 
 ```bash
