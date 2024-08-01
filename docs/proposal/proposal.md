@@ -1,121 +1,47 @@
-# Proposal Outline
+![Sample Image](./images/head.png)
 
-## Levita Beauty
-*From:* Team Mydasa  
-*To:* Steve George  
-*Date:* Jun 30 2024
+# Well - Health & Personal Care Web Application Development
 
-## 1. Description of Your Project
-
-Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-
-Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-
-## 2. Target Audiences
-
-Who is the target audience. Primary, secondary, tertiary? How did this influence design choices, etc?
-
-Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-
-Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-
-Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-
+## 1. Project Overview
+## 2. Target Audience
 ## 3. Project Details
+## 4. Technologies
+## 5. Proposed Design Solution
+## 6. User Personas/Use Case Statements
+## 7. Sitemap
+## 8. Server
+![Sample Image](./images/server.jpg)
+### Ubuntu Server
+- Ubuntu (a popular Linux distribution known for its stability and     user-friendliness)
 
-This provides a brief overview of the type of features and functionality that the project will include.
+### Apache2
+- Apache2 is a widely used open-source web server that provides a robust, flexible,     and secure platform for hosting websites.
 
-- This is a short bullet description of a feature or piece of functionality
-- This is a short bullet description of a feature or piece of functionality
-- This is a short bullet description of a feature or piece of functionality
-- This is a short bullet description of a feature or piece of functionality
-- This is a short bullet description of a feature or piece of functionality
-- This is a short bullet description of a feature or piece of functionality
-- This is a short bullet description of a feature or piece of functionality
-- This is a short bullet description of a feature or piece of functionality
-- This is a short bullet description of a feature or piece of functionality
-- This is a short bullet description of a feature or piece of functionality
-- This is a short bullet description of a feature or piece of functionality
+### Certbot
+- Certbot is an open-source tool for automatically using Let's Encrypt certificates     on manually administrated websites to enable HTTPS.
 
-## 4. Proposed Design Solution
+## 9. Security on the Server
+![Sample Image](./images/server_security.jpg)
 
-This is a very brief rationale of the design, to be followed by a handful of simple screenshots of the designed pages.
+### Load Balancers
+- **Function**: Distributes incoming network traffic across multiple servers to ensure no single server becomes overwhelmed.
+- **Benefit**: Improves availability and reliability of the application by balancing the load. Very useful in protecting the server from DDoS attacks.
 
-Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+### Firewall
+- **Function**: Monitors and controls incoming and outgoing network traffic based on predetermined security rules.
+- **Benefit**: Protects the server from unauthorized access and potential threats by filtering traffic.
 
-## 5. User Personas/Use Case Statements
+### Data Encryption
+- **Function**: Encrypts data both at rest and in transit using algorithms like AES-256.
+- **Benefit**: Ensures that sensitive data is protected from unauthorized access and breaches.
 
-This is a brief description of the general type of front end user (demographic), who will use the site, and why.
+### Continuous Security Practices
+- **Regular Updates**: Keeping the operating system and all software up to date to protect against vulnerabilities.
+- **Access Control**: Use of SSH keys for authentication and disabling password-based logins.
+- **Monitoring and Logging**: Implement continuous monitoring and logging to detect and respond to security incidents promptly.
+- **Backup and Recovery**: Regularly back up data and have a recovery plan in place in case of data loss or corruption.
 
-**Guest**  
-This is a brief description of the course an unauthenticated user might take through the site, describing what she could do. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-
-**Authenticated**  
-This is a brief description of the course an authenticated user might take through the site, describing what she could do. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-
-**Customer Service Representative (CSR)**  
-This is a brief description of the course some other type of user might take through the site, describing what she could do. You would only add this if you have this user role. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-
-**Admin**  
-This is a brief description of the course an admin user might take through the site, describing what she could do. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-
-## 6. Sitemaps
-
-These should be accurate and detailed.
-
-- **Front end**
-- **Back end**
-
-## 7. Server
-
-This describes the type of server that was installed, the version number, where it was being hosted, and some other general details about it.
-
-Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-
-- This is a specific piece of software or extension that was installed
-- This is a specific piece of software or extension that was installed
-- This is a specific piece of software or extension that was installed
-- This is a specific piece of software or extension that was installed
-- This is a specific piece of software or extension that was installed
-- This is a specific piece of software or extension that was installed
-- This is a specific piece of software or extension that was installed
-
-## 8. Security
-
-This describes the security that was implemented on the server, and that will be implemented in the project.
-
-**On the Server**
-- incididunt ut labore et dolore magna aliqua
-- incididunt ut labore et dolore magna aliqua
-- incididunt ut labore et dolore magna aliqua
-
-**In the Web App**
-- incididunt ut labore et dolore magna aliqua
-- incididunt ut labore et dolore magna aliqua
-- incididunt ut labore et dolore magna aliqua
-
-## 9. Value Adds
-
-This is a brief description of value adds, over and above the base eCommerce and administrative functionality you can add to the site, within the budget, and are willing to complete and deploy.
-
-Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.  
-Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-
-## 10. Revised ERD for Value Adds
-
-This is a brief description of the changes that will be required to your ERD if you are going to implement the value adds.
-
-sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.  
-sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-
-## 11. Our Team
-
-Here is a brief description of our team, and a description of the primary role served by each person.
-
-**Team Mydasa:**
-
-- Manish: Project Manager, Back-end, Server
-- Aman: Database, Front-end
-- YongDong: Git manager, Back-end, Server
-- Shivangi: Front-end, Design
-- Dongqing:  Design, Front-end
+## 10. Database
+## 11. Value Adds
+## 12. Revised ERD for Value Adds
+## 13. Our Team
