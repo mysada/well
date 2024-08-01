@@ -19,6 +19,11 @@ return new class extends Migration
             $table->string('password');
             $table->rememberToken();
             $table->timestamps();
+
+            $table->string('fullname', 255)->nullable();
+            $table->string('address', 255)->nullable();
+            $table->string('phonenumber', 15)->nullable();
+            $table->tinyInteger('is_admin')->default(0);
         });
 
         Schema::create('password_reset_tokens', function (Blueprint $table) {
@@ -35,6 +40,8 @@ return new class extends Migration
             $table->longText('payload');
             $table->integer('last_activity')->index();
         });
+
+
     }
 
     /**
