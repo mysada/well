@@ -22,6 +22,12 @@ The landing page mockup presents the initial interface users will encounter. It 
 
 ![Landing page design mockup](../design-mockup/Landing_page.jpg)
 
+#### List View
+
+The list view mockup displays how multiple items are shown in our shop page. Each item is presented with a thumbnail, title, and a brief description, allowing users to quickly scan through options.
+
+![List view page design mockup](../design-mockup/List_view.jpg)
+
 ## 6. User Personas/Use Case Statements
 
 ## 7. Sitemap
