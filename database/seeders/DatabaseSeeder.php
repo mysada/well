@@ -24,6 +24,7 @@ class DatabaseSeeder extends Seeder
             ShoppingCartSeeder::class,
             CartItemsSeeder::class,
             TransactionSeeder::class,
+            PaymentSeeder::class,
 
         ]);
     }
