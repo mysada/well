@@ -25,6 +25,7 @@ return new class extends Migration
             $table->index('wishlistid');
             $table->index('productid');
 
+
             $table->timestamps();
         });
     }
