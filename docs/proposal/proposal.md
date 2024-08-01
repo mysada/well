@@ -1,121 +1,233 @@
-# Proposal Outline
+![Sample Image](./images/head.png)
 
-## Levita Beauty
-*From:* Team Mydasa  
-*To:* Steve George  
-*Date:* Jun 30 2024
+# Well - Health & Personal Care Web Application Development
+- Created By: Team MYDASA
+- Created For: Steve George
+- Date: 31 July, 2024
 
-## 1. Description of Your Project
+## 1. Project Overview
+- WELL - Health & Personal Care is an e-commerce website that provides a wide range of health and personal care products. Our offerings include health supplements, personal care products, and organic supplements. The primary goal is to create a user-friendly, secure, and visually appealing platform where customers can easily find and purchase products that enhance their health and beauty.
 
-Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+![Sample Image](./images/project_overview.jpg)
 
-Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+## 2. Target Audience
 
-## 2. Target Audiences
+- Our target audience includes male and female customers aged between 18 and 55 years. They are health-conscious individuals who prioritize wellness and beauty. This demographic is tech-savvy, values convenience, and seeks high-quality products. Our target audience includes both male and female customers aged between 18 and 55 years. They are health-conscious individuals who prioritize wellness and personal care. This demographic is tech-savvy, values convenience, and seeks high-quality products. Our target audience includes both male and female customers aged between 18 and 55 years. They are health-conscious individuals who prioritize wellness and beauty. This demographic is tech-savvy, values convenience, and seeks high-quality products.
 
-Who is the target audience. Primary, secondary, tertiary? How did this influence design choices, etc?
-
-Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-
-Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-
-Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+![Sample Image](./images/target_audience.jpg)
 
 ## 3. Project Details
 
-This provides a brief overview of the type of features and functionality that the project will include.
+* Project Name: Well - Health & Personal Care
+* Project Duration: 2 Weeks
 
-- This is a short bullet description of a feature or piece of functionality
-- This is a short bullet description of a feature or piece of functionality
-- This is a short bullet description of a feature or piece of functionality
-- This is a short bullet description of a feature or piece of functionality
-- This is a short bullet description of a feature or piece of functionality
-- This is a short bullet description of a feature or piece of functionality
-- This is a short bullet description of a feature or piece of functionality
-- This is a short bullet description of a feature or piece of functionality
-- This is a short bullet description of a feature or piece of functionality
-- This is a short bullet description of a feature or piece of functionality
-- This is a short bullet description of a feature or piece of functionality
+### Scope of Work:  User / Guest (Frontend)
+![Sample Image](./images/project_details_user.jpg)
 
-## 4. Proposed Design Solution
+1. **Product Listing**
+2. **User Accounts**
+3. **Shopping Cart**
+4. **Checkout**
+5. **Order Tracking**
+6. **Customer Reviews**
+7. **Search Products**
+8. **Newsletter Signup**
 
-This is a very brief rationale of the design, to be followed by a handful of simple screenshots of the designed pages.
+### Admin Dashboard
+![Sample Image](./images/project_detail_admin.jpg)
 
-Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+### Product Management
+- **Create**
+  - Add new product
+- **Read**
+  - View list of all products
+  - View product details
+- **Update**
+  - Edit existing product
+- **Delete**
+  - Remove product
 
-## 5. User Personas/Use Case Statements
+### Category Management
+- **Create**
+  - Add new category
+- **Read**
+  - View list of all categories
+- **Update**
+  - Edit existing category
+- **Delete**
+  - Remove category
 
-This is a brief description of the general type of front end user (demographic), who will use the site, and why.
+### User Management
+- **Create**
+  - Add new user
+- **Read**
+  - View list of all users
+  - View user details
+- **Update**
+  - Edit existing user
+- **Delete**
+  - Remove user
 
-**Guest**  
-This is a brief description of the course an unauthenticated user might take through the site, describing what she could do. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+### Order Management
+- **Create**
+  - (Typically, orders are created by users; however, the admin can manually create orders for customers if needed)
+- **Read**
+  - View list of all orders
+  - View order details
+- **Update**
+  - Edit existing order
+- **Delete**
+  - Remove order
 
-**Authenticated**  
-This is a brief description of the course an authenticated user might take through the site, describing what she could do. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+## Deliverables
 
-**Customer Service Representative (CSR)**  
-This is a brief description of the course some other type of user might take through the site, describing what she could do. You would only add this if you have this user role. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+1. Functional Web Application for all listed features
+2. High-fidelity design mock-ups
+3. UI/UX design specifications
+4. Database schema and setup scripts
+5. Frontend and backend code
+6. Integration with payment gateway
+7. Security requirements document and penetration testing report
+8. Post-launch maintenance and support plan
 
-**Admin**  
-This is a brief description of the course an admin user might take through the site, describing what she could do. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
 
-## 6. Sitemaps
+## 4. Technologies
+### Frontend
 
-These should be accurate and detailed.
+- HTML
+- JavaScript
+- Bootstrap
+- SCSS
+- jQuery
+- Node.js
+- npm
+- Vite
 
-- **Front end**
-- **Back end**
+### Backend
 
-## 7. Server
+- PHP
+- Laravel
+- Composer
 
-This describes the type of server that was installed, the version number, where it was being hosted, and some other general details about it.
+### Database
 
-Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+- MySQL
 
-- This is a specific piece of software or extension that was installed
-- This is a specific piece of software or extension that was installed
-- This is a specific piece of software or extension that was installed
-- This is a specific piece of software or extension that was installed
-- This is a specific piece of software or extension that was installed
-- This is a specific piece of software or extension that was installed
-- This is a specific piece of software or extension that was installed
+### Server
 
-## 8. Security
+- Ubuntu/Apache2
+- Certbot
 
-This describes the security that was implemented on the server, and that will be implemented in the project.
+### Payment Gateway
 
-**On the Server**
-- incididunt ut labore et dolore magna aliqua
-- incididunt ut labore et dolore magna aliqua
-- incididunt ut labore et dolore magna aliqua
+- Stripe/Authorize.net (PCI DSS Compliance Gateway)
 
-**In the Web App**
-- incididunt ut labore et dolore magna aliqua
-- incididunt ut labore et dolore magna aliqua
-- incididunt ut labore et dolore magna aliqua
+## 5. Proposed Design Solution
 
-## 9. Value Adds
 
-This is a brief description of value adds, over and above the base eCommerce and administrative functionality you can add to the site, within the budget, and are willing to complete and deploy.
+## 6. User Personas/Use Case Statements
+# User Personas
 
-Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.  
-Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+### 1. Jane Doe (28, Female)
+![Sample Image](./images/guest_user.jpg)
+**Role:** Guest User
 
-## 10. Revised ERD for Value Adds
+### Description
+- **Demographics:** Unauthenticated users, potentially new visitors.
+- **Needs:** Explore products, read reviews, and learn about the website's offerings.
+- **Behaviour:** Browses products without making purchases, might consider signing up for an account.
 
-This is a brief description of the changes that will be required to your ERD if you are going to implement the value adds.
+### Use Case Statement
+- **As a Guest**, Jane wants to browse a variety of health and beauty products so that she can decide whether to sign up and make a purchase.
 
-sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.  
-sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+### 2. John Smith (35, Male)
+![Sample Image](./images/authenticated_user.jpg)
+**Role:** Authenticated User
 
-## 11. Our Team
+### Description
+- **Demographics:** Registered users, both male and female, aged 18-55.
+- **Needs:** Access personalized recommendations, track orders, and manage their account.
+- **Behaviour:** Regularly logs in to purchase products, leaves reviews, and participates in the loyalty program.
 
-Here is a brief description of our team, and a description of the primary role served by each person.
+### Use Case Statement
+- **As an Authenticated User**, John wants to view his order history so that he can track his past purchases and reorder products easily.
 
-**Team Mydasa:**
+### 3. Erik Wilson
+![Sample Image](./images/CSR_persona.jpg)
+**Role:** Customer Service Representative (CSR)
 
-- Manish: Project Manager, Back-end, Server
-- Aman: Database, Front-end
-- YongDong: Git manager, Back-end, Server
-- Shivangi: Front-end, Design
-- Dongqing:  Design, Front-end
+### Description
+- **Demographics:** Employees of the company responsible for handling customer inquiries.
+- **Needs:** Access to user accounts and order details to provide support.
+- **Behaviour:** Logs in to assist customers with their queries, resolves issues related to orders, and processes returns.
+
+### Use Case Statement
+- **As a CSR**, Erik wants to access customer order details so that he can assist customers with any issues they may have.
+
+### 4. Joe Root
+![Sample Image](./images/admin_persona.jpg)
+**Role:** Admin
+
+### Description
+- **Demographics:** Site administrators responsible for managing the website.
+- **Needs:** Full access to all site functionalities to manage products, users, and orders.
+- **Behaviour:** Regularly updates product listings, manages user accounts, and monitors sales and website performance.
+
+### Use Case Statement
+- **As an Admin**, Joe wants to add new products to the catalogue so that he can keep the website's offerings up to date.
+
+
+## 7. Sitemap
+
+## 8. Server
+![Sample Image](./images/server.jpg)
+### Ubuntu Server
+- Ubuntu (a popular Linux distribution known for its stability and     user-friendliness)
+
+### Apache2
+- Apache2 is a widely used open-source web server that provides a robust, flexible,     and secure platform for hosting websites.
+
+### Certbot
+- Certbot is an open-source tool for automatically using Let's Encrypt certificates     on manually administrated websites to enable HTTPS.
+
+## 9. Security on the Server
+![Sample Image](./images/server_security.jpg)
+
+### Load Balancers
+- **Function**: Distributes incoming network traffic across multiple servers to ensure no single server becomes overwhelmed.
+- **Benefit**: Improves availability and reliability of the application by balancing the load. Very useful in protecting the server from DDoS attacks.
+
+### Firewall
+- **Function**: Monitors and controls incoming and outgoing network traffic based on predetermined security rules.
+- **Benefit**: Protects the server from unauthorized access and potential threats by filtering traffic.
+
+### Data Encryption
+- **Function**: Encrypts data both at rest and in transit using algorithms like AES-256.
+- **Benefit**: Ensures that sensitive data is protected from unauthorized access and breaches.
+
+### Continuous Security Practices
+- **Regular Updates**: Keeping the operating system and all software up to date to protect against vulnerabilities.
+- **Access Control**: Use of SSH keys for authentication and disabling password-based logins.
+- **Monitoring and Logging**: Implement continuous monitoring and logging to detect and respond to security incidents promptly.
+- **Backup and Recovery**: Regularly back up data and have a recovery plan in place in case of data loss or corruption.
+
+## 10. Database
+## 11. Value Adds
+## 12. Revised ERD for Value Adds
+
+
+## 13. Our Team
+### Manish Kumar
+**Role:** Project Manager
+
+### Yongdong Xiang
+**Role:** Lead Backend Developer, Git Manager
+
+### Dongqing Ye
+**Role:** Lead UI/UX Designer, Front End Developer
+
+### Aman Dawar
+**Role:** Front End Developer, Database Engineer
+
+### Shivangi Koradiya
+**Role:** Lead Database Engineer, Backend Developer
