@@ -153,7 +153,7 @@ The list view mockup displays how multiple items are shown in our shop page. Eac
 
 The detailed view mockup provides an detailed look at a single item. It includes extensive information, images, and options related to purchasing service, enhancing user engagement and decision-making.
 
-![Detailed view of the products](../design-mockup/Detail.jpg)
+![Detailed view of the products](../design-mockup/List_detail.jpg)
 
 #### About Us
 
