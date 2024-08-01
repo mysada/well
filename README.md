@@ -2,7 +2,7 @@
 
 ## Overview
 
-This is a Laravel-based beauty website project designed by Mydasa. 
+This is a Laravel-based personal health care website project designed by Mydasa. 
 ### Mydasa Members
 
 - Manish
@@ -24,10 +24,12 @@ This is a Laravel-based beauty website project designed by Mydasa.
 ## Run Locally
 1. Copy `.env.example` to `.env` and setup   
 
-2. Run following code to create tables and import data
+2. Run following code to generate an App key,  create tables and import data
 
    ```bash	
+   php artisan key:generate
    php artisan migrate:refresh
+   php artisan config:cache
    ```
 
 3. Start laravel server

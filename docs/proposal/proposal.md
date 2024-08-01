@@ -117,6 +117,75 @@
 
 ## 5. Proposed Design Solution
 
+### Brand Color
+
+We choose green(#00AB7A) as our brand color
+
+#### Reasons
+
+1.Green is commonly associated with nature, plants, and the environment. This connection makes it an ideal choice our brand as we want to emphasize natural, high-quality, and organic products
+
+2.Green has a calming and soothing effect on the mind. It can reduce stress and promote relaxation. For our personal care brand, using green can help convey a sense of peace.
+
+3.Green can evoke feelings of safety and trust.
+
+### Design Mockups
+
+Here are the design mockups for our project:
+
+#### Landing Page
+
+The landing page mockup presents the initial interface users will encounter. It features a clean, welcoming design with clear navigation and call-to-action buttons.
+
+![Landing page design mockup](../design-mockup/Landing_page.jpg)
+
+#### List View
+
+The list view mockup displays how multiple items are shown in our shop page. Each item is presented with a thumbnail, title, and a brief description, allowing users to quickly scan through options.
+
+![List view page design mockup](../design-mockup/List_view.jpg)
+
+#### Detailed View
+
+The detailed view mockup provides an detailed look at a single item. It includes extensive information, images, and options related to purchasing service, enhancing user engagement and decision-making.
+
+![Detailed view of the products](../design-mockup/List_detail.jpg)
+
+#### About Us
+
+The About Us page mockup introduces our organization, highlights our values, and provides multiple methods to reach us. It is designed to build trust and connect with users.
+
+![About us page design mockup](../design-mockup/About_us.jpg)
+
+### Design Components
+
+#### Header
+
+![Header section](../design-mockup/design-components/header.jpg)
+
+#### Footer
+
+![Footer section](../design-mockup/design-components/footer.jpg)
+
+#### Home Banner
+
+![Banner section](../design-mockup/design-components/banner.jpg)
+
+#### Category Section
+
+![Category section of home page](../design-mockup/design-components/home_category.jpg)
+
+#### Card Design for List View
+
+![Header section](../design-mockup/design-components/header.jpg)
+
+#### Detail
+
+![Product details of detail page](../design-mockup/design-components/detail.jpg)
+
+#### Contact Us
+
+![Contact us section](../design-mockup/design-components/contact_us.jpg)
 
 ## 6. User Personas/Use Case Statements
 
@@ -168,8 +237,15 @@
 #### Use Case Statement
 - **As an Admin**, Joe wants to add new products to the catalogue so that he can keep the website's offerings up to date.
 
-
 ## 7. Sitemap
+
+### 7.1 FRONT END SITEMAP
+
+![FRONT END SITEMAP](./images/Front_End_SiteMap.png)
+
+### 7.2 Backend Panel
+![Sample Image](./images/admin_sitepmap_1.jpg)
+![Sample Image](./images/admin_sitemap_2.jpg)
 
 ## 8. Server
 ![Sample Image](./images/server.jpg)
@@ -202,10 +278,129 @@
 - **Access Control**: Use of SSH keys for authentication and disabling password-based logins.
 - **Monitoring and Logging**: Implement continuous monitoring and logging to detect and respond to security incidents promptly.
 - **Backup and Recovery**: Regularly back up data and have a recovery plan in place in case of data loss or corruption.
+### 9.1 Security in the Web Application
+
+![Sample Image](./images/web_app_security.jpg)
+#### Input Validation
+- **Function:** Ensures that only properly formatted data is entered into the system.
+- **Benefit:** Prevents common vulnerabilities like SQL injection and XSS by validating user input.
+
+#### Output Sanitization
+- **Function:** Cleans and encodes output data before sending it to the user's browser.
+- **Benefit:** Protects against XSS attacks by ensuring malicious scripts are not executed in the browser.
+
+#### Role-Based Access Control (RBAC)
+- **Function:** Restricts access to resources based on the user's role within the application.
+- **Benefit:** Ensures that users can only access the functionalities and data that are necessary for their role.
+
+#### CSRF Tokens
+- **Function:** Uses unique tokens for each session to prevent Cross-Site Request Forgery attacks.
+- **Benefit:** Ensures that unauthorized commands are not executed on behalf of authenticated users.
+
+#### Session Management
+- **Function:** Manages user sessions securely with mechanisms like session expiration and regeneration.
+- **Benefit:** Prevents session hijacking and fixation by properly managing user sessions.
+
+#### SSL (Secure Sockets Layer)
+- **Function:** Encrypts data transmitted between the client and the server.
+- **Benefit:** Protects data in transit from being intercepted or tampered with by attackers.
+
+#### Defensive Coding Practices
+- **Authentication:** Implementation of strong authentication mechanisms, such as multi-factor authentication (MFA).
+- **Error Handling:** Preventing exposing detailed error messages to users, as they can provide valuable information to attackers.
+- **Security Headers:** Using HTTP security headers like Content Security Policy (CSP), X-Content-Type-Options, and X-Frame-Options to protect against various attacks.
+- **Regular Security Audits:** Conduct regular security audits and vulnerability assessments to identify and address potential security issues.
 
 ## 10. Database
+
+### Entities and Relationships
+
+#### 1. Users
+- **Attributes**: ID, Username, Password, Email, FullName, Address, PhoneNumber, Is_Admin, Created_At, Updated_At
+- **Purpose**: Manages user information, including both customers and administrators.
+
+#### 2. Products
+- **Attributes**: ID, ProductName, Description, Price, Stock, ImageURL, Color, Rating, Discount, Created_At, Updated_At
+- **Purpose**: Stores detailed information about the products available for sale.
+
+#### 3. Categories
+- **Attributes**: ID, CategoryName, Description
+- **Purpose**: Organize products into various categories for easy navigation.
+
+#### 4. Orders
+- **Attributes**: ID, UserID, OrderDate, TotalAmount, ShippingAddress, Status, Quantity, Price
+- **Purpose**: Tracks order details and status for each purchase.
+
+#### 5. Payments
+- **Attributes**: ID, OrderID, PaymentMethod, PaymentDate, Amount, Tax, GST, Discount, PaymentStatus, TransactionID
+- **Purpose**: Records payment details for orders.
+
+#### 6. Transactions
+- **Attributes**: ID, OrderID, Transaction_ID, TransactionStatus, TransactionResponse, SoftDelete, Timestamp
+- **Purpose**: Tracks transaction details associated with payments.
+
+#### 7. Reviews
+- **Attributes**: ID, ProductID, UserID, Rating, ReviewText, ReviewDate
+- **Purpose**: Stores customer reviews and ratings for products.
+
+#### 8. ShoppingCart
+- **Attributes**: ID, UserID, CreatedDate
+- **Purpose**: Temporarily holds items that users intend to purchase.
+
+#### 9. CartItems
+- **Attributes**: ID, CartID, ProductID, Quantity
+- **Purpose**: Manages individual items within a shopping cart.
+
+#### 10. Wishlist
+- **Attributes**: ID, UserID, CreatedDate
+- **Purpose**: Allows users to save products for future reference.
+
+#### 11. WishlistItems
+- **Attributes**: ID, WishlistID, ProductID
+- **Purpose**: Manages individual items within a wishlist.
+
+### Key Relationships
+- **Users to Orders**: A user can place multiple orders.
+- **Orders to Payments**: Each order can have multiple payment records.
+- **Orders to Transactions**: Each order can have multiple transactions.
+- **Products to Reviews**: Each product can have multiple reviews.
+- **Products to Categories**: Each product can belong to one category, but a category can have multiple products.
+- **ShoppingCart to CartItems**: Each shopping cart can have multiple items.
+- **Wishlist to WishlistItems**: Each wishlist can have multiple items.
+
+![Sample Image](./images/database_ERD.png)
+
 ## 11. Value Adds
+
+### BRANDS and VENDORS
+
+To enhance the "WELL" Health & Beauty e-commerce platform, we have added two key features:
+
+### BRANDS Table
+
+- **Attributes**: ID, BrandName, Description, ProductID
+    - **Benefit**: Allows products to be categorized by brand, enabling brand-specific promotions and improved customer experience.
+
+### VENDORS Table
+
+- **Attributes**: ID, VendorName, ContactPerson, ContactEmail, ContactPhone, ProductID
+    - **Benefit**: Supports multiple vendors, facilitating marketplace expansion with diverse product offerings and competitive pricing.
+
+### Marketplace Expansion
+
+These features prepare "WELL" for future growth in a marketplace. By supporting multiple brands and vendors, the platform can offer a wider variety of products, attract more customers, and create new revenue streams through vendor partnerships. This strategic addition positions "WELL" for scalability and long-term success in the competitive e-commerce landscape.
+
 ## 12. Revised ERD for Value Adds
+
+### Changes to the ERD
+
+1. **Addition of BRANDS Table**: Each product can be associated with one brand, and a brand can have multiple products. This introduces a one-to-many relationship between the BRANDS table and the PRODUCTS table.
+2. **Addition of VENDORS Table**: Each product can be associated with one vendor, and a vendor can supply multiple products. This creates a one-to-many relationship between the VENDORS table and the PRODUCTS table.
+
+These changes will enable the "WELL" platform to support brand categorization and vendor management, enhancing the system's capability to expand into a marketplace. The revised ERD will incorporate these additional tables and relationships to facilitate the new value-added features.
+
+![ERD WITH VALUE ADD](./images/database_ERD_with_added_value.png)
+
 
 ## 13. Our Team
 ### Manish Kumar
