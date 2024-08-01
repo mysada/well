@@ -2,7 +2,7 @@
 
 ## Overview
 
-This is a Laravel-based beauty website project designed by Mydasa. 
+This is a Laravel-based personal health care website project designed by Mydasa. 
 ### Mydasa Members
 
 - Manish

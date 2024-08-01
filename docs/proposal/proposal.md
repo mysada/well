@@ -6,10 +6,6 @@
 - Created For: Steve George
 - Date: 31 July, 2024
 
-[toc]
-
-
-
 ## 1. Project Overview
 - WELL - Health & Personal Care is an e-commerce website that provides a wide range of health and personal care products. Our offerings include health supplements, personal care products, and organic supplements. The primary goal is to create a user-friendly, secure, and visually appealing platform where customers can easily find and purchase products that enhance their health and beauty.
 
