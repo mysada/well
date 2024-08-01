@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Wellness Balance</title>
+    <title>Product List - Wellness Balance</title>
     @vite(['resources/css/app.scss', 'resources/js/app.js'])
 </head>
 <body>
@@ -51,108 +51,50 @@
     <!-- Hero Section -->
     <div class="hero">
         <div class="container">
-            <h1>SALE</h1>
-            <p>Skincare, fitness products, nutritional supplements</p>
-            <p>Up to 50% discount, check it out</p>
-            <a href="#" class="btn btn-explore">Explore</a>
+            <img src="{{ asset('images/hero_image.jpg') }}" class="img-fluid" alt="Hero Image">
         </div>
     </div>
 
-    <!-- Category Section -->
-    <div class="category container">
-        <h2>Category</h2>
+    <!-- Product List Section -->
+    <div class="container mt-5">
         <div class="row">
-            <div class="col-md-4">
-                <div class="card">
-                    <img src="./images/skincare.jpg" class="card-img-top" alt="Skincare">
-                    <div class="card-body">
-                        <h5 class="card-title">Skincare</h5>
-                        <a href="#" class="btn btn-success">Buy Now</a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-4">
-                <div class="card">
-                    <img src="./images/fitness.jpg" class="card-img-top" alt="Fitness">
-                    <div class="card-body">
-                        <h5 class="card-title">Fitness</h5>
-                        <a href="#" class="btn btn-success">Buy Now</a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-4">
-                <div class="card">
-                    <img src="./images/nutrition.jpg" class="card-img-top" alt="Nutritional Supplements">
-                    <div class="card-body">
-                        <h5 class="card-title">Nutritional Supplements</h5>
-                        <a href="#" class="btn btn-success">Buy Now</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Best Seller Section -->
-    <div class="best-seller container">
-        <h2>Best Seller</h2>
-        <div class="row">
-            <div class="col-md-6">
-                <div class="card">
-                    <img src="./images/best_seller_1.jpg" class="card-img-top" alt="Best Seller 1">
-                    <div class="card-body">
-                        <h5 class="card-title">Nterdum et malesuada</h5>
-                        <p class="card-text">Nterdum et malesuada fames ac ante ipsum primis in faucibus.</p>
-                        <a href="#" class="btn btn-success">Buy Now</a>
-                    </div>
-                </div>
-            </div>
             <div class="col-md-3">
-                <div class="card">
-                    <img src="./images/best_seller_2.jpg" class="card-img-top" alt="Best Seller 2">
-                    <div class="card-body">
-                        <h5 class="card-title">Nterdum et malesuada</h5>
-                        <a href="#" class="btn btn-success">Buy Now</a>
-                    </div>
-                </div>
-                <div class="card mt-4">
-                    <img src="./images/best_seller_3.jpg" class="card-img-top" alt="Best Seller 3">
-                    <div class="card-body">
-                        <h5 class="card-title">Nterdum et malesuada</h5>
-                        <a href="#" class="btn btn-success">Buy Now</a>
-                    </div>
-                </div>
+                <h2>Category</h2>
+                <ul class="list-group">
+                    <li class="list-group-item active">Best Seller</li>
+                    <li class="list-group-item">Skincare</li>
+                    <li class="list-group-item">Fitness</li>
+                    <li class="list-group-item">Supplements</li>
+                </ul>
             </div>
-            <div class="col-md-3">
-                <div class="card">
-                    <img src="./images/best_seller_4.jpg" class="card-img-top" alt="Best Seller 4">
-                    <div class="card-body">
-                        <h5 class="card-title">Nterdum et malesuada</h5>
-                        <a href="#" class="btn btn-success">Buy Now</a>
-                    </div>
+            <div class="col-md-9">
+                <div class="row">
+                    @foreach ($products as $product)
+                        <div class="col-md-4 mb-4">
+                            <div class="card">
+                                <img src="{{ asset('images/' . $product->image) }}" class="card-img-top" alt="{{ $product->name }}">
+                                <div class="card-body">
+                                    <h5 class="card-title">{{ $product->name }}</h5>
+                                    <p class="card-text">${{ $product->price }}</p>
+                                    <a href="#" class="btn btn-success">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus" viewBox="0 0 16 16">
+                                            <path d="M8 8V4a.5.5 0 0 1 1 0v4h4a.5.5 0 0 1 0 1H9v4a.5.5 0 0 1-1 0V9H4a.5.5 0 0 1 0-1h4z"/>
+                                        </svg>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    @endforeach
                 </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Products Section -->
-    <div class="products container">
-        <div class="row">
-            <div class="col-md-6">
-                <img src="./images/products.jpg" class="img-fluid" alt="Products">
-            </div>
-            <div class="col-md-6 d-flex align-items-center">
-                <div>
-                    <h3>PRODUCTS</h3>
-                    <h4>We Provide You The Best Products</h4>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque ultrices efficitur diam. Nulla facilisi. Duis libero odio, fermentum id nulla quis, hendrerit feugiat leo. In imperdiet metus ac diam consequat, eu blandit sapien lobortis.</p>
-                    <a href="#" class="btn btn-success">Buy Now</a>
+                <div class="text-center">
+                    <button class="btn btn-primary">Load More</button>
                 </div>
             </div>
         </div>
     </div>
 
     <!-- Footer -->
-    <footer class="footer">
+    <footer class="footer mt-5">
         <div class="container">
             <div class="row">
                 <div class="col-md-4">

@@ -6,3 +6,62 @@
 
 // Bootstrap
 @import 'bootstrap/scss/bootstrap';
+
+body {
+    font-family: 'Poppins', Arial, Avenir Next Georgian, sans-serif;
+}
+
+.navbar-brand {
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+.hero img {
+    width: 100%;
+    height: auto;
+}
+
+.card {
+    border: none;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.card-title {
+    font-size: 1rem;
+    font-weight: bold;
+}
+
+.card-text {
+    color: #28a745;
+    font-size: 1.25rem;
+    font-weight: bold;
+}
+
+.btn-success {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    padding: 0;
+}
+
+.footer {
+    background-color: black;
+    color: white;
+    padding: 40px 0;
+}
+
+.footer a {
+    color: white;
+}
+
+.list-group-item.active {
+    background-color: #28a745;
+    border-color: #28a745;
+}
+
+.text-center button {
+    margin-top: 20px;
+}
