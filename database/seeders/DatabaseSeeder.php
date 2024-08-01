@@ -26,6 +26,8 @@ class DatabaseSeeder extends Seeder
             TransactionSeeder::class,
             PaymentSeeder::class,
             ReviewSeeder::class,
+            WishlistSeeder::class,
+            WishlistItemsSeeder::class,
 
         ]);
     }
