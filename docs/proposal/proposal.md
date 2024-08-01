@@ -51,6 +51,22 @@ The About Us page mockup introduces our organization, highlights our values, and
 
 ![About us page design mockup](../design-mockup/About_us.jpg)
 
+### Design Components
+
+#### Header
+
+#### Footer
+
+#### Home Banner
+
+#### Category Section
+
+#### Card Design for List View
+
+#### Detail
+
+#### Contact Us
+
 ## 6. User Personas/Use Case Statements
 
 ## 7. Sitemap
