@@ -69,160 +69,22 @@
             </div>
             <div class="col-md-9">
                 <div class="row">
-                    <div class="col-md-4 mb-4">
-                        <div class="card">
-                            <img src="{{ asset('images/product_1.jpg') }}" class="card-img-top" alt="Product 1">
-                            <div class="card-body">
-                                <h5 class="card-title">Nyantuy Skincare</h5>
-                                <p class="card-text">$56</p>
-                                <a href="#" class="btn btn-success">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus" viewBox="0 0 16 16">
-                                        <path d="M8 8V4a.5.5 0 0 1 1 0v4h4a.5.5 0 0 1 0 1H9v4a.5.5 0 0 1-1 0V9H4a.5.5 0 0 1 0-1h4z"/>
-                                    </svg>
-                                </a>
+                    @foreach ($products as $product)
+                        <div class="col-md-4 mb-4">
+                            <div class="card">
+                                <img src="{{ asset('images/' . $product->image) }}" class="card-img-top" alt="{{ $product->name }}">
+                                <div class="card-body">
+                                    <h5 class="card-title">{{ $product->name }}</h5>
+                                    <p class="card-text">${{ $product->price }}</p>
+                                    <a href="#" class="btn btn-success">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus" viewBox="0 0 16 16">
+                                            <path d="M8 8V4a.5.5 0 0 1 1 0v4h4a.5.5 0 0 1 0 1H9v4a.5.5 0 0 1-1 0V9H4a.5.5 0 0 1 0-1h4z"/>
+                                        </svg>
+                                    </a>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="col-md-4 mb-4">
-                        <div class="card">
-                            <img src="{{ asset('images/product_2.jpg') }}" class="card-img-top" alt="Product 2">
-                            <div class="card-body">
-                                <h5 class="card-title">Nyantuy Skincare</h5>
-                                <p class="card-text">$56</p>
-                                <a href="#" class="btn btn-success">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus" viewBox="0 0 16 16">
-                                        <path d="M8 8V4a.5.5 0 0 1 1 0v4h4a.5.5 0 0 1 0 1H9v4a.5.5 0 0 1-1 0V9H4a.5.5 0 0 1 0-1h4z"/>
-                                    </svg>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-4 mb-4">
-                        <div class="card">
-                            <img src="{{ asset('images/product_3.jpg') }}" class="card-img-top" alt="Product 3">
-                            <div class="card-body">
-                                <h5 class="card-title">Nyantuy Skincare</h5>
-                                <p class="card-text">$56</p>
-                                <a href="#" class="btn btn-success">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus" viewBox="0 0 16 16">
-                                        <path d="M8 8V4a.5.5 0 0 1 1 0v4h4a.5.5 0 0 1 0 1H9v4a.5.5 0 0 1-1 0V9H4a.5.5 0 0 1 0-1h4z"/>
-                                    </svg>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-4 mb-4">
-                        <div class="card">
-                            <img src="{{ asset('images/product_4.jpg') }}" class="card-img-top" alt="Product 4">
-                            <div class="card-body">
-                                <h5 class="card-title">Nyantuy Skincare</h5>
-                                <p class="card-text">$56</p>
-                                <a href="#" class="btn btn-success">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus" viewBox="0 0 16 16">
-                                        <path d="M8 8V4a.5.5 0 0 1 1 0v4h4a.5.5 0 0 1 0 1H9v4a.5.5 0 0 1-1 0V9H4a.5.5 0 0 1 0-1h4z"/>
-                                    </svg>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-4 mb-4">
-                        <div class="card">
-                            <img src="{{ asset('images/product_5.jpg') }}" class="card-img-top" alt="Product 5">
-                            <div class="card-body">
-                                <h5 class="card-title">Nyantuy Skincare</h5>
-                                <p class="card-text">$56</p>
-                                <a href="#" class="btn btn-success">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus" viewBox="0 0 16 16">
-                                        <path d="M8 8V4a.5.5 0 0 1 1 0v4h4a.5.5 0 0 1 0 1H9v4a.5.5 0 0 1-1 0V9H4a.5.5 0 0 1 0-1h4z"/>
-                                    </svg>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-4 mb-4">
-                        <div class="card">
-                            <img src="{{ asset('images/product_6.jpg') }}" class="card-img-top" alt="Product 6">
-                            <div class="card-body">
-                                <h5 class="card-title">Nyantuy Skincare</h5>
-                                <p class="card-text">$56</p>
-                                <a href="#" class="btn btn-success">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus" viewBox="0 0 16 16">
-                                        <path d="M8 8V4a.5.5 0 0 1 1 0v4h4a.5.5 0 0 1 0 1H9v4a.5.5 0 0 1-1 0V9H4a.5.5 0 0 1 0-1h4z"/>
-                                    </svg>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-4 mb-4">
-                        <div class="card">
-                            <img src="{{ asset('images/product_7.jpg') }}" class="card-img-top" alt="Product 7">
-                            <div class="card-body">
-                                <h5 class="card-title">Nyantuy Skincare</h5>
-                                <p class="card-text">$56</p>
-                                <a href="#" class="btn btn-success">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus" viewBox="0 0 16 16">
-                                        <path d="M8 8V4a.5.5 0 0 1 1 0v4h4a.5.5 0 0 1 0 1H9v4a.5.5 0 0 1-1 0V9H4a.5.5 0 0 1 0-1h4z"/>
-                                    </svg>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-4 mb-4">
-                        <div class="card">
-                            <img src="{{ asset('images/product_8.jpg') }}" class="card-img-top" alt="Product 8">
-                            <div class="card-body">
-                                <h5 class="card-title">Nyantuy Skincare</h5>
-                                <p class="card-text">$56</p>
-                                <a href="#" class="btn btn-success">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus" viewBox="0 0 16 16">
-                                        <path d="M8 8V4a.5.5 0 0 1 1 0v4h4a.5.5 0 0 1 0 1H9v4a.5.5 0 0 1-1 0V9H4a.5.5 0 0 1 0-1h4z"/>
-                                    </svg>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-4 mb-4">
-                        <div class="card">
-                            <img src="{{ asset('images/product_9.jpg') }}" class="card-img-top" alt="Product 9">
-                            <div class="card-body">
-                                <h5 class="card-title">Nyantuy Skincare</h5>
-                                <p class="card-text">$56</p>
-                                <a href="#" class="btn btn-success">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus" viewBox="0 0 16 16">
-                                        <path d="M8 8V4a.5.5 0 0 1 1 0v4h4a.5.5 0 0 1 0 1H9v4a.5.5 0 0 1-1 0V9H4a.5.5 0 0 1 0-1h4z"/>
-                                    </svg>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-4 mb-4">
-                        <div class="card">
-                            <img src="{{ asset('images/product_10.jpg') }}" class="card-img-top" alt="Product 10">
-                            <div class="card-body">
-                                <h5 class="card-title">Nyantuy Skincare</h5>
-                                <p class="card-text">$56</p>
-                                <a href="#" class="btn btn-success">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus" viewBox="0 0 16 16">
-                                        <path d="M8 8V4a.5.5 0 0 1 1 0v4h4a.5.5 0 0 1 0 1H9v4a.5.5 0 0 1-1 0V9H4a.5.5 0 0 1 0-1h4z"/>
-                                    </svg>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-4 mb-4">
-                        <div class="card">
-                            <img src="{{ asset('images/product_11.jpg') }}" class="card-img-top" alt="Product 11">
-                            <div class="card-body">
-                                <h5 class="card-title">Nyantuy Skincare</h5>
-                                <p class="card-text">$56</p>
-                                <a href="#" class="btn btn-success">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus" viewBox="0 0 16 16">
-                                        <path d="M8 8V4a.5.5 0 0 1 1 0v4h4a.5.5 0 0 1 0 1H9v4a.5.5 0 0 1-1 0V9H4a.5.5 0 0 1 0-1h4z"/>
-                                    </svg>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
+                    @endforeach
                 </div>
                 <div class="text-center">
                     <button class="btn btn-primary">Load More</button>
