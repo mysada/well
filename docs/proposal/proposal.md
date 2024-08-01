@@ -3,96 +3,45 @@
 # Well - Health & Personal Care Web Application Development
 
 ## 1. Project Overview
-
 ## 2. Target Audience
-
 ## 3. Project Details
-
 ## 4. Technologies
-
 ## 5. Proposed Design Solution
-
-### Brand Color
-
-We choose green(#00AB7A) as our brand color
-
-####Reasons:
-1.Green is commonly associated with nature, plants, and the environment. This connection makes it an ideal choice our brand as we want to emphasize natural, high-quality, and organic products
-
-2.Green has a calming and soothing effect on the mind. It can reduce stress and promote relaxation. For our personal care brand, using green can help convey a sense of peace.
-
-3.Green can evoke feelings of safety and trust.
-
-### Design Mockups
-
-Here are the design mockups for our project:
-
-#### Landing Page
-
-The landing page mockup presents the initial interface users will encounter. It features a clean, welcoming design with clear navigation and call-to-action buttons.
-
-![Landing page design mockup](../design-mockup/Landing_page.jpg)
-
-#### List View
-
-The list view mockup displays how multiple items are shown in our shop page. Each item is presented with a thumbnail, title, and a brief description, allowing users to quickly scan through options.
-
-![List view page design mockup](../design-mockup/List_view.jpg)
-
-#### Detailed View
-
-The detailed view mockup provides an detailed look at a single item. It includes extensive information, images, and options related to purchasing service, enhancing user engagement and decision-making.
-
-![Detailed view of the products](../design-mockup/Detail.jpg)
-
-#### About Us
-
-The About Us page mockup introduces our organization, highlights our values, and provides multiple methods to reach us. It is designed to build trust and connect with users.
-
-![About us page design mockup](../design-mockup/About_us.jpg)
-
-### Design Components
-
-#### Header
-
-![Header section](../design-mockup/design-components/header.jpg)
-
-#### Footer
-
-![Footer section](../design-mockup/design-components/footer.jpg)
-
-#### Home Banner
-
-![Banner section](../design-mockup/design-components/banner.jpg)
-
-#### Category Section
-
-![Category section of home page](../design-mockup/design-components/home_category.jpg)
-
-#### Card Design for List View
-
-![Header section](../design-mockup/design-components/header.jpg)
-
-#### Detail
-
-![Product details of detail page](../design-mockup/design-components/detail.jpg)
-
-#### Contact Us
-
-![Contact us section](../design-mockup/design-components/contact_us.jpg)
-
 ## 6. User Personas/Use Case Statements
-
 ## 7. Sitemap
-
 ## 8. Server
+![Sample Image](./images/server.jpg)
+### Ubuntu Server
+- Ubuntu (a popular Linux distribution known for its stability and     user-friendliness)
+
+### Apache2
+- Apache2 is a widely used open-source web server that provides a robust, flexible,     and secure platform for hosting websites.
+
+### Certbot
+- Certbot is an open-source tool for automatically using Let's Encrypt certificates     on manually administrated websites to enable HTTPS.
 
 ## 9. Security on the Server
+![Sample Image](./images/server_security.jpg)
+
+### Load Balancers
+- **Function**: Distributes incoming network traffic across multiple servers to ensure no single server becomes overwhelmed.
+- **Benefit**: Improves availability and reliability of the application by balancing the load. Very useful in protecting the server from DDoS attacks.
+
+### Firewall
+- **Function**: Monitors and controls incoming and outgoing network traffic based on predetermined security rules.
+- **Benefit**: Protects the server from unauthorized access and potential threats by filtering traffic.
+
+### Data Encryption
+- **Function**: Encrypts data both at rest and in transit using algorithms like AES-256.
+- **Benefit**: Ensures that sensitive data is protected from unauthorized access and breaches.
+
+### Continuous Security Practices
+- **Regular Updates**: Keeping the operating system and all software up to date to protect against vulnerabilities.
+- **Access Control**: Use of SSH keys for authentication and disabling password-based logins.
+- **Monitoring and Logging**: Implement continuous monitoring and logging to detect and respond to security incidents promptly.
+- **Backup and Recovery**: Regularly back up data and have a recovery plan in place in case of data loss or corruption.
 
 ## 10. Database
-
 ## 11. Value Adds
-
 ## 12. Revised ERD for Value Adds
-
 ## 13. Our Team
