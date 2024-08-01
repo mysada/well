@@ -31,6 +31,7 @@
 - **Backup and Recovery**: Regularly back up data and have a recovery plan in place in case of data loss or corruption.
 ### 9.1 Security in the Web Application
 
+![Sample Image](./images/web_app_security.jpg)
 #### Input Validation
 - **Function:** Ensures that only properly formatted data is entered into the system.
 - **Benefit:** Prevents common vulnerabilities like SQL injection and XSS by validating user input.
