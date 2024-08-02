@@ -117,6 +117,10 @@
         .custom-margin {
             margin-top: 80px; /* Adjust the value as needed */
         }
+        .custom-margin-bottom {
+            margin-bottom: 2rem; /* Adjust the value as needed */
+        }
+
         .text-center {
             text-align: center;
         }
@@ -371,7 +375,7 @@
 <!-- Related Products -->
 <section class="related-products py-5">
     <div class="container">
-        <div class="col-md-12 mb-3">
+        <div class="col-md-12 custom-margin-bottom">
             <h2 class="product-title text-center">Related Products</h2>
         </div>
         <div class="row">
