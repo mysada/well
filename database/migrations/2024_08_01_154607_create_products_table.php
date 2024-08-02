@@ -16,8 +16,9 @@ return new class extends Migration {
             $table->string('product_name', 255);
             $table->text('description')->nullable();
             $table->decimal('price', 10, 2);
-            $table->bigInteger('category_id')->unsigned();
-            $table->integer('stock');
+            $table->foreignId('category_id')
+                  ->constrained('categories');
+            $table->integer('stock')->default(0);
             $table->string('image_url', 255)->nullable();
             $table->string('color', 50)->nullable();
             $table->decimal('rating', 3, 2)->nullable();
@@ -34,5 +35,4 @@ return new class extends Migration {
     {
         Schema::dropIfExists('products');
     }
-
 };
