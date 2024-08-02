@@ -13,8 +13,9 @@ class ProductController extends Controller
     public function index()
     {
         $products = Product::all();
+        $title    = 'Products';
 
-        return view('product_list', compact('products'));
+        return view('well.product.product_list', compact('products', 'title'));
     }
 
     /**
@@ -22,9 +23,13 @@ class ProductController extends Controller
      */
     public function show(string $id)
     {
+        $title = 'Product Info';
         $product = Product::find($id);
 
-        return view('product_details', compact('product'));
+        return view(
+          'well.product.product_details',
+          compact('product', 'title')
+        );
     }
 
 }
