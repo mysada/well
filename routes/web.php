@@ -16,39 +16,40 @@ Route::get('/about', [AboutController::class, 'index']);
 
 //guest
 Route::resource('products', ProductController::class)->names([
-  'index' => 'Products',
-  'show'  => 'ProductDetail',
+  'index' => 'Products', //page: all products
+  'show'  => 'ProductDetail', //page: product detail
+]);
+
+//using cookies to show cart when guest, using database when login
+Route::resource('cart_items', CartItemController::class)->names([
+  'index' => 'CartItemIndex', //page: cart list
 ]);
 
 //login
 Route::middleware('auth')->group(function () {
     Route::resource('cart_items', CartItemController::class)->names([
-      'index'   => 'CartItemIndex',
-      'store'   => 'CartItemStore',
-      'update'  => 'CartItemUpdate',
-      'destroy' => 'CartItemDestroy',
+      'store'   => 'CartItemStore', //processor: add product into cart
+      'update'  => 'CartItemUpdate', //processor: update cart products quantity
+      'destroy' => 'CartItemDestroy',//processor: delete cart products
     ]);
 
     Route::resource('orders', OrderController::class)->names([
-      'index'   => 'Order',
-      'create'  => 'OrderCreate',
-      'store'   => 'OrderStore',
-      'show'    => 'OrderShow',
-      'edit'    => 'OrderEdit',
-      'update'  => 'OrderUpdate',
-      'destroy' => 'OrderDestroy',
+      'index'  => 'Order', //page: order list
+      'create' => 'OrderCreate', //page: order create
+      'store'  => 'OrderStore', //processor: save an order
+      'show'   => 'OrderShow', //page: order detail
     ]);
 
     Route::resource('payments', PaymentController::class)->names([
-      'create' => 'PaymentCreate',
-      'store'  => 'PaymentStore',
+      'create' => 'PaymentCreate', //page: payment
+      'store'  => 'PaymentStore', //processor: save a payment and transaction
     ]);
 
     Route::resource('wishlists', WishlistController::class)->names([
-      'index'   => 'WishlistIndex',
-      'store'   => 'WishlistStore',
-      'update'  => 'WishlistUpdate',
-      'destroy' => 'WishlistDestroy',
+      'index'   => 'WishlistIndex', //page: wishlist
+      'store'   => 'WishlistStore', //processor: add product into wishlist
+      'update'  => 'WishlistUpdate', //processor: update product quantity
+      'destroy' => 'WishlistDestroy', //processor: delete product
     ]);
 });
 Auth::routes();
