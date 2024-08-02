@@ -9,8 +9,9 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <style>
         body {
-            font-family: 'Arial', 'Poppins', 'Avenir Next Georgian', Arial;
+            font-family: 'Poppins', 'Arial', 'Avenir Next Georgian', Arial;
         }
+        
 
         h1, h2, h3 {
             font-family: 'Poppins', 'Avenir Next Georgian', Arial;
@@ -24,6 +25,11 @@
 
         .bold {
             font-weight: 700;
+        }
+
+        .container {
+            width: 100%;
+            margin: auto;
         }
 
         .hero-section {
@@ -79,16 +85,8 @@
             margin-bottom: 30px;
         }
 
-        .best-seller-section h5 {
-            color: #333;
-            margin-bottom: 20px;
-        }
 
-        .best-seller-section p {
-            color: #666;
-            margin-bottom: 20px;
-        }
-
+        
         .category-card {
             background-size: cover;
             background-position: center;
@@ -113,16 +111,7 @@
             padding: 5px;
 
         }
-        .best-seller-card {
-            background-size: cover;
-            background-position: center;
-            position: relative;
-            max-width: 590px;
-            height: 590px;
-            display: flex;
-            align-items: flex-end;
-            margin-bottom: 30px;
-        }
+
 
         .category-card .card-body {
             width: 100%;
@@ -135,10 +124,48 @@
             padding: 20px;
         }
 
+        .best-seller-card {
+            background-size: cover;
+            background-position: center;
+            position: relative;
+            max-width: 590px;
+            height: 590px;
+            display: flex;
+            align-items: flex-end;
+            margin-bottom: 30px;
+        }
+
+
+        .best-seller-section h5 {
+            color: #333;
+            margin-bottom: 20px;
+            font-size: 18px;
+            font-weight: 700;
+        }
+
+        .best-seller-section p {
+            color: #666;
+            margin-bottom: 20px;
+            font-size: 15px;
+        }
+
 
         .best-seller-card-right {
             width: 284px;
             height: 284px;
+            background-size: cover;
+            background-position: center;
+        }
+
+        .card-right {
+            display: flex;
+            margin-bottom: 20px;
+        }
+
+        .bs-text {
+            width: 200px;
+            margin-left: 20px;
+            margin-top: 10px;
         }
 
         .footer h5 {
@@ -146,6 +173,10 @@
             margin-bottom: 15px;
             font-weight: 500;
             color: #999;
+        }
+
+        .footer p {
+            font-size: 15px;
         }
 
         .footer li {
@@ -160,6 +191,15 @@
             height: 400px;
             object-fit: cover;
         }
+
+        .products-section p {
+            color: #666;
+        }
+
+        .products-section {
+            margin-bottom: 100px;
+        }
+
 
         .footer {
             padding: 40px 0 15px 0;
@@ -191,8 +231,8 @@
 
         .btn-primary:hover {
             background-color: #fff;
-            transform: scale(1.05);
             color: #00AB7A;
+            border: 1px solid #00AB7A;
         }
 
         .btn-primary:active {
@@ -277,7 +317,7 @@
             <h2>Category</h2>
             <div class="row">
                 <div class="col-md-4">
-                    <div class="card category-card" style="background-image: url('sample.jpg');">
+                    <div class="card category-card" style="background-image: url('sample-1.jpg');">
                         <h1 class="category-card-title">Skincare</h1>
                         <div class="card-body">
                             <a href="#" class="btn btn-primary">Buy Now</a>
@@ -285,7 +325,7 @@
                     </div>
                 </div>
                 <div class="col-md-4">
-                    <div class="card category-card" style="background-image: url('sample.jpg');">
+                    <div class="card category-card" style="background-image: url('sample-1.jpg');">
                         <h1 class="category-card-title">Fitness</h1>
                         <div class="card-body">
                             <a href="#" class="btn btn-primary">Buy Now</a>
@@ -293,7 +333,7 @@
                     </div>
                 </div>
                 <div class="col-md-4">
-                    <div class="card category-card" style="background-image: url('sample.jpg');">
+                    <div class="card category-card" style="background-image: url('sample-1.jpg');">
                         <h1 class="category-card-title">Nutritional Supplements</h1>
                         <div class="card-body">
                             <a href="#" class="btn btn-primary">Buy Now</a>
@@ -305,13 +345,13 @@
     </section>
 
     <!-- Best Seller Section -->
-    <section class="best-seller-section text-center">
+    <section class="best-seller-section">
         <div class="container">
             <h2>Best Seller</h2>
             <div class="row-best-seller d-flex">
                 <div class="col-md-6">
-                    <div class="row-best-seller-left">
-                        <div class="card best-seller-card" style="background-image: url('sample.jpg');">
+                    <div class="row-best-seller-left  text-center">
+                        <div class="card best-seller-card" style="background-image: url('sample-1.jpg');">
                             <div class="card-body">
                                 <h5 class="card-title">Nterdum et malesuada</h5>
                                 <p class="card-text">Nterdum et malesuada fames ac ante ipsum primis in faucibus.</p>
@@ -322,26 +362,26 @@
                 </div>
                 <div class="col-md-6">
                     <div class="row-best-seller-right">
-                        <div class="col-md-6">
-                            <div class="card-right d-flex">
-                                <div class="best-seller-card-right" style="background-image: url('sample.jpg');">
-                                </div>
-                                <div class="text">
-                                    <h5 class="card-title">Nterdum et malesuada</h5>
-                                    <a href="#" class="btn btn-primary">Buy Now</a>
-                                </div>
+                        <div class="card-right">
+                            <div class="best-seller-card-right" style="background-image: url('sample-1.jpg');">
+                            </div>
+                            <div class="bs-text">
+                                <h5 class="bs-title">Nterdum et malesuada</h5>
+                                <p>Nterdum et malesuada fames ac ante ipsum primis in faucibus.</p>
+                                <a href="#" class="btn btn-primary">Buy Now</a>
                             </div>
                         </div>
-                        <div class="col-md-6">
-                            <div class="card-right">
-                                <div class="best-seller-card-right" style="background-image: url('sample.jpg');">
-                                </div>
-                                <div class="text">
-                                    <h5 class="card-title">Nterdum et malesuada</h5>
-                                    <a href="#" class="btn btn-primary">Buy Now</a>
-                                </div>
+
+                        <div class="card-right">
+                            <div class="best-seller-card-right" style="background-image: url('sample-1.jpg');">
+                            </div>
+                            <div class="bs-text">
+                                <h5 class="bs-title">Nterdum et malesuada</h5>
+                                <p>Nterdum et malesuada fames ac ante ipsum primis in faucibus.</p>
+                                <a href="#" class="btn btn-primary">Buy Now</a>
                             </div>
                         </div>
+
                     </div>
                 </div>
             </div>
@@ -353,11 +393,11 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-6">
-                    <img src="sample.jpg" class="img-fluid" alt="Products Image">
+                    <img src="sample-1.jpg" class="img-fluid" alt="Products Image">
                 </div>
                 <div class="col-md-6 text-left d-flex align-items-center">
                     <div>
-                        <p style="color: #00AB7A; font-size: 18px;">PRODUCTS</pp>
+                        <p style="color: #00AB7A; font-size: 18px;">PRODUCTS</p>
                         <h3 style="font-size: 42px;">We Provide You The Best Products</h3>
                         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque vel orci efficitur diam.
                             Nulla facilisi. Duis libero odio, fermentum id nulla quis, hendrerit feugiat leo. In
