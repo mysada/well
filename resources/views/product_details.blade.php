@@ -217,14 +217,20 @@
             box-shadow: 4px 4px 4px 8px rgba(0, 0, 0, 0.1);
             transition: transform 0.3s;
             border-radius: 25px; /* Adjust radius as needed */
-            overflow: hidden;
+            overflow: hidden; /* Ensure children follow the border-radius */
         }
 
         .card:hover {
             transform: translateY(-5px);
         }
 
-
+        .card-img-top {
+            border-top-left-radius: 25px; /* Match the card's border-radius */
+            border-top-right-radius: 25px; /* Match the card's border-radius */
+            height: 200px;
+            object-fit: cover;
+            width: 100%; /* Ensure the image covers the full width of the card */
+        }
 
         .card-body {
             text-align: center;
@@ -279,8 +285,6 @@
         .load-more:hover {
             background-color: #28A745;
         }
-
-
 
     </style>
 </head>
@@ -429,6 +433,7 @@
         </div>
     </div>
 </section>
+
 
 
 
