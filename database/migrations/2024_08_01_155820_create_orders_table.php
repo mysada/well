@@ -13,7 +13,8 @@ return new class extends Migration {
     {
         Schema::create('orders', function (Blueprint $table) {
             $table->id();
-            $table->bigInteger('user_id')->unsigned()->nullable();
+            $table->foreignId('user_id')
+                  ->constrained('users');
             $table->integer('quantity');
             $table->decimal('price', 10, 2);
             $table->string('recipient_name', 255)->nullable();
@@ -27,11 +28,6 @@ return new class extends Migration {
             );
             $table->timestamps();
             $table->timestamp('deleted_at')->nullable();
-
-            $table->foreign('user_id')->references('id')->on('users')->onDelete('restrict');
-
-            $table->index('user_id');
-            $table->index('status');
         });
     }
 
