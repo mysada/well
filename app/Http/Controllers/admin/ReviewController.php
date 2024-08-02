@@ -1,10 +1,11 @@
 <?php
 
-namespace App\Http\Controllers\well;
+namespace App\Http\Controllers\admin;
 
+use App\Http\Controllers\well\Controller;
 use Illuminate\Http\Request;
 
-class TransactionController extends Controller
+class ReviewController extends Controller
 {
     /**
      * Display a listing of the resource.
