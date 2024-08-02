@@ -14,11 +14,11 @@ return new class extends Migration {
         Schema::create('payments', function (Blueprint $table) {
             $table->id();
 
-            $table->bigInteger('order_id')->unsigned()->nullable();
+            $table->foreignId('order_id')->nullable()->constrained('orders');
             $table->enum('method', ['Credit Card', 'PayPal', 'Other']);
             $table->decimal('amount', 10, 2);
-            $table->decimal('tax', 5, 2)->nullable();
-            $table->decimal('gst', 5, 2)->nullable();
+            $table->decimal('gst', 5, 2)->default(0.00);
+            $table->decimal('pst', 5, 2)->default(0.00);
             $table->decimal('discount', 5, 2)->nullable();
             $table->enum('status', ['Pending', 'Completed', 'Failed']);
             $table->timestamps();
