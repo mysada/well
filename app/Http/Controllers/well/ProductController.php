@@ -7,15 +7,15 @@ use Illuminate\Http\Request;
 
 class ProductController extends Controller
 {
+
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-
         $products = Product::all();
-        return view('product_list', compact('products'));
 
+        return view('product_list', compact('products'));
     }
 
     /**
@@ -39,7 +39,9 @@ class ProductController extends Controller
      */
     public function show(string $id)
     {
+        $product = Product::find($id);
 
+        return view('product_detail', compact('product'));
     }
 
     /**
@@ -65,4 +67,5 @@ class ProductController extends Controller
     {
         //
     }
+
 }
