@@ -46,6 +46,10 @@ Route::middleware('auth')->group(function () {
       'update'  => 'WishlistUpdate', //processor: update product quantity
       'destroy' => 'WishlistDestroy', //processor: delete product
     ]);
+
+    Route::resource('user', WishlistController::class)->names([
+      'index' => 'Profile', //page: profile with orders
+    ]);
 });
 Auth::routes();
 
