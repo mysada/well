@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\well;
 
 use Illuminate\Http\Request;
 
-class WishlistItemController extends Controller
+class CartController extends Controller
 {
     /**
      * Display a listing of the resource.
