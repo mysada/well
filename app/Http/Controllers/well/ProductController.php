@@ -1,17 +1,21 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\well;
 
+use App\Models\Product;
 use Illuminate\Http\Request;
 
-class ProductCategoryController extends Controller
+class ProductController extends Controller
 {
+
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        //
+        $products = Product::all();
+
+        return view('product_list', compact('products'));
     }
 
     /**
@@ -35,7 +39,9 @@ class ProductCategoryController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $product = Product::find($id);
+
+        return view('product_detail', compact('product'));
     }
 
     /**
@@ -60,5 +66,9 @@ class ProductCategoryController extends Controller
     public function destroy(string $id)
     {
         //
+    }
+    public function showProductDetails()
+    {
+        return view('product_details');
     }
 }
