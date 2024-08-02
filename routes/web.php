@@ -6,6 +6,7 @@ use App\Http\Controllers\well\HomeController;
 use App\Http\Controllers\well\OrderController;
 use App\Http\Controllers\well\PaymentController;
 use App\Http\Controllers\well\ProductController;
+use App\Http\Controllers\well\WishlistController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -41,6 +42,13 @@ Route::middleware('auth')->group(function () {
     Route::resource('payments', PaymentController::class)->names([
       'create' => 'PaymentCreate',
       'store'  => 'PaymentStore',
+    ]);
+
+    Route::resource('wishlists', WishlistController::class)->names([
+      'index'   => 'WishlistIndex',
+      'store'   => 'WishlistStore',
+      'update'  => 'WishlistUpdate',
+      'destroy' => 'WishlistDestroy',
     ]);
 });
 Auth::routes();
