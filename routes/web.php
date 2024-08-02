@@ -4,6 +4,7 @@ use App\Http\Controllers\well\AboutController;
 use App\Http\Controllers\well\CartItemController;
 use App\Http\Controllers\well\HomeController;
 use App\Http\Controllers\well\OrderController;
+use App\Http\Controllers\well\PaymentController;
 use App\Http\Controllers\well\ProductController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -35,6 +36,11 @@ Route::middleware('auth')->group(function () {
       'edit'    => 'OrderEdit',
       'update'  => 'OrderUpdate',
       'destroy' => 'OrderDestroy',
+    ]);
+
+    Route::resource('payments', PaymentController::class)->names([
+      'create' => 'PaymentCreate',
+      'store'  => 'PaymentStore',
     ]);
 });
 Auth::routes();
