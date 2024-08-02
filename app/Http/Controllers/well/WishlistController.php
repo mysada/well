@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\well;
 
+use App\Models\Wishlist;
 use Illuminate\Http\Request;
 
 class WishlistController extends Controller
@@ -12,7 +13,10 @@ class WishlistController extends Controller
      */
     public function index()
     {
-        //
+        $wishlist = Wishlist::all();
+        $title    = 'My Wishlist';
+
+        return view('well.pages.wishlist', compact('wishlist', 'title'));
     }
 
     /**
