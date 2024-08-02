@@ -49,19 +49,13 @@
     </nav>
 
     <!-- Hero Section -->
-    <section class="hero-section text-center">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-12">
-                    <img src="sample.jpg" class="img-fluid" alt="Hero Image">
-                    <div class="hero-content">
-                        <h1>SALE</h1>
-                        <p>Skincare, fitness products, nutritional supplements</p>
-                        <p>Up to 50% discount, check it out</p>
-                        <a href="#" class="btn btn-primary">Explore</a>
-                    </div>
-                </div>
-            </div>
+    <section class="hero-section">
+        <img src="sample.jpg" alt="Hero Image">
+        <div class="hero-content">
+            <h1>SALE</h1>
+            <p>Skincare, fitness products, nutritional supplements</p>
+            <p>Up to 50% discount, check it out</p>
+            <a href="#" class="btn btn-primary">Explore</a>
         </div>
     </section>
 
@@ -71,8 +65,7 @@
             <h2>Category</h2>
             <div class="row">
                 <div class="col-md-4">
-                    <div class="card">
-                        <img src="sample.jpg" class="card-img-top" alt="Skincare">
+                    <div class="card category-card" style="background-image: url('sample.jpg');">
                         <div class="card-body">
                             <h5 class="card-title">Skincare</h5>
                             <a href="#" class="btn btn-success">Buy Now</a>
@@ -80,8 +73,7 @@
                     </div>
                 </div>
                 <div class="col-md-4">
-                    <div class="card">
-                        <img src="sample.jpg" class="card-img-top" alt="Fitness">
+                    <div class="card category-card" style="background-image: url('sample.jpg');">
                         <div class="card-body">
                             <h5 class="card-title">Fitness</h5>
                             <a href="#" class="btn btn-success">Buy Now</a>
@@ -89,12 +81,72 @@
                     </div>
                 </div>
                 <div class="col-md-4">
-                    <div class="card">
-                        <img src="sample.jpg" class="card-img-top" alt="Nutritional Supplements">
+                    <div class="card category-card" style="background-image: url('sample.jpg');">
                         <div class="card-body">
                             <h5 class="card-title">Nutritional Supplements</h5>
                             <a href="#" class="btn btn-success">Buy Now</a>
                         </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Best Seller Section -->
+    <section class="best-seller-section text-center">
+        <div class="container">
+            <h2>Best Seller</h2>
+            <div class="row-best-seller d-flex">
+                <div class="col-md-6">
+                    <div class="row-best-seller-left">
+                        <div class="card best-seller-card" style="background-image: url('sample.jpg');">
+                            <div class="card-body">
+                                <h5 class="card-title">Nterdum et malesuada</h5>
+                                <p class="card-text">Nterdum et malesuada fames ac ante ipsum primis in faucibus.</p>
+                                <a href="#" class="btn btn-success">Buy Now</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="row-best-seller-right">
+                        <div class="col-md-6">
+                            <div class="card best-seller-card" style="background-image: url('sample.jpg');">
+                                <div class="card-body">
+                                    <h5 class="card-title">Nterdum et malesuada</h5>
+                                    <a href="#" class="btn btn-success">Buy Now</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="card best-seller-card" style="background-image: url('sample.jpg');">
+                                <div class="card-body">
+                                    <h5 class="card-title">Nterdum et malesuada</h5>
+                                    <a href="#" class="btn btn-success">Buy Now</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Products Section -->
+    <section class="products-section text-center">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                    <img src="sample.jpg" class="img-fluid" alt="Products Image">
+                </div>
+                <div class="col-md-6 text-left d-flex align-items-center">
+                    <div>
+                        <h2>PRODUCTS</h2>
+                        <h3>We Provide You The Best Products</h3>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque vel orci efficitur diam.
+                            Nulla facilisi. Duis libero odio, fermentum id nulla quis, hendrerit feugiat leo. In
+                            imperdiet metus ac diam consequat, eu blandit sapien lobortis.</p>
+                        <a href="#" class="btn btn-success">Buy Now</a>
                     </div>
                 </div>
             </div>
@@ -141,6 +193,10 @@
         </div>
     </footer>
 
+    <!-- Bootstrap JS and dependencies -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
 
 </html>
