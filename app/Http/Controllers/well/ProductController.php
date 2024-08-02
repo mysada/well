@@ -24,7 +24,7 @@ class ProductController extends Controller
     {
         $product = Product::find($id);
 
-        return view('product_detail', compact('product'));
+        return view('product_details', compact('product'));
     }
 
 }

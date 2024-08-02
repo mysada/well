@@ -125,7 +125,7 @@
             text-align: center;
         }
 
-                .qty-input {
+        .qty-input {
             color: #000;
             background: #fff;
             display: flex;
