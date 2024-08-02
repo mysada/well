@@ -13,15 +13,25 @@ return new class extends Migration {
     {
         Schema::create('orders', function (Blueprint $table) {
             $table->id();
-            $table->bigInteger('userid')->unsigned()->nullable();
-            $table->decimal('total_amount', 10, 2);
+            $table->bigInteger('user_id')->unsigned()->nullable();
+            $table->integer('quantity');
+            $table->decimal('price', 10, 2);
+            $table->string('recipient_name', 255)->nullable();
             $table->string('shipping_address', 255)->nullable();
+            $table->string('shipping_city', 100)->nullable();
+            $table->string('shipping_province', 100)->nullable();
+            $table->string('shipping_postal_code', 10)->nullable();
             $table->enum(
               'status',
               ['Pending', 'Shipped', 'Delivered', 'Cancelled']
             );
-            $table->decimal('price', 10, 2);
             $table->timestamps();
+            $table->timestamp('deleted_at')->nullable();
+
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('restrict');
+
+            $table->index('user_id');
+            $table->index('status');
         });
     }
 
