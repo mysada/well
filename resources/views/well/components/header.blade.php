@@ -74,7 +74,7 @@
     <nav class="navbar navbar-expand-lg navbar-light bg-light" style="flex-direction: column;">
         <div id="header-content" style="display: flex; justify-content: space-between; margin-top: 8px; margin-bottom: 8px;">
             <a class="navbar-brand" href="#">
-                <img src="../../../docs/front-end-img/logo/header_logo.png" alt="Brand Logo" style="height: 40px;">
+                <img src="/images/logo/header_logo.png" alt="Brand Logo" style="height: 40px;">
             </a>
             <button id="navbar-toggler" class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
                 aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation" onclick="hideButton()">
