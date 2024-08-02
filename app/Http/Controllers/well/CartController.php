@@ -6,8 +6,9 @@ use Illuminate\Http\Request;
 
 class CartController extends Controller
 {
+
     /**
-     * Display a listing of the resource.
+     * display the cart of user
      */
     public function index()
     {
@@ -15,15 +16,7 @@ class CartController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
+     * add product into cart
      */
     public function store(Request $request)
     {
@@ -31,23 +24,7 @@ class CartController extends Controller
     }
 
     /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(string $id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
+     * update the number of the cart
      */
     public function update(Request $request, string $id)
     {
@@ -55,10 +32,11 @@ class CartController extends Controller
     }
 
     /**
-     * Remove the specified resource from storage.
+     * delete the cart
      */
     public function destroy(string $id)
     {
         //
     }
+
 }
