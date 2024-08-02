@@ -7,7 +7,9 @@ class AboutController extends Controller
 
     public function index()
     {
-        return view('about'); // Make sure this matches your Blade file
+        $title = 'About Us';
+
+        return view('well.pages.about');
     }
 
 }
