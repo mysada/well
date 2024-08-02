@@ -13,13 +13,19 @@ return new class extends Migration {
     {
         Schema::create('transactions', function (Blueprint $table) {
             $table->id();
-
-            $table->bigInteger('order_id')->unsigned()->nullable();
-            $table->bigInteger('pay')->unsigned()->nullable();
-            $table->string('status', 255)->nullable();
+            $table->foreignId('order_id')
+                  ->constrained('orders');
+            $table->foreignId('user_id')
+                  ->constrained('users');
+            $table->decimal('amount', 10, 2);
+            $table->enum('transaction_type', ['Payment', 'Refund', 'Chargeback']
+            )->default('Payment');
+            $table->string('currency', 10)->default('USD');
+            $table->enum('status', ['Pending', 'Completed', 'Failed'])
+                  ->default('Pending');
             $table->text('response')->nullable();
 
-            $table->timestamps();
+            $table->timestamps(); // 保留时间戳
         });
     }
 
