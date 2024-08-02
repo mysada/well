@@ -13,29 +13,16 @@ return new class extends Migration {
     {
         Schema::create('reviews', function (Blueprint $table) {
             $table->id();
-
-            $table->bigInteger('productid')->unsigned()->nullable();
-            $table->bigInteger('userid')->unsigned()->nullable();
+            $table->foreignId('product_id')
+                  ->constrained('products');
+            $table->foreignId('user_id')
+                  ->constrained('users');
             $table->integer('rating');
-            $table->text('reviewtext')->nullable();
-            $table->dateTime('reviewdate')->default(
-              DB::raw('CURRENT_TIMESTAMP')
-            );
-
-            // Define the foreign keys
-            $table->foreign('productid')
-                  ->references('id')
-                  ->on('products')
-                  ->onDelete('set null');
-            $table->foreign('userid')->references('id')->on('users')->onDelete(
-              'set null'
-            );
-
+            $table->text('review_text')->nullable();
             // Add indexes to the foreign key columns
-            $table->index('productid');
-            $table->index('userid');
-
+            $table->index('product_id');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 
