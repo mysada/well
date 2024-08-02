@@ -19,7 +19,7 @@
             margin-bottom: 1rem;
         }
         .related-products img {
-            height: 150px;
+            height: 200px;
             object-fit: cover;
         }
         .footer {
@@ -202,6 +202,85 @@
             background: #ccc;
         }
 
+        .related-products {
+            padding-top: 3rem;
+            padding-bottom: 3rem;
+        }
+
+        .product-title {
+            font-size: 2rem;
+            font-weight: bold;
+        }
+
+        .card {
+            border: none;
+            box-shadow: 4px 4px 4px 8px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s;
+            border-radius: 25px; /* Adjust radius as needed */
+            overflow: hidden;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+        }
+
+
+
+        .card-body {
+            text-align: center;
+            padding: 1.5rem;
+        }
+
+        .category {
+            font-size: 0.875rem;
+            color: #888;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .card-title {
+            font-size: 1.125rem;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+        }
+
+        .card-text {
+            font-size: 1.2rem;
+            color: #333;
+            margin-top: 1rem;
+        }
+
+        .btn-add-cart {
+            background-color: #28a745;
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-top: 1rem;
+            transition: background-color 0.3s;
+        }
+
+        .btn-add-cart:hover {
+            background-color: #218838;
+        }
+
+        .load-more {
+            border: 1px solid #28A745; /* Same border color as plus button */
+            color: #28A745; /* Same text color as plus button */
+            background-color: transparent; /* Match the background with the outline button */
+            width: 20%;
+            font-weight: bold;
+        }
+
+        .load-more:hover {
+            background-color: #28A745;
+        }
+
+
 
     </style>
 </head>
@@ -293,51 +372,66 @@
         </div>
         <div class="row">
             <div class="col-md-3">
-                <div class="card">
-                    <img src="{{ asset('images/related1.jpg') }}" class="card-img-top" alt="Related Product 1">
+                <div class="card shadow-sm">
+                    <img src="{{ asset('/images/list_view/list_p6.jpg') }}" class="card-img-top" alt="Related Product 1">
                     <div class="card-body">
+                        <h6 class="category">Skincare</h6>
                         <h5 class="card-title">Nyantuy Skincare</h5>
-                        <p class="card-text">$ 56</p>
-                        <button class="btn btn-outline-primary btn-block">Add to Cart</button>
+                        <div class="d-flex justify-content-between align-items-center">
+                            <p class="card-text">$ 56</p>
+                            <button class="btn btn-add-cart"><i class="fa fa-plus"></i></button>
+                        </div>
                     </div>
                 </div>
             </div>
             <div class="col-md-3">
-                <div class="card">
-                    <img src="{{ asset('images/related2.jpg') }}" class="card-img-top" alt="Related Product 2">
+                <div class="card shadow-sm">
+                    <img src="{{ asset('/images/list_view/list_p7.jpg') }}" class="card-img-top" alt="Related Product 2">
                     <div class="card-body">
+                        <h6 class="category">Skincare</h6>
                         <h5 class="card-title">Nyantuy Skincare</h5>
-                        <p class="card-text">$ 56</p>
-                        <button class="btn btn-outline-primary btn-block">Add to Cart</button>
+                        <div class="d-flex justify-content-between align-items-center">
+                            <p class="card-text">$ 56</p>
+                            <button class="btn btn-add-cart"><i class="fa fa-plus"></i></button>
+                        </div>
                     </div>
                 </div>
             </div>
             <div class="col-md-3">
-                <div class="card">
-                    <img src="{{ asset('images/related3.jpg') }}" class="card-img-top" alt="Related Product 3">
+                <div class="card shadow-sm">
+                    <img src="{{ asset('/images/list_view/list_p8.jpg') }}" class="card-img-top" alt="Related Product 3">
                     <div class="card-body">
+                        <h6 class="category">Skincare</h6>
                         <h5 class="card-title">Nyantuy Skincare</h5>
-                        <p class="card-text">$ 56</p>
-                        <button class="btn btn-outline-primary btn-block">Add to Cart</button>
+                        <div class="d-flex justify-content-between align-items-center">
+                            <p class="card-text">$ 56</p>
+                            <button class="btn btn-add-cart"><i class="fa fa-plus"></i></button>
+                        </div>
                     </div>
                 </div>
             </div>
             <div class="col-md-3">
-                <div class="card">
-                    <img src="{{ asset('images/related4.jpg') }}" class="card-img-top" alt="Related Product 4">
+                <div class="card shadow-sm">
+                    <img src="{{ asset('/images/list_view/list_p1.jpg') }}" class="card-img-top" alt="Related Product 4">
                     <div class="card-body">
+                        <h6 class="category">Skincare</h6>
                         <h5 class="card-title">Nyantuy Skincare</h5>
-                        <p class="card-text">$ 56</p>
-                        <button class="btn btn-outline-primary btn-block">Add to Cart</button>
+                        <div class="d-flex justify-content-between align-items-center">
+                            <p class="card-text">$ 56</p>
+                            <button class="btn btn-add-cart"><i class="fa fa-plus"></i></button>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-        <div class="text-center">
-            <button class="btn btn-primary">Load More</button>
+        <div class="text-center mt-4">
+            <button class="btn btn-outline-dark load-more">Load More</button>
         </div>
     </div>
 </section>
+
+
+
 
 <!-- Footer -->
 <footer class="footer">
