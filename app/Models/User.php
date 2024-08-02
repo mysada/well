@@ -10,7 +10,11 @@ use Illuminate\Notifications\Notifiable;
 
 class User extends Authenticatable
 {
-    use HasFactory, Notifiable,SoftDeletes;
+
+    use HasFactory;
+    use Notifiable;
+    use SoftDeletes;
+
     protected array $dates = ['deleted_at'];
 
     /**
@@ -18,21 +22,23 @@ class User extends Authenticatable
      *
      * @var array<int, string>
      */
-    protected $fillable = [
+    protected $fillable
+      = [
         'name',
         'email',
         'password',
-    ];
+      ];
 
     /**
      * The attributes that should be hidden for serialization.
      *
      * @var array<int, string>
      */
-    protected $hidden = [
+    protected $hidden
+      = [
         'password',
         'remember_token',
-    ];
+      ];
 
     /**
      * Get the attributes that should be cast.
@@ -42,8 +48,9 @@ class User extends Authenticatable
     protected function casts(): array
     {
         return [
-            'email_verified_at' => 'datetime',
-            'password' => 'hashed',
+          'email_verified_at' => 'datetime',
+          'password'          => 'hashed',
         ];
     }
+
 }

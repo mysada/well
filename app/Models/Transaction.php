@@ -8,5 +8,10 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Transaction extends Model
 {
-    use HasFactory,SoftDeletes;
+
+    use HasFactory;
+    use SoftDeletes;
+
+    protected array $dates = ['deleted_at'];
+
 }
