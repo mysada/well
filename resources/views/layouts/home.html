@@ -22,8 +22,8 @@
             text-align: left;
         }
 
-        p {
-            
+        .bold {
+            font-weight: 700;
         }
 
         .hero-section {
@@ -43,19 +43,25 @@
         .hero-content {
             position: absolute;
             top: 50%;
-            left: 50%;
+            left: 30%;
             transform: translate(-50%, -50%);
             color: white;
-            text-align: center;
+            text-align: left;
         }
 
         .hero-content h1 {
-            font-size: 4rem;
+            font-size: 90px;
             font-weight: bold;
+            margin-bottom: 30px;
         }
 
         .hero-content p {
-            font-size: 1.25rem;
+            font-size: 22px;
+            line-height: 1.2em;
+        }
+
+        .hero-content .btn {
+            margin-top: 80px;
         }
 
         .card{
@@ -124,7 +130,7 @@
         }
 
         .best-seller-card .card-body {
-            background: rgba(255, 255, 255, 0.4);
+            background: rgba(255, 255, 255, 0.5);
             width: 100%;
             padding: 20px;
         }
@@ -136,8 +142,18 @@
         }
 
         .footer h5 {
-            font-family: 'Avenir Next Georgian', sans-serif;
+            font-size: 16px;
             margin-bottom: 15px;
+            font-weight: 500;
+            color: #999;
+        }
+
+        .footer li {
+            margin-bottom: 10px;
+        }
+        .footer a {
+            font-size: 15px;
+            font-weight: 400;
         }
 
         .products-section .img-fluid {
@@ -146,8 +162,17 @@
         }
 
         .footer {
-            padding: 30px 0;
+            padding: 40px 0 15px 0;
+            background-color: #191919!important;
         }
+
+        
+        .copyright p{
+            font-size: 13px;
+            color: #666;
+            margin-bottom: 10px;
+        }
+
 
         .btn-primary {
             background-color: #00AB7A;
@@ -241,7 +266,7 @@
         <div class="hero-content">
             <h1>SALE</h1>
             <p>Skincare, fitness products, nutritional supplements</p>
-            <p>Up to 50% discount, check it out</p>
+            <p class="bold">Up to 50% discount, check it out</p>
             <a href="#" class="btn btn-primary">Explore</a>
         </div>
     </section>
@@ -352,8 +377,8 @@
                     <h5>Well</h5>
                     <p>Wellness Balance provides healthy supplements to maintain your health</p>
                 </div>
-                <div class="col-md-2">
-                    <h5>Navigation</h5>
+                <div class="col-md-3">
+                    <h5 class="footer-nav">NAVIGATION</h5>
                     <ul class="list-unstyled">
                         <li><a href="#" class="text-white">Home</a></li>
                         <li><a href="#" class="text-white">Shop</a></li>
@@ -361,15 +386,15 @@
                         <li><a href="#" class="text-white">Policy</a></li>
                     </ul>
                 </div>
-                <div class="col-md-2">
-                    <h5>Support</h5>
+                <div class="col-md-3">
+                    <h5 class="footer-nav">SUPPORT</h5>
                     <ul class="list-unstyled">
                         <li><a href="#" class="text-white">Help Centre</a></li>
                         <li><a href="#" class="text-white">Contact Us</a></li>
                     </ul>
                 </div>
                 <div class="col-md-2">
-                    <h5>Socials</h5>
+                    <h5 class="footer-nav">SOCIALS</h5>
                     <ul class="list-unstyled">
                         <li><a href="#" class="text-white">Instagram</a></li>
                         <li><a href="#" class="text-white">Facebook</a></li>
@@ -378,7 +403,7 @@
                     </ul>
                 </div>
             </div>
-            <div class="text-center mt-4">
+            <div class="copyright text-center mt-4">
                 <p>&copy; 2024 Natural Balance Ltd. All rights reserved.</p>
             </div>
         </div>
