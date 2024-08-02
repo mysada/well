@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\well;
 
+use App\Models\CartItem;
 use Illuminate\Http\Request;
 
 class CartItemController extends Controller
@@ -12,7 +13,10 @@ class CartItemController extends Controller
      */
     public function index()
     {
-        //
+        $carts = CartItem::all();
+        $title = 'Shopping Cart';
+
+        return view('well.pages.cart', compact('carts', 'title'));
     }
 
     /**
