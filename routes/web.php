@@ -1,17 +1,56 @@
 <?php
 
+use App\Http\Controllers\well\AboutController;
+use App\Http\Controllers\well\CartItemController;
+use App\Http\Controllers\well\HomeController;
+use App\Http\Controllers\well\OrderController;
+use App\Http\Controllers\well\PaymentController;
+use App\Http\Controllers\well\ProductController;
+use App\Http\Controllers\well\WishlistController;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\ProductController;
 
+Route::get('/', [HomeController::class, 'index'])->name('home');
+Route::get('/home', [HomeController::class, 'index']);
+Route::get('/about', [AboutController::class, 'index']);
 
+//guest
+Route::resource('products', ProductController::class)->names([
+  'index' => 'Products', //page: all products
+  'show'  => 'ProductDetail', //page: product detail
+]);
 
+//using cookies to show cart when guest, using database when login
+Route::resource('cart_items', CartItemController::class)->names([
+  'index' => 'CartItemIndex', //page: cart list
+]);
 
-Route::get('/', function () {
-    return view('welcome');
+//login
+Route::middleware('auth')->group(function () {
+    Route::resource('cart_items', CartItemController::class)->names([
+      'store'   => 'CartItemStore', //processor: add product into cart
+      'update'  => 'CartItemUpdate', //processor: update cart products quantity
+      'destroy' => 'CartItemDestroy',//processor: delete cart products
+    ]);
+
+    Route::resource('orders', OrderController::class)->names([
+      'index'  => 'Order', //page: order list
+      'create' => 'OrderCreate', //page: order create
+      'store'  => 'OrderStore', //processor: save an order
+      'show'   => 'OrderShow', //page: order detail
+    ]);
+
+    Route::resource('payments', PaymentController::class)->names([
+      'create' => 'PaymentCreate', //page: payment
+      'store'  => 'PaymentStore', //processor: save a payment and transaction
+    ]);
+
+    Route::resource('wishlists', WishlistController::class)->names([
+      'index'   => 'WishlistIndex', //page: wishlist
+      'store'   => 'WishlistStore', //processor: add product into wishlist
+      'update'  => 'WishlistUpdate', //processor: update product quantity
+      'destroy' => 'WishlistDestroy', //processor: delete product
+    ]);
 });
-
-Route::get('/products', [ProductController::class, 'index'])->name('products.index');
-Route::get('/product_detail', [ProductController::class, 'index'])->name('products.index');
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
