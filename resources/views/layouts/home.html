@@ -22,6 +22,10 @@
             text-align: left;
         }
 
+        p {
+            
+        }
+
         .hero-section {
             position: relative;
             max-width: 1200px;
@@ -92,6 +96,7 @@
 
 
         .category-card-title {
+            font-family: Avenir;
             font-size: 40px;
             color: #fff;
             text-align: left;
@@ -113,7 +118,11 @@
             margin-bottom: 30px;
         }
 
-        .category-card .card-body,
+        .category-card .card-body {
+            width: 100%;
+            padding: 20px;
+        }
+
         .best-seller-card .card-body {
             background: rgba(255, 255, 255, 0.4);
             width: 100%;
@@ -139,6 +148,47 @@
         .footer {
             padding: 30px 0;
         }
+
+        .btn-primary {
+            background-color: #00AB7A;
+            width: 182px;
+            height: 50px;
+            color: #fff;
+            border: none;
+            border-radius: 0px;
+            padding: 12px 20px;
+            font-size: 17px;
+            font-weight: 700;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .btn-primary:hover {
+            background-color: #fff;
+            transform: scale(1.05);
+            color: #00AB7A;
+        }
+
+        .btn-primary:active {
+            background-color: #008E65;
+            transform: scale(0.95);
+            color: #fff;
+        }
+
+        .btn-primary:focus,
+        .btn-primary:focus-visible,
+        .btn-primary:focus:active,
+        .btn-primary:focus:hover,
+        .btn-primary:focus:visited {
+            outline: none;
+            box-shadow: none;
+            color: #fff;
+            background-color: #00AB7A;
+            border: none; 
+        }
+
+
 
         @media (max-width: 768px) {
             .hero-content h1 {
@@ -205,23 +255,23 @@
                     <div class="card category-card" style="background-image: url('sample.jpg');">
                         <h1 class="category-card-title">Skincare</h1>
                         <div class="card-body">
-                            <a href="#" class="btn btn-success">Buy Now</a>
+                            <a href="#" class="btn btn-primary">Buy Now</a>
                         </div>
                     </div>
                 </div>
                 <div class="col-md-4">
                     <div class="card category-card" style="background-image: url('sample.jpg');">
+                        <h1 class="category-card-title">Fitness</h1>
                         <div class="card-body">
-                            <h5 class="card-title">Fitness</h5>
-                            <a href="#" class="btn btn-success">Buy Now</a>
+                            <a href="#" class="btn btn-primary">Buy Now</a>
                         </div>
                     </div>
                 </div>
                 <div class="col-md-4">
                     <div class="card category-card" style="background-image: url('sample.jpg');">
+                        <h1 class="category-card-title">Nutritional Supplements</h1>
                         <div class="card-body">
-                            <h5 class="card-title">Nutritional Supplements</h5>
-                            <a href="#" class="btn btn-success">Buy Now</a>
+                            <a href="#" class="btn btn-primary">Buy Now</a>
                         </div>
                     </div>
                 </div>
@@ -240,7 +290,7 @@
                             <div class="card-body">
                                 <h5 class="card-title">Nterdum et malesuada</h5>
                                 <p class="card-text">Nterdum et malesuada fames ac ante ipsum primis in faucibus.</p>
-                                <a href="#" class="btn btn-success">Buy Now</a>
+                                <a href="#" class="btn btn-primary">Buy Now</a>
                             </div>
                         </div>
                     </div>
@@ -253,7 +303,7 @@
                                 </div>
                                 <div class="text">
                                     <h5 class="card-title">Nterdum et malesuada</h5>
-                                    <a href="#" class="btn btn-success">Buy Now</a>
+                                    <a href="#" class="btn btn-primary">Buy Now</a>
                                 </div>
                             </div>
                         </div>
@@ -263,7 +313,7 @@
                                 </div>
                                 <div class="text">
                                     <h5 class="card-title">Nterdum et malesuada</h5>
-                                    <a href="#" class="btn btn-success">Buy Now</a>
+                                    <a href="#" class="btn btn-primary">Buy Now</a>
                                 </div>
                             </div>
                         </div>
@@ -287,7 +337,7 @@
                         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque vel orci efficitur diam.
                             Nulla facilisi. Duis libero odio, fermentum id nulla quis, hendrerit feugiat leo. In
                             imperdiet metus ac diam consequat, eu blandit sapien lobortis.</p>
-                        <a href="#" class="btn btn-success">Buy Now</a>
+                        <a href="#" class="btn btn-primary">Buy Now</a>
                     </div>
                 </div>
             </div>
