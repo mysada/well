@@ -33,20 +33,6 @@ class CartItemsSeeder extends Seeder
             'quantity' => 3,
             'created_at' => now(),
             'updated_at' => now()
-          ],
-          [
-            'user_id' => 3,
-            'product_id' => 4,
-            'quantity' => 1,
-            'created_at' => now(),
-            'updated_at' => now()
-          ],
-          [
-            'user_id' => 4,
-            'product_id' => 5,
-            'quantity' => 2,
-            'created_at' => now(),
-            'updated_at' => now()
           ]
         ];
 
