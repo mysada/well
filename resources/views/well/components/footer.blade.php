@@ -4,7 +4,7 @@
             <div class="row">
                 <div class="col-md-4">
                     <div id="footer-logo" style="margin-bottom: 20px;">
-                        <img src="../../../docs/front-end-img/logo/footer_logo.png" alt="Well Logo" style="height: 50px;">
+                        <img src="/images/logo/footer_logo.png" alt="Well Logo" style="height: 50px;">
                     </div>
                     <p style="color: #aaa; width: 300px;">Wellness Balance provides healthy supplements to maintain your health</p>
                 </div>
