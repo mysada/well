@@ -9,7 +9,62 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <link rel="stylesheet" href="../../css/home.css">
     <style>
-        
+        /* -------------------- Header style  --------------------*/
+        .navbar-nav li {
+            padding-right: 30px;
+        }
+
+
+        #header-content {
+            width: 100%;
+            max-width: 1200px;
+        }
+
+        .navbar-toggler {
+            padding: .25rem .75rem;
+            font-size: 1.25rem;
+            line-height: 1;
+            background-color: transparent;
+            border: none;
+            border-radius: .25rem;
+        }
+
+        /* -------------------- Footer style  --------------------*/
+
+        .footer {
+            padding: 40px 0 15px 0;
+            background-color: #191919 !important;
+        }
+
+        .footer h5 {
+            font-size: 16px;
+            margin-bottom: 15px;
+            font-weight: 500;
+            color: #999;
+        }
+
+        .footer p {
+            font-size: 15px;
+        }
+
+        .footer li {
+            margin-bottom: 10px;
+        }
+
+        .footer a {
+            font-size: 15px;
+            font-weight: 400;
+        }
+
+
+        .copyright p {
+            font-size: 13px;
+            color: #666;
+            margin-bottom: 10px;
+        }
+
+
+
     </style>
 </head>
 
