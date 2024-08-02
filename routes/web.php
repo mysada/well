@@ -4,7 +4,6 @@ use App\Http\Controllers\well\AboutController;
 use App\Http\Controllers\well\CartItemController;
 use App\Http\Controllers\well\HomeController;
 use App\Http\Controllers\well\OrderController;
-use App\Http\Controllers\well\PaymentController;
 use App\Http\Controllers\well\ProductController;
 use App\Http\Controllers\well\WishlistController;
 use Illuminate\Support\Facades\Auth;
