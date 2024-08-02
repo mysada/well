@@ -32,17 +32,14 @@ Route::middleware('auth')->group(function () {
       'update'  => 'CartItemUpdate', //processor: update cart products quantity
       'destroy' => 'CartItemDestroy',//processor: delete cart products
     ]);
-
+    /**
+     * maybe the create page is useless.
+     */
     Route::resource('orders', OrderController::class)->names([
       'index'  => 'Order', //page: order list
       'create' => 'OrderCreate', //page: order create
       'store'  => 'OrderStore', //processor: save an order
       'show'   => 'OrderShow', //page: order detail
-    ]);
-
-    Route::resource('payments', PaymentController::class)->names([
-      'create' => 'PaymentCreate', //page: payment
-      'store'  => 'PaymentStore', //processor: save a payment and transaction
     ]);
 
     Route::resource('wishlists', WishlistController::class)->names([
