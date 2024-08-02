@@ -119,8 +119,6 @@ class ProductSeeder extends Seeder
           ['name' => 'Hair Pomade', 'description' => 'Classic pomade for styling and shaping hair.', 'price' => 21.00, 'stock' => 130, 'imageurl' => 'images/hair_pomade.jpg', 'color' => 'Brown', 'rating' => 4.7, 'discount' => 2.00, 'category_id' => 8],
         ];
 
-
-
         DB::table('products')->insert($skincare);
         DB::table('products')->insert($haircare);
         DB::table('products')->insert($makeup);
