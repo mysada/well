@@ -35,7 +35,6 @@ Route::middleware('auth')->group(function () {
      * maybe the create page is useless.
      */
     Route::resource('orders', OrderController::class)->names([
-      'index'  => 'Order', //page: order list
       'create' => 'OrderCreate', //page: order create
       'store'  => 'OrderStore', //processor: save an order
       'show'   => 'OrderShow', //page: order detail
