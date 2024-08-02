@@ -4,8 +4,8 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-return new class extends Migration
-{
+return new class extends Migration {
+
     /**
      * Run the migrations.
      */
@@ -14,18 +14,10 @@ return new class extends Migration
         Schema::create('transactions', function (Blueprint $table) {
             $table->id();
 
-            $table->bigInteger('orderid')->unsigned()->nullable();
-            $table->string('transaction_id', 255);
-            $table->string('transactionstatus', 255)->nullable();
-            $table->text('transactionresponse')->nullable();
-            $table->tinyInteger('softdelete')->default(0);
-            $table->dateTime('timestamp')->default(DB::raw('CURRENT_TIMESTAMP'));
-
-            // Define the foreign key
-            $table->foreign('orderid')->references('id')->on('orders')->onDelete('set null');
-
-            // Add an index to the orderid column
-            $table->index('orderid');
+            $table->bigInteger('order_id')->unsigned()->nullable();
+            $table->bigInteger('pay')->unsigned()->nullable();
+            $table->string('status', 255)->nullable();
+            $table->text('response')->nullable();
 
             $table->timestamps();
         });
@@ -38,4 +30,5 @@ return new class extends Migration
     {
         Schema::dropIfExists('transactions');
     }
+
 };
