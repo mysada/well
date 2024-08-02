@@ -4,8 +4,8 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-return new class extends Migration
-{
+return new class extends Migration {
+
     /**
      * Run the migrations.
      */
@@ -18,13 +18,18 @@ return new class extends Migration
             $table->bigInteger('productid')->unsigned()->nullable();
 
             // Define the foreign keys
-            $table->foreign('wishlistid')->references('id')->on('wishlist')->onDelete('set null');
-            $table->foreign('productid')->references('id')->on('products')->onDelete('set null');
+            $table->foreign('wishlistid')
+                  ->references('id')
+                  ->on('wishlist')
+                  ->onDelete('set null');
+            $table->foreign('productid')
+                  ->references('id')
+                  ->on('products')
+                  ->onDelete('set null');
 
             // Add indexes to the foreign key columns
             $table->index('wishlistid');
             $table->index('productid');
-
 
             $table->timestamps();
         });
@@ -37,4 +42,5 @@ return new class extends Migration
     {
         Schema::dropIfExists('wishlistitems');
     }
+
 };

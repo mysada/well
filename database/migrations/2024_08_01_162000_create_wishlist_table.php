@@ -4,8 +4,8 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-return new class extends Migration
-{
+return new class extends Migration {
+
     /**
      * Run the migrations.
      */
@@ -15,10 +15,14 @@ return new class extends Migration
             $table->id();
 
             $table->bigInteger('userid')->unsigned()->nullable();
-            $table->dateTime('createddate')->default(DB::raw('CURRENT_TIMESTAMP'));
+            $table->dateTime('createddate')->default(
+              DB::raw('CURRENT_TIMESTAMP')
+            );
 
             // Define the foreign key
-            $table->foreign('userid')->references('id')->on('users')->onDelete('set null');
+            $table->foreign('userid')->references('id')->on('users')->onDelete(
+              'set null'
+            );
 
             // Add an index to the userid column
             $table->index('userid');
@@ -34,4 +38,5 @@ return new class extends Migration
     {
         Schema::dropIfExists('wishlist');
     }
+
 };

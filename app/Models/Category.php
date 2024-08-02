@@ -11,7 +11,4 @@ class Category extends Model
 
     use HasFactory;
     use SoftDeletes;
-
-    protected array $dates = ['deleted_at'];
-
 }

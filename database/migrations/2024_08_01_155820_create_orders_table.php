@@ -27,7 +27,7 @@ return new class extends Migration {
               ['Pending', 'Shipped', 'Delivered', 'Cancelled']
             );
             $table->timestamps();
-            $table->timestamp('deleted_at')->nullable();
+            $table->softDeletes();
         });
     }
 

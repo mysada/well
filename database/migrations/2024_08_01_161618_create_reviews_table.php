@@ -4,8 +4,8 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-return new class extends Migration
-{
+return new class extends Migration {
+
     /**
      * Run the migrations.
      */
@@ -18,11 +18,18 @@ return new class extends Migration
             $table->bigInteger('userid')->unsigned()->nullable();
             $table->integer('rating');
             $table->text('reviewtext')->nullable();
-            $table->dateTime('reviewdate')->default(DB::raw('CURRENT_TIMESTAMP'));
+            $table->dateTime('reviewdate')->default(
+              DB::raw('CURRENT_TIMESTAMP')
+            );
 
             // Define the foreign keys
-            $table->foreign('productid')->references('id')->on('products')->onDelete('set null');
-            $table->foreign('userid')->references('id')->on('users')->onDelete('set null');
+            $table->foreign('productid')
+                  ->references('id')
+                  ->on('products')
+                  ->onDelete('set null');
+            $table->foreign('userid')->references('id')->on('users')->onDelete(
+              'set null'
+            );
 
             // Add indexes to the foreign key columns
             $table->index('productid');
@@ -39,4 +46,5 @@ return new class extends Migration
     {
         Schema::dropIfExists('reviews');
     }
+
 };

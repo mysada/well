@@ -22,6 +22,7 @@ return new class extends Migration {
             $table->decimal('discount', 5, 2)->nullable();
             $table->enum('status', ['Pending', 'Completed', 'Failed']);
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

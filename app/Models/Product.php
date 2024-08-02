@@ -11,7 +11,4 @@ class Product extends Model
 
     use HasFactory;
     use SoftDeletes;
-
-    protected array $dates = ['deleted_at'];
-
 }

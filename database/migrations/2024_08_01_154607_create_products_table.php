@@ -24,7 +24,7 @@ return new class extends Migration {
             $table->decimal('rating', 3, 2)->nullable();
             $table->decimal('discount', 5, 2)->nullable();
             $table->timestamps();
-            $table->timestamp('deleted_at')->nullable();
+            $table->softDeletes();
         });
     }
 
@@ -35,4 +35,5 @@ return new class extends Migration {
     {
         Schema::dropIfExists('products');
     }
+
 };
