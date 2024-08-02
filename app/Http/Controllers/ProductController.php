@@ -66,4 +66,8 @@ class ProductController extends Controller
     {
         //
     }
+    public function showProductDetails()
+    {
+        return view('product_details');
+    }
 }
