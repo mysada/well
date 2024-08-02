@@ -17,15 +17,16 @@
 
     <!-- Navbar -->
     <nav class="navbar navbar-expand-lg navbar-light bg-light" style="flex-direction: column;">
-        <div id="header-content">
+        <div id="header-content" style="display: flex; justify-content: space-between; margin-top: 8px; margin-bottom: 8px;">
             <a class="navbar-brand" href="#">
                 <img src="../../../docs/front-end-img/logo/header_logo.png" alt="Brand Logo" style="height: 40px;">
             </a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
-                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <button id="navbar-toggler" class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation" onclick="hideButton()">
                 <span class="navbar-toggler-icon"></span>
             </button>
-            <div class="collapse navbar-collapse col-md-6" id="navbarNav">
+
+            <div class="collapse navbar-collapse col-md-8" id="navbarNav">
                 <ul class="navbar-nav ml-auto">
                     <li class="nav-item active">
                         <a class="nav-link" href="#">Home</a>
@@ -40,15 +41,20 @@
                         <a class="nav-link" href="#">Policy</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#" style="margin-left: 40px;"><i class="fas fa-shopping-cart"></i></a>
+                        <a class="nav-link" href="#"><i class="fas fa-shopping-cart"></i></a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#"><i class="fas fa-user"></i></a>
+                        <a class="nav-link" href="#" style="margin-right: -40px;"><i class="fas fa-user"></i></a>
                     </li>
                 </ul>
             </div>
         </div> <!-- end of content -->
     </nav>
+    <script>
+        function hideButton() {
+            document.getElementById('navbar-toggler').style.display = 'none';
+        }
+    </script>
 
     <!-- Hero Section -->
     <section class="hero-section">
