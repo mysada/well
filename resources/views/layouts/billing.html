@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payment</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Poppins', 'Arial', 'Avenir Next Georgian', Arial;
+        }
+
+        h1, h2, h3 {
+            font-family: 'Poppins', 'Avenir Next Georgian', Arial;
+            font-weight: 700;
+        }
+
+        .form-section {
+            border: 1px solid #00AB7A;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 171, 122, 0.1);
+            padding: 20px;
+            margin-bottom: 30px;
+            background-color: #f9f9f9;
+        }
+
+        .form-section h4 {
+            margin-bottom: 20px;
+        }
+
+        .form-section input,
+        .form-section select {
+            border-radius: 5px;
+            border: 1px solid #e1e1e1;
+            padding: 10px;
+            margin-bottom: 15px;
+            width: calc(100% - 22px); /* Adjust width to fit container */
+        }
+
+        .form-section input:focus,
+        .form-section select:focus {
+            border-color: #00AB7A;
+            box-shadow: 0 0 5px rgba(0, 171, 122, 0.5);
+        }
+
+        .btn-checkout-custom {
+            background-color: #00AB7A;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            padding: 10px 20px;
+            font-size: 16px;
+            font-weight: 700;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+            margin-bottom: 20px;
+        }
+
+        .btn-checkout-custom:hover {
+            background-color: #fff;
+            color: #00AB7A;
+            border: 1px solid #00AB7A;
+        }
+
+        .btn-checkout-custom:active {
+            background-color: #008E65;
+            transform: scale(0.95);
+            color: #fff;
+        }
+
+        .cart-summary {
+            background-color: #f9f9f9;
+            border: 1px solid #00AB7A;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 171, 122, 0.1);
+            padding: 20px;
+            margin-left: 20px;
+        }
+
+        .cart-summary img {
+            height: 50px;
+            object-fit: cover;
+            margin-right: 15px;
+        }
+
+        .cart-summary .item {
+            display: flex;
+            align-items: center;
+            border-bottom: 1px solid #e1e1e1;
+            padding: 10px 0;
+        }
+
+        .cart-summary .item .item-quantity {
+            display: flex;
+            align-items: center;
+        }
+
+        .cart-summary .item .item-quantity button {
+            background-color: #00AB7A;
+            color: #fff;
+            border: none;
+            border-radius: 50%;
+            width: 30px;
+            height: 30px;
+            font-size: 18px;
+            font-weight: 700;
+            text-align: center;
+            line-height: 30px;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+        }
+
+        .cart-summary .item .item-quantity button:hover {
+            background-color: #fff;
+            color: #00AB7A;
+            border: 1px solid #00AB7A;
+        }
+
+        .cart-summary .item .item-quantity button:active {
+            background-color: #008E65;
+            transform: scale(0.95);
+        }
+
+        .cart-summary .item .item-quantity input {
+            width: 50px;
+            text-align: center;
+            border: 1px solid #e1e1e1;
+            border-radius: 5px;
+            font-size: 16px;
+            margin: 0 10px;
+        }
+
+        .total-price, .tax {
+            font-size: 18px;
+            font-weight: 700;
+            margin-top: 10px;
+        }
+
+        .tax-breakdown p {
+            margin-bottom: 0;
+            padding: 10px;
+            border: 1px solid #e1e1e1;
+            border-radius: 5px;
+            background-color: #f1f1f1;
+        }
+
+        .sticky-form {
+            position: -webkit-sticky; /* Safari */
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .cart-summary h4 {
+            margin-bottom: 20px;
+        }
+
+        .checkout-section {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .checkout-section input[type="checkbox"] {
+            margin-right: 10px; /* Adjust as necessary for spacing */
+        }
+
+        .checkout-section label {
+            margin: 0; /* Ensure no extra margin is added */
+            line-height: 1; /* Align label with the checkbox */
+        }
+
+        #same-address {
+            margin-left: 0;
+        }
+    </style>
+</head>
+<body>
+
+<!-- Header -->
+<header class="py-3">
+    <div class="container d-flex justify-content-between align-items-center">
+        <h1 class="h3">Payment</h1>
+        <nav>
+            <a href="#" class="mx-3">Home</a>
+            <a href="#" class="mx-3">Shop</a>
+            <a href="#" class="mx-3">About us</a>
+            <a href="#" class="mx-3">Policy</a>
+        </nav>
+        <a href="#"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-shopping-cart"><circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle><path d="M1 1h4l1.68 8.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path></svg></a>
+    </div>
+</header>
+
+<!-- Payment Form -->
+<section class="py-5">
+    <div class="container d-flex">
+        <!-- Form Container -->
+        <div class="flex-fill">
+            <div class="form-section">
+                <h4>Payment Information</h4>
+                <form id="payment-form">
+                    <input type="text" name="card-number" placeholder="Card Number" required value="">
+                    <input type="text" name="card-name" placeholder="Cardholder Name" required value="">
+                    <input type="text" name="card-expiry" placeholder="Expiry Date (MM/YY)" required value="">
+                    <input type="text" name="card-cvc" placeholder="CVC" required value="">
+                </form>
+            </div>
+
+            <div class="form-section">
+                <h4>Shipping Address</h4>
+                <form id="shipping-form">
+                    <input type="text" name="shipping-name" placeholder="Name" required value="">
+                    <input type="text" name="shipping-address" placeholder="Address" required value="">
+                    <input type="text" name="shipping-city" placeholder="City" required value="">
+                    <select name="shipping-country" id="shipping-country" required>
+                        <option value="">Select Country</option>
+                        <option value="Canada">Canada</option>
+                        <option value="USA">USA</option>
+                    </select>
+                    <select name="shipping-state" id="shipping-state" required>
+                        <!-- States will be populated based on country selection -->
+                    </select>
+                    <input type="text" name="shipping-zip" placeholder="ZIP/Postal Code" required value="">
+                    <input type="email" name="shipping-email" placeholder="Email" required value="">
+                    <input type="tel" name="shipping-phone" placeholder="Phone" required value="">
+                </form>
+            </div>
+
+            <div class="checkout-section form-section">
+                <input type="checkbox" id="same-address" onchange="toggleBillingAddress()" style="width: 2rem; height: 2rem; vertical-align: middle; margin-top: 5px;">
+                <label for="same-address" style="vertical-align: middle; margin-left: 0.5rem;">Billing address is same as shipping address</label>
+            </div>
+
+            <div id="billing-address-section" class="form-section">
+                <h4>Billing Address</h4>
+                <form id="billing-form">
+                    <input type="text" name="billing-name" placeholder="Name" required value="">
+                    <input type="text" name="billing-address" placeholder="Address" required value="">
+                    <input type="text" name="billing-city" placeholder="City" required value="">
+                    <select name="billing-country" id="billing-country" required>
+                        <option value="">Select Country</option>
+                        <!-- Add more countries as needed -->
+                        <option value="Canada">Canada</option>
+                        <option value="USA">USA</option>
+                    </select>
+                    <select name="billing-state" id="billing-state" required>
+                        <!-- States will be populated based on country selection -->
+                    </select>
+                    <input type="text" name="billing-zip" placeholder="ZIP/Postal Code" required value="">
+                    <input type="email" name="billing-email" placeholder="Email" required value="">
+                    <input type="tel" name="billing-phone" placeholder="Phone" required value="">
+                </form>
+            </div>
+
+            <div class="form-section mt-4">
+                <h4>Coupon Code</h4>
+                <input type="text" name="coupon-code" placeholder="Enter Coupon Code" required value="">
+            </div>
+
+            <a href="#" class="btn btn-checkout-custom mt-4">Proceed to Checkout</a>
+        </div>
+
+        <!-- Cart Summary -->
+        <div class="cart-summary ml-4 sticky-form">
+            <h4>Cart Summary</h4>
+            <div class="item">
+                <img src="/public/images/cart/list_p1.jpg" alt="Product 1">
+                <div class="item-details">
+                    <h5>Nyantuy Skincare</h5>
+                    <p class="item-price">$56.00</p>
+                </div>
+                <div class="item-quantity">
+                    <button class="btn-decrement">-</button>
+                    <input type="text" value="1" readonly>
+                    <button class="btn-increment">+</button>
+                </div>
+            </div>
+            <div class="item">
+                <img src="/public/images/cart/list_p2.jpg" alt="Product 2">
+                <div class="item-details">
+                    <h5>Organic Shampoo</h5>
+                    <p class="item-price">$22.00</p>
+                </div>
+                <div class="item-quantity">
+                    <button class="btn-decrement">-</button>
+                    <input type="text" value="2" readonly>
+                    <button class="btn-increment">+</button>
+                </div>
+            </div>
+            <div class="tax-breakdown">
+                <p><strong>Subtotal:</strong> $78.00</p>
+                <p><strong>GST:</strong> $0.00</p>
+                <p><strong>PST:</strong> $0.00</p>
+                <p><strong>HST:</strong> $0.00</p>
+            </div>
+            <div class="total-price">Total: $78.00</div>
+        </div>
+    </div>
+</section>
+
+<script>
+    function toggleBillingAddress() {
+        const sameAddress = document.getElementById('same-address').checked;
+        const billingFormSection = document.getElementById('billing-address-section');
+        if (sameAddress) {
+            billingFormSection.style.display = 'none';
+            document.querySelectorAll('#billing-form input, #billing-form select').forEach(input => input.disabled = true);
+        } else {
+            billingFormSection.style.display = 'block';
+            document.querySelectorAll('#billing-form input, #billing-form select').forEach(input => input.disabled = false);
+        }
+    }
+
+    document.addEventListener('DOMContentLoaded', function () {
+        const countrySelects = document.querySelectorAll('#billing-country, #shipping-country');
+        const stateSelects = document.querySelectorAll('#billing-state, #shipping-state');
+
+        countrySelects.forEach(select => {
+            select.addEventListener('change', function () {
+                const country = this.value;
+                stateSelects.forEach(stateSelect => {
+                    stateSelect.innerHTML = '<option value="">Select Province/State</option>';
+                    if (country === 'Canada') {
+                        stateSelect.innerHTML += '<option value="AB">Alberta</option><option value="BC">British Columbia</option><option value="MB">Manitoba</option><option value="NB">New Brunswick</option><option value="NL">Newfoundland and Labrador</option><option value="NS">Nova Scotia</option><option value="NT">Northwest Territories</option><option value="NU">Nunavut</option><option value="ON">Ontario</option><option value="PE">Prince Edward Island</option><option value="QC">Quebec</option><option value="SK">Saskatchewan</option><option value="YT">Yukon</option>';
+                    } else if (country === 'USA') {
+                        stateSelect.innerHTML += '<option value="AL">Alabama</option><option value="AK">Alaska</option><option value="AZ">Arizona</option><option value="AR">Arkansas</option><option value="CA">California</option><option value="CO">Colorado</option><option value="CT">Connecticut</option><option value="DE">Delaware</option><option value="FL">Florida</option><option value="GA">Georgia</option><option value="HI">Hawaii</option><option value="ID">Idaho</option><option value="IL">Illinois</option><option value="IN">Indiana</option><option value="IA">Iowa</option><option value="KS">Kansas</option><option value="KY">Kentucky</option><option value="LA">Louisiana</option><option value="ME">Maine</option><option value="MD">Maryland</option><option value="MA">Massachusetts</option><option value="MI">Michigan</option><option value="MN">Minnesota</option><option value="MS">Mississippi</option><option value="MO">Missouri</option><option value="MT">Montana</option><option value="NE">Nebraska</option><option value="NV">Nevada</option><option value="NH">New Hampshire</option><option value="NJ">New Jersey</option><option value="NM">New Mexico</option><option value="NY">New York</option><option value="NC">North Carolina</option><option value="ND">North Dakota</option><option value="OH">Ohio</option><option value="OK">Oklahoma</option><option value="OR">Oregon</option><option value="PA">Pennsylvania</option><option value="RI">Rhode Island</option><option value="SC">South Carolina</option><option value="SD">South Dakota</option><option value="TN">Tennessee</option><option value="TX">Texas</option><option value="UT">Utah</option><option value="VT">Vermont</option><option value="VA">Virginia</option><option value="WA">Washington</option><option value="WV">West Virginia</option><option value="WI">Wisconsin</option><option value="WY">Wyoming</option>';
+                    }
+                });
+            });
+        });
+
+        // Initial population of states/provinces
+        countrySelects.forEach(select => select.dispatchEvent(new Event('change')));
+    });
+
+    // Increment and decrement buttons functionality
+    document.querySelectorAll('.btn-increment').forEach(button => {
+        button.addEventListener('click', function () {
+            const input = this.previousElementSibling;
+            input.value = parseInt(input.value) + 1;
+            updateCartSummary();
+        });
+    });
+
+    document.querySelectorAll('.btn-decrement').forEach(button => {
+        button.addEventListener('click', function () {
+            const input = this.nextElementSibling;
+            if (parseInt(input.value) > 0) {
+                input.value = parseInt(input.value) - 1;
+                updateCartSummary();
+            }
+        });
+    });
+
+    // Tax calculation function
+    function calculateTax(province) {
+        let gst = 0, pst = 0, hst = 0;
+        switch (province) {
+            case 'AB': case 'NT': case 'NU': case 'YT':
+                gst = 0.05;
+                break;
+            case 'BC':
+                gst = 0.05;
+                pst = 0.07;
+                break;
+            case 'MB':
+                gst = 0.05;
+                pst = 0.08;
+                break;
+            case 'NB': case 'NL': case 'NS': case 'PE':
+                hst = 0.15;
+                break;
+            case 'ON':
+                hst = 0.13;
+                break;
+            case 'QC':
+                gst = 0.05;
+                pst = 0.09975;
+                break;
+            case 'SK':
+                gst = 0.05;
+                pst = 0.06;
+                break;
+            default:
+                gst = 0;
+                pst = 0;
+                hst = 0;
+        }
+        return { gst, pst, hst };
+    }
+
+    // Function to update cart summary
+    function updateCartSummary() {
+        let subtotal = 0;
+        document.querySelectorAll('.cart-summary .item').forEach(item => {
+            const price = parseFloat(item.querySelector('.item-price').textContent.replace('$', ''));
+            const quantity = parseInt(item.querySelector('.item-quantity input').value);
+            subtotal += price * quantity;
+        });
+
+        const province = document.getElementById('billing-state').value;
+        const { gst, pst, hst } = calculateTax(province);
+        const gstAmount = subtotal * gst;
+        const pstAmount = subtotal * pst;
+        const hstAmount = subtotal * hst;
+        const total = subtotal + gstAmount + pstAmount + hstAmount;
+
+        document.querySelector('.tax-breakdown').innerHTML = `
+            <p><strong>Subtotal:</strong> $${subtotal.toFixed(2)}</p>
+            <p><strong>GST:</strong> $${gstAmount.toFixed(2)}</p>
+            <p><strong>PST:</strong> $${pstAmount.toFixed(2)}</p>
+            <p><strong>HST:</strong> $${hstAmount.toFixed(2)}</p>
+        `;
+        document.querySelector('.total-price').textContent = `Total: $${total.toFixed(2)}`;
+    }
+
+    document.getElementById('billing-state').addEventListener('change', updateCartSummary);
+    document.getElementById('billing-country').addEventListener('change', updateCartSummary);
+
+    // Initial tax and total calculation
+    updateCartSummary();
+</script>
+</body>
+</html>
