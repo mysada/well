@@ -9,9 +9,146 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <style>
         body {
-            font-family: 'Arial', 'Poppins', 'Avenir Next Georgian', sans-serif;
+            font-family: 'Arial', 'Poppins', 'Avenir Next Georgian', Arial;
         }
 
+        h1, h2, h3 {
+            font-family: 'Poppins', 'Avenir Next Georgian', Arial;
+            font-weight: 700;
+        }
+
+        h2 {
+            font-size: 60px;
+            text-align: left;
+        }
+
+        .hero-section {
+            position: relative;
+            max-width: 1200px;
+            height: 500px;
+            margin: 0 auto;
+            overflow: hidden;
+        }
+
+        .hero-section img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .hero-content {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: white;
+            text-align: center;
+        }
+
+        .hero-content h1 {
+            font-size: 4rem;
+            font-weight: bold;
+        }
+
+        .hero-content p {
+            font-size: 1.25rem;
+        }
+
+        .card{
+            flex-direction: row;
+        }
+
+        .category-section,
+        .best-seller-section,
+        .products-section {
+            padding: 60px 0;
+        }
+
+        .category-section h2,
+        .best-seller-section h2 {
+            margin-bottom: 30px;
+        }
+
+        .best-seller-section h5 {
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        .best-seller-section p {
+            color: #666;
+            margin-bottom: 20px;
+        }
+
+        .category-card {
+            background-size: cover;
+            background-position: center;
+            position: relative;
+            max-width: 384px;
+            height: 480px;
+            display: flex;
+            align-items: flex-end;
+            margin-bottom: 30px;
+        }
+
+
+        .category-card-title {
+            font-size: 40px;
+            color: #fff;
+            text-align: left;
+            position: absolute; 
+            top: 10px; 
+            left: 10px;
+            margin: 0; 
+            padding: 5px;
+
+        }
+        .best-seller-card {
+            background-size: cover;
+            background-position: center;
+            position: relative;
+            max-width: 590px;
+            height: 590px;
+            display: flex;
+            align-items: flex-end;
+            margin-bottom: 30px;
+        }
+
+        .category-card .card-body,
+        .best-seller-card .card-body {
+            background: rgba(255, 255, 255, 0.4);
+            width: 100%;
+            padding: 20px;
+        }
+
+
+        .best-seller-card-right {
+            width: 284px;
+            height: 284px;
+        }
+
+        .footer h5 {
+            font-family: 'Avenir Next Georgian', sans-serif;
+            margin-bottom: 15px;
+        }
+
+        .products-section .img-fluid {
+            height: 400px;
+            object-fit: cover;
+        }
+
+        .footer {
+            padding: 30px 0;
+        }
+
+        @media (max-width: 768px) {
+            .hero-content h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero-content p {
+                font-size: 1rem;
+            }
+        }
     </style>
 </head>
 
@@ -66,8 +203,8 @@
             <div class="row">
                 <div class="col-md-4">
                     <div class="card category-card" style="background-image: url('sample.jpg');">
+                        <h1 class="category-card-title">Skincare</h1>
                         <div class="card-body">
-                            <h5 class="card-title">Skincare</h5>
                             <a href="#" class="btn btn-success">Buy Now</a>
                         </div>
                     </div>
@@ -111,16 +248,20 @@
                 <div class="col-md-6">
                     <div class="row-best-seller-right">
                         <div class="col-md-6">
-                            <div class="card best-seller-card" style="background-image: url('sample.jpg');">
-                                <div class="card-body">
+                            <div class="card-right d-flex">
+                                <div class="best-seller-card-right" style="background-image: url('sample.jpg');">
+                                </div>
+                                <div class="text">
                                     <h5 class="card-title">Nterdum et malesuada</h5>
                                     <a href="#" class="btn btn-success">Buy Now</a>
                                 </div>
                             </div>
                         </div>
                         <div class="col-md-6">
-                            <div class="card best-seller-card" style="background-image: url('sample.jpg');">
-                                <div class="card-body">
+                            <div class="card-right">
+                                <div class="best-seller-card-right" style="background-image: url('sample.jpg');">
+                                </div>
+                                <div class="text">
                                     <h5 class="card-title">Nterdum et malesuada</h5>
                                     <a href="#" class="btn btn-success">Buy Now</a>
                                 </div>
@@ -141,8 +282,8 @@
                 </div>
                 <div class="col-md-6 text-left d-flex align-items-center">
                     <div>
-                        <h2>PRODUCTS</h2>
-                        <h3>We Provide You The Best Products</h3>
+                        <p style="color: #00AB7A; font-size: 18px;">PRODUCTS</pp>
+                        <h3 style="font-size: 42px;">We Provide You The Best Products</h3>
                         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque vel orci efficitur diam.
                             Nulla facilisi. Duis libero odio, fermentum id nulla quis, hendrerit feugiat leo. In
                             imperdiet metus ac diam consequat, eu blandit sapien lobortis.</p>
