@@ -4,8 +4,8 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-return new class extends Migration
-{
+return new class extends Migration {
+
     /**
      * Run the migrations.
      */
@@ -14,25 +14,15 @@ return new class extends Migration
         Schema::create('payments', function (Blueprint $table) {
             $table->id();
 
-            $table->bigInteger('orderid')->unsigned()->nullable();
-            $table->enum('paymentmethod', ['Credit Card', 'PayPal', 'Other']);
-            $table->dateTime('paymentdate')->default(DB::raw('CURRENT_TIMESTAMP'));
+            $table->foreignId('order_id')->nullable()->constrained('orders');
+            $table->enum('method', ['Credit Card', 'PayPal', 'Other']);
             $table->decimal('amount', 10, 2);
-            $table->decimal('tax', 5, 2)->nullable();
-            $table->decimal('gst', 5, 2)->nullable();
+            $table->decimal('gst', 5, 2)->default(0.00);
+            $table->decimal('pst', 5, 2)->default(0.00);
             $table->decimal('discount', 5, 2)->nullable();
-            $table->enum('paymentstatus', ['Pending', 'Completed', 'Failed']);
-            $table->bigInteger('transactionid')->unsigned()->nullable();
-
-            // Define the foreign keys
-            $table->foreign('orderid')->references('id')->on('orders')->onDelete('set null');
-            $table->foreign('transactionid')->references('id')->on('transactions')->onDelete('set null');
-
-            // Add indexes to the foreign key columns
-            $table->index('orderid');
-            $table->index('transactionid');
-
+            $table->enum('status', ['Pending', 'Completed', 'Failed']);
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 
@@ -43,4 +33,5 @@ return new class extends Migration
     {
         Schema::dropIfExists('payments');
     }
+
 };

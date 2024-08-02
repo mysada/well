@@ -11,18 +11,15 @@ return new class extends Migration {
      */
     public function up(): void
     {
-        Schema::create('reviews', function (Blueprint $table) {
+        Schema::create('wishlists', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('product_id')
-                  ->constrained('products');
+
             $table->foreignId('user_id')
                   ->constrained('users');
-            $table->integer('rating');
-            $table->text('review_text')->nullable();
-            // Add indexes to the foreign key columns
-            $table->index('product_id');
+            $table->foreignId('product_id')
+                  ->constrained('products');
+
             $table->timestamps();
-            $table->softDeletes();
         });
     }
 
@@ -31,7 +28,7 @@ return new class extends Migration {
      */
     public function down(): void
     {
-        Schema::dropIfExists('reviews');
+        Schema::dropIfExists('wishlists');
     }
 
 };

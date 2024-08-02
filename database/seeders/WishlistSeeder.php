@@ -13,38 +13,38 @@ class WishlistSeeder extends Seeder
     public function run(): void
     {
         $wishlists = [
-            [
-                'userid' => 1,
-                'createddate' => now(),
-                'created_at' => now(),
-                'updated_at' => now()
-            ],
-            [
-                'userid' => 2,
-                'createddate' => now(),
-                'created_at' => now(),
-                'updated_at' => now()
-            ],
-            [
-                'userid' => 1,
-                'createddate' => now(),
-                'created_at' => now(),
-                'updated_at' => now()
-            ],
-            [
-                'userid' => 2,
-                'createddate' => now(),
-                'created_at' => now(),
-                'updated_at' => now()
-            ],
-            [
-                'userid' => 1,
-                'createddate' => now(),
-                'created_at' => now(),
-                'updated_at' => now()
-            ]
+          [
+            'user_id' => 1,
+            'product_id' => 1,
+            'created_at' => now(),
+            'updated_at' => now()
+          ],
+          [
+            'user_id' => 2,
+            'product_id' => 2,
+            'created_at' => now(),
+            'updated_at' => now()
+          ],
+          [
+            'user_id' => 1,
+            'product_id' => 3,
+            'created_at' => now(),
+            'updated_at' => now()
+          ],
+          [
+            'user_id' => 2,
+            'product_id' => 4,
+            'created_at' => now(),
+            'updated_at' => now()
+          ],
+          [
+            'user_id' => 1,
+            'product_id' => 5,
+            'created_at' => now(),
+            'updated_at' => now()
+          ]
         ];
 
-        DB::table('wishlist')->insert($wishlists);
+        DB::table('wishlists')->insert($wishlists);
     }
 }
