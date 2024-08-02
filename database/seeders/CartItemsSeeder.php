@@ -13,43 +13,29 @@ class CartItemsSeeder extends Seeder
     public function run(): void
     {
         $cartItems = [
-            [
-                'cartid' => 1,
-                'productid' => 1,
-                'quantity' => 2,
-                'created_at' => now(),
-                'updated_at' => now()
-            ],
-            [
-                'cartid' => 1,
-                'productid' => 2,
-                'quantity' => 1,
-                'created_at' => now(),
-                'updated_at' => now()
-            ],
-            [
-                'cartid' => 2,
-                'productid' => 3,
-                'quantity' => 3,
-                'created_at' => now(),
-                'updated_at' => now()
-            ],
-            [
-                'cartid' => 3,
-                'productid' => 4,
-                'quantity' => 1,
-                'created_at' => now(),
-                'updated_at' => now()
-            ],
-            [
-                'cartid' => 4,
-                'productid' => 5,
-                'quantity' => 2,
-                'created_at' => now(),
-                'updated_at' => now()
-            ]
+          [
+            'user_id' => 1,
+            'product_id' => 1,
+            'quantity' => 2,
+            'created_at' => now(),
+            'updated_at' => now()
+          ],
+          [
+            'user_id' => 1,
+            'product_id' => 2,
+            'quantity' => 1,
+            'created_at' => now(),
+            'updated_at' => now()
+          ],
+          [
+            'user_id' => 2,
+            'product_id' => 3,
+            'quantity' => 3,
+            'created_at' => now(),
+            'updated_at' => now()
+          ]
         ];
 
-        DB::table('cartitems')->insert($cartItems);
+        DB::table('cart_items')->insert($cartItems);
     }
 }

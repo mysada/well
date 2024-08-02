@@ -4,8 +4,8 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-return new class extends Migration
-{
+return new class extends Migration {
+
     /**
      * Run the migrations.
      */
@@ -13,21 +13,19 @@ return new class extends Migration
     {
         Schema::create('transactions', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('order_id')
+                  ->constrained('orders');
+            $table->foreignId('user_id')
+                  ->constrained('users');
+            $table->decimal('amount', 10, 2);
+            $table->enum('transaction_type', ['Payment', 'Refund', 'Chargeback']
+            )->default('Payment');
+            $table->string('currency', 10)->default('USD');
+            $table->enum('status', ['Pending', 'Completed', 'Failed'])
+                  ->default('Pending');
+            $table->text('response')->nullable();
 
-            $table->bigInteger('orderid')->unsigned()->nullable();
-            $table->string('transaction_id', 255);
-            $table->string('transactionstatus', 255)->nullable();
-            $table->text('transactionresponse')->nullable();
-            $table->tinyInteger('softdelete')->default(0);
-            $table->dateTime('timestamp')->default(DB::raw('CURRENT_TIMESTAMP'));
-
-            // Define the foreign key
-            $table->foreign('orderid')->references('id')->on('orders')->onDelete('set null');
-
-            // Add an index to the orderid column
-            $table->index('orderid');
-
-            $table->timestamps();
+            $table->timestamps(); // 保留时间戳
         });
     }
 
@@ -38,4 +36,5 @@ return new class extends Migration
     {
         Schema::dropIfExists('transactions');
     }
+
 };
