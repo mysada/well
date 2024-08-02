@@ -2,14 +2,12 @@ body {
     font-family: 'Poppins', 'Arial', 'Avenir Next Georgian', Arial;
 }
 
-
 h1,
 h2,
 h3 {
     font-family: 'Poppins', 'Avenir Next Georgian', Arial;
     font-weight: 700;
 }
-
 
 
 h2 {
@@ -92,7 +90,6 @@ h2 {
 .hero-content .btn {
     margin-top: 80px;
 }
-
 
 
 /* -------------------- Category section style  --------------------*/
