@@ -12,7 +12,6 @@ This is a Laravel-based personal health care website project designed by Mydasa.
 - Dongqing
 
 ### Server
-- 15.156.92.60
 - https://team2.uwpace.ca/
 
 ## Requirements
