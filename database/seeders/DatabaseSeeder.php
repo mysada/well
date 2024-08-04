@@ -23,6 +23,7 @@ class DatabaseSeeder extends Seeder
             CartItemsSeeder::class,
             ReviewSeeder::class,
             WishlistSeeder::class,
+            CountriesSeeder::class,
         ]);
     }
 }
