@@ -17,11 +17,15 @@ return new class extends Migration {
                   ->constrained('users');
             $table->integer('quantity');
             $table->decimal('price', 10, 2);
-            $table->string('recipient_name', 255)->nullable();
-            $table->string('shipping_address', 255)->nullable();
-            $table->string('shipping_city', 100)->nullable();
-            $table->string('shipping_province', 100)->nullable();
+            $table->string('recipient_name', 255);
+            $table->string('recipient_email', 255);
+            $table->string('recipient_phone', 255);
+            $table->string('shipping_address', 255);
+            $table->string('shipping_city', 100);
+            $table->string('shipping_province', 100);
+            $table->string('shipping_country', 100);
             $table->string('shipping_postal_code', 10)->nullable();
+            $table->string('coupon_code', 20)->nullable();
             $table->enum(
               'status',
               ['Pending', 'Shipped', 'Delivered', 'Cancelled']
