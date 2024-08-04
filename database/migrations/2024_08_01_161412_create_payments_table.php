@@ -21,6 +21,8 @@ return new class extends Migration {
             $table->decimal('pst', 5, 2)->default(0.00);
             $table->decimal('discount', 5, 2)->nullable();
             $table->enum('status', ['Pending', 'Completed', 'Failed']);
+            $table->string('payer_name',255);
+            $table->string('payer_card',255);
             $table->timestamps();
             $table->softDeletes();
         });
