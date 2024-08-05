@@ -5,6 +5,7 @@ namespace App\Http\Controllers\well;
 use App\Http\Requests\CartItemReq;
 use App\Models\CartItem;
 use Auth;
+use Illuminate\Http\RedirectResponse;
 
 class CartItemController extends Controller
 {
@@ -32,10 +33,7 @@ class CartItemController extends Controller
           'quantity'   => $cart['quantity'],
         ]);
 
-        return redirect()->route('CartItemIndex')->with(
-          'success',
-          'Add to cart successfully.'
-        );
+        return $this->success('Add to cart successfully.');
     }
 
     /**
@@ -43,7 +41,15 @@ class CartItemController extends Controller
      */
     public function update(CartItemReq $request, string $id)
     {
-        //
+        $cart     = $request->validated();
+        $cartItem = CartItem::find($id);
+        if ($cartItem) {
+            $cartItem->update($cart);
+
+            return self::success("Update successfully");
+        }
+
+        return self::error('Update failed');
     }
 
     /**
@@ -57,11 +63,25 @@ class CartItemController extends Controller
         if ($product) {
             $product->delete();
 
-            return redirect()->route('CartItemIndex')->with(
-              'success',
-              "Remove $product[name] successfully."
-            );
+            return $this->success("Remove $product[name] successfully");
         }
+
+        return $this->error("Remove failed");
+    }
+
+    /**
+     * @param $msg
+     *
+     * @return RedirectResponse
+     */
+    private function success($msg): RedirectResponse
+    {
+        return redirect()->route('CartItemIndex')->with('success', $msg);
+    }
+
+    private function error($msg): RedirectResponse
+    {
+        return redirect()->route('CartItemIndex')->with('error', $msg);
     }
 
 }
