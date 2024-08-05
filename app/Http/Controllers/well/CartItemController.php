@@ -34,7 +34,7 @@ class CartItemController extends Controller
 
         return redirect()->route('CartItemIndex')->with(
           'success',
-          'Add to wishlist successfully.'
+          'Add to cart successfully.'
         );
     }
 
@@ -51,7 +51,17 @@ class CartItemController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $product = CartItem::where("user_id", Auth::id())
+                           ->where('id', $id)
+                           ->first();
+        if ($product) {
+            $product->delete();
+
+            return redirect()->route('CartItemIndex')->with(
+              'success',
+              "Remove $product[name] successfully."
+            );
+        }
     }
 
 }
