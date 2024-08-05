@@ -3,7 +3,8 @@
 namespace App\Http\Controllers\well;
 
 use App\Models\Product;
-use Illuminate\Contracts\View\View;
+use App\Models\Wishlist;
+use Illuminate\Support\Facades\Auth;
 
 class ProductController extends Controller
 {
@@ -13,9 +14,7 @@ class ProductController extends Controller
      */
     public function index()
     {
-        $products = Product::with("category")
-                           ->orderBy('created_at', 'desc')
-                           ->get();
+        $products = Product::orderBy('created_at', 'desc')->get();
         $title    = 'Products';
 
         return view('well.product.product_list', compact('products', 'title'));
@@ -26,8 +25,15 @@ class ProductController extends Controller
      */
     public function show(string $id)
     {
-        $product = Product::with("category")->find($id);
-        $title   = $product->name;
+        $product  = Product::with("category")->find($id);
+        $title    = $product->name;
+        $wishlist = false;
+        //check if the product in the wishlist when login
+        if (Auth::check()) {
+            $wishlist = Wishlist::where('user_id', Auth::user()->id)
+                                ->where('product_id', $product->id)
+                                ->exists();
+        }
 
         return view(
           'well.product.product_details',
