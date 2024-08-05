@@ -27,9 +27,11 @@ class WishlistController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(string $product_id)
     {
-        $product = Wishlist::find($id);
+        $product = Wishlist::where('user_id', Auth::user()->id)
+                           ->where('product_id', $product_id)
+                           ->first();
 
         if ($product) {
             $product->delete();
@@ -38,12 +40,12 @@ class WishlistController extends Controller
               'success',
               "Deleted {$product->name} successfully."
             );
-        } else {
-            return redirect()->route('WishlistIndex')->with(
-              'error',
-              'Item not found.'
-            );
         }
+
+        return redirect()->route('WishlistIndex')->with(
+          'error',
+          'Item not found.'
+        );
     }
 
 }
