@@ -52,20 +52,20 @@
         }
 
         .product-info img {
-            width: 60px;
-            height: 60px;
+            width: 150px;
+            height: 150px;
             object-fit: cover;
             margin-right: 20px;
         }
 
         .product-info .product-title {
-            font-size: 18px;
+            font-size: 24px;
             font-weight: 700;
             margin-bottom: 5px;
         }
 
         .product-info .product-price {
-            font-size: 16px;
+            font-size: 18px;
             color: #666;
         }
 
@@ -74,18 +74,13 @@
             align-items: center;
         }
 
-        .product-actions button {
-            background-color: #00AB7A;
-            color: #fff;
-            border: none;
-            padding: 10px 15px;
-            margin-right: 10px;
-            cursor: pointer;
+        .product-actions .btn-remove {
+            color: #666; 
+            margin-left: 20px;
         }
 
-        .product-actions button:hover {
-            background-color: #008E65;
-        }
+
+
     </style>
 </head>
 
@@ -136,7 +131,7 @@
     <!-- Wishlist Section -->
     <section class="wishlist-section">
         <div class="container">
-            <h2>Wishlist</h2>
+            <h1 style="font-size: 50px;">Wishlist</h1>
             <div class="product-item">
                 <div class="product-info">
                     <img src="../../../public/images/product.jpg" alt="Product 1">
@@ -147,7 +142,8 @@
                 </div>
                 <div class="product-actions">
                     <button class="btn btn-primary">Add to Cart</button>
-                    <button class="btn btn-danger">Remove</button>
+                    <!-- <button class="btn btn-danger">Remove</button> -->
+                    <button class="btn btn-remove" style="color: #666; margin-left: 20px;">Remove</button>
                 </div>
             </div>
             <div class="product-item">
@@ -160,7 +156,7 @@
                 </div>
                 <div class="product-actions">
                     <button class="btn btn-primary">Add to Cart</button>
-                    <button class="btn btn-danger">Remove</button>
+                    <button class="btn btn-remove">Remove</button>
                 </div>
             </div>
         </div>
