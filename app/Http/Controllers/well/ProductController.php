@@ -30,7 +30,7 @@ class ProductController extends Controller
         $wishlist = false;
         //check if the product in the wishlist when login
         if (Auth::check()) {
-            $wishlist = Wishlist::where('user_id', Auth::user()->id)
+            $wishlist = Wishlist::where('user_id', Auth::id())
                                 ->where('product_id', $product->id)
                                 ->exists();
         }
