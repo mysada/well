@@ -23,7 +23,7 @@ class WishlistReq extends FormRequest
     {
         return [
             // product_id must be present and exist in the products table
-            'product_id' => 'required|exists:products,id',
+            'product_id' => ['required', 'exists:products,id'],
         ];
     }
 
