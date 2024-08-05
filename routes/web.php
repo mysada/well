@@ -43,7 +43,6 @@ Route::middleware('auth')->group(function () {
     Route::resource('wishlists', WishlistController::class)->names([
       'index'   => 'WishlistIndex', //page: wishlist
       'store'   => 'WishlistStore', //processor: add product into wishlist
-      'update'  => 'WishlistUpdate', //processor: update product quantity
       'destroy' => 'WishlistDestroy', //processor: delete product
     ]);
 
