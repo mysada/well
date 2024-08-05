@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers\well;
 
+use App\Http\Requests\WishlistReq;
 use App\Models\Wishlist;
-use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class WishlistController extends Controller
 {
@@ -13,7 +14,7 @@ class WishlistController extends Controller
      */
     public function index()
     {
-        $wishlist = Wishlist::all();
+        $wishlist = Wishlist::where("user_id", Auth::user()->id)->get();
         $title    = 'My Wishlist';
 
         return view('well.pages.wishlist', compact('wishlist', 'title'));
@@ -22,17 +23,19 @@ class WishlistController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(WishlistReq $req)
     {
-        //
-    }
+        $wishlist = $req->validated();
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, string $id)
-    {
-        //
+        Wishlist::create([
+          'user_id'    => Auth::id(),
+          'product_id' => $wishlist['product_id'],
+        ]);
+
+        return redirect()->route('WishlistIndex')->with(
+          'success',
+          'Add to wishlist successfully.'
+        );
     }
 
     /**
@@ -40,7 +43,22 @@ class WishlistController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $product = Wishlist::where('user_id', Auth::id())
+                           ->where('id', $id)
+                           ->first();
+        if ($product) {
+            $product->delete();
+
+            return redirect()->route('WishlistIndex')->with(
+              'success',
+              "Deleted {$product->name} successfully."
+            );
+        }
+
+        return redirect()->route('WishlistIndex')->with(
+          'error',
+          'Product not found.'
+        );
     }
 
 }
