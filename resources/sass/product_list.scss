@@ -1,0 +1,145 @@
+body {
+    font-family: 'Poppins', 'Arial', 'Avenir Next Georgian', Arial;
+}
+
+h1, h2, h3 {
+    font-family: 'Poppins', 'Avenir Next Georgian', Arial;
+    font-weight: 700;
+}
+
+h2 {
+    font-size: 60px;
+    text-align: left;
+}
+
+.category-list a {
+    display: block;
+    padding: 10px 15px;
+    margin-bottom: 10px;
+    font-size: 18px;
+    font-weight: 500;
+    color: #000;
+    text-decoration: none;
+    border: 2px solid transparent;
+    border-radius: 5px;
+}
+
+.category-list a:hover,
+.category-list .active-category {
+    border-color: #00AB7A;
+    background-color: #00AB7A;
+    color: #fff;
+}
+
+.product-card {
+    border: 1px solid #e1e1e1;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    position: relative;
+}
+
+.product-card img {
+    height: 250px;
+    object-fit: cover;
+}
+
+.btn-add {
+    background-color: #00AB7A;
+    width: 50px;
+    height: 50px;
+    color: #fff;
+    border: none;
+    border-radius: 50%;
+    font-size: 24px;
+    font-weight: 700;
+    text-align: center;
+    line-height: 50px;
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.btn-add:hover {
+    background-color: #fff;
+    color: #00AB7A;
+    border: 1px solid #00AB7A;
+}
+
+.btn-add:active {
+    background-color: #008E65;
+    transform: scale(0.95);
+    color: #fff;
+}
+
+.footer {
+    background-color: #191919;
+    color: #fff;
+    padding: 2rem 0;
+}
+
+.footer a {
+    color: #fff;
+    text-decoration: none;
+}
+
+.btn-load-more {
+    background-color: #00AB7A;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    font-size: 16px;
+    font-weight: 700;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    text-decoration: none;
+    display: inline-block;
+}
+
+.btn-load-more:hover {
+    background-color: #fff;
+    color: #00AB7A;
+    border: 1px solid #00AB7A;
+}
+
+.btn-load-more:active {
+    background-color: #008E65;
+    transform: scale(0.95);
+    color: #fff;
+}
+
+.pagination {
+    margin-top: 20px;
+}
+
+.page-item {
+    border-radius: 5px;
+    margin: 0 5px;
+}
+
+.page-link {
+    background-color: #00AB7A;
+    color: #fff;
+    border: 1px solid #00AB7A;
+    padding: 10px 15px;
+    font-size: 16px;
+    font-weight: 700;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.page-link:hover {
+    background-color: #fff;
+    color: #00AB7A;
+    border: 1px solid #00AB7A;
+}
+
+.page-link:active {
+    background-color: #008E65;
+    transform: scale(0.95);
+    color: #fff;
+}
+
+.page-item.active .page-link {
+    background-color: #008E65;
+    border: 1px solid #008E65;
+}
