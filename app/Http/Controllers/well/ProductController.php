@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\well;
 
 use App\Models\Product;
+use Illuminate\Contracts\View\View;
 
 class ProductController extends Controller
 {
@@ -12,7 +13,9 @@ class ProductController extends Controller
      */
     public function index()
     {
-        $products = Product::all();
+        $products = Product::with("category")
+                           ->orderBy('created_at', 'desc')
+                           ->get();
         $title    = 'Products';
 
         return view('well.product.product_list', compact('products', 'title'));
@@ -23,8 +26,8 @@ class ProductController extends Controller
      */
     public function show(string $id)
     {
-        $title = 'Product Info';
-        $product = Product::find($id);
+        $product = Product::with("category")->find($id);
+        $title   = $product->name;
 
         return view(
           'well.product.product_details',
