@@ -4,7 +4,6 @@ use App\Http\Controllers\well\AboutController;
 use App\Http\Controllers\well\CartItemController;
 use App\Http\Controllers\well\HomeController;
 use App\Http\Controllers\well\OrderController;
-use App\Http\Controllers\well\PaymentController;
 use App\Http\Controllers\well\ProductController;
 use App\Http\Controllers\well\WishlistController;
 use Illuminate\Support\Facades\Auth;
@@ -32,17 +31,13 @@ Route::middleware('auth')->group(function () {
       'update'  => 'CartItemUpdate', //processor: update cart products quantity
       'destroy' => 'CartItemDestroy',//processor: delete cart products
     ]);
-
+    /**
+     * maybe the create page is useless.
+     */
     Route::resource('orders', OrderController::class)->names([
-      'index'  => 'Order', //page: order list
       'create' => 'OrderCreate', //page: order create
       'store'  => 'OrderStore', //processor: save an order
       'show'   => 'OrderShow', //page: order detail
-    ]);
-
-    Route::resource('payments', PaymentController::class)->names([
-      'create' => 'PaymentCreate', //page: payment
-      'store'  => 'PaymentStore', //processor: save a payment and transaction
     ]);
 
     Route::resource('wishlists', WishlistController::class)->names([
@@ -50,6 +45,10 @@ Route::middleware('auth')->group(function () {
       'store'   => 'WishlistStore', //processor: add product into wishlist
       'update'  => 'WishlistUpdate', //processor: update product quantity
       'destroy' => 'WishlistDestroy', //processor: delete product
+    ]);
+
+    Route::resource('user', WishlistController::class)->names([
+      'index' => 'Profile', //page: profile with orders
     ]);
 });
 Auth::routes();
