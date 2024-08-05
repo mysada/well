@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers\well;
 
+use App\Http\Requests\CartItemReq;
 use App\Models\CartItem;
-use Illuminate\Http\Request;
+use Auth;
 
 class CartItemController extends Controller
 {
@@ -22,15 +23,25 @@ class CartItemController extends Controller
     /**
      * add product into cart
      */
-    public function store(Request $request)
+    public function store(CartItemReq $request)
     {
-        //
+        $cart = $request->validated();
+        CartItem::create([
+          'user_id'    => Auth::id(),
+          'product_id' => $cart['product_id'],
+          'quantity'   => $cart['quantity'],
+        ]);
+
+        return redirect()->route('CartItemIndex')->with(
+          'success',
+          'Add to wishlist successfully.'
+        );
     }
 
     /**
      * update the number of the cart
      */
-    public function update(Request $request, string $id)
+    public function update(CartItemReq $request, string $id)
     {
         //
     }
