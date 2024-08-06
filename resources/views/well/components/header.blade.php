@@ -83,7 +83,7 @@
                     <a class="nav-link" href="{{ url('/about') }}">About Us</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ url('/policy') }}">Help&Contact</a>
+                    <a class="nav-link" href="{{ url('/policy') }}">Contact Us</a>
                 </li>
 
 
