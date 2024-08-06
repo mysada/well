@@ -19,8 +19,6 @@ class CategorySeeder extends Seeder
           ['name' => 'Health Supplements', 'created_at' => now(), 'updated_at' => now()],
           ['name' => 'Body Care', 'created_at' => now(), 'updated_at' => now()],
           ['name' => 'Essential Oils', 'created_at' => now(), 'updated_at' => now()],
-          ['name' => 'Oral Care', 'created_at' => now(), 'updated_at' => now()],
-          ['name' => 'Men\'s Grooming', 'created_at' => now(), 'updated_at' => now()],
         ];
 
         DB::table('categories')->insert($categories);
