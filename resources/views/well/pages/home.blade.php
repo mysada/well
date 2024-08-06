@@ -12,7 +12,17 @@
             <a href="#" class="btn btn-primary">Explore</a>
         </div>
     </section> -->
-
+    @foreach($heroSections as $heroSection)
+        <section class="hero-section">
+            <img src="{{ asset($heroSection->image) }}" alt="Hero Image">
+            
+            <div class="hero-content">
+                <h1>{{ $heroSection->title }}</h1>
+                <p>{{ $heroSection->description }}</p>
+                <p class="bold">{{ $heroSection->bold_text }}</p>
+                <a href="{{ $heroSection->button_link }}" class="btn btn-primary">{{ $heroSection->button_text }}</a>
+            </div>
+        </section>
 
 
     <!-- Category Section -->
