@@ -2,11 +2,11 @@
 
 namespace Database\Seeders;
 
-use App\Models\User;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
 {
+
     /**
      * Seed the application's database.
      */
@@ -15,15 +15,17 @@ class DatabaseSeeder extends Seeder
         // User::factory(10)->create();
 
         $this->call([
-            UserSeeder::class,
-            CategorySeeder::class,
-            ProductSeeder::class,
-            OrderSeeder::class,
-            CartItemsSeeder::class,
-            ReviewSeeder::class,
-            WishlistSeeder::class,
-            CountriesSeeder::class,
-            ProvincesSeeder::class,
+          UserSeeder::class,
+          CategorySeeder::class,
+          ProductSeeder::class,
+          OrderSeeder::class,
+          CartItemsSeeder::class,
+          ReviewSeeder::class,
+          WishlistSeeder::class,
+          CountriesSeeder::class,
+          ProvincesSeeder::class,
+          ConfigsSeeder::class,
         ]);
     }
+
 }

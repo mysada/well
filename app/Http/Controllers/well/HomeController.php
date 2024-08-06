@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\well;
 
 use App\Http\Controllers\Controller;
+use App\Models\Config;
 
 class HomeController extends Controller
 {
@@ -14,9 +15,11 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $title = 'Well';
+        $title        = 'Well';
+        $bannerConfig = Config::where('key', 'home_banner')->first();
+        $bannerConfig = $bannerConfig ? $bannerConfig->value : null;
 
-        return view('well.pages.home', compact('title'));
+        return view('well.pages.home', compact('title', 'bannerConfig'));
     }
 
 }
