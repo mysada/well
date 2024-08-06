@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\well;
 
 use App\Http\Controllers\Controller;
+use App\Models\Category;
 use App\Models\Config;
 
 class HomeController extends Controller
@@ -16,10 +17,16 @@ class HomeController extends Controller
     public function index()
     {
         $title        = 'Well';
-        $bannerConfig = Config::where('key', 'home_banner')->first();
-        $bannerConfig = $bannerConfig ? $bannerConfig->value : null;
+        $heroSections = Config::where('key', 'home_banner')->first();
+        $heroSections = $heroSections ? $heroSections->value : null;
 
-        return view('well.pages.home', compact('title', 'bannerConfig'));
+        // Get a random hero section
+        $randomHeroSection = !empty($heroSections) ? $heroSections[array_rand($heroSections)] : null;
+
+        // Fetch 3 categories
+        $categories = Category::take(3)->get();
+
+        return view('well.pages.home', compact('title', 'randomHeroSection', 'categories'));
     }
 
 }

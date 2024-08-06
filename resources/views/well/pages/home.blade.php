@@ -1,49 +1,38 @@
 @extends('layouts.app')
 @section('content')
-    @vite('resources/sass/home.scss')
+@vite('resources/sass/home.scss')
+
 
     <!-- Hero Section -->
-    <!-- <section class="hero-section">
-        <img src="images/home/home_banner.jpg" alt="Hero Image">
-        <div class="hero-content">
-            <h1>SALE</h1>
-            <p>Skincare, fitness products, nutritional supplements</p>
-            <p class="bold">Up to 50% discount, check it out</p>
-            <a href="#" class="btn btn-primary">Explore</a>
-        </div>
-    </section> -->
+    @if ($randomHeroSection)
+        <section class="hero-section">
+            <img src="{{ asset($randomHeroSection['image']) }}" alt="Hero Image">
+            
+            <div class="hero-content">
+                <h1>{{ $randomHeroSection['title'] }}</h1>
+                <p>{{ $randomHeroSection['description'] }}</p>
+                <p class="bold">{{ $randomHeroSection['bold_text'] }}</p>
+                <a href="{{ $randomHeroSection['button_link'] }}" class="btn btn-primary">{{ $randomHeroSection['button_text'] }}</a>
+            </div>
+        </section>
+    @endif
 
-    
 
     <!-- Category Section -->
     <section class="category-section text-center">
         <div class="container">
             <h2>Category</h2>
             <div class="row">
-                <div class="col-md-4">
-                    <div class="card category-card" style="background-image: url('images/home/category_1.jpg');">
-                        <h1 class="category-card-title">Skincare</h1>
-                        <div class="card-body">
-                            <a href="#" class="btn btn-primary">Buy Now</a>
+                @foreach($categories as $category)
+                    <div class="col-md-4">
+                        <div class="card category-card" style="background-image: url('{{ asset($category->image) }}.jpg');">
+                            <h1 class="category-card-title">{{ $category->name }}</h1>
+                            <div class="card-body">
+                                <a href="#" class="btn btn-primary">Buy Now</a>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="card category-card" style="background-image: url('images/home/category_2.jpg');">
-                        <h1 class="category-card-title">Fitness</h1>
-                        <div class="card-body">
-                            <a href="#" class="btn btn-primary">Buy Now</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="card category-card" style="background-image: url('images/home/category_3.jpg');">
-                        <h1 class="category-card-title" style="color: #000;">Nutritional Supplements</h1>
-                        <div class="card-body">
-                            <a href="#" class="btn btn-primary">Buy Now</a>
-                        </div>
-                    </div>
-                </div>
+                @endforeach
             </div>
         </div>
     </section>
