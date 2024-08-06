@@ -26,20 +26,20 @@ class ProductController extends Controller
      */
     public function show(string $id)
     {
-        $product  = Product::with("category")->find($id);
+        $product  = Product::with('category')->findOrFail($id);
         $title    = $product->name;
-        $wishlist = false;
-        //check if the product in the wishlist when login
-        if (Auth::check()) {
-            $wishlist = Wishlist::where('user_id', Auth::id())
-                                ->where('product_id', $product->id)
-                                ->exists();
-        }
+
+        // Fetch related products from the same category
+        $relatedProducts = Product::where('category_id', $product->category_id)
+            ->where('id', '!=', $id)
+            ->limit(4)
+            ->get();
 
         return view(
-          'well.product.product_details',
-          compact('product', 'title')
+            'well.product.product_details',
+            compact('product', 'title', 'relatedProducts')
         );
     }
+
 
 }
