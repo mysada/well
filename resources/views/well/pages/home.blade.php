@@ -12,38 +12,34 @@
             <a href="#" class="btn btn-primary">Explore</a>
         </div>
     </section> -->
+    @foreach($heroSections as $heroSection)
+        <section class="hero-section">
+            <img src="{{ asset($heroSection->image) }}" alt="Hero Image">
+            
+            <div class="hero-content">
+                <h1>{{ $heroSection->title }}</h1>
+                <p>{{ $heroSection->description }}</p>
+                <p class="bold">{{ $heroSection->bold_text }}</p>
+                <a href="{{ $heroSection->button_link }}" class="btn btn-primary">{{ $heroSection->button_text }}</a>
+            </div>
+        </section>
 
-    
 
     <!-- Category Section -->
     <section class="category-section text-center">
         <div class="container">
             <h2>Category</h2>
             <div class="row">
-                <div class="col-md-4">
-                    <div class="card category-card" style="background-image: url('images/home/category_1.jpg');">
-                        <h1 class="category-card-title">Skincare</h1>
-                        <div class="card-body">
-                            <a href="#" class="btn btn-primary">Buy Now</a>
+                @foreach($categories as $category)
+                    <div class="col-md-4">
+                        <div class="card category-card" style="background-image: url('{{ asset($category->image) }}.jpg');">
+                            <h1 class="category-card-title">{{ $category->name }}</h1>
+                            <div class="card-body">
+                                <a href="#" class="btn btn-primary">Buy Now</a>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="card category-card" style="background-image: url('images/home/category_2.jpg');">
-                        <h1 class="category-card-title">Fitness</h1>
-                        <div class="card-body">
-                            <a href="#" class="btn btn-primary">Buy Now</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="card category-card" style="background-image: url('images/home/category_3.jpg');">
-                        <h1 class="category-card-title" style="color: #000;">Nutritional Supplements</h1>
-                        <div class="card-body">
-                            <a href="#" class="btn btn-primary">Buy Now</a>
-                        </div>
-                    </div>
-                </div>
+                @endforeach
             </div>
         </div>
     </section>
