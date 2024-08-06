@@ -11,10 +11,10 @@
                 <div class="col-md-3">
                     <h5 class="footer-nav">NAVIGATION</h5>
                     <ul class="list-unstyled">
-                        <li><a href="#" class="text-white">Home</a></li>
-                        <li><a href="#" class="text-white">Shop</a></li>
-                        <li><a href="#" class="text-white">About us</a></li>
-                        <li><a href="#" class="text-white">Policy</a></li>
+                        <li><a  href="{{ url('/') }}" class="text-white">Home</a></li>
+                        <li><a href="{{ url('/products') }}"class="text-white">Shop</a></li>
+                        <li><a  href="{{ url('/about') }}" class="text-white">About us</a></li>
+                        <li><a  href="{{ url('/about') }}" class="text-white">Policy</a></li>
                     </ul>
                 </div>
                 <div class="col-md-3">
