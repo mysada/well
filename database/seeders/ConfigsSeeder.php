@@ -12,14 +12,28 @@ class ConfigsSeeder extends Seeder
     {
         $bannerConfig = [
           [
-            'image'       => 'banner1.jpg',
-            'link'        => 'https://example.com/page1',
-            'description' => 'Description for banner 1',
+            'image' => 'images/home/home_banner1.jpg',
+            'title' => 'SALE',
+            'description' => 'Skincare, fitness products, nutritional supplements',
+            'bold_text' => 'Up to 50% discount, check it out',
+            'button_text' => 'Explore',
+            'button_link' => '#',
           ],
           [
-            'image'       => 'banner2.jpg',
-            'link'        => 'https://example.com/page2',
-            'description' => 'Description for banner 2',
+            'image' => 'images/home/home_banner2.jpg',
+            'title' => 'NEW ARRIVALS',
+            'description' => 'Check out our latest products',
+            'bold_text' => 'Special prices available now',
+            'button_text' => 'Shop Now',
+            'button_link' => '#',
+          ],
+          [
+            'image' => 'images/home/home_banner3.jpg',
+            'title' => 'LIMITED TIME OFFER',
+            'description' => 'Exclusive deals on select items',
+            'bold_text' => 'Hurry, while stocks last',
+            'button_text' => 'Discover',
+            'button_link' => '#',
           ],
         ];
         DB::table('configs')->insert([

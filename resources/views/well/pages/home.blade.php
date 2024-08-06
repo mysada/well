@@ -3,7 +3,7 @@
     @vite('resources/sass/home.scss')
 
     <!-- Hero Section -->
-    <section class="hero-section">
+    <!-- <section class="hero-section">
         <img src="images/home/home_banner.jpg" alt="Hero Image">
         <div class="hero-content">
             <h1>SALE</h1>
@@ -11,7 +11,9 @@
             <p class="bold">Up to 50% discount, check it out</p>
             <a href="#" class="btn btn-primary">Explore</a>
         </div>
-    </section>
+    </section> -->
+
+    
 
     <!-- Category Section -->
     <section class="category-section text-center">
