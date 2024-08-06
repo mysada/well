@@ -10,7 +10,7 @@ class ConfigsSeeder extends Seeder
 
     public function run(): void
     {
-        $bannerConfig = [
+        $heroSections = [
           [
             'image' => 'images/home/home_banner1.jpg',
             'title' => 'SALE',

@@ -17,13 +17,13 @@ class HomeController extends Controller
     public function index()
     {
         $title        = 'Well';
-        $bannerConfig = Config::where('key', 'home_banner')->first();
-        $bannerConfig = $bannerConfig ? $bannerConfig->value : null;
+        $heroSections = Config::where('key', 'home_banner')->first();
+        $heroSections = $heroSections ? $heroSections->value : null;
 
         // Fetch 3 categories
         $categories = Category::take(3)->get();
 
-        return view('well.pages.home', compact('title', 'bannerConfig', 'categories'));
+        return view('well.pages.home', compact('title', 'heroSections', 'categories'));
     }
 
 }
