@@ -14,7 +14,7 @@
                         <li><a  href="{{ url('/') }}" class="text-white">Home</a></li>
                         <li><a href="{{ url('/products') }}"class="text-white">Shop</a></li>
                         <li><a  href="{{ url('/about') }}" class="text-white">About us</a></li>
-                        <li><a  href="{{ url('/about') }}" class="text-white">Policy</a></li>
+                        <li><a  href="{{ url('/contact') }}" class="text-white">Contact</a></li>
                     </ul>
                 </div>
                 <div class="col-md-3">
