@@ -64,7 +64,6 @@ Route::middleware(AdminAuthInterceptor::class)->group(function () {
       'index'   => 'AdminUserList',
       'create'  => 'AdminUserCreate',
       'store'   => 'AdminUserStore',
-      'show'    => 'AdminUserShow',
       'edit'    => 'AdminUserEdit',
       'update'  => 'AdminUserUpdate',
       'destroy' => 'AdminUserDestroy',
@@ -92,9 +91,6 @@ Route::middleware(AdminAuthInterceptor::class)->group(function () {
 
     Route::resource('/admin/reviews', AdminReviewController::class)->names([
       'index'   => 'AdminReviewList',
-      'create'  => 'AdminReviewCreate',
-      'store'   => 'AdminReviewStore',
-      'show'    => 'AdminReviewShow',
       'edit'    => 'AdminReviewEdit',
       'update'  => 'AdminReviewUpdate',
       'destroy' => 'AdminReviewDestroy',
@@ -102,11 +98,7 @@ Route::middleware(AdminAuthInterceptor::class)->group(function () {
 
     Route::resource('/admin/payments', AdminPaymentController::class)->names([
       'index'   => 'AdminPaymentList',
-      'create'  => 'AdminPaymentCreate',
-      'store'   => 'AdminPaymentStore',
       'show'    => 'AdminPaymentShow',
-      'edit'    => 'AdminPaymentEdit',
-      'update'  => 'AdminPaymentUpdate',
       'destroy' => 'AdminPaymentDestroy',
     ]);
 
@@ -114,7 +106,6 @@ Route::middleware(AdminAuthInterceptor::class)->group(function () {
       'index'   => 'AdminCategoryList',
       'create'  => 'AdminCategoryCreate',
       'store'   => 'AdminCategoryStore',
-      'show'    => 'AdminCategoryShow',
       'edit'    => 'AdminCategoryEdit',
       'update'  => 'AdminCategoryUpdate',
       'destroy' => 'AdminCategoryDestroy',
