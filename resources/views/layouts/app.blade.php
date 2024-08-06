@@ -24,7 +24,7 @@
             @yield('content')
         </main>
 
-        @include('well.components.footer')
+        @include('well.components.footer')E
     </div>
 </body>
 </html>
