@@ -3,7 +3,7 @@
 @vite('resources/sass/home.scss')
 
 
-    <!-- Hero Section -->
+    <!-- Category Section -->
     @if ($randomHeroSection)
         <section class="hero-section">
             <img src="{{ asset($randomHeroSection['image']) }}" alt="Hero Image">
@@ -42,41 +42,19 @@
         <div class="container">
             <h2>Best Seller</h2>
             <div class="row-best-seller d-flex">
-                <div class="col-md-6">
-                    <div class="row-best-seller-left  text-center">
-                        <div class="card best-seller-card" style="background-image: url('images/home/bs_1.jpg');">
-                            <div class="card-body">
-                                <h5 class="card-title">Nterdum et malesuada</h5>
-                                <p class="card-text">Nterdum et malesuada fames ac ante ipsum primis in faucibus.</p>
-                                <a href="#" class="btn btn-primary">Buy Now</a>
+                @foreach($bestSellers as $product)
+                    <div class="col-md-6">
+                        <div class="row-best-seller-left text-center">
+                            <div class="card best-seller-card" style="background-image: url('{{ asset($product->image_url) }}');">
+                                <div class="card-body">
+                                    <h5 class="card-title">{{ $product->name }}</h5>
+                                    <p class="card-text">{{ $product->description }}</p>
+                                    <a href="#" class="btn btn-primary">Buy Now</a>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
-                <div class="col-md-6">
-                    <div class="row-best-seller-right">
-                        <div class="card-right">
-                            <div class="best-seller-card-right" style="background-image: url('images/home/bs_2.jpg');">
-                            </div>
-                            <div class="bs-text">
-                                <h5 class="bs-title">Nterdum et malesuada</h5>
-                                <p>Nterdum et malesuada fames ac ante ipsum primis in faucibus.</p>
-                                <a href="#" class="btn btn-primary">Buy Now</a>
-                            </div>
-                        </div>
-
-                        <div class="card-right">
-                            <div class="best-seller-card-right" style="background-image: url('images/home/bs_3.jpg');">
-                            </div>
-                            <div class="bs-text">
-                                <h5 class="bs-title">Nterdum et malesuada</h5>
-                                <p>Nterdum et malesuada fames ac ante ipsum primis in faucibus.</p>
-                                <a href="#" class="btn btn-primary">Buy Now</a>
-                            </div>
-                        </div>
-
-                    </div>
-                </div>
+                @endforeach
             </div>
         </div>
     </section>

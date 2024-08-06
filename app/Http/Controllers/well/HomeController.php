@@ -30,7 +30,7 @@ class HomeController extends Controller
         // Fetch 3 random products
         $bestSellers = Product::inRandomOrder()->take(3)->get();
 
-        return view('well.pages.home', compact('title', 'randomHeroSection', 'categories', ));
+        return view('well.pages.home', compact('title', 'randomHeroSection', 'categories', 'bestSellers'));
     }
 
 }
