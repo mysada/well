@@ -21,10 +21,11 @@ Route::get('/home', [HomeController::class, 'index']);
 Route::get('/about', [AboutController::class, 'index']);
 
 //guest
-Route::resource('/products', ProductController::class)->names([
-  'index' => 'Products', //page: all products
-  'show'  => 'ProductDetail', //page: product detail
-]);
+Route::get('/products', [App\Http\Controllers\well\ProductController::class, 'index'])->name('products.index');
+Route::get('/products/{id}', [App\Http\Controllers\well\ProductController::class, 'show'])->name('products.show');
+
+
+
 
 //using cookies to show cart when guest, using database when login
 Route::resource('/cart_items', CartItemController::class)->names([

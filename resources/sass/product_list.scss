@@ -29,7 +29,9 @@ h2 {
 .category-list .active-category {
     border-color: #00AB7A;
     background-color: #00AB7A;
+    padding: 10px 15px;
     color: #fff;
+    text-decoration: none;
 }
 
 .product-card {
@@ -42,6 +44,7 @@ h2 {
 .product-card img {
     height: 250px;
     object-fit: cover;
+
 }
 
 .btn-add {
@@ -121,9 +124,6 @@ h2 {
     color: #fff;
 }
 
-.pagination {
-    margin-top: 20px;
-}
 
 .page-item {
     border-radius: 5px;
@@ -155,4 +155,142 @@ h2 {
 .page-item.active .page-link {
     background-color: #008E65;
     border: 1px solid #008E65;
+}
+
+.card.product-card {
+    transition: transform 0.2s;
+    border: 2px solid #00AB7A;
+}
+
+.card.product-card:hover {
+    transform: scale(1.05);
+}
+
+.category-list a {
+    display: block;
+    padding: 10px 0;
+    text-decoration: none;
+    color: #000;
+}
+
+.category-list a.active-category {
+    font-weight: bold;
+    color: #fff;
+    background-color: #00AB7A;
+    padding-left: 15px;
+    text-decoration: none;
+}
+.custom-pagination {
+    .pagination-list {
+        display: flex;
+        list-style: none;
+        padding: 0;
+        justify-content: center;
+    }
+
+    .pagination-item {
+        margin: 0 5px;
+
+        a, span {
+            display: block;
+            padding: 8px 12px;
+            text-decoration: none;
+            color: #008E65;
+            background-color: #fff;
+            border: 1px solid #dee2e6;
+            border-radius: 4px;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        a:hover {
+            background-color: #008E65;
+            color: #fff;
+        }
+
+        &.active span {
+            background-color: #008E65;
+            color: #fff;
+            border-color: #008E65;
+        }
+
+        &.disabled span {
+            color: #6c757d;
+            background-color: #fff;
+            border-color: #dee2e6;
+            cursor: not-allowed;
+        }
+    }
+}
+
+
+.search-form {
+    .input-group {
+        border: 1px solid transparent;
+        border-radius: 4px;
+        transition: border-color 0.3s;
+
+        &:focus-within {
+            border-color: #00AB7A;
+        }
+    }
+
+    .form-control:focus {
+        box-shadow: none;
+        border-color: #00AB7A;
+    }
+
+    .btn-custom {
+        background-color: #00AB7A;
+        color: #fff;
+        border: 1px solid #00AB7A;
+        transition: background-color 0.3s, color 0.3s;
+
+        &:hover {
+            background-color: #008F64;
+            border-color: #008F64;
+            color: #fff;
+        }
+    }
+}
+
+.custom-pagination {
+    .pagination-list {
+        display: flex;
+        list-style: none;
+        padding: 0;
+        justify-content: center;
+    }
+
+    .pagination-item {
+        margin: 0 5px;
+
+        a, span {
+            display: block;
+            padding: 8px 12px;
+            text-decoration: none;
+            color: #00AB7A;;
+            background-color: #fff;
+            border: 1px solid #dee2e6;
+            border-radius: 4px;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        a:hover {
+            background-color:  #00AB7A;
+            color: #fff;
+        }
+
+        &.active span {
+            background-color:  #00AB7A;
+            color: #fff;
+            border-color:  #00AB7A;
+        }
+
+        &.disabled span {
+            color: #6c757d;
+            background-color: #fff;
+            border-color: #dee2e6;
+            cursor: not-allowed;
+        }
+    }
 }

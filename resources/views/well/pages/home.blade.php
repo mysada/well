@@ -1,9 +1,9 @@
 @extends('layouts.app')
-@vite('resources/sass/home.scss')
 @section('content')
+    @vite('resources/sass/home.scss')
 
     <!-- Hero Section -->
-    <section class="hero-section">
+    <!-- <section class="hero-section">
         <img src="images/home/home_banner.jpg" alt="Hero Image">
         <div class="hero-content">
             <h1>SALE</h1>
@@ -11,7 +11,9 @@
             <p class="bold">Up to 50% discount, check it out</p>
             <a href="#" class="btn btn-primary">Explore</a>
         </div>
-    </section>
+    </section> -->
+
+    
 
     <!-- Category Section -->
     <section class="category-section text-center">
@@ -101,7 +103,9 @@
                     <div>
                         <p style="color: #00AB7A; font-size: 18px;">PRODUCTS</p>
                         <h3 style="font-size: 42px;">We Provide You The Best Products</h3>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque vel orci efficitur diam. Nulla facilisi. Duis libero odio, fermentum id nulla quis, hendrerit feugiat leo. In imperdiet metus ac diam consequat, eu blandit sapien lobortis.</p>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque vel orci efficitur diam.
+                            Nulla facilisi. Duis libero odio, fermentum id nulla quis, hendrerit feugiat leo. In
+                            imperdiet metus ac diam consequat, eu blandit sapien lobortis.</p>
                         <a href="#" class="btn btn-primary">Buy Now</a>
                     </div>
                 </div>

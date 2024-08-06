@@ -7,7 +7,6 @@
     <title>Wellness Balance - Wishlist</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-    <link rel="stylesheet" href="../../css/home.css">
     <style>
         body {
             font-family: 'Poppins', 'Arial', 'Avenir Next Georgian', Arial;
@@ -75,7 +74,7 @@
         }
 
         .product-actions .btn-remove {
-            color: #666; 
+            color: #666;
             margin-left: 20px;
         }
 
