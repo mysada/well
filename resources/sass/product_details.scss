@@ -1,0 +1,36 @@
+body {
+    font-family: 'Poppins', 'Arial', 'Avenir Next Georgian', Arial;
+}
+
+h1, h2, h3 {
+    font-family: 'Poppins', 'Avenir Next Georgian', Arial;
+    font-weight: 700;
+}
+
+.product-image img {
+    width: 100%;
+}
+
+.introduction img {
+    width: 100%;
+    height: auto;
+}
+
+.related-products .card {
+    margin-bottom: 1rem;
+}
+
+.related-products img {
+    height: 150px;
+    object-fit: cover;
+}
+
+.footer {
+    background-color: #000;
+    color: #fff;
+    padding: 2rem 0;
+}
+
+.footer a {
+    color: #fff;
+}
