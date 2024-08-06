@@ -8,6 +8,7 @@ use App\Http\Controllers\admin\AdminReviewController;
 use App\Http\Controllers\admin\AdminUserController;
 use App\Http\Controllers\well\AboutController;
 use App\Http\Controllers\well\CartItemController;
+use App\Http\Controllers\well\ContactController;
 use App\Http\Controllers\well\HomeController;
 use App\Http\Controllers\well\OrderController;
 use App\Http\Controllers\well\ProductController;
@@ -20,9 +21,19 @@ Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('/home', [HomeController::class, 'index']);
 Route::get('/about', [AboutController::class, 'index']);
 
+//Manish_Contact_Page
+Route::get('/contact', function () {
+    return view('well.pages.contact');
+})->name('contact.page');
+
+Route::post('/contact', [ContactController::class, 'submit'])->name('contact.submit');
+
+
 //guest
 Route::get('/products', [App\Http\Controllers\well\ProductController::class, 'index'])->name('products.index');
 Route::get('/products/{id}', [App\Http\Controllers\well\ProductController::class, 'show'])->name('products.show');
+
+
 
 
 
