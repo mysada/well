@@ -26,37 +26,7 @@
 
 
     <!-- Category Section -->
-    <section class="category-section text-center">
-        <div class="container">
-            <h2>Category</h2>
-            <div class="row">
-                <div class="col-md-4">
-                    <div class="card category-card" style="background-image: url('images/home/category_1.jpg');">
-                        <h1 class="category-card-title">Skincare</h1>
-                        <div class="card-body">
-                            <a href="#" class="btn btn-primary">Buy Now</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="card category-card" style="background-image: url('images/home/category_2.jpg');">
-                        <h1 class="category-card-title">Fitness</h1>
-                        <div class="card-body">
-                            <a href="#" class="btn btn-primary">Buy Now</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="card category-card" style="background-image: url('images/home/category_3.jpg');">
-                        <h1 class="category-card-title" style="color: #000;">Nutritional Supplements</h1>
-                        <div class="card-body">
-                            <a href="#" class="btn btn-primary">Buy Now</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+
 
     <!-- Best Seller Section -->
     <section class="best-seller-section">

@@ -19,7 +19,10 @@ class HomeController extends Controller
         $bannerConfig = Config::where('key', 'home_banner')->first();
         $bannerConfig = $bannerConfig ? $bannerConfig->value : null;
 
-        return view('well.pages.home', compact('title', 'bannerConfig'));
+        // Fetch 3 categories
+        $categories = Category::take(3)->get();
+
+        return view('well.pages.home', compact('title', 'bannerConfig', 'categories'));
     }
 
 }
