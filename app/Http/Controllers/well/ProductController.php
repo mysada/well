@@ -4,12 +4,12 @@ namespace App\Http\Controllers\well;
 
 use App\Http\Controllers\Controller;
 use App\Models\Product;
-use App\Models\Category;
-use Illuminate\Http\Request;
+use App\Models\Wishlist;
 use Illuminate\Support\Facades\Auth;
 
 class ProductController extends Controller
 {
+
     /**
      * Display a listing of the resource.
      */
@@ -39,17 +39,20 @@ class ProductController extends Controller
      */
     public function show(string $id)
     {
-        $product = Product::with("category")->findOrFail($id);
-        $title = $product->name;
-        $wishlist = false;
+        $product  = Product::with('category')->findOrFail($id);
+        $title    = $product->name;
 
-        // Check if the product is in the wishlist when logged in
-        if (Auth::check()) {
-            $wishlist = Wishlist::where('user_id', Auth::id())
-                ->where('product_id', $product->id)
-                ->exists();
-        }
+        // Fetch related products from the same category
+        $relatedProducts = Product::where('category_id', $product->category_id)
+            ->where('id', '!=', $id)
+            ->limit(4)
+            ->get();
 
-        return view('well.product.product_details', compact('product', 'title', 'wishlist'));
+        return view(
+            'well.product.product_details',
+            compact('product', 'title', 'relatedProducts')
+        );
     }
+
+
 }
