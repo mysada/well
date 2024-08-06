@@ -64,6 +64,16 @@ Route::middleware('auth')->group(function () {
       'index' => 'Profile', //page: profile with orders
     ]);
 });
+
+// profile routes
+use App\Http\Controllers\well\UserController;
+
+Route::prefix('profile')->name('profile.')->group(function () {
+    Route::get('/', [UserController::class, 'index'])->name('index');  // For viewing profile
+    Route::post('/logout', [UserController::class, 'logout'])->name('logout'); 
+});
+
+//
 Auth::routes();
 
 Route::middleware(AdminAuthInterceptor::class)->group(function () {
