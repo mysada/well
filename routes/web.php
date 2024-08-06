@@ -61,29 +61,66 @@ Auth::routes();
 
 Route::middleware(AdminAuthInterceptor::class)->group(function () {
     Route::resource('/admin/user', AdminUserController::class)->names([
-      'index' => 'AdminUserList',
+      'index'   => 'AdminUserList',
+      'create'  => 'AdminUserCreate',
+      'store'   => 'AdminUserStore',
+      'show'    => 'AdminUserShow',
+      'edit'    => 'AdminUserEdit',
+      'update'  => 'AdminUserUpdate',
+      'destroy' => 'AdminUserDestroy',
     ]);
 
     Route::resource('/admin/orders', AdminOrderController::class)->names([
-      'index' => 'AdminOrderList',
+      'index'   => 'AdminOrderList',
+      'create'  => 'AdminOrderCreate',
+      'store'   => 'AdminOrderStore',
+      'show'    => 'AdminOrderShow',
+      'edit'    => 'AdminOrderEdit',
+      'update'  => 'AdminOrderUpdate',
+      'destroy' => 'AdminOrderDestroy',
     ]);
 
     Route::resource('/admin/products', AdminProductController::class)->names([
-      'index' => 'AdminProductList',
+      'index'   => 'AdminProductList',
+      'create'  => 'AdminProductCreate',
+      'store'   => 'AdminProductStore',
+      'show'    => 'AdminProductShow',
+      'edit'    => 'AdminProductEdit',
+      'update'  => 'AdminProductUpdate',
+      'destroy' => 'AdminProductDestroy',
     ]);
 
     Route::resource('/admin/reviews', AdminReviewController::class)->names([
-      'index' => 'AdminReviewList',
+      'index'   => 'AdminReviewList',
+      'create'  => 'AdminReviewCreate',
+      'store'   => 'AdminReviewStore',
+      'show'    => 'AdminReviewShow',
+      'edit'    => 'AdminReviewEdit',
+      'update'  => 'AdminReviewUpdate',
+      'destroy' => 'AdminReviewDestroy',
     ]);
 
     Route::resource('/admin/payments', AdminPaymentController::class)->names([
-      'index' => 'AdminPaymentList',
+      'index'   => 'AdminPaymentList',
+      'create'  => 'AdminPaymentCreate',
+      'store'   => 'AdminPaymentStore',
+      'show'    => 'AdminPaymentShow',
+      'edit'    => 'AdminPaymentEdit',
+      'update'  => 'AdminPaymentUpdate',
+      'destroy' => 'AdminPaymentDestroy',
     ]);
 
     Route::resource('/admin/categories', AdminCategoryController::class)->names([
-      'index' => 'AdminCategoryList',
+      'index'   => 'AdminCategoryList',
+      'create'  => 'AdminCategoryCreate',
+      'store'   => 'AdminCategoryStore',
+      'show'    => 'AdminCategoryShow',
+      'edit'    => 'AdminCategoryEdit',
+      'update'  => 'AdminCategoryUpdate',
+      'destroy' => 'AdminCategoryDestroy',
     ]);
 });
+
 
 
 
