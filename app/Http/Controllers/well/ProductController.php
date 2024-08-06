@@ -16,17 +16,22 @@ class ProductController extends Controller
     public function index(Request $request)
     {
         $category_id = $request->get('category_id');
+        $search = $request->get('search');
         $query = Product::query();
 
         if ($category_id) {
             $query->where('category_id', $category_id);
         }
 
+        if ($search) {
+            $query->where('name', 'like', '%' . $search . '%');
+        }
+
         $products = $query->orderBy('created_at', 'desc')->paginate(9);
         $categories = Category::all();
         $title = 'Products';
 
-        return view('well.product.product_list', compact('products', 'categories', 'title', 'category_id'));
+        return view('well.product.product_list', compact('products', 'categories', 'title', 'category_id', 'search'));
     }
 
     /**
