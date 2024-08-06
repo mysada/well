@@ -1,28 +1,21 @@
 @extends('layouts.app')
 @section('content')
-    @vite('resources/sass/home.scss')
+@vite('resources/sass/home.scss')
+
 
     <!-- Hero Section -->
-    <!-- <section class="hero-section">
-        <img src="images/home/home_banner.jpg" alt="Hero Image">
-        <div class="hero-content">
-            <h1>SALE</h1>
-            <p>Skincare, fitness products, nutritional supplements</p>
-            <p class="bold">Up to 50% discount, check it out</p>
-            <a href="#" class="btn btn-primary">Explore</a>
-        </div>
-    </section> -->
-    @foreach($heroSections as $heroSection)
+    @if ($randomHeroSection)
         <section class="hero-section">
-            <img src="{{ asset($heroSection->image) }}" alt="Hero Image">
+            <img src="{{ asset($randomHeroSection['image']) }}" alt="Hero Image">
             
             <div class="hero-content">
-                <h1>{{ $heroSection->title }}</h1>
-                <p>{{ $heroSection->description }}</p>
-                <p class="bold">{{ $heroSection->bold_text }}</p>
-                <a href="{{ $heroSection->button_link }}" class="btn btn-primary">{{ $heroSection->button_text }}</a>
+                <h1>{{ $randomHeroSection['title'] }}</h1>
+                <p>{{ $randomHeroSection['description'] }}</p>
+                <p class="bold">{{ $randomHeroSection['bold_text'] }}</p>
+                <a href="{{ $randomHeroSection['button_link'] }}" class="btn btn-primary">{{ $randomHeroSection['button_text'] }}</a>
             </div>
         </section>
+    @endif
 
 
     <!-- Category Section -->

@@ -10,7 +10,7 @@ class ConfigsSeeder extends Seeder
 
     public function run(): void
     {
-        $bannerConfig = [
+        $heroSections = [
           [
             'image' => 'images/home/home_banner1.jpg',
             'title' => 'SALE',
@@ -36,9 +36,15 @@ class ConfigsSeeder extends Seeder
             'button_link' => '#',
           ],
         ];
+        // Get a random key
+$randomKey = array_rand($heroSections);
+
+// Get the random element
+$randomHeroSection = $heroSections[$randomKey];
+
         DB::table('configs')->insert([
           'key'         => 'home_banner',
-          'value'       => json_encode($bannerConfig),
+          'value'       => json_encode($heroSections),
           'type'        => 'json',
           'description' => 'Configuration for homepage banners',
         ]);
