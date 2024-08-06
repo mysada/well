@@ -24,7 +24,7 @@ class DatabaseSeeder extends Seeder
           WishlistSeeder::class,
           CountriesSeeder::class,
           ProvincesSeeder::class,
-          ConfigSeeder::class,
+          ConfigsSeeder::class,
         ]);
     }
 

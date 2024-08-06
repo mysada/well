@@ -8,8 +8,6 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class Config extends Model
 {
 
-    use SoftDeletes;
-
     public function getValueAttribute($value)
     {
         return match ($this->type) {

@@ -2,10 +2,10 @@
 
 namespace Database\Seeders;
 
-use App\Models\Config;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
 
-class ConfigSeeder extends Seeder
+class ConfigsSeeder extends Seeder
 {
 
     public function run(): void
@@ -22,11 +22,10 @@ class ConfigSeeder extends Seeder
             'description' => 'Description for banner 2',
           ],
         ];
-
-        Config::create([
-          'key' => 'home_banner',
-          'value' => json_encode($bannerConfig),
-          'type' => 'json',
+        DB::table('configs')->insert([
+          'key'         => 'home_banner',
+          'value'       => json_encode($bannerConfig),
+          'type'        => 'json',
           'description' => 'Configuration for homepage banners',
         ]);
     }

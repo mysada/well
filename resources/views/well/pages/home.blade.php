@@ -301,7 +301,6 @@
 </head>
 
 <body>
-
     <!-- Header Section -->
     <nav class="navbar navbar-expand-lg navbar-light bg-light" style="flex-direction: column;">
         <div id="header-content" style="display: flex; justify-content: space-between; margin-top: 8px; margin-bottom: 8px;">
