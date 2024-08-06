@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\well;
 
+use App\Http\Controllers\Controller;
 use App\Http\Requests\WishlistReq;
 use App\Models\Wishlist;
 use Illuminate\Support\Facades\Auth;
