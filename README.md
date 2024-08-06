@@ -51,3 +51,8 @@ sudo chmod -R 775 storage
 sudo chmod g+s storage
 ```
 
+## Fix Conflicts
+1. Checkout main branch and pull latest code
+2. Checkout your branch
+3. Using phpstorm to Merge 'main' into your branch
+4. Fixed the conflicts. Do not accept left or right directly
