@@ -19,7 +19,7 @@ class CartItemController extends Controller
         $carts = CartItem::all();
         $title = 'Shopping Cart';
 
-        return view('well.pages.cart', compact('carts', 'title'));
+        return view('well.cart.shopping_cart', compact('carts', 'title'));
     }
 
     /**

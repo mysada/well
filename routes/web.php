@@ -33,15 +33,10 @@ Route::post('/contact', [ContactController::class, 'submit'])->name('contact.sub
 Route::get('/products', [App\Http\Controllers\well\ProductController::class, 'index'])->name('products.index');
 Route::get('/products/{id}', [App\Http\Controllers\well\ProductController::class, 'show'])->name('products.show');
 
-
-
-
-
-
 //using cookies to show cart when guest, using database when login
-Route::resource('/cart_items', CartItemController::class)->names([
-  'index' => 'CartItemIndex', //page: cart list
-]);
+//Route::resource('/cart_items', CartItemController::class)->names(['index' => 'CartItemIndex', //page: cart list
+//]);
+Route::get('/cart_items', [CartItemController::class, 'index']);
 
 //login
 Route::middleware('auth')->group(function () {

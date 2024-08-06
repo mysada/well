@@ -15,7 +15,8 @@
                     <h2 class="product-title">Product Details</h2>
                 </div>
                 <div class="col-md-6 product-image position-relative">
-                    <img src="{{ asset('images/products/' . $product->image_url) }}" alt="Product Image" class="img-fluid">
+
+                    <img src="{{  asset($product->image_url) }}" alt="Product Image" class="img-fluid">
                 </div>
                 <div class="col-md-6">
                     <h3 class="product-title">{{ $product->name }}</h3>
@@ -77,7 +78,7 @@
                 @foreach($relatedProducts as $relatedProduct)
                     <div class="col-md-3">
                         <div class="card shadow-sm">
-                            <img src="{{ asset('images/products/' . $relatedProduct->image_url) }}" class="card-img-top" alt="{{ $relatedProduct->name }}">
+                            <img src="{{ asset( $relatedProduct->image_url) }}" class="card-img-top" alt="{{ $relatedProduct->name }}">
                             <div class="card-body">
                                 <h6 class="category">{{ $relatedProduct->category->name }}</h6>
                                 <h5 class="card-title">{{ $relatedProduct->name }}</h5>
