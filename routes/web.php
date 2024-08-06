@@ -54,7 +54,7 @@ Route::middleware('auth')->group(function () {
       'destroy' => 'WishlistDestroy', //processor: delete product
     ]);
 
-    Route::resource('user', WishlistController::class)->names([
+    Route::resource('user', \App\Http\Controllers\well\UserController::class)->names([
       'index' => 'Profile', //page: profile with orders
     ]);
 });
