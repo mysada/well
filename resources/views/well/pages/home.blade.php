@@ -3,18 +3,19 @@
 @vite('resources/sass/home.scss')
 
 
-    @foreach($heroSections as $heroSection)
+    <!-- Hero Section -->
+    @if ($randomHeroSection)
         <section class="hero-section">
-            <img src="{{ asset($heroSection->image) }}" alt="Hero Image">
+            <img src="{{ asset($randomHeroSection['image']) }}" alt="Hero Image">
             
             <div class="hero-content">
-                <h1>{{ $heroSection->title }}</h1>
-                <p>{{ $heroSection->description }}</p>
-                <p class="bold">{{ $heroSection->bold_text }}</p>
-                <a href="{{ $heroSection->button_link }}" class="btn btn-primary">{{ $heroSection->button_text }}</a>
+                <h1>{{ $randomHeroSection['title'] }}</h1>
+                <p>{{ $randomHeroSection['description'] }}</p>
+                <p class="bold">{{ $randomHeroSection['bold_text'] }}</p>
+                <a href="{{ $randomHeroSection['button_link'] }}" class="btn btn-primary">{{ $randomHeroSection['button_text'] }}</a>
             </div>
         </section>
-    @endforeach 
+    @endif
 
 
     <!-- Category Section -->

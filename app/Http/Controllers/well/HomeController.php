@@ -20,10 +20,13 @@ class HomeController extends Controller
         $heroSections = Config::where('key', 'home_banner')->first();
         $heroSections = $heroSections ? $heroSections->value : null;
 
+        // Get a random hero section
+        $randomHeroSection = !empty($heroSections) ? $heroSections[array_rand($heroSections)] : null;
+
         // Fetch 3 categories
         $categories = Category::take(3)->get();
 
-        return view('well.pages.home', compact('title', 'heroSections', 'categories'));
+        return view('well.pages.home', compact('title', 'randomHeroSection', 'categories'));
     }
 
 }
