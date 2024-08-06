@@ -27,7 +27,6 @@ h2 {
     margin: auto;
 }
 
-/* -------------------- Header style  --------------------*/
 .navbar-nav li {
     padding-right: 30px;
 }
@@ -45,8 +44,6 @@ h2 {
     border: none;
     border-radius: .25rem;
 }
-
-/* -------------------- Hero section  --------------------*/
 
 .hero-section {
     position: relative;
@@ -86,7 +83,6 @@ h2 {
     margin-top: 80px;
 }
 
-/* -------------------- Category section style  --------------------*/
 .card {
     flex-direction: row;
 }
@@ -130,8 +126,6 @@ h2 {
     width: 100%;
     padding: 20px;
 }
-
-/* -------------------- Best seller section style  --------------------*/
 
 .best-seller-card .card-body {
     background: rgba(255, 255, 255, 0.5);
@@ -181,8 +175,6 @@ h2 {
     margin-top: 10px;
 }
 
-/* -------------------- Product section style  --------------------*/
-
 .products-section .img-fluid {
     height: 400px;
     object-fit: cover;
@@ -195,8 +187,6 @@ h2 {
 .products-section {
     margin-bottom: 100px;
 }
-
-/* -------------------- Footer style  --------------------*/
 
 .footer {
     padding: 40px 0 15px 0;
@@ -228,8 +218,6 @@ h2 {
     color: #666;
     margin-bottom: 10px;
 }
-
-/* -------------------- Button style  --------------------*/
 
 .btn-primary {
     background-color: #00AB7A;

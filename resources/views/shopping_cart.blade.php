@@ -1,8 +1,8 @@
 @extends('layouts.app')
 
-@push('styles')
-    @vite('resources/sass/cart.scss')
-@endpush
+
+@vite('resources/sass/cart.scss')
+
 
 @section('content')
 <section class="py-5">
