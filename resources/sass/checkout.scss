@@ -12,7 +12,7 @@ h4 {
     font-weight: 22px;
     margin-bottom: 20px;
     padding: 10px;
-    background-color: #00A875;
+    background-color: #000;
     color: #fff !important;
     border-radius: 5px;
 
@@ -119,12 +119,12 @@ h4 {
 }
 
 .error-message {
-    color: red;
-    font-size: 0.875rem;
-    margin-top: -10px;
-    margin-bottom: 10px;
+    color: #da1212;
+    font-size:18px;
+    margin-top: 0;
+    display: block;
 }
 
-.error {
-    border-color: red;
+.error-container {
+    margin-bottom: 1em;
 }

@@ -257,7 +257,6 @@ document.addEventListener('DOMContentLoaded', function () {
         { code: 'SK', name: 'Saskatchewan' },
         { code: 'YT', name: 'Yukon' }
     ];
-
     const countrySelects = document.querySelectorAll('#billing-country, #shipping-country');
     const stateSelects = document.querySelectorAll('#billing-state, #shipping-state');
     const sameAddressCheckbox = document.getElementById('same-address');
@@ -325,10 +324,10 @@ document.addEventListener('DOMContentLoaded', function () {
 
     const showError = (field, message) => {
         removeError(field);
-        const error = document.createElement('span');
+        const error = document.createElement('div');
         error.className = 'error-message';
         error.textContent = message;
-        field.parentNode.insertBefore(error, field.nextSibling);
+        field.parentNode.appendChild(error);
         field.classList.add('error');
     };
 
@@ -371,7 +370,7 @@ document.addEventListener('DOMContentLoaded', function () {
         const cardCvcRegex = /^\d{3}$/;
 
         const nameRegex = /^[a-zA-Z\s]+$/;
-        const addressRegex = /^[a-zA-Z0-9\s,'-]*$/;
+        const addressRegex = /^[a-zA-Z0-9\s,'-]+$/;
         const cityRegex = /^[a-zA-Z\s]+$/;
         const zipRegex = /^[a-zA-Z0-9\s-]+$/;
         const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -387,6 +386,7 @@ document.addEventListener('DOMContentLoaded', function () {
         isValid &= validateField(shippingName, nameRegex, 'Please enter a valid name.');
         isValid &= validateField(shippingAddress, addressRegex, 'Please enter a valid address.');
         isValid &= validateField(shippingCity, cityRegex, 'Please enter a valid city.');
+        isValid &= validateField(shippingCountry, /.+/, 'Please select a country.');
         isValid &= validateField(shippingZip, zipRegex, 'Please enter a valid ZIP/Postal Code.');
         isValid &= validateField(shippingEmail, emailRegex, 'Please enter a valid email.');
         isValid &= validateField(shippingPhone, phoneRegex, 'Please enter a valid phone number.');
@@ -395,6 +395,7 @@ document.addEventListener('DOMContentLoaded', function () {
             isValid &= validateField(billingName, nameRegex, 'Please enter a valid name.');
             isValid &= validateField(billingAddress, addressRegex, 'Please enter a valid address.');
             isValid &= validateField(billingCity, cityRegex, 'Please enter a valid city.');
+            isValid &= validateField(billingCountry, /.+/, 'Please select a country.');
             isValid &= validateField(billingZip, zipRegex, 'Please enter a valid ZIP/Postal Code.');
             isValid &= validateField(billingEmail, emailRegex, 'Please enter a valid email.');
             isValid &= validateField(billingPhone, phoneRegex, 'Please enter a valid phone number.');
@@ -402,7 +403,6 @@ document.addEventListener('DOMContentLoaded', function () {
 
         if (isValid) {
             alert('Form submitted successfully!');
-            // Add form submission logic here
         } else {
             alert('Please correct the errors in the form.');
         }
