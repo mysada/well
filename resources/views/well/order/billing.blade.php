@@ -113,5 +113,5 @@
 @endsection
 
 @section('scripts')
-<script src="{{ asset('js/billing.js') }}"></script>
+@vite('resources/js/billing.js')
 @endsection

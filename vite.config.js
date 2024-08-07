@@ -10,6 +10,7 @@ export default defineConfig({
                 'resources/js/cart.js',
                 'resources/js/gty-input.js',
                 'resources/js/slider-init.js',
+                'resources/js/billing.js',
                 'resources/sass/home.scss',
                 'resources/sass/cart.scss',
                 'resources/sass/product_details.scss',
