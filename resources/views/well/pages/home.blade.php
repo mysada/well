@@ -18,7 +18,6 @@
         </section>
     @endif
 
-
     <!-- Category Section -->
     <section class="category-section text-center">
         <div class="container">
