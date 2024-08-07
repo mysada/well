@@ -33,12 +33,19 @@ Route::post('/contact', [ContactController::class, 'submit'])->name('contact.sub
 Route::get('/products', [ProductController::class, 'index'])->name('products.index');
 Route::get('/products/{id}', [ProductController::class, 'show'])->name('products.show');
 
-Route::get('/cart_items', [CartItemController::class, 'index'])->name('CartItemIndex');
+//Route::get('/cart_items', [CartItemController::class, 'index']);
 
 // Routes for cart item actions, accessible only to logged-in users
     Route::middleware('auth')->group(function () {
 
+//        Route::resource('/cart_items', CartItemController::class)->names([
+//            'store'   => 'CartItemStore',
+//            'update'  => 'CartItemUpdate',
+//            'destroy' => 'CartItemDestroy',
+//        ]);
+
         Route::resource('/cart_items', CartItemController::class)->names([
+            'index'   => 'CartIndex',
             'store'   => 'CartItemStore',
             'update'  => 'CartItemUpdate',
             'destroy' => 'CartItemDestroy',
