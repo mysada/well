@@ -56,8 +56,3 @@
     </div>
 </nav>
 
-<script>
-    function hideButton() {
-        document.getElementById('navbar-toggler').style.display = 'none';
-    }
-</script>
