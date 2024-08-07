@@ -10,6 +10,15 @@ use App\Models\User;
 
 class UserController extends Controller
 {
+    /**
+     * MANISH KUMAR
+     * Display the user's profile along with their orders.
+     *
+     * @return \Illuminate\Contracts\View\View
+     *
+     * This method retrieves the authenticated user's profile information and their associated orders.
+     * The full name of the user is split into first and last names for display purposes.
+     */
     public function index()
     {
         $user = Auth::user();
@@ -26,6 +35,12 @@ class UserController extends Controller
 
     /**
      * Handle user logout.
+     *
+     * @param \Illuminate\Http\Request $request
+     * @return \Illuminate\Http\RedirectResponse
+     *
+     * This method logs out the authenticated user, invalidates the session, regenerates the session token,
+     * and redirects the user to the home page.
      */
     public function logout(Request $request)
     {
@@ -37,7 +52,24 @@ class UserController extends Controller
     }
 
     /**
+     *  MANISH KUMAR
      * Update user profile.
+     *
+     * @param \Illuminate\Http\Request $request
+     * @return \Illuminate\Http\RedirectResponse
+     *
+     * @throws \Illuminate\Validation\ValidationException
+     *
+     * This method validates the incoming request data for updating the user's profile, including:
+     * - first_name: required, alphabetic characters and spaces only, max length of 255
+     * - last_name: required, alphabetic characters and spaces only, max length of 255
+     * - email: required, valid email format, max length of 255
+     * - phone: required, numeric characters only, max length of 15
+     * - billing_address: required, string, max length of 255
+     * - shipping_address: required, string, max length of 255
+     *
+     * The user's profile is then updated with the validated data and saved. Upon successful update,
+     * the user is redirected back with a success message.
      */
     public function update(Request $request)
     {
@@ -60,5 +92,4 @@ class UserController extends Controller
 
         return back()->with('success', 'Profile updated successfully.');
     }
-
 }

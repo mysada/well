@@ -5,7 +5,6 @@ namespace App\Http\Controllers\well;
 use App\Http\Controllers\Controller;
 use App\Models\Category;
 use App\Models\Product;
-use App\Models\Wishlist;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -14,6 +13,13 @@ class ProductController extends Controller
 
     /**
      * Display a listing of the resource.
+     * MANISH KUMAR
+     * @param \Illuminate\Http\Request $request
+     * @return \Illuminate\Contracts\View\View
+     *
+     * This method handles the display of a list of products. It supports filtering by category and search term.
+     * The products are sorted by creation date in descending order and paginated.
+     * Additionally, it retrieves all categories for filtering purposes.
      */
     public function index(Request $request)
     {
@@ -55,6 +61,4 @@ class ProductController extends Controller
             compact('product', 'title', 'relatedProducts')
         );
     }
-
-
 }
