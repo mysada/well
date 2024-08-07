@@ -2,7 +2,7 @@ body {
     font-family: 'Poppins', 'Arial', 'Avenir Next Georgian', Arial;
 }
 
-h1, h2, h3 {
+h1, h2, h3, h4 {
     font-family: 'Poppins', 'Avenir Next Georgian', Arial;
     font-weight: 700;
 }
@@ -26,7 +26,7 @@ h1, h2, h3 {
     border: 1px solid #e1e1e1;
     padding: 10px;
     margin-bottom: 15px;
-    width: calc(100% - 22px); /* Adjust width to fit container */
+    width: calc(100% - 22px);
 }
 
 .form-section input:focus,
@@ -35,7 +35,7 @@ h1, h2, h3 {
     box-shadow: 0 0 5px rgba(0, 171, 122, 0.5);
 }
 
-.btn-checkout-custom {
+.btn-proceed-to-checkout {
     background-color: #00AB7A;
     color: #fff;
     border: none;
@@ -46,16 +46,15 @@ h1, h2, h3 {
     transition: background-color 0.3s ease, transform 0.3s ease;
     text-decoration: none;
     display: inline-block;
-    margin-bottom: 20px;
 }
 
-.btn-checkout-custom:hover {
+.btn-proceed-to-checkout:hover {
     background-color: #fff;
     color: #00AB7A;
     border: 1px solid #00AB7A;
 }
 
-.btn-checkout-custom:active {
+.btn-proceed-to-checkout:active {
     background-color: #008E65;
     transform: scale(0.95);
     color: #fff;
@@ -155,12 +154,12 @@ h1, h2, h3 {
 }
 
 .checkout-section input[type="checkbox"] {
-    margin-right: 10px;
+    margin-right: 10px; /* Adjust as necessary for spacing */
 }
 
 .checkout-section label {
-    margin: 0;
-    line-height: 1;
+    margin: 0; /* Ensure no extra margin is added */
+    line-height: 1; /* Align label with the checkbox */
 }
 
 #same-address {

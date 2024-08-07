@@ -10,7 +10,7 @@ use App\Http\Controllers\well\AboutController;
 use App\Http\Controllers\well\CartItemController;
 use App\Http\Controllers\well\ContactController;
 use App\Http\Controllers\well\HomeController;
-use App\Http\Controllers\well\BillingController;
+use App\Http\Controllers\well\CheckoutController;
 use App\Http\Controllers\well\ProductController;
 use App\Http\Controllers\well\WishlistController;
 use App\Http\Controllers\well\UserController;
@@ -54,14 +54,14 @@ Route::get('/products/{id}', [ProductController::class, 'show'])->name('products
     /**
      * maybe the create page is useless.
      */
-//    Route::resource('/orders', BillingController::class)->names([
+//    Route::resource('/orders', CheckoutController::class)->names([
 //      'create' => 'OrderCreate', //page: order create
 //      'store'  => 'OrderStore', //processor: save an order
 //      'show'   => 'OrderShow', //page: order detail
 //    ]);
 
 //Manish - Route for billins pages
-        Route::get('/billing', [BillingController::class, 'index'])->name('billing');
+        Route::get('/checkout', [CheckoutController::class, 'index'])->name('checkout');
 
 
 
