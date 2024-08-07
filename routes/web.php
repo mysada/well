@@ -18,6 +18,7 @@ use App\Http\Middleware\AdminAuthInterceptor;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
+//home pages
 Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('/home', [HomeController::class, 'index']);
 Route::get('/about', [AboutController::class, 'index']);
@@ -26,12 +27,11 @@ Route::get('/about', [AboutController::class, 'index']);
 Route::get('/contact', function () {
     return view('well.pages.contact');
 })->name('contact.page');
-
 Route::post('/contact', [ContactController::class, 'submit'])->name('contact.submit');
 
-//guest
-Route::get('/products', [App\Http\Controllers\well\ProductController::class, 'index'])->name('products.index');
-Route::get('/products/{id}', [App\Http\Controllers\well\ProductController::class, 'show'])->name('products.show');
+//product
+Route::get('/products', [ProductController::class, 'index'])->name('products.index');
+Route::get('/products/{id}', [ProductController::class, 'show'])->name('products.show');
 
 Route::get('/cart_items', [CartItemController::class, 'index'])->name('CartItemIndex');
 
