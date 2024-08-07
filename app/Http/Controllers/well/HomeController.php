@@ -25,7 +25,7 @@ class HomeController extends Controller
         $randomHeroSection = !empty($heroSections) ? $heroSections[array_rand($heroSections)] : null;
 
         // Fetch 3 categories
-        $categories = Category::take(3)->get();
+        $categories = Category::inRandomOrder()->take(3)->get();
 
         // Fetch 3 random products
         $bestSellers = Product::inRandomOrder()->take(3)->get();

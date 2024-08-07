@@ -28,7 +28,7 @@
                         <div class="card category-card" style="background-image: url('{{ asset($category->image) }}.jpg');">
                             <h1 class="category-card-title">{{ $category->name }}</h1>
                             <div class="card-body">
-                                <a href="#" class="btn btn-primary">Buy Now</a>
+                                <a href="{{ route('products.index', ['category_id' => $category->id]) }}" class="btn btn-primary">Buy Now</a>
                             </div>
                         </div>
                     </div>
@@ -36,6 +36,7 @@
             </div>
         </div>
     </section>
+
 
     <!-- Best Seller Section -->
 <section class="best-seller-section">
@@ -49,7 +50,8 @@
                                 <div class="card-body">
                                     <h5 class="card-title">{{ $product->name }}</h5>
                                     <p class="card-text">{{ $product->description }}</p>
-                                    <a href="#" class="btn btn-primary">Buy Now</a>
+                                    <!-- <a href="#" class="btn btn-primary">Buy Now</a> -->
+                                    <a href="{{ route('products.show', $product->id) }}" class="btn btn-primary">Buy Now</a>
                                 </div>
                             </div>
                         @endforeach
@@ -63,7 +65,8 @@
                                 <div class="bs-text">
                                     <h5 class="bs-title">{{ $product->name }}</h5>
                                     <p>{{ $product->description }}</p>
-                                    <a href="#" class="btn btn-primary">Buy Now</a>
+                                    <!-- <a href="#" class="btn btn-primary">Buy Now</a> -->
+                                    <a href="{{ route('products.show', $product->id) }}" class="btn btn-primary">Buy Now</a>
                                 </div>
                             </div>
                         @endforeach
