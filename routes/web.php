@@ -29,23 +29,21 @@ Route::get('/contact', function () {
 
 Route::post('/contact', [ContactController::class, 'submit'])->name('contact.submit');
 
-
 //guest
 Route::get('/products', [App\Http\Controllers\well\ProductController::class, 'index'])->name('products.index');
 Route::get('/products/{id}', [App\Http\Controllers\well\ProductController::class, 'show'])->name('products.show');
 
-//using cookies to show cart when guest, using database when login
-//Route::resource('/cart_items', CartItemController::class)->names(['index' => 'CartItemIndex', //page: cart list
-//]);
-Route::get('/cart_items', [CartItemController::class, 'index']);
+Route::get('/cart_items', [CartItemController::class, 'index'])->name('CartItemIndex');
 
-//login
-Route::middleware('auth')->group(function () {
-    Route::resource('/cart_items', CartItemController::class)->names([
-      'store'   => 'CartItemStore', //processor: add product into cart
-      'update'  => 'CartItemUpdate', //processor: update cart products quantity
-      'destroy' => 'CartItemDestroy',//processor: delete cart products
-    ]);
+// Routes for cart item actions, accessible only to logged-in users
+    Route::middleware('auth')->group(function () {
+
+        Route::resource('/cart_items', CartItemController::class)->names([
+            'store'   => 'CartItemStore',
+            'update'  => 'CartItemUpdate',
+            'destroy' => 'CartItemDestroy',
+        ]);
+
     /**
      * maybe the create page is useless.
      */

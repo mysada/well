@@ -15,25 +15,29 @@
                     <h2 class="product-title">Product Details</h2>
                 </div>
                 <div class="col-md-6 product-image position-relative">
-
-                    <img src="{{  asset($product->image_url) }}" alt="Product Image" class="img-fluid">
+                    <img src="{{ asset($product->image_url) }}" alt="Product Image" class="img-fluid">
                 </div>
                 <div class="col-md-6">
                     <h3 class="product-title">{{ $product->name }}</h3>
                     <p class="product-description">{{ $product->description }}</p>
                     <p class="product-price text-danger">$ {{ number_format($product->price, 2) }}</p>
                     <label for="quantity" class="mr-2 custom-margin">Quantity</label>
-                    <div class="d-flex align-items-center mb-4 ">
+                    <div class="d-flex align-items-center mb-4">
                         <div class="qty-input">
                             <button class="qty-count qty-count--minus" data-action="minus" type="button">-</button>
-                            <input class="product-qty" type="number" name="product-qty" min="0" max="{{ $product->stock }}" value="1">
+                            <input class="product-qty" type="number" name="quantity" min="1" max="{{ $product->stock }}" value="1">
                             <button class="qty-count qty-count--add" data-action="add" type="button">+</button>
                         </div>
-                        <span class="text-success "  style="margin-left: 30px;">{{ $product->stock }} in stock</span>
+                        <span class="text-success" style="margin-left: 30px;">{{ $product->stock }} in stock</span>
                     </div>
                     <div class="d-flex">
-                        <button class="btn-product btn-dark mr-3 w-50">Add to Cart</button>
-                        <button class="btn-product btn-outline-dark w-50"> Wishlist  <i class="far fa-heart"></i></button>
+                        <form action="{{ route('CartItemStore') }}" method="POST" class="mr-3 w-50">
+                            @csrf
+                            <input type="hidden" name="product_id" value="{{ $product->id }}">
+                            <input type="hidden" name="quantity" class="product-qty-input" value="1">
+                            <button type="submit" class="btn-product btn-dark w-100">Add to Cart</button>
+                        </form>
+                        <button class="btn-product btn-outline-dark w-50">Wishlist <i class="far fa-heart"></i></button>
                     </div>
                 </div>
             </div>
@@ -46,17 +50,8 @@
             <div class="col-md-12 mb-3">
                 <h2 class="product-title text-center">Introduction</h2>
             </div>
-            <p class="product-description text-center">  Discover the ultimate in skin care with our premium range of products.
-                Each product is formulated with natural ingredients to rejuvenate and hydrate your skin,
-                leaving it feeling refreshed and radiant. Our skin care line addresses various skin concerns
-                from anti-aging to deep hydration, ensuring that your skin receives the best care possible.
-            </p>
-            <p class="product-description text-center">  Discover the ultimate in skin care with our premium range of products.
-                Each product is formulated with natural ingredients to rejuvenate and hydrate your skin,
-                leaving it feeling refreshed and radiant. Our skin care line addresses various skin concerns
-                from anti-aging to deep hydration, ensuring that your skin receives the best care possible.
-            </p>
-
+            <p class="product-description text-center">Discover the ultimate in skin care with our premium range of products. Each product is formulated with natural ingredients to rejuvenate and hydrate your skin, leaving it feeling refreshed and radiant. Our skin care line addresses various skin concerns from anti-aging to deep hydration, ensuring that your skin receives the best care possible.</p>
+            <p class="product-description text-center">Discover the ultimate in skin care with our premium range of products. Each product is formulated with natural ingredients to rejuvenate and hydrate your skin, leaving it feeling refreshed and radiant. Our skin care line addresses various skin concerns from anti-aging to deep hydration, ensuring that your skin receives the best care possible.</p>
             <div class="row">
                 <div class="col-md-6">
                     <img src="{{ asset('images/detail_view/intro1.jpg') }}" alt="Introduction Image 1">
@@ -78,7 +73,7 @@
                 @foreach($relatedProducts as $relatedProduct)
                     <div class="col-md-3">
                         <div class="card shadow-sm">
-                            <img src="{{ asset( $relatedProduct->image_url) }}" class="card-img-top" alt="{{ $relatedProduct->name }}">
+                            <img src="{{ asset($relatedProduct->image_url) }}" class="card-img-top" alt="{{ $relatedProduct->name }}">
                             <div class="card-body">
                                 <h6 class="category">{{ $relatedProduct->category->name }}</h6>
                                 <h5 class="card-title">{{ $relatedProduct->name }}</h5>
@@ -92,7 +87,7 @@
                 @endforeach
             </div>
             <div class="text-center mt-4">
-                <button class="btn-product btn-outline-dark load-more">Load More</button>
+                <a href="{{ route('products.index') }}" class="btn-product btn-outline-dark load-more">View More Products</a>
             </div>
         </div>
     </section>
