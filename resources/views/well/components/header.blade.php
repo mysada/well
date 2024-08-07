@@ -1,96 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Wellness Balance</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <style>
-        body {
-            font-family: 'Poppins', 'Avenir Next Georgian', Arial, sans-serif;
-            background-color: #f9f9f9;
-        }
 
-        /* Header styles */
-        .navbar-nav li {
-            padding-right: 30px;
-        }
-
-        #header-content {
-            width: 100%;
-            max-width: 1200px;
-        }
-
-        .navbar-toggler {
-            padding: .25rem .75rem;
-            font-size: 1.25rem;
-            line-height: 1;
-            background-color: transparent;
-            border: none;
-            border-radius: .25rem;
-        }
-
-        .nav-link {
-            position: relative;
-            transition: background-color 0.3s ease, color 0.3s ease;
-        }
-
-        .nav-link:hover {
-            background-color: #ffffff;
-            color: #000;
-            border-radius: 5px;
-        }
-
-        .nav-link.active {
-            color: #000;
-            font-weight: bold;
-        }
-
-        .nav-link.active::after {
-            content: '';
-            position: absolute;
-            bottom: -5px;
-            left: 0;
-            right: 0;
-            height: 2px;
-            background-color: #000;
-            border-radius: 5px;
-        }
-
-        /* Footer styles */
-        .footer {
-            padding: 40px 0 15px 0;
-            background-color: #191919 !important;
-        }
-
-        .footer h5 {
-            font-size: 16px;
-            margin-bottom: 15px;
-            font-weight: 500;
-            color: #999;
-        }
-
-        .footer p {
-            font-size: 15px;
-        }
-
-        .footer li {
-            margin-bottom: 10px;
-        }
-
-        .footer a {
-            font-size: 15px;
-            font-weight: 400;
-        }
-
-        .copyright p {
-            font-size: 13px;
-            color: #666;
-            margin-bottom: 10px;
-        }
-    </style>
-</head>
-<body>
 <!-- Header Section -->
 <nav class="navbar navbar-expand-lg navbar-light bg-light" style="flex-direction: column;">
     <div id="header-content" class="d-flex justify-content-between my-2">
@@ -101,7 +9,7 @@
             <span class="navbar-toggler-icon"></span>
         </button>
 
-        <div class="collapse navbar-collapse col-md-8" id="navbarNav">
+        <div class=" navbar-collapse col-md-8" id="navbarNav">
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item">
                     <a class="nav-link {{ request()->is('/') ? 'active' : '' }}" href="{{ url('/') }}">Home</a>
@@ -153,5 +61,3 @@
         document.getElementById('navbar-toggler').style.display = 'none';
     }
 </script>
-</body>
-</html>
