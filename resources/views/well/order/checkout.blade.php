@@ -1,5 +1,6 @@
 @extends('layouts.app')
 @vite('resources/sass/checkout.scss')
+@vite('resources/js/checkout.js')
 @section('content')
 <section class="py-5">
     <div class="container d-flex">
@@ -89,6 +90,4 @@
 </section>
 @endsection
 
-@section('scripts')
-@vite('resources/js/checkout.js')
-@endsection
+
