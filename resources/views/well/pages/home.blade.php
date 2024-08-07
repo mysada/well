@@ -12,7 +12,8 @@
                 <h1>{{ $randomHeroSection['title'] }}</h1>
                 <p>{{ $randomHeroSection['description'] }}</p>
                 <p class="bold">{{ $randomHeroSection['bold_text'] }}</p>
-                <a href="{{ $randomHeroSection['button_link'] }}" class="btn btn-primary">{{ $randomHeroSection['button_text'] }}</a>
+                <!-- <a href="{{ $randomHeroSection['button_link'] }}" class="btn btn-primary">{{ $randomHeroSection['button_text'] }}</a> -->
+                <a href="{{ route('products.index') }}" class="btn btn-primary">Explore</a>
             </div>
         </section>
     @endif
@@ -90,7 +91,8 @@
                         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque vel orci efficitur diam.
                             Nulla facilisi. Duis libero odio, fermentum id nulla quis, hendrerit feugiat leo. In
                             imperdiet metus ac diam consequat, eu blandit sapien lobortis.</p>
-                        <a href="#" class="btn btn-primary">Buy Now</a>
+                        <!-- <a href="#" class="btn btn-primary">Buy Now</a> -->
+                        <a href="{{ route('products.index') }}" class="btn btn-primary">Buy Now</a>
                     </div>
                 </div>
             </div>
