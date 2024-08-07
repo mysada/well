@@ -76,27 +76,58 @@
                     @method('PUT')
                     <div class="form-group">
                         <label for="first_name">First Name</label>
-                        <input type="text" name="first_name" id="first_name" class="form-control" required value="{{ $firstName }}">
+                        <!-- <input type="text" name="first_name" id="first_name" class="form-control" required value="{{ $firstName }}"> -->
+                        <input type="text" name="first_name" id="first_name" class="form-control @error('first_name') is-invalid @enderror" required value="{{ old('first_name', $firstName) }}">
+                        @error('first_name')
+                        <div class="invalid-feedback">
+                            {{ $message }}
+                        </div>
+                        @enderror
                     </div>
                     <div class="form-group">
                         <label for="last_name">Last Name</label>
-                        <input type="text" name="last_name" id="last_name" class="form-control" required value="{{ $lastName }}">
+                        <input type="text" name="last_name" id="last_name" class="form-control @error('last_name') is-invalid @enderror" required value="{{ old('last_name', $lastName) }}">
+                        @error('last_name')
+                        <div class="invalid-feedback">
+                            {{ $message }}
+                        </div>
+                        @enderror
                     </div>
                     <div class="form-group">
                         <label for="email">Email</label>
-                        <input type="email" name="email" id="email" class="form-control" required value="{{ $user->email }}">
+                        <input type="email" name="email" id="email" class="form-control @error('email') is-invalid @enderror" required value="{{ old('email', $user->email) }}">
+                        @error('email')
+                        <div class="invalid-feedback">
+                            {{ $message }}
+                        </div>
+                        @enderror
                     </div>
                     <div class="form-group">
                         <label for="phone">Phone Number</label>
-                        <input type="tel" name="phone" id="phone" class="form-control" required value="{{ $user->phone }}">
+                        <input type="tel" name="phone" id="phone" class="form-control @error('phone') is-invalid @enderror" required value="{{ old('phone', $user->phone) }}">
+                        @error('phone')
+                        <div class="invalid-feedback">
+                            {{ $message }}
+                        </div>
+                        @enderror
                     </div>
                     <div class="form-group">
                         <label for="billing_address">Billing Address</label>
-                        <input type="text" name="billing_address" id="billing_address" class="form-control" required value="{{ $user->billing_address }}">
+                        <input type="text" name="billing_address" id="billing_address" class="form-control @error('billing_address') is-invalid @enderror" required value="{{ old('billing_address', $user->billing_address) }}">
+                        @error('billing_address')
+                        <div class="invalid-feedback">
+                            {{ $message }}
+                        </div>
+                        @enderror
                     </div>
                     <div class="form-group">
                         <label for="shipping_address">Shipping Address</label>
-                        <input type="text" name="shipping_address" id="shipping_address" class="form-control" required value="{{ $user->shipping_address }}">
+                        <input type="text" name="shipping_address" id="shipping_address" class="form-control @error('shipping_address') is-invalid @enderror" required value="{{ old('shipping_address', $user->shipping_address) }}">
+                        @error('shipping_address')
+                        <div class="invalid-feedback">
+                            {{ $message }}
+                        </div>
+                        @enderror
                     </div>
                     <button type="submit" class="btn btn-primary">Update Profile</button>
                 </form>
