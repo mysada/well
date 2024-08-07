@@ -16,7 +16,7 @@ class WishlistController extends Controller
     public function index()
     {
         $wishlist = Wishlist::where("user_id", Auth::user()->id)->get();
-        $title    = 'My Wishlist';
+        $title    = 'Wishlist';
 
         return view('well.pages.wishlist', compact('wishlist', 'title'));
     }
