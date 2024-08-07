@@ -86,11 +86,21 @@
                     </div>
                     <div class="form-group">
                         <label for="last_name">Last Name</label>
-                        <input type="text" name="last_name" id="last_name" class="form-control" required value="{{ $lastName }}">
+                        <input type="text" name="last_name" id="last_name" class="form-control @error('last_name') is-invalid @enderror" required value="{{ old('last_name', $lastName) }}">
+                        @error('last_name')
+                        <div class="invalid-feedback">
+                            {{ $message }}
+                        </div>
+                        @enderror
                     </div>
                     <div class="form-group">
                         <label for="email">Email</label>
-                        <input type="email" name="email" id="email" class="form-control" required value="{{ $user->email }}">
+                        <input type="email" name="email" id="email" class="form-control @error('email') is-invalid @enderror" required value="{{ old('email', $user->email) }}">
+                        @error('email')
+                        <div class="invalid-feedback">
+                            {{ $message }}
+                        </div>
+                        @enderror
                     </div>
                     <div class="form-group">
                         <label for="phone">Phone Number</label>
