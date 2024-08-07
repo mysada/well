@@ -11,10 +11,23 @@ class LoginController extends Controller
 
     protected $redirectTo = '/home';
 
+    /**
+     * LoginController constructor.
+     *
+     * Apply guest middleware to all routes except logout
+     */
     public function __construct()
     {
         $this->middleware('guest')->except('logout');
     }
+
+    /**
+     * Handle actions after a user is authenticated.
+     *
+     * @param Request $request
+     * @param mixed $user
+     * @return void
+     */
 
     protected function authenticated()
     {
