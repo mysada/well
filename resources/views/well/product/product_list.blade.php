@@ -37,7 +37,7 @@
                 </form>
 
                 @if(request('search'))
-                <p>You searched for: <strong>{{ request('search') }}</strong></p>
+                <p style="font-size:18px">You searched for: <strong>{{ request('search') }}</strong></p>
                 @endif
 
                 <!-- Products -->
@@ -63,7 +63,7 @@
                     </div>
                     @empty
                     <div class="col-12">
-                        <p>No products found matching your search criteria.</p>
+                        <p style="color: #666">No products found matching your search criteria.</p>
                     </div>
                     @endforelse
                 </div>
