@@ -115,7 +115,7 @@ h1, h2, h3, h4, h5 {
 }
 
 .btn-primary {
-    background-color: #00AB7A;
+    background-color: #000 !important;
     color: #fff;
     border: none;
     border-radius: 5px;
@@ -130,14 +130,26 @@ h1, h2, h3, h4, h5 {
 
 .btn-primary:hover {
     background-color: #fff;
-    color: #00AB7A;
     border: 1px solid #00AB7A;
 }
 
 .btn-primary:active {
-    background-color: #008E65;
     transform: scale(0.95);
     color: #fff;
+}
+
+.btn-secondary{
+    background-color: #000 !important;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    font-size: 16px;
+    font-weight: 700;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    text-decoration: none;
+    display: inline-block;
+    margin-top: 20px;
 }
 
 .order-item {
@@ -148,9 +160,10 @@ h1, h2, h3, h4, h5 {
 }
 
 .order-item img {
-    height: 50px;
+    height: 150px;
     object-fit: cover;
     margin-right: 15px;
+    border-radius: 10px;
 }
 
 .order-details {
@@ -159,6 +172,7 @@ h1, h2, h3, h4, h5 {
 
 .order-details p {
     margin: 0;
+    font-weight: bold;
 }
 
 .order-item .btn-reorder {
@@ -202,12 +216,16 @@ h1, h2, h3, h4, h5 {
     display: block;
     padding: 10px 0;
     color: #00AB7A;
+    font-size: 20px;
     text-decoration: none;
     transition: color 0.3s ease;
 }
 
 .profile-sidebar a:hover {
-    color: #008E65;
+    color: #fff;
+    text-decoration: none;
+    background-color: #1a1a1a;
+    padding: 10px;
 }
 
 .profile-main-content {
@@ -226,3 +244,5 @@ h1, h2, h3, h4, h5 {
     background-color: #fff;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
+
+
