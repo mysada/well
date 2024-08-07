@@ -22,7 +22,13 @@
                             <button type="submit" class="btn btn-primary">Add to Cart</button>
                         </form>
                         <!-- <button class="btn btn-danger">Remove</button> -->
-                        <button class="btn btn-remove" style="color: #666; margin-left: 20px;">Remove</button>
+                        <form action="{{ route('WishlistDestroy', $wishlist->id) }}" method="POST"
+                              onsubmit="return confirm('Are you sure you want to delete this item?');">
+                            @csrf
+                            @method('DELETE')
+                            <button class="btn btn-remove" style="color: #666; margin-left: 20px;">Remove</button>
+                        </form>
+
                     </div>
                 </div>
 
