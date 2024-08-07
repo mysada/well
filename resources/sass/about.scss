@@ -115,63 +115,22 @@ h1, h2, h3 {
     color: #fff;
 }
 
-.contact-info i {
-    color: #00A875;
-    background-color: #fff;
-    border-radius: 50%;
-    padding: 10px;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    width: 40px;
-    height: 40px;
-    margin-right: 15px;
-    flex-shrink: 0;
-}
-
-.contact-text {
-    margin-left: 0;
-    text-align: center;
-}
 
 .contact-info a {
     color: #fff;
     text-decoration: none;
 }
 
-.contact-info a:hover {
-    text-decoration: underline;
-}
-
-.social-icons i {
-    margin: 0 10px;
-}
 
 .contact form .form-group {
     margin-bottom: 1rem;
 }
 
-.contact form .form-control {
-    padding: 0.75rem;
-    font-size: 1rem;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-}
 
-.contact form .btn-black {
-    font-size: 1.1rem;
-    padding: 0.5rem 2rem;
-    background-color: #000;
-    color: #fff;
-    border: none;
-    border-radius: 5px;
-    text-align: right;
-    float: right;
-}
 
-.contact form .btn-black:hover {
-    background-color: #333;
-}
+
+
+
 
 .footer {
     background-color: #000;
