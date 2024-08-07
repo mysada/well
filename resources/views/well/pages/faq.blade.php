@@ -1,6 +1,7 @@
 @extends('layouts.app')
-
+@vite('resources/sass/faq.scss')
 @section('content')
+
     <!-- FAQ Section -->
     <section class="container my-5">
         <h2 class="text-center mb-4">Frequently Asked Questions</h2>
