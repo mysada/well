@@ -26,21 +26,33 @@ class WishlistController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
+     * Store a product into wishlist
      */
     public function store(WishlistReq $req)
     {
-        $wishlist = $req->validated();
+        $wishlist  = $req->validated();
+        $userId    = Auth::id();
+        $productId = $wishlist['product_id'];
 
-        Wishlist::create([
-          'user_id'    => Auth::id(),
-          'product_id' => $wishlist['product_id'],
-        ]);
+        $existingWishlist = Wishlist::where('user_id', $userId)
+                                    ->where('product_id', $productId)
+                                    ->first();
 
-        return back()->with(
-          'success',
-          'Add to wishlist successfully.'
-        );
+        if ($existingWishlist) {
+            $existingWishlist->delete();
+
+            return back()->with(
+              'success',
+              'Removed from wishlist successfully'
+            );
+        } else {
+            Wishlist::create([
+              'user_id'    => $userId,
+              'product_id' => $productId,
+            ]);
+
+            return back()->with('success', 'Add to wishlist successfully');
+        }
     }
 
     public function addToCart(WishlistReq $req)
@@ -72,12 +84,11 @@ class WishlistController extends Controller
             if ($product) {
                 $product->delete();
             }
-
         });
 
-        return redirect()->route('WishlistIndex')->with(
-          'success',
-          'Add to cart successfully'
+        return $this->successPage(
+          'Add to cart successfully',
+          'WishlistIndex'
         );
     }
 
@@ -92,15 +103,15 @@ class WishlistController extends Controller
         if ($product) {
             $product->delete();
 
-            return redirect()->route('WishlistIndex')->with(
-              'success',
-              "Deleted {$product->name} successfully."
+            return $this->successPage(
+              "Deleted {$product->name} successfully.",
+              'WishlistIndex'
             );
         }
 
-        return redirect()->route('WishlistIndex')->with(
-          'error',
-          'Product not found.'
+        return $this->errorPage(
+          "Deleted {$product->name} successfully.",
+          'Product not found'
         );
     }
 
