@@ -37,7 +37,7 @@ class WishlistController extends Controller
           'product_id' => $wishlist['product_id'],
         ]);
 
-        return redirect()->route('WishlistIndex')->with(
+        return back()->with(
           'success',
           'Add to wishlist successfully.'
         );

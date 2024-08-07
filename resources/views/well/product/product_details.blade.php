@@ -31,21 +31,27 @@
                             </div>
                             <span class="text-success" style="margin-left: 30px;">{{ $product->stock }} in stock</span>
                         </div>
-                        <div class="d-flex">
+                        <div class="d-flex gap-4">
                             <form action="{{ route('CartItemStore') }}" method="POST" class="mr-3 w-50">
                                 @csrf
                                 <input type="hidden" name="product_id" value="{{ $product->id }}">
                                 <input type="hidden" name="quantity" class="product-qty-input" value="1">
                                 <button type="submit" class="btn-product btn-dark w-100">Add to Cart</button>
                             </form>
-                            <button class="btn-product btn-outline-dark w-50">
-                                Wishlist
-                                @if($wishlist)
-                                    <img src="/images/detail_view/wishlist-true.svg" width="25px" alt="wishlist"/>
-                                @else
-                                    <img src="/images/detail_view/wishlist-false.svg" width="25px" alt="wishlist"/>
-                                @endif
-                            </button>
+
+                            <form action="{{route('WishlistStore')}}" method="POST" class="mr-3 w-50">
+                                @csrf
+                                <input type="hidden" name="product_id" value="{{ $product->id }}">
+                                <button type="submit" class="btn-product btn-outline-dark w-100">
+                                    Wishlist
+                                    @if($wishlist)
+                                        <img src="/images/detail_view/wishlist-true.svg" width="25px" alt="wishlist"/>
+                                    @else
+                                        <img src="/images/detail_view/wishlist-false.svg" width="25px" alt="wishlist"/>
+                                    @endif
+                                </button>
+                            </form>
+
                         </div>
                     </div>
                 </div>
