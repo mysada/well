@@ -10,79 +10,84 @@ use Illuminate\Http\RedirectResponse;
 
 class CartItemController extends Controller
 {
-
     /**
-     * display the cart of user
+     * Display the cart of the user
      */
     public function index()
     {
-        $carts = CartItem::all();
+        // Assuming CartItem has a relationship with Product model
+        $cartItems = CartItem::with('product')->where('user_id', Auth::id())->get();
         $title = 'Shopping Cart';
 
-        return view('well.cart.shopping_cart', compact('carts', 'title'));
+        return view('well.cart.shopping_cart', compact('cartItems', 'title'));
     }
 
     /**
-     * add product into cart
+     * Add product to cart
      */
     public function store(CartItemReq $request)
     {
         $cart = $request->validated();
         CartItem::create([
-          'user_id'    => Auth::id(),
-          'product_id' => $cart['product_id'],
-          'quantity'   => $cart['quantity'],
+            'user_id'    => Auth::id(),
+            'product_id' => $cart['product_id'],
+            'quantity'   => $cart['quantity'],
         ]);
 
         return $this->success('Add to cart successfully.');
     }
 
     /**
-     * update the number of the cart
+     * Update the number of items in the cart
      */
     public function update(CartItemReq $request, string $id)
     {
-        $cart     = $request->validated();
+        $cart = $request->validated();
         $cartItem = CartItem::find($id);
         if ($cartItem) {
-            $cartItem->update($cart);
-
-            return self::success("Update successfully");
+            if ($cart['quantity'] == 0) {
+                $cartItem->delete();
+                return $this->success("Removed item successfully", $cartItem->id);
+            } else {
+                $cartItem->update($cart);
+                return $this->success("Updated successfully", $cartItem->id);
+            }
         }
 
-        return self::error('Update failed');
+        return $this->error('Update failed');
     }
 
     /**
-     * delete the cart
+     * Delete the cart item.
      */
     public function destroy(string $id)
     {
-        $product = CartItem::where("user_id", Auth::id())
-                           ->where('id', $id)
-                           ->first();
-        if ($product) {
-            $product->delete();
-
-            return $this->success("Remove $product[name] successfully");
+        $cartItem = CartItem::where("user_id", Auth::id())->where('id', $id)->first();
+        if ($cartItem) {
+            $cartItem->delete();
+            return $this->success("Removed item successfully");
         }
 
         return $this->error("Remove failed");
     }
 
+
     /**
-     * @param $msg
-     *
-     * @return RedirectResponse
+     * Success message
      */
-    private function success($msg): RedirectResponse
+    private function success($msg, $id = null): RedirectResponse
     {
+        if ($id) {
+            return redirect()->route('CartItemIndex')->with(['success' => $msg, 'id' => $id]);
+        }
         return redirect()->route('CartItemIndex')->with('success', $msg);
     }
 
+    /**
+     * Error message.
+     */
     private function error($msg): RedirectResponse
     {
         return redirect()->route('CartItemIndex')->with('error', $msg);
     }
-
 }
