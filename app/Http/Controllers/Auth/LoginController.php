@@ -41,4 +41,9 @@ class LoginController extends Controller
         session()->flash('success', 'Logout successful! See you again soon.');
         return redirect('/');
     }
+
+    public function showLoginForm()
+    {
+        return view('auth.login')->with('title', 'Login');
+    }
 }

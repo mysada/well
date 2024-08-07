@@ -5,7 +5,9 @@ namespace App\Http\Controllers\well;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\CartItemReq;
 use App\Models\CartItem;
-use Auth;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Schema;
 use Illuminate\Http\RedirectResponse;
 
 class CartItemController extends Controller
@@ -25,16 +27,21 @@ class CartItemController extends Controller
     /**
      * Add product to cart
      */
-    public function store(CartItemReq $request)
+    public function store(Request $request)
     {
-        $cart = $request->validated();
-        CartItem::create([
-            'user_id'    => Auth::id(),
-            'product_id' => $cart['product_id'],
-            'quantity'   => $cart['quantity'],
+        // Validate the request data
+        $request->validate([
+            'product_id' => 'required|exists:products,id',
+            'quantity' => 'required|integer|min:1' // Corrected validation rule
         ]);
 
-        return $this->success('Add to cart successfully.');
+        // Create or update the cart item
+        $cartItem = CartItem::updateOrCreate(
+            ['user_id' => Auth::id(), 'product_id' => $request->product_id],
+            ['quantity' => $request->quantity]
+        );
+
+        return redirect()->route('CartIndex')->with('success', 'Product added to cart successfully.');
     }
 
     /**
@@ -71,6 +78,20 @@ class CartItemController extends Controller
         return $this->error("Remove failed");
     }
 
+    public function show($id)
+    {
+        // Fetch the product based on the provided ID
+        $product = Product::findOrFail($id);
+
+        // Fetch related products if necessary
+        $relatedProducts = Product::where('category_id', $product->category_id)
+            ->where('id', '!=', $product->id)
+            ->inRandomOrder()
+            ->take(4)
+            ->get();
+
+        return view('well.cart.shopping_cart', compact('product', 'relatedProducts'));
+    }
 
     /**
      * Success message
@@ -78,16 +99,13 @@ class CartItemController extends Controller
     private function success($msg, $id = null): RedirectResponse
     {
         if ($id) {
-            return redirect()->route('CartItemIndex')->with(['success' => $msg, 'id' => $id]);
+            return redirect(url('/cart_items'))->with(['success' => $msg, 'id' => $id]);
         }
-        return redirect()->route('CartItemIndex')->with('success', $msg);
+        return redirect(url('/cart_items'))->with('success', $msg);
     }
 
-    /**
-     * Error message.
-     */
     private function error($msg): RedirectResponse
     {
-        return redirect()->route('CartItemIndex')->with('error', $msg);
+        return redirect(url('/cart_items'))->with('error', $msg);
     }
 }
