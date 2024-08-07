@@ -76,7 +76,7 @@ class UserController extends Controller
         $request->validate([
             'first_name' => 'required|regex:/^[a-zA-Z\s]+$/|max:255',
             'last_name' => 'required|regex:/^[a-zA-Z\s]+$/|max:255',
-            'email' => 'required|email|max:255',
+            'email' => 'required|email|max:255|unique:users,email,' . Auth::id(),
             'phone' => 'required|regex:/^[0-9]+$/|max:15',
             'billing_address' => 'required|string|max:255',
             'shipping_address' => 'required|string|max:255',
