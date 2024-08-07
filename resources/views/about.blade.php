@@ -1,10 +1,11 @@
 @extends('layouts.app')
-@vite('resources/sass/about.scss')
+
 @section('title', 'About Us')
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css">
 
 @section('content')
 
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css">
     <link rel="stylesheet" href="{{ asset('css/styles.css') }}">
 
     <div class="hero container mb-5">
@@ -103,5 +104,28 @@
                 </form>
             </div>
         </div>
+    </div>
+
+    <div class="footer text-center py-3">
+        <div class="footer-logo">
+            <img src="{{ asset('images/logo.png') }}" alt="Well Logo">
+            <p>Wellness Balance provides healthy supplements to maintain your health</p>
+        </div>
+        <div class="footer-nav">
+            <p>
+                <i class="bi bi-house-door-fill"></i> Navigation: Home | Shop | About Us | Policy
+            </p>
+            <p>
+                <i class="bi bi-question-circle-fill"></i> Support: Help Centre | Contact Us
+            </p>
+            <p>
+                <i class="bi bi-share-fill"></i> Socials:
+                <a href="#" class="text-white"><i class="bi bi-instagram"></i></a>
+                <a href="#" class="text-white"><i class="bi bi-facebook"></i></a>
+                <a href="#" class="text-white"><i class="bi bi-youtube"></i></a>
+                <a href="#" class="text-white"><i class="bi bi-twitter"></i></a>
+            </p>
+        </div>
+        <p>&copy; {{ date('Y') }} Natural Balance Ltd. All rights reserved.</p>
     </div>
 @endsection

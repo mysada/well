@@ -13,6 +13,7 @@ use App\Http\Controllers\well\HomeController;
 use App\Http\Controllers\well\OrderController;
 use App\Http\Controllers\well\ProductController;
 use App\Http\Controllers\well\WishlistController;
+use App\Http\Controllers\well\UserController;
 use App\Http\Middleware\AdminAuthInterceptor;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -62,6 +63,15 @@ Route::get('/cart_items', [CartItemController::class, 'index'])->name('CartItemI
       'index' => 'Profile', //page: profile with orders
     ]);
 });
+
+// profile routes updated by Amsn, revised by Manish
+Route::middleware(['auth'])->group(function () {
+    Route::get('/profile', [UserController::class, 'index'])->name('user.profile');
+    Route::post('/profile/logout', [UserController::class, 'logout'])->name('user.logout');
+    Route::put('/profile/update', [UserController::class, 'update'])->name('user.update');
+
+});
+//
 Auth::routes();
 
 Route::middleware(AdminAuthInterceptor::class)->group(function () {
