@@ -17,6 +17,11 @@ class ProductController extends Controller
      */
     public function index(Request $request)
     {
+        // Validate input
+        $request->validate([
+            'search' => 'nullable|string|max:255'
+        ]);
+
         $category_id = $request->get('category_id');
         $search = $request->get('search');
         $query = Product::query();
