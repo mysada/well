@@ -3,7 +3,7 @@
 @vite('resources/sass/home.scss')
 
 
-    <!-- Hero Section -->
+    <!-- Category Section -->
     @if ($randomHeroSection)
         <section class="hero-section">
             <img src="{{ asset($randomHeroSection['image']) }}" alt="Hero Image">
@@ -12,7 +12,8 @@
                 <h1>{{ $randomHeroSection['title'] }}</h1>
                 <p>{{ $randomHeroSection['description'] }}</p>
                 <p class="bold">{{ $randomHeroSection['bold_text'] }}</p>
-                <a href="{{ $randomHeroSection['button_link'] }}" class="btn btn-primary">{{ $randomHeroSection['button_text'] }}</a>
+                <!-- <a href="{{ $randomHeroSection['button_link'] }}" class="btn btn-primary">{{ $randomHeroSection['button_text'] }}</a> -->
+                <a href="{{ route('products.index') }}" class="btn btn-primary">Explore</a>
             </div>
         </section>
     @endif
@@ -28,7 +29,7 @@
                         <div class="card category-card" style="background-image: url('{{ asset($category->image) }}.jpg');">
                             <h1 class="category-card-title">{{ $category->name }}</h1>
                             <div class="card-body">
-                                <a href="#" class="btn btn-primary">Buy Now</a>
+                                <a href="{{ route('products.index', ['category_id' => $category->id]) }}" class="btn btn-primary">Buy Now</a>
                             </div>
                         </div>
                     </div>
@@ -37,44 +38,39 @@
         </div>
     </section>
 
+
     <!-- Best Seller Section -->
-    <section class="best-seller-section">
+<section class="best-seller-section">
         <div class="container">
             <h2>Best Seller</h2>
             <div class="row-best-seller d-flex">
                 <div class="col-md-6">
-                    <div class="row-best-seller-left  text-center">
-                        <div class="card best-seller-card" style="background-image: url('images/home/bs_1.jpg');">
-                            <div class="card-body">
-                                <h5 class="card-title">Nterdum et malesuada</h5>
-                                <p class="card-text">Nterdum et malesuada fames ac ante ipsum primis in faucibus.</p>
-                                <a href="#" class="btn btn-primary">Buy Now</a>
+                    <div class="row-best-seller-left text-center">
+                        @foreach($bestSellers->slice(0, 1) as $product)
+                            <div class="card best-seller-card" style="background-image: url('{{ asset($product->image_url) }}');">
+                                <div class="card-body">
+                                    <h5 class="card-title">{{ $product->name }}</h5>
+                                    <p class="card-text">{{ $product->description }}</p>
+                                    <!-- <a href="#" class="btn btn-primary">Buy Now</a> -->
+                                    <a href="{{ route('products.show', $product->id) }}" class="btn btn-primary">Buy Now</a>
+                                </div>
                             </div>
-                        </div>
+                        @endforeach
                     </div>
                 </div>
                 <div class="col-md-6">
                     <div class="row-best-seller-right">
-                        <div class="card-right">
-                            <div class="best-seller-card-right" style="background-image: url('images/home/bs_2.jpg');">
+                        @foreach($bestSellers->slice(1) as $product)
+                            <div class="card-right">
+                                <div class="best-seller-card-right" style="background-image: url('{{ asset($product->image_url) }}');"></div>
+                                <div class="bs-text">
+                                    <h5 class="bs-title">{{ $product->name }}</h5>
+                                    <p>{{ $product->description }}</p>
+                                    <!-- <a href="#" class="btn btn-primary">Buy Now</a> -->
+                                    <a href="{{ route('products.show', $product->id) }}" class="btn btn-primary">Buy Now</a>
+                                </div>
                             </div>
-                            <div class="bs-text">
-                                <h5 class="bs-title">Nterdum et malesuada</h5>
-                                <p>Nterdum et malesuada fames ac ante ipsum primis in faucibus.</p>
-                                <a href="#" class="btn btn-primary">Buy Now</a>
-                            </div>
-                        </div>
-
-                        <div class="card-right">
-                            <div class="best-seller-card-right" style="background-image: url('images/home/bs_3.jpg');">
-                            </div>
-                            <div class="bs-text">
-                                <h5 class="bs-title">Nterdum et malesuada</h5>
-                                <p>Nterdum et malesuada fames ac ante ipsum primis in faucibus.</p>
-                                <a href="#" class="btn btn-primary">Buy Now</a>
-                            </div>
-                        </div>
-
+                        @endforeach
                     </div>
                 </div>
             </div>
@@ -95,7 +91,8 @@
                         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque vel orci efficitur diam.
                             Nulla facilisi. Duis libero odio, fermentum id nulla quis, hendrerit feugiat leo. In
                             imperdiet metus ac diam consequat, eu blandit sapien lobortis.</p>
-                        <a href="#" class="btn btn-primary">Buy Now</a>
+                        <!-- <a href="#" class="btn btn-primary">Buy Now</a> -->
+                        <a href="{{ route('products.index') }}" class="btn btn-primary">Buy Now</a>
                     </div>
                 </div>
             </div>
