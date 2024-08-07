@@ -1,0 +1,71 @@
+// Variables
+$primary-color: #333;
+$background-color: #f9f9f9;
+$section-background: #fff;
+$heading-color: #333;
+$text-color: #333;
+
+// Global Styles
+body {
+    line-height: 1.6;
+    color: $text-color;
+    margin: 0;
+    padding: 0;
+    font-family: 'Poppins', 'Arial', 'Avenir Next Georgian', Arial;
+    font-size: 16px;
+    background-color: $background-color;
+}
+
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+h1, h2, h3 {
+    font-weight: 700;
+    text-align: center;
+    margin-bottom: 1rem;
+    font-family: 'Poppins', 'Avenir Next Georgian', Arial;
+    color: $heading-color;
+}
+
+h1 {
+    font-size: 2.5rem;
+}
+
+h2 {
+    font-size: 2rem;
+}
+
+h3 {
+    font-size: 1.5rem;
+}
+
+p {
+    margin-bottom: 1rem;
+}
+
+ul {
+    list-style-type: disc;
+    margin-left: 20px;
+    padding-left: 20px;
+    text-align: left;
+}
+
+li {
+    margin-bottom: 0.5rem;
+}
+
+.section {
+    background-color: $section-background;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
