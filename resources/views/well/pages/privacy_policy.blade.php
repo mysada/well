@@ -1,4 +1,5 @@
 @extends('layouts.app')
+@vite('resources/sass/privacy_policy.scss')
 @section('content')
 
     <!-- Privacy Policy Section -->
