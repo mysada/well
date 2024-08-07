@@ -38,13 +38,13 @@
     </section>
 
     <!-- Best Seller Section -->
-    <section class="best-seller-section">
+<section class="best-seller-section">
         <div class="container">
             <h2>Best Seller</h2>
             <div class="row-best-seller d-flex">
-                @foreach($bestSellers as $product)
-                    <div class="col-md-6">
-                        <div class="row-best-seller-left text-center">
+                <div class="col-md-6">
+                    <div class="row-best-seller-left text-center">
+                        @foreach($bestSellers->slice(0, 1) as $product)
                             <div class="card best-seller-card" style="background-image: url('{{ asset($product->image_url) }}');">
                                 <div class="card-body">
                                     <h5 class="card-title">{{ $product->name }}</h5>
@@ -52,9 +52,23 @@
                                     <a href="#" class="btn btn-primary">Buy Now</a>
                                 </div>
                             </div>
-                        </div>
+                        @endforeach
                     </div>
-                @endforeach
+                </div>
+                <div class="col-md-6">
+                    <div class="row-best-seller-right">
+                        @foreach($bestSellers->slice(1) as $product)
+                            <div class="card-right">
+                                <div class="best-seller-card-right" style="background-image: url('{{ asset($product->image_url) }}');"></div>
+                                <div class="bs-text">
+                                    <h5 class="bs-title">{{ $product->name }}</h5>
+                                    <p>{{ $product->description }}</p>
+                                    <a href="#" class="btn btn-primary">Buy Now</a>
+                                </div>
+                            </div>
+                        @endforeach
+                    </div>
+                </div>
             </div>
         </div>
     </section>
