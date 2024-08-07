@@ -8,6 +8,7 @@ use App\Http\Controllers\admin\AdminReviewController;
 use App\Http\Controllers\admin\AdminUserController;
 use App\Http\Controllers\well\AboutController;
 use App\Http\Controllers\well\FaqController;
+use App\Http\Controllers\well\Privacy_PolicyController;
 use App\Http\Controllers\well\CartItemController;
 use App\Http\Controllers\well\ContactController;
 use App\Http\Controllers\well\HomeController;
@@ -24,6 +25,7 @@ Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('/home', [HomeController::class, 'index']);
 Route::get('/about', [AboutController::class, 'index']);
 Route::get('/faq', [FaqController::class, 'index']);
+Route::get('/privacy-policy', [Privacy_PolicyController::class, 'index'])->name('privacy_policy');
 
 //Manish_Contact_Page
 Route::get('/contact', function () {
