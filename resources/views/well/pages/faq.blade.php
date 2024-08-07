@@ -3,12 +3,12 @@
 @section('content')
     <!-- FAQ Section -->
     <section class="container my-5">
-        <h2 class="text-center mb-4">Frequently Asked Questions (FAQ's)</h2>
+        <h2 class="text-center mb-4">Frequently Asked Questions</h2>
         <div class="accordion" id="faqAccordion">
-            <div class="card">
-                <div class="card-header" id="headingOne">
+            <div class="card rounded-lg shadow-sm mb-3">
+                <div class="card-header bg-light" id="headingOne">
                     <h5 class="mb-0">
-                        <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseOne"
+                        <button class="btn btn-link text-dark font-weight-bold" type="button" data-toggle="collapse" data-target="#collapseOne"
                                 aria-expanded="true" aria-controls="collapseOne">
                             What is your return policy?
                         </button>
@@ -20,10 +20,10 @@
                     </div>
                 </div>
             </div>
-            <div class="card">
-                <div class="card-header" id="headingTwo">
+            <div class="card rounded-lg shadow-sm mb-3">
+                <div class="card-header bg-light" id="headingTwo">
                     <h5 class="mb-0">
-                        <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseTwo"
+                        <button class="btn btn-link text-dark font-weight-bold collapsed" type="button" data-toggle="collapse" data-target="#collapseTwo"
                                 aria-expanded="false" aria-controls="collapseTwo">
                             Do you offer international shipping?
                         </button>
@@ -35,10 +35,10 @@
                     </div>
                 </div>
             </div>
-            <div class="card">
-                <div class="card-header" id="headingThree">
+            <div class="card rounded-lg shadow-sm mb-3">
+                <div class="card-header bg-light" id="headingThree">
                     <h5 class="mb-0">
-                        <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseThree"
+                        <button class="btn btn-link text-dark font-weight-bold collapsed" type="button" data-toggle="collapse" data-target="#collapseThree"
                                 aria-expanded="false" aria-controls="collapseThree">
                             How can I track my order?
                         </button>
@@ -50,10 +50,10 @@
                     </div>
                 </div>
             </div>
-            <div class="card">
-                <div class="card-header" id="headingFour">
+            <div class="card rounded-lg shadow-sm mb-3">
+                <div class="card-header bg-light" id="headingFour">
                     <h5 class="mb-0">
-                        <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseFour"
+                        <button class="btn btn-link text-dark font-weight-bold collapsed" type="button" data-toggle="collapse" data-target="#collapseFour"
                                 aria-expanded="false" aria-controls="collapseFour">
                             Can I modify or cancel my order after placing it?
                         </button>
@@ -65,10 +65,10 @@
                     </div>
                 </div>
             </div>
-            <div class="card">
-                <div class="card-header" id="headingFive">
+            <div class="card rounded-lg shadow-sm mb-3">
+                <div class="card-header bg-light" id="headingFive">
                     <h5 class="mb-0">
-                        <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseFive"
+                        <button class="btn btn-link text-dark font-weight-bold collapsed" type="button" data-toggle="collapse" data-target="#collapseFive"
                                 aria-expanded="false" aria-controls="collapseFive">
                             Do you offer gift cards?
                         </button>
@@ -80,10 +80,10 @@
                     </div>
                 </div>
             </div>
-            <div class="card">
-                <div class="card-header" id="headingSix">
+            <div class="card rounded-lg shadow-sm mb-3">
+                <div class="card-header bg-light" id="headingSix">
                     <h5 class="mb-0">
-                        <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseSix"
+                        <button class="btn btn-link text-dark font-weight-bold collapsed" type="button" data-toggle="collapse" data-target="#collapseSix"
                                 aria-expanded="false" aria-controls="collapseSix">
                             What payment methods do you accept?
                         </button>
@@ -91,7 +91,7 @@
                 </div>
                 <div id="collapseSix" class="collapse" aria-labelledby="headingSix" data-parent="#faqAccordion">
                     <div class="card-body">
-                        We accept various payment methods, including major <b>Credit Cards, PayPal, and Apple Pay</b>. You can choose your preferred payment method at checkout.
+                        We accept various payment methods, including major <strong>Credit Cards, PayPal, and Apple Pay</strong>. You can choose your preferred payment method at checkout.
                     </div>
                 </div>
             </div>
@@ -101,31 +101,31 @@
 
 @section('footer')
     <!-- Footer -->
-    <footer class="footer">
+    <footer class="footer bg-dark text-white py-5">
         <div class="container">
             <div class="row">
-                <div class="col-md-4">
-                    <h5>About Us</h5>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec venenatis vulputate lorem sit amet facilisis.</p>
+                <div class="col-md-4 mb-4 mb-md-0">
+                    <h5 class="font-weight-bold">About Us</h5>
+                    <p class="text-muted">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec venenatis vulputate lorem sit amet facilisis.</p>
                 </div>
-                <div class="col-md-4">
-                    <h5>Quick Links</h5>
+                <div class="col-md-4 mb-4 mb-md-0">
+                    <h5 class="font-weight-bold">Quick Links</h5>
                     <ul class="list-unstyled">
-                        <li><a href="#">Home</a></li>
-                        <li><a href="#">Shop</a></li>
-                        <li><a href="#">About Us</a></li>
-                        <li><a href="#">Contact</a></li>
+                        <li><a href="#" class="text-white">Home</a></li>
+                        <li><a href="#" class="text-white">Shop</a></li>
+                        <li><a href="#" class="text-white">About Us</a></li>
+                        <li><a href="#" class="text-white">Contact</a></li>
                     </ul>
                 </div>
                 <div class="col-md-4">
-                    <h5>Contact Us</h5>
-                    <p><i class="fas fa-map-marker-alt"></i> 123 Main Street, Anytown, USA</p>
-                    <p><i class="fas fa-phone"></i> (123) 456-7890</p>
-                    <p><i class="fas fa-envelope"></i> info@yourcompany.com</p>
+                    <h5 class="font-weight-bold">Contact Us</h5>
+                    <p class="text-muted"><i class="fas fa-map-marker-alt"></i> 123 Main Street, Anytown, USA</p>
+                    <p class="text-muted"><i class="fas fa-phone"></i> (123) 456-7890</p>
+                    <p class="text-muted"><i class="fas fa-envelope"></i> info@yourcompany.com</p>
                 </div>
             </div>
             <div class="text-center mt-4">
-                <p>&copy; 2024 Your Company. All rights reserved.</p>
+                <p class="text-muted">&copy; 2024 Your Company. All rights reserved.</p>
             </div>
         </div>
     </footer>
