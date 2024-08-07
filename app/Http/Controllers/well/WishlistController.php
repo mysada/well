@@ -72,7 +72,13 @@ class WishlistController extends Controller
             if ($product) {
                 $product->delete();
             }
+
         });
+
+        return redirect()->route('WishlistIndex')->with(
+          'success',
+          'Add to cart successfully'
+        );
     }
 
     /**

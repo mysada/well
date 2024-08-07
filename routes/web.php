@@ -66,7 +66,7 @@ Route::middleware('auth')->group(function () {
       'destroy' => 'WishlistDestroy', //processor: delete product
     ]);
     Route::post('/add2cart', [WishlistController::class, 'addToCart'])->name(
-      'AddToCart'
+      'WishlistAddToCart'
     );
 
     Route::resource('user', UserController::class)
