@@ -97,6 +97,9 @@ h2 {
 
 .card {
   flex-direction: row;
+  border-radius: 0!important;
+  border: 0!important;
+  box-shadow: none!important;
 }
 
 .category-section,
@@ -210,6 +213,9 @@ h2 {
 
 .products-section {
   margin-bottom: 100px;
+  .row{
+    text-align: left;
+  }
 }
 
 .footer {
@@ -313,7 +319,4 @@ h2 {
     flex-direction: column;
   }
 
-  .products-section .row{
-    text-align: left;
-  }
 }

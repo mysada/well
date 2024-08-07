@@ -1,6 +1,6 @@
 @extends('layouts.app')
+@vite('resources/sass/cart.scss')
 @vite('resources/js/cart.js')
-
 @section('content')
     <section class="cart py-5">
         <div class="container">
@@ -19,32 +19,58 @@
                 <p>Your cart is empty.</p>
             @else
                 <div class="table-responsive">
-                    <table class="table table-borderless">
+                    <table class="table table-striped">
+                        <thead>
+                        <tr>
+                            <th scope="col">Product</th>
+                            <th scope="col">Price</th>
+                            <th scope="col">Quantity</th>
+                            <th scope="col">Total</th>
+                            <th scope="col">Actions</th>
+                        </tr>
+                        </thead>
                         <tbody>
                         @foreach($cartItems as $cartItem)
-                            <tr>
-                                <td><img src="{{ asset($cartItem->product->image_url) }}" alt="{{ $cartItem->product->name }}" class="img-thumbnail" style="width: 100px;"></td>
-                                <td>{{ $cartItem->product->name }}</td>
-                                <td>${{ number_format($cartItem->product->price, 2) }}</td>
-                                <td>
-                                    <div class="input-group">
-                                        <button class="btn btn-outline-secondary btn-sm qty-btn" type="button" data-action="minus" data-cart-item-id="{{ $cartItem->id }}">-</button>
-                                        <input type="number" name="quantity" class="form-control w-25 text-center" value="{{ $cartItem->quantity }}" min="1" readonly>
-                                        <button class="btn btn-outline-secondary btn-sm qty-btn" type="button" data-action="add" data-cart-item-id="{{ $cartItem->id }}">+</button>
-                                    </div>
-                                </td>
-                                <td>${{ number_format($cartItem->product->price * $cartItem->quantity, 2) }}</td>
-                                <td>
-                                    <form action="{{ route('CartItemDestroy', $cartItem->id) }}" method="POST" class="d-inline">
-                                        @csrf
-                                        @method('DELETE')
-                                        <button type="submit" class="btn btn-danger btn-sm">Remove</button>
-                                    </form>
-                                </td>
-                            </tr>
+                            @if($cartItem->product)
+                                <tr>
+                                    <td>
+                                        <img src="{{ asset($cartItem->product->image_url) }}" alt="{{ $cartItem->product->name }}" class="img-thumbnail">
+                                        <span>{{ $cartItem->product->name }}</span>
+                                    </td>
+                                    <td>${{ number_format($cartItem->product->price, 2) }}</td>
+                                    <td>
+                                        <select class="form-control quantity-select" data-cart-item-id="{{ $cartItem->id }}" data-price="{{ $cartItem->product->price }}">
+                                            @for($i = 1; $i <= 10; $i++)
+                                                <option value="{{ $i }}" {{ $cartItem->quantity == $i ? 'selected' : '' }}>{{ $i }}</option>
+                                            @endfor
+                                        </select>
+                                    </td>
+                                    <td class="item-total">${{ number_format($cartItem->product->price * $cartItem->quantity, 2) }}</td>
+                                    <td>
+                                        <div class="actions">
+                                            <form action="{{ route('CartItemDestroy', $cartItem->id) }}" method="POST" class="d-inline">
+                                                @csrf
+                                                @method('DELETE')
+                                                <button type="submit" class="btn btn-link text-danger p-0">Remove</button>
+                                            </form>
+                                        </div>
+                                    </td>
+                                </tr>
+                            @else
+                                <tr>
+                                    <td colspan="6">Product information not available for cart item ID: {{ $cartItem->id }}</td>
+                                </tr>
+                            @endif
                         @endforeach
                         </tbody>
                     </table>
+                </div>
+                <div class="cart-summary">
+                    <h4>Summary</h4>
+                    <p>Items: <span id="item-count">{{ $cartItems->count() }}</span></p>
+                    <p>Shipping: $0.00</p> <!-- Adjust as necessary -->
+                    <p class="total">Total: $<span id="cart-total">{{ number_format($cartItems->sum(fn($item) => $item->product ? $item->product->price * $item->quantity : 0), 2) }}</span></p>
+                    <button class="btn btn-primary btn-block">Go to Checkout</button>
                 </div>
             @endif
         </div>
