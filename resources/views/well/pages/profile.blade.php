@@ -76,7 +76,13 @@
                     @method('PUT')
                     <div class="form-group">
                         <label for="first_name">First Name</label>
-                        <input type="text" name="first_name" id="first_name" class="form-control" required value="{{ $firstName }}">
+                        <!-- <input type="text" name="first_name" id="first_name" class="form-control" required value="{{ $firstName }}"> -->
+                        <input type="text" name="first_name" id="first_name" class="form-control @error('first_name') is-invalid @enderror" required value="{{ old('first_name', $firstName) }}">
+                        @error('first_name')
+                        <div class="invalid-feedback">
+                            {{ $message }}
+                        </div>
+                        @enderror
                     </div>
                     <div class="form-group">
                         <label for="last_name">Last Name</label>
