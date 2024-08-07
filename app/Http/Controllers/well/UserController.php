@@ -77,14 +77,15 @@ class UserController extends Controller
             'first_name' => 'required|regex:/^[a-zA-Z\s]+$/|max:255',
             'last_name' => 'required|regex:/^[a-zA-Z\s]+$/|max:255',
             'email' => 'required|email|max:255|unique:users,email,' . Auth::id(),
-            'phone' => 'required|regex:/^[0-9]+$/|max:15',
+            'phone' => 'required|regex:/^(\+?[0-9\s\-\(\)]*)$/|max:25|min:9',
             'billing_address' => 'required|string|max:255',
             'shipping_address' => 'required|string|max:255',
         ]);
 
+        try {
         // Get the authenticated user
         $user = Auth::user();
-
+        
         // Update the user attributes
         $user->full_name = $request->input('first_name') . ' ' . $request->input('last_name');
         $user->email = $request->input('email');
@@ -92,8 +93,12 @@ class UserController extends Controller
         $user->billing_address = $request->input('billing_address');
         $user->shipping_address = $request->input('shipping_address');
         $user->save();
-
+        
         // Redirect back with a success message
         return back()->with('success', 'Profile updated successfully.');
+    } catch (\Exception $e) {
+        // Handle exceptions, e.g., logging
+        return back()->with('error', 'An error occurred while updating your profile.');
+    }
     }
 }
