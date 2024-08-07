@@ -27,19 +27,34 @@ class CartItemController extends Controller
     /**
      * Add product to cart
      */
+    /**
+     * Add product to cart
+     */
     public function store(Request $request)
     {
         // Validate the request data
         $request->validate([
             'product_id' => 'required|exists:products,id',
-            'quantity' => 'required|integer|min:1' // Corrected validation rule
+            'quantity' => 'required|integer|min:1'
         ]);
 
-        // Create or update the cart item
-        $cartItem = CartItem::updateOrCreate(
-            ['user_id' => Auth::id(), 'product_id' => $request->product_id],
-            ['quantity' => $request->quantity]
-        );
+        // Find the existing cart item
+        $cartItem = CartItem::where('user_id', Auth::id())
+            ->where('product_id', $request->product_id)
+            ->first();
+
+        if ($cartItem) {
+            // If the item already exists, update the quantity
+            $cartItem->quantity += $request->quantity;
+            $cartItem->save();
+        } else {
+            // Otherwise, create a new cart item
+            CartItem::create([
+                'user_id' => Auth::id(),
+                'product_id' => $request->product_id,
+                'quantity' => $request->quantity
+            ]);
+        }
 
         return redirect()->route('CartIndex')->with('success', 'Product added to cart successfully.');
     }
@@ -47,22 +62,29 @@ class CartItemController extends Controller
     /**
      * Update the number of items in the cart
      */
-    public function update(CartItemReq $request, string $id)
+    public function update(Request $request, string $id)
     {
-        $cart = $request->validated();
+        $request->validate([
+            'quantity' => 'required|integer|min:1'
+        ]);
+
         $cartItem = CartItem::find($id);
         if ($cartItem) {
-            if ($cart['quantity'] == 0) {
+            if ($request->quantity == 0) {
                 $cartItem->delete();
-                return $this->success("Removed item successfully", $cartItem->id);
+                $total = $this->calculateTotal();
+                return response()->json(['message' => 'Removed item successfully', 'total' => number_format($total, 2)]);
             } else {
-                $cartItem->update($cart);
-                return $this->success("Updated successfully", $cartItem->id);
+                $cartItem->update(['quantity' => $request->quantity]);
+                $total = $this->calculateTotal();
+                return response()->json(['message' => 'Updated successfully', 'total' => number_format($total, 2)]);
             }
         }
 
-        return $this->error('Update failed');
+        return response()->json(['message' => 'Update failed'], 400);
     }
+
+
 
     /**
      * Delete the cart item.
@@ -72,10 +94,14 @@ class CartItemController extends Controller
         $cartItem = CartItem::where("user_id", Auth::id())->where('id', $id)->first();
         if ($cartItem) {
             $cartItem->delete();
-            return $this->success("Removed item successfully");
+            $total = $this->calculateTotal();
+
+            // Redirect to the cart_items page with a success flash message
+            return redirect()->route('CartIndex')->with('success', 'Removed item successfully.');
         }
 
-        return $this->error("Remove failed");
+        // Redirect to the cart_items page with an error flash message if deletion fails
+        return redirect()->route('CartIndex')->with('error', 'Remove failed.');
     }
 
     /**
@@ -113,5 +139,12 @@ class CartItemController extends Controller
     private function error($msg): RedirectResponse
     {
         return redirect(url('/cart_items'))->with('error', $msg);
+    }
+
+    private function calculateTotal()
+    {
+        return CartItem::where('user_id', Auth::id())->with('product')->get()->sum(function ($cartItem) {
+            return $cartItem->product ? $cartItem->product->price * $cartItem->quantity : 0;
+        });
     }
 }
