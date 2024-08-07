@@ -1,49 +1,41 @@
-function updateQuantity(cartItemId, newQuantity) {
-    if (newQuantity < 1) {
-        return;
-    }
-
-    let form = document.createElement('form');
-    form.method = 'POST';
-    form.action = '/cart_items/' + cartItemId;
-
-    let hiddenInputMethod = document.createElement('input');
-    hiddenInputMethod.type = 'hidden';
-    hiddenInputMethod.name = '_method';
-    hiddenInputMethod.value = 'PUT';
-    form.appendChild(hiddenInputMethod);
-
-    let hiddenInputToken = document.createElement('input');
-    hiddenInputToken.type = 'hidden';
-    hiddenInputToken.name = '_token';
-    hiddenInputToken.value = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
-    form.appendChild(hiddenInputToken);
-
-    let hiddenInputQuantity = document.createElement('input');
-    hiddenInputQuantity.type = 'hidden';
-    hiddenInputQuantity.name = 'quantity';
-    hiddenInputQuantity.value = newQuantity;
-    form.appendChild(hiddenInputQuantity);
-
-    document.body.appendChild(form);
-    form.submit();
-}
+import axios from 'axios';
 
 document.addEventListener('DOMContentLoaded', function () {
-    document.querySelectorAll('.qty-btn').forEach(function (button) {
-        button.addEventListener('click', function () {
-            const cartItemId = this.getAttribute('data-cart-item-id');
-            const currentQuantity = parseInt(this.closest('.input-group').querySelector('input[name="quantity"]').value);
-            const action = this.getAttribute('data-action');
+    const quantitySelects = document.querySelectorAll('.quantity-select');
 
-            let newQuantity = currentQuantity;
-            if (action === 'minus') {
-                newQuantity = currentQuantity - 1;
-            } else if (action === 'add') {
-                newQuantity = currentQuantity + 1;
-            }
+    quantitySelects.forEach(select => {
+        select.addEventListener('change', function () {
+            const cartItemId = this.dataset.cartItemId;
+            const price = parseFloat(this.dataset.price);
+            const quantity = parseInt(this.value);
+            const total = price * quantity;
 
-            updateQuantity(cartItemId, newQuantity);
+            // Update the total for the item in the UI
+            const totalElement = this.closest('tr').querySelector('.item-total');
+            totalElement.textContent = `$${total.toFixed(2)}`;
+
+            // Update the overall cart total in the UI
+            updateCartTotal();
+
+            // Send a request to update the quantity in the database
+            axios.post('/api/cart/update', {
+                id: cartItemId,
+                quantity: quantity
+            })
+                .then(response => {
+                    console.log('Update successful:', response.data);
+                })
+                .catch(error => {
+                    console.error('Error updating cart item:', error);
+                });
         });
     });
+
+    function updateCartTotal() {
+        const totalElements = document.querySelectorAll('.item-total');
+        const total = Array.from(totalElements).reduce((acc, element) => acc + parseFloat(element.textContent.replace('$', '')), 0);
+
+        const cartTotalElement = document.getElementById('cart-total');
+        cartTotalElement.textContent = total.toFixed(2);
+    }
 });

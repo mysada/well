@@ -6,6 +6,7 @@
 @import 'variables';
 
 // Bootstrap overrides
+
 body {
   font-family: 'Poppins', 'Arial', 'Avenir Next Georgian', Arial, sans-serif;
 }
@@ -112,4 +113,25 @@ a{
     color: #666;
     margin-bottom: 10px;
   }
+}
+
+
+// flash message
+.alert {
+  padding: 20px;
+  border: 1px solid transparent;
+  border-radius: 0px;
+  margin-bottom: 0px;
+}
+
+.alert-success {
+  color: #075108;
+  background-color: #dff0d8;
+  border-color: #d6e9c6;
+}
+
+.alert-danger {
+  color: #a94442;
+  background-color: #f2dede;
+  border-color: #ebccd1;
 }

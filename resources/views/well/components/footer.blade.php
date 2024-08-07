@@ -22,6 +22,7 @@
                     <ul class="list-unstyled">
                         <li><a href="#" class="text-white">Help Centre</a></li>
                         <li><a href="#" class="text-white">Contact Us</a></li>
+                        <li><a  href="{{ url('/faq') }}" class="text-white">FAQ's</a></li>
                     </ul>
                 </div>
                 <div class="col-md-2">
