@@ -1,0 +1,89 @@
+// Import Poppins font
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap');
+
+// Global Styles
+body {
+    font-family: 'Poppins', 'Avenir Next Georgian', Arial, sans-serif;
+    line-height: 1.6;
+    color: #333;
+}
+
+// Headings
+h1, h2, h3, h4, h5, h6 {
+    font-weight: 700;
+    font-family: 'Poppins', 'Avenir Next Georgian', Arial, sans-serif;
+}
+
+// Specific Heading Sizes
+h2 {
+    font-size: 40px;
+}
+
+// FAQ Section
+.faq-section {
+    margin: 3rem 0;
+}
+
+.faq-section h2 {
+    margin-bottom: 1.5rem;
+
+}
+
+.card {
+    border-radius: 0.5rem;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    margin-bottom: 1rem;
+}
+
+.card-header {
+    background-color: #f8f9fa;
+}
+
+.card-header h5 {
+    margin-bottom: 0;
+}
+
+.btn-link {
+    color: #343a40;
+    font-weight: 700;
+}
+
+.btn-link.collapsed {
+    color: #343a40;
+}
+
+.card-body {
+    font-family: 'Poppins', 'Avenir Next Georgian', Arial, sans-serif;
+}
+
+// Footer Styles
+.footer {
+    background-color: #343a40;
+    color: #ffffff;
+    padding: 3rem 0;
+}
+
+.footer h5 {
+    font-weight: 700;
+}
+
+.footer p, .footer a {
+    font-family: 'Poppins', 'Avenir Next Georgian', Arial, sans-serif;
+}
+
+.footer a {
+    color: #ffffff;
+    text-decoration: none;
+}
+
+.footer a:hover {
+    text-decoration: underline;
+}
+
+.footer .text-muted {
+    color: rgba(255, 255, 255, 0.7);
+}
+
+.footer .text-center {
+    margin-top: 1.5rem;
+}
