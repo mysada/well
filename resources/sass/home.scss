@@ -59,13 +59,24 @@ h2 {
     object-fit: cover;
 }
 
+.hero-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.2);
+    z-index: 1;
+}
+
 .hero-content {
     position: absolute;
-    top: 50%;
-    left: 30%;
-    transform: translate(-50%, -50%);
+    top: 70px;
+    left: 80px;
     color: white;
     text-align: left;
+    z-index: 2;
 }
 
 .hero-content h1 {
@@ -109,6 +120,17 @@ h2 {
     margin-bottom: 30px;
 }
 
+.category-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.15);
+    z-index: 1;
+}
+
 .category-card-title {
     font-family: Avenir;
     font-size: 40px;
@@ -120,6 +142,7 @@ h2 {
     margin: 0;
     padding: 5px;
     text-shadow: 2px 2px 4px rgba(20, 23, 22, 0.2);
+    z-index: 2;
 }
 
 .category-card .card-body {
@@ -128,7 +151,7 @@ h2 {
 }
 
 .best-seller-card .card-body {
-    background: rgba(255, 255, 255, 0.5);
+    background: rgba(255, 255, 255, 0.7);
     width: 100%;
     padding: 20px;
 }
@@ -147,14 +170,14 @@ h2 {
 .best-seller-section h5 {
     color: #333;
     margin-bottom: 20px;
-    font-size: 18px;
+    font-size: 20px;
     font-weight: 700;
 }
 
 .best-seller-section p {
-    color: #666;
+    color: #555;
     margin-bottom: 20px;
-    font-size: 15px;
+    font-size: 16px;
 }
 
 .best-seller-card-right {
@@ -232,6 +255,8 @@ h2 {
     transition: background-color 0.3s ease, transform 0.3s ease;
     text-decoration: none;
     display: inline-block;
+    z-index: 2;
+    position: relative;
 }
 
 .btn-primary:hover {
