@@ -16,7 +16,12 @@
                         </div>
                     </div>
                     <div class="product-actions">
-                        <button class="btn btn-primary">Add to Cart</button>
+                        <form action="{{ route('CartItemStore') }}" method="POST">
+                            @csrf
+                            <input type="hidden" name="product_id" value="{{$wishlist->product->id}}">
+                            <input type="hidden" name="quantity" value="1">
+                            <button type="submit" class="btn btn-primary">Add to Cart</button>
+                        </form>
                         <!-- <button class="btn btn-danger">Remove</button> -->
                         <button class="btn btn-remove" style="color: #666; margin-left: 20px;">Remove</button>
                     </div>

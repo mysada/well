@@ -4,8 +4,10 @@ namespace App\Http\Controllers\well;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\WishlistReq;
+use App\Models\CartItem;
 use App\Models\Wishlist;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class WishlistController extends Controller
 {
@@ -31,7 +33,7 @@ class WishlistController extends Controller
         $wishlist = $req->validated();
 
         Wishlist::create([
-          'user_id' => Auth::id(),
+          'user_id'    => Auth::id(),
           'product_id' => $wishlist['product_id'],
         ]);
 
@@ -39,6 +41,38 @@ class WishlistController extends Controller
           'success',
           'Add to wishlist successfully.'
         );
+    }
+
+    public function addToCart(WishlistReq $req)
+    {
+        $validated = $req->validated();
+
+        DB::transaction(function () use ($validated) {
+            $userId    = Auth::id();
+            $productId = $validated['product_id'];
+
+            $cartItem = CartItem::where('user_id', $userId)
+                                ->where('product_id', $productId)
+                                ->first();
+
+            if ($cartItem) {
+                $cartItem->increment('quantity');
+            } else {
+                CartItem::create([
+                  'user_id'    => $userId,
+                  'product_id' => $productId,
+                  'quantity'   => 1,
+                ]);
+            }
+
+            $product = Wishlist::where('user_id', $userId)
+                               ->where('id', $productId)
+                               ->first();
+
+            if ($product) {
+                $product->delete();
+            }
+        });
     }
 
     /**
