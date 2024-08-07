@@ -6,10 +6,10 @@
     <title>Wellness Balance</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <style>
-        body {
+        /* body {
             font-family: 'Poppins', 'Avenir Next Georgian', Arial, sans-serif;
             background-color: #f9f9f9;
-        }
+        } */
 
         /* Header styles */
         .navbar-nav li {
