@@ -45,9 +45,6 @@
                         border-radius: 4px;
                     }
 
-                    &:last-child {
-                        text-align: right;
-                    }
                 }
             }
         }
@@ -72,19 +69,6 @@
                 color: #333; // Unified color for text
             }
 
-            .btn-block {
-                //background-color: #4CAF50; // Green color from your theme
-                //color: white;
-                //padding: 10px 20px;
-                //border-radius: 5px;
-                //border: none;
-                //font-size: 1.2em;
-                //cursor: pointer;
-                //&:hover {
-                //    background-color: darken(#4CAF50, 10%);
-                //}
-            }
-
             .btn-block{
                 border: 1px solid #018F64 !important;
                 //width: 20%;
@@ -105,6 +89,9 @@
 
         }
     }
+
+
+
 }
 
 .cart-title {
@@ -115,3 +102,30 @@
     font-family: "Poppins", "Avenir Next Georgian", Arial, sans-serif;
     font-weight: 700;
 }
+
+.actions {
+
+    form {
+        display: inline-block; // Ensuring the form aligns correctly with other content
+        vertical-align: middle; // Aligning vertically with surrounding elements
+
+        button {
+            background-color: #ff4d4d; // Bright red background for visibility
+            text-decoration: none;
+            color: white !important;// White text for contrast
+            font-weight: bold; // Making the text bold
+            padding: 6px 14px !important;// Adequate padding for better clickability
+            border: none; // No border for a cleaner look
+            border-radius: 4px; // Rounded corners for a modern look
+            cursor: pointer; // Pointer cursor to indicate clickable
+            transition: background-color 0.3s, color 0.3s; // Smooth transition for hover effect
+            margin: 0px;
+            &:hover {
+                background-color: #cc0000; // Darker shade on hover for interaction feedback
+                color: #fff; // Maintain white color for readability
+            }
+        }
+    }
+}
+
+
