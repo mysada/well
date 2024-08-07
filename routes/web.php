@@ -11,10 +11,10 @@ use App\Http\Controllers\well\FaqController;
 use App\Http\Controllers\well\CartItemController;
 use App\Http\Controllers\well\ContactController;
 use App\Http\Controllers\well\HomeController;
-use App\Http\Controllers\well\CheckoutController;
+use App\Http\Controllers\well\OrderController;
 use App\Http\Controllers\well\ProductController;
-use App\Http\Controllers\well\WishlistController;
 use App\Http\Controllers\well\UserController;
+use App\Http\Controllers\well\WishlistController;
 use App\Http\Middleware\AdminAuthInterceptor;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -29,62 +29,65 @@ Route::get('/faq', [FaqController::class, 'index']);
 Route::get('/contact', function () {
     return view('well.pages.contact');
 })->name('contact.page');
-Route::post('/contact', [ContactController::class, 'submit'])->name('contact.submit');
+Route::post('/contact', [ContactController::class, 'submit'])->name(
+  'contact.submit'
+);
 
 //product
-Route::get('/products', [ProductController::class, 'index'])->name('products.index');
-Route::get('/products/{id}', [ProductController::class, 'show'])->name('products.show');
-
-//Route::get('/cart_items', [CartItemController::class, 'index']);
+Route::get('/products', [ProductController::class, 'index'])->name(
+  'products.index'
+);
+Route::get('/products/{id}', [ProductController::class, 'show'])->name(
+  'products.show'
+);
 
 // Routes for cart item actions, accessible only to logged-in users
-    Route::middleware('auth')->group(function () {
-
-//        Route::resource('/cart_items', CartItemController::class)->names([
-//            'store'   => 'CartItemStore',
-//            'update'  => 'CartItemUpdate',
-//            'destroy' => 'CartItemDestroy',
-//        ]);
-
-        Route::resource('/cart_items', CartItemController::class)->names([
-            'index'   => 'CartIndex',
-            'store'   => 'CartItemStore',
-            'update'  => 'CartItemUpdate',
-            'destroy' => 'CartItemDestroy',
-        ]);
+Route::middleware('auth')->group(function () {
+    Route::resource('/cart_items', CartItemController::class)->names([
+      'index'   => 'CartIndex',
+      'store'   => 'CartItemStore',
+      'update'  => 'CartItemUpdate',
+      'destroy' => 'CartItemDestroy',
+    ]);
 
     /**
-     * maybe the create page is useless.
+     * order routes
      */
-//    Route::resource('/orders', CheckoutController::class)->names([
-//      'create' => 'OrderCreate', //page: order create
-//      'store'  => 'OrderStore', //processor: save an order
-//      'show'   => 'OrderShow', //page: order detail
-//    ]);
-
-//Manish - Route for billins pages
-        Route::get('/checkout', [CheckoutController::class, 'index'])->name('checkout');
-
-
-
-
-Route::resource('/wishlists', WishlistController::class)->names([
-'index'   => 'WishlistIndex', //page: wishlist
-'store'   => 'WishlistStore', //processor: add product into wishlist
-'destroy' => 'WishlistDestroy', //processor: delete product
-]);
-
-    Route::resource('user', \App\Http\Controllers\well\UserController::class)->names([
-      'index' => 'Profile', //page: profile with orders
+    Route::resource('/orders', OrderController::class)->names([
+      'create' => 'OrderCreate', //page: order create
+      'store'  => 'OrderStore', //processor: save an order
+      'show'   => 'OrderShow', //page: order detail
     ]);
+
+    /**
+     * Wishlist route
+     */
+    Route::resource('/wishlists', WishlistController::class)->names([
+      'index'   => 'WishlistIndex', //page: wishlist
+      'store'   => 'WishlistStore', //processor: add product into wishlist
+      'destroy' => 'WishlistDestroy', //processor: delete product
+    ]);
+    Route::post('/add2cart', [WishlistController::class, 'addToCart'])->name(
+      'WishlistAddToCart'
+    );
+
+    Route::resource('user', UserController::class)
+         ->names([
+           'index' => 'Profile', //page: profile with orders
+         ]);
 });
 
 // profile routes updated by Aman, revised by Manish
 Route::middleware(['auth'])->group(function () {
-    Route::get('/profile', [UserController::class, 'index'])->name('user.profile');
-    Route::post('/profile/logout', [UserController::class, 'logout'])->name('user.logout');
-    Route::put('/profile/update', [UserController::class, 'update'])->name('user.update');
-
+    Route::get('/profile', [UserController::class, 'index'])->name(
+      'user.profile'
+    );
+    Route::post('/profile/logout', [UserController::class, 'logout'])->name(
+      'user.logout'
+    );
+    Route::put('/profile/update', [UserController::class, 'update'])->name(
+      'user.update'
+    );
 });
 //
 Auth::routes();
@@ -132,14 +135,16 @@ Route::middleware(AdminAuthInterceptor::class)->group(function () {
       'destroy' => 'AdminPaymentDestroy',
     ]);
 
-    Route::resource('/admin/categories', AdminCategoryController::class)->names([
-      'index'   => 'AdminCategoryList',
-      'create'  => 'AdminCategoryCreate',
-      'store'   => 'AdminCategoryStore',
-      'edit'    => 'AdminCategoryEdit',
-      'update'  => 'AdminCategoryUpdate',
-      'destroy' => 'AdminCategoryDestroy',
-    ]);
+    Route::resource('/admin/categories', AdminCategoryController::class)->names(
+      [
+        'index'   => 'AdminCategoryList',
+        'create'  => 'AdminCategoryCreate',
+        'store'   => 'AdminCategoryStore',
+        'edit'    => 'AdminCategoryEdit',
+        'update'  => 'AdminCategoryUpdate',
+        'destroy' => 'AdminCategoryDestroy',
+      ]
+    );
 });
 
 
