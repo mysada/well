@@ -45,40 +45,46 @@ class CartItemController extends Controller
         $cart = $request->validated();
         $cartItem = CartItem::find($id);
         if ($cartItem) {
-            $cartItem->update($cart);
-
-            return $this->success("Update successfully", $cartItem->id);
+            if ($cart['quantity'] == 0) {
+                $cartItem->delete();
+                return $this->success("Removed item successfully", $cartItem->id);
+            } else {
+                $cartItem->update($cart);
+                return $this->success("Updated successfully", $cartItem->id);
+            }
         }
 
         return $this->error('Update failed');
     }
+
     /**
-     * Delete the cart item
+     * Delete the cart item.
      */
     public function destroy(string $id)
     {
-        $product = CartItem::where("user_id", Auth::id())
-            ->where('id', $id)
-            ->first();
-        if ($product) {
-            $product->delete();
-
-            return $this->success("Remove $product->name successfully");
+        $cartItem = CartItem::where("user_id", Auth::id())->where('id', $id)->first();
+        if ($cartItem) {
+            $cartItem->delete();
+            return $this->success("Removed item successfully");
         }
 
         return $this->error("Remove failed");
     }
 
+
     /**
      * Success message
      */
-    private function success($msg): RedirectResponse
+    private function success($msg, $id = null): RedirectResponse
     {
+        if ($id) {
+            return redirect()->route('CartItemIndex')->with(['success' => $msg, 'id' => $id]);
+        }
         return redirect()->route('CartItemIndex')->with('success', $msg);
     }
 
     /**
-     * Error message
+     * Error message.
      */
     private function error($msg): RedirectResponse
     {
