@@ -17,6 +17,7 @@ export default defineConfig({
                 'resources/sass/product_list.scss',
                 'resources/sass/about.scss',
                 'resources/sass/headfooter.scss',
+                'resources/sass/billing.scss',
                 'resources/sass/wishlist.scss',
             ],
             refresh: true,
