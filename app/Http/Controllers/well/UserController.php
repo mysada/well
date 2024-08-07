@@ -82,7 +82,10 @@ class UserController extends Controller
             'shipping_address' => 'required|string|max:255',
         ]);
 
+        // Get the authenticated user
         $user = Auth::user();
+
+        // Update the user attributes
         $user->full_name = $request->input('first_name') . ' ' . $request->input('last_name');
         $user->email = $request->input('email');
         $user->phone = $request->input('phone');
@@ -90,6 +93,7 @@ class UserController extends Controller
         $user->shipping_address = $request->input('shipping_address');
         $user->save();
 
+        // Redirect back with a success message
         return back()->with('success', 'Profile updated successfully.');
     }
 }
