@@ -1,7 +1,5 @@
 @extends('layouts.app')
 @vite('resources/sass/checkout.scss')
-@vite('resources/js/checkout.js')
-
 @section('content')
 <section class="py-5">
     <div class="container d-flex">
@@ -10,59 +8,62 @@
             <!-- Shipping Address -->
             <div class="form-section">
                 <h4>Shipping Address</h4>
-                <form id="shipping-form">
-                    <input type="text" name="shipping-name" placeholder="Name" required>
-                    <input type="text" name="shipping-address" placeholder="Address" required>
-                    <input type="text" name="shipping-city" placeholder="City" required>
+                <form id="shipping-form" action="{{ route('checkout.process') }}" method="POST">
+                    @csrf
+                    <input type="text" name="shipping-name" placeholder="Name" value="{{ old('shipping-name') }}" required>
+                    <input type="text" name="shipping-address" placeholder="Address" value="{{ old('shipping-address') }}" required>
+                    <input type="text" name="shipping-city" placeholder="City" value="{{ old('shipping-city') }}" required>
                     <select name="shipping-country" id="shipping-country" required>
                         <option value="">Select Country</option>
+                        @foreach($countries as $country)
+                        <option value="{{ $country['code'] }}" {{ old('shipping-country') == $country['code'] ? 'selected' : '' }}>{{ $country['name'] }}</option>
+                        @endforeach
                     </select>
-                    <select name="shipping-state" id="shipping-state" required>
+                    <select name="shipping-state" id="shipping-state" style="display: none;" required>
                         <!-- States will be populated based on country selection -->
                     </select>
-                    <input type="text" name="shipping-zip" placeholder="ZIP/Postal Code" required>
-                    <input type="email" name="shipping-email" placeholder="Email" required>
-                    <input type="tel" name="shipping-phone" placeholder="Phone" required>
+                    <input type="text" name="shipping-zip" placeholder="ZIP/Postal Code" value="{{ old('shipping-zip') }}" required>
+                    <input type="email" name="shipping-email" placeholder="Email" value="{{ old('shipping-email') }}" required>
+                    <input type="tel" name="shipping-phone" placeholder="Phone" value="{{ old('shipping-phone') }}" required>
+
+                    <!-- Checkbox to Toggle Billing Address -->
+                    <div class="checkout-section form-section">
+                        <input type="checkbox" id="same-address" {{ old('same-address') ? 'checked' : '' }}>
+                        <label for="same-address">Billing address is same as shipping address</label>
+                    </div>
+
+                    <!-- Billing Address -->
+                    <div id="billing-address-section" class="form-section">
+                        <h4>Billing Address</h4>
+                        <input type="text" name="billing-name" placeholder="Name" value="{{ old('billing-name') }}" required>
+                        <input type="text" name="billing-address" placeholder="Address" value="{{ old('billing-address') }}" required>
+                        <input type="text" name="billing-city" placeholder="City" value="{{ old('billing-city') }}" required>
+                        <select name="billing-country" id="billing-country" required>
+                            <option value="">Select Country</option>
+                            @foreach($countries as $country)
+                            <option value="{{ $country['code'] }}" {{ old('billing-country') == $country['code'] ? 'selected' : '' }}>{{ $country['name'] }}</option>
+                            @endforeach
+                        </select>
+                        <select name="billing-state" id="billing-state" style="display: none;" required>
+                            <!-- States will be populated based on country selection -->
+                        </select>
+                        <input type="text" name="billing-zip" placeholder="ZIP/Postal Code" value="{{ old('billing-zip') }}" required>
+                        <input type="email" name="billing-email" placeholder="Email" value="{{ old('billing-email') }}" required>
+                        <input type="tel" name="billing-phone" placeholder="Phone" value="{{ old('billing-phone') }}" required>
+                    </div>
+
+                    <!-- Payment Information -->
+                    <div class="form-section">
+                        <h4>Payment Information</h4>
+                        <input type="text" name="card-number" placeholder="Card Number" value="{{ old('card-number') }}" required>
+                        <input type="text" name="card-name" placeholder="Cardholder Name" value="{{ old('card-name') }}" required>
+                        <input type="text" name="card-expiry" placeholder="Expiry Date (MM/YY)" value="{{ old('card-expiry') }}" required>
+                        <input type="text" name="card-cvc" placeholder="CVC" value="{{ old('card-cvc') }}" required>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary btn-checkout-custom">Place Order</button>
                 </form>
             </div>
-
-            <!-- Checkbox to Toggle Billing Address -->
-            <div class="checkout-section form-section">
-                <input type="checkbox" id="same-address">
-                <label for="same-address">Billing address is same as shipping address</label>
-            </div>
-
-            <!-- Billing Address -->
-            <div id="billing-address-section" class="form-section">
-                <h4>Billing Address</h4>
-                <form id="billing-form">
-                    <input type="text" name="billing-name" placeholder="Name" required>
-                    <input type="text" name="billing-address" placeholder="Address" required>
-                    <input type="text" name="billing-city" placeholder="City" required>
-                    <select name="billing-country" id="billing-country" required>
-                        <option value="">Select Country</option>
-                    </select>
-                    <select name="billing-state" id="billing-state" required>
-                        <!-- States will be populated based on country selection -->
-                    </select>
-                    <input type="text" name="billing-zip" placeholder="ZIP/Postal Code" required>
-                    <input type="email" name="billing-email" placeholder="Email" required>
-                    <input type="tel" name="billing-phone" placeholder="Phone" required>
-                </form>
-            </div>
-
-            <!-- Payment Information -->
-            <div class="form-section">
-                <h4>Payment Information</h4>
-                <form id="payment-form">
-                    <input type="text" name="card-number" placeholder="Card Number" required>
-                    <input type="text" name="card-name" placeholder="Cardholder Name" required>
-                    <input type="text" name="card-expiry" placeholder="Expiry Date (MM/YY)" required>
-                    <input type="text" name="card-cvc" placeholder="CVC" required>
-                </form>
-            </div>
-
-            <a href="#" class="btn btn-primary">Place Order</a>
         </div>
 
         <!-- Cart Summary -->
@@ -86,4 +87,8 @@
         </div>
     </div>
 </section>
+@endsection
+
+@section('scripts')
+@vite('resources/js/checkout.js')
 @endsection
