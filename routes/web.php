@@ -10,7 +10,7 @@ use App\Http\Controllers\well\AboutController;
 use App\Http\Controllers\well\CartItemController;
 use App\Http\Controllers\well\ContactController;
 use App\Http\Controllers\well\HomeController;
-use App\Http\Controllers\well\OrderController;
+use App\Http\Controllers\well\BillingController;
 use App\Http\Controllers\well\ProductController;
 use App\Http\Controllers\well\WishlistController;
 use App\Http\Controllers\well\UserController;
@@ -54,17 +54,23 @@ Route::get('/products/{id}', [ProductController::class, 'show'])->name('products
     /**
      * maybe the create page is useless.
      */
-    Route::resource('/orders', OrderController::class)->names([
-      'create' => 'OrderCreate', //page: order create
-      'store'  => 'OrderStore', //processor: save an order
-      'show'   => 'OrderShow', //page: order detail
-    ]);
+//    Route::resource('/orders', BillingController::class)->names([
+//      'create' => 'OrderCreate', //page: order create
+//      'store'  => 'OrderStore', //processor: save an order
+//      'show'   => 'OrderShow', //page: order detail
+//    ]);
 
-    Route::resource('/wishlists', WishlistController::class)->names([
-      'index'   => 'WishlistIndex', //page: wishlist
-      'store'   => 'WishlistStore', //processor: add product into wishlist
-      'destroy' => 'WishlistDestroy', //processor: delete product
-    ]);
+//Manish - Route for billins pages
+        Route::get('/billing', [BillingController::class, 'index'])->name('billing');
+
+
+
+
+Route::resource('/wishlists', WishlistController::class)->names([
+'index'   => 'WishlistIndex', //page: wishlist
+'store'   => 'WishlistStore', //processor: add product into wishlist
+'destroy' => 'WishlistDestroy', //processor: delete product
+]);
 
     Route::resource('user', \App\Http\Controllers\well\UserController::class)->names([
       'index' => 'Profile', //page: profile with orders
