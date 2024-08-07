@@ -263,18 +263,15 @@ document.addEventListener('DOMContentLoaded', function () {
     const sameAddressCheckbox = document.getElementById('same-address');
     const billingAddressSection = document.getElementById('billing-address-section');
 
-    // Populate country dropdowns
+    // Populate countries
     countrySelects.forEach(select => {
         countries.forEach(country => {
             const option = document.createElement('option');
             option.value = country.code;
-            option.text = country.name;
-            select.add(option);
+            option.textContent = country.name;
+            select.appendChild(option);
         });
-    });
 
-    // Initial population of states/provinces
-    countrySelects.forEach(select => {
         select.addEventListener('change', function () {
             const country = this.value;
             stateSelects.forEach(stateSelect => {
@@ -284,8 +281,8 @@ document.addEventListener('DOMContentLoaded', function () {
                     provinces.forEach(province => {
                         const option = document.createElement('option');
                         option.value = province.code;
-                        option.text = province.name;
-                        stateSelect.add(option);
+                        option.textContent = province.name;
+                        stateSelect.appendChild(option);
                     });
                 } else {
                     stateSelect.style.display = 'none';
@@ -315,42 +312,109 @@ document.addEventListener('DOMContentLoaded', function () {
         document.querySelectorAll('#billing-form input, #billing-form select').forEach(input => input.disabled = true);
     }
 
+    const validateField = (field, regex, message) => {
+        const value = field.value.trim();
+        if (!regex.test(value)) {
+            showError(field, message);
+            return false;
+        } else {
+            removeError(field);
+            return true;
+        }
+    };
+
+    const showError = (field, message) => {
+        removeError(field);
+        const error = document.createElement('span');
+        error.className = 'error-message';
+        error.textContent = message;
+        field.parentNode.insertBefore(error, field.nextSibling);
+        field.classList.add('error');
+    };
+
+    const removeError = (field) => {
+        const error = field.parentNode.querySelector('.error-message');
+        if (error) {
+            error.remove();
+        }
+        field.classList.remove('error');
+    };
+
     // Form validation
     document.querySelector('.btn-checkout-custom').addEventListener('click', function (e) {
         e.preventDefault();
-        const errors = [];
+
         const cardNumber = document.querySelector('input[name="card-number"]');
         const cardName = document.querySelector('input[name="card-name"]');
         const cardExpiry = document.querySelector('input[name="card-expiry"]');
         const cardCvc = document.querySelector('input[name="card-cvc"]');
+
+        const shippingName = document.querySelector('input[name="shipping-name"]');
+        const shippingAddress = document.querySelector('input[name="shipping-address"]');
+        const shippingCity = document.querySelector('input[name="shipping-city"]');
+        const shippingCountry = document.querySelector('select[name="shipping-country"]');
+        const shippingZip = document.querySelector('input[name="shipping-zip"]');
+        const shippingEmail = document.querySelector('input[name="shipping-email"]');
+        const shippingPhone = document.querySelector('input[name="shipping-phone"]');
+
+        const billingName = document.querySelector('input[name="billing-name"]');
+        const billingAddress = document.querySelector('input[name="billing-address"]');
+        const billingCity = document.querySelector('input[name="billing-city"]');
+        const billingCountry = document.querySelector('select[name="billing-country"]');
+        const billingZip = document.querySelector('input[name="billing-zip"]');
+        const billingEmail = document.querySelector('input[name="billing-email"]');
+        const billingPhone = document.querySelector('input[name="billing-phone"]');
 
         const cardNumberRegex = /^\d{16}$/;
         const cardNameRegex = /^[a-zA-Z\s]+$/;
         const cardExpiryRegex = /^(0[1-9]|1[0-2])\/\d{2}$/;
         const cardCvcRegex = /^\d{3}$/;
 
-        if (!cardNumberRegex.test(cardNumber.value)) {
-            errors.push('Please enter a valid 16-digit card number.');
+        const nameRegex = /^[a-zA-Z\s]+$/;
+        const addressRegex = /^[a-zA-Z0-9\s,'-]*$/;
+        const cityRegex = /^[a-zA-Z\s]+$/;
+        const zipRegex = /^[a-zA-Z0-9\s-]+$/;
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        const phoneRegex = /^\d{10,15}$/;
+
+        let isValid = true;
+
+        isValid &= validateField(cardNumber, cardNumberRegex, 'Please enter a valid 16-digit card number.');
+        isValid &= validateField(cardName, cardNameRegex, 'Please enter a valid cardholder name.');
+        isValid &= validateField(cardExpiry, cardExpiryRegex, 'Please enter a valid expiry date in MM/YY format.');
+        isValid &= validateField(cardCvc, cardCvcRegex, 'Please enter a valid 3-digit CVC.');
+
+        isValid &= validateField(shippingName, nameRegex, 'Please enter a valid name.');
+        isValid &= validateField(shippingAddress, addressRegex, 'Please enter a valid address.');
+        isValid &= validateField(shippingCity, cityRegex, 'Please enter a valid city.');
+        isValid &= validateField(shippingZip, zipRegex, 'Please enter a valid ZIP/Postal Code.');
+        isValid &= validateField(shippingEmail, emailRegex, 'Please enter a valid email.');
+        isValid &= validateField(shippingPhone, phoneRegex, 'Please enter a valid phone number.');
+
+        if (!sameAddressCheckbox.checked) {
+            isValid &= validateField(billingName, nameRegex, 'Please enter a valid name.');
+            isValid &= validateField(billingAddress, addressRegex, 'Please enter a valid address.');
+            isValid &= validateField(billingCity, cityRegex, 'Please enter a valid city.');
+            isValid &= validateField(billingZip, zipRegex, 'Please enter a valid ZIP/Postal Code.');
+            isValid &= validateField(billingEmail, emailRegex, 'Please enter a valid email.');
+            isValid &= validateField(billingPhone, phoneRegex, 'Please enter a valid phone number.');
         }
 
-        if (!cardNameRegex.test(cardName.value)) {
-            errors.push('Please enter a valid cardholder name.');
+        if (isValid) {
+            alert('Form submitted successfully!');
+            // Add form submission logic here
+        } else {
+            alert('Please correct the errors in the form.');
         }
+    });
 
-        if (!cardExpiryRegex.test(cardExpiry.value)) {
-            errors.push('Please enter a valid expiry date in MM/YY format.');
-        }
-
-        if (!cardCvcRegex.test(cardCvc.value)) {
-            errors.push('Please enter a valid 3-digit CVC.');
-        }
-
-        if (errors.length > 0) {
-            alert(errors.join('\n'));
-            return;
-        }
-
-        alert('Form submitted successfully!');
-        // Payment Gateway for YONG
+    // CSRF token setup
+    document.querySelectorAll('form').forEach(form => {
+        const csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
+        const input = document.createElement('input');
+        input.type = 'hidden';
+        input.name = '_token';
+        input.value = csrfToken;
+        form.appendChild(input);
     });
 });
