@@ -15,10 +15,12 @@ class WishlistController extends Controller
      */
     public function index()
     {
-        $wishlist = Wishlist::where("user_id", Auth::user()->id)->get();
-        $title    = 'My Wishlist';
+        $wishlists = Wishlist::where("user_id", Auth::user()->id)->with(
+          'product'
+        )->get();
+        $title     = 'Wishlist';
 
-        return view('well.pages.wishlist', compact('wishlist', 'title'));
+        return view('well.pages.wishlist', compact('wishlists', 'title'));
     }
 
     /**
@@ -29,7 +31,7 @@ class WishlistController extends Controller
         $wishlist = $req->validated();
 
         Wishlist::create([
-          'user_id'    => Auth::id(),
+          'user_id' => Auth::id(),
           'product_id' => $wishlist['product_id'],
         ]);
 

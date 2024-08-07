@@ -11,10 +11,15 @@
     <div class="container">
         <div class="row">
             <div class="col-md-3">
+                <div class="category-heading">Filter by Category</div>
                 <div class="category-list">
                     @foreach ($categories as $category)
                     <a href="{{ route('products.index', ['category_id' => $category->id]) }}"
                        class="{{ isset($category_id) && $category_id == $category->id ? 'active-category' : '' }}">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-tag" viewBox="0 0 16 16">
+                            <path d="M1 2a1 1 0 0 1 1-1h4.586a1 1 0 0 1 .707.293l6.414 6.414a1 1 0 0 1 0 1.414l-6.414 6.414a1 1 0 0 1-1.414 0L1.293 9.707A1 1 0 0 1 1 9V2z"/>
+                            <path d="M6.5 4a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0z"/>
+                        </svg>
                         {!! htmlspecialchars($category->name, ENT_QUOTES) !!}
                     </a>
                     @endforeach
@@ -24,7 +29,7 @@
                 <!-- Search Bar -->
                 <form method="GET" action="{{ route('products.index') }}" class="mb-4 search-form">
                     <div class="input-group">
-                        <input type="text" name="search" class="form-control" placeholder="Search products..." value="{{ request('search') }}">
+                        <input type="text" name="search" class="form-control search-bar" placeholder="Search products..." value="{{ request('search') }}">
                         <div class="input-group-append">
                             <button type="submit" class="btn btn-custom">Search</button>
                         </div>
@@ -45,6 +50,13 @@
                                 <div class="card-body d-flex flex-column">
                                     <h5 class="card-title">{{ htmlspecialchars($product->name) }}</h5>
                                     <p class="card-text mt-auto">$ {{ number_format($product->price, 2) }}</p>
+                                    <div class="add-to-cart-btn">
+                                        <a href="#">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="white" class="bi bi-plus" viewBox="0 0 16 16">
+                                                <path d="M8 8v5a.5.5 0 0 0 1 0V8h5a.5.5 0 0 0 0-1H9V2a.5.5 0 0 0-1 0v5H2a.5.5 0 0 0 0 1h5z"/>
+                                            </svg>
+                                        </a>
+                                    </div>
                                 </div>
                             </div>
                         </a>
