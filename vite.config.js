@@ -7,7 +7,7 @@ export default defineConfig({
             input: [
                 'resources/sass/app.scss',
                 'resources/js/app.js',
-                'resources/js/cart.js',
+                'resources/js/checkout.js',
                 'resources/js/gty-input.js',
                 'resources/js/slider-init.js',
                 'resources/js/billing.js',
