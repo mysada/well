@@ -19,6 +19,7 @@ class ProductController extends Controller
     {
         // Validate input
         $request->validate([
+            'category_id' => 'nullable|integer|exists:categories,id',
             'search' => 'nullable|string|max:255'
         ]);
 
@@ -31,6 +32,8 @@ class ProductController extends Controller
         }
 
         if ($search) {
+            // Escape special characters in the search term to prevent injection attacks
+            $search = htmlspecialchars($search, ENT_QUOTES, 'UTF-8');
             $query->where('name', 'like', '%' . $search . '%');
         }
 
