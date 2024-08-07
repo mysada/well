@@ -22,17 +22,19 @@ h2 {
 // FAQ Section
 .faq-section {
     margin: 3rem 0;
+    text-align: center; // Center align text in the FAQ section
 }
 
 .faq-section h2 {
     margin-bottom: 1.5rem;
-
 }
 
+// Card Styles
 .card {
     border-radius: 0.5rem;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
     margin-bottom: 1rem;
+    text-align: center; // Center align text within the card
 }
 
 .card-header {
@@ -46,6 +48,7 @@ h2 {
 .btn-link {
     color: #343a40;
     font-weight: 700;
+    text-align: center; // Center align button text
 }
 
 .btn-link.collapsed {
@@ -54,6 +57,7 @@ h2 {
 
 .card-body {
     font-family: 'Poppins', 'Avenir Next Georgian', Arial, sans-serif;
+    text-align: center; // Center align text in the card body
 }
 
 // Footer Styles
@@ -61,6 +65,7 @@ h2 {
     background-color: #343a40;
     color: #ffffff;
     padding: 3rem 0;
+    text-align: center; // Center align text in the footer
 }
 
 .footer h5 {
