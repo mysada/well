@@ -33,9 +33,32 @@ document.addEventListener('DOMContentLoaded', function () {
 
     function updateCartTotal() {
         const totalElements = document.querySelectorAll('.item-total');
-        const total = Array.from(totalElements).reduce((acc, element) => acc + parseFloat(element.textContent.replace('$', '')), 0);
+        let subtotal = Array.from(totalElements).reduce((acc, element) => acc + parseFloat(element.textContent.replace('$', '')), 0);
 
+        // Update Subtotal
+        const subtotalElement = document.getElementById('subtotal');
+        subtotalElement.textContent = subtotal.toFixed(2);
+
+        // Calculate and update GST and PST
+        const gstRate = 0.05;
+        const pstRate = 0.07;
+        const gst = subtotal * gstRate;
+        const pst = subtotal * pstRate;
+
+        const gstElement = document.getElementById('gst');
+        const pstElement = document.getElementById('pst');
+        gstElement.textContent = gst.toFixed(2);
+        pstElement.textContent = pst.toFixed(2);
+
+        // Update Total
+        const total = subtotal + gst + pst;
         const cartTotalElement = document.getElementById('cart-total');
         cartTotalElement.textContent = total.toFixed(2);
+
+        // Update the item count
+        const quantitySelects = document.querySelectorAll('.quantity-select');
+        const totalItems = Array.from(quantitySelects).reduce((acc, select) => acc + parseInt(select.value), 0);
+        const itemCountElement = document.getElementById('item-count');
+        itemCountElement.textContent = totalItems;
     }
 });
