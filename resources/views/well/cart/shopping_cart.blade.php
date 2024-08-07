@@ -67,7 +67,7 @@
                 </div>
                 <div class="cart-summary">
                     <h4>Summary</h4>
-                    <p>Items: <span id="item-count">{{ $cartItems->count() }}</span></p>
+                    <p>Items: <span id="item-count">{{ $cartItems->sum('quantity') }}</span></p>
                     <p>Shipping: $0.00</p> <!-- Adjust as necessary -->
                     <p class="total">Total: $<span id="cart-total">{{ number_format($cartItems->sum(fn($item) => $item->product ? $item->product->price * $item->quantity : 0), 2) }}</span></p>
                     <button class="btn btn-primary btn-block">Go to Checkout</button>
