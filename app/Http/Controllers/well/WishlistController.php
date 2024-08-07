@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\well;
 
+use App\Helpers\RouterTools;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\WishlistReq;
 use App\Models\CartItem;
@@ -41,8 +42,7 @@ class WishlistController extends Controller
         if ($existingWishlist) {
             $existingWishlist->delete();
 
-            return back()->with(
-              'success',
+            return RouterTools::successBack(
               'Removed from wishlist successfully'
             );
         } else {
@@ -51,7 +51,7 @@ class WishlistController extends Controller
               'product_id' => $productId,
             ]);
 
-            return back()->with('success', 'Add to wishlist successfully');
+            return RouterTools::successBack('Add to wishlist successfully');
         }
     }
 
@@ -78,7 +78,7 @@ class WishlistController extends Controller
             }
 
             $product = Wishlist::where('user_id', $userId)
-                               ->where('id', $productId)
+                               ->where('product_id', $productId)
                                ->first();
 
             if ($product) {
@@ -86,7 +86,7 @@ class WishlistController extends Controller
             }
         });
 
-        return $this->successPage(
+        return RouterTools::success(
           'Add to cart successfully',
           'WishlistIndex'
         );
@@ -103,15 +103,15 @@ class WishlistController extends Controller
         if ($product) {
             $product->delete();
 
-            return $this->successPage(
+            return RouterTools::success(
               "Deleted {$product->name} successfully.",
               'WishlistIndex'
             );
         }
 
-        return $this->errorPage(
+        return RouterTools::error(
           "Deleted {$product->name} successfully.",
-          'Product not found'
+          'WishlistIndex'
         );
     }
 
