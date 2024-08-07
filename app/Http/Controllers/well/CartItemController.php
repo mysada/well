@@ -5,9 +5,9 @@ namespace App\Http\Controllers\well;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\CartItemReq;
 use App\Models\CartItem;
+use App\Models\Product;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Schema;
 use Illuminate\Http\RedirectResponse;
 
 class CartItemController extends Controller
@@ -78,6 +78,9 @@ class CartItemController extends Controller
         return $this->error("Remove failed");
     }
 
+    /**
+     * Show a specific product and related products
+     */
     public function show($id)
     {
         // Fetch the product based on the provided ID
@@ -90,7 +93,7 @@ class CartItemController extends Controller
             ->take(4)
             ->get();
 
-        return view('well.cart.shopping_cart', compact('product', 'relatedProducts'));
+        return view('well.cart.product_show', compact('product', 'relatedProducts'));
     }
 
     /**
@@ -104,6 +107,9 @@ class CartItemController extends Controller
         return redirect(url('/cart_items'))->with('success', $msg);
     }
 
+    /**
+     * Error message
+     */
     private function error($msg): RedirectResponse
     {
         return redirect(url('/cart_items'))->with('error', $msg);

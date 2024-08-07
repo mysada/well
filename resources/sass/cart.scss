@@ -1,98 +1,104 @@
-
-
-body {
-    font-family: 'Poppins', 'Arial', 'Avenir Next Georgian', Arial;
+.cart-title {
+    font-size: 2rem;
+    font-weight: bold;
+    margin-bottom: 20px;
 }
 
-h1, h2, h3 {
-    font-family: 'Poppins', 'Avenir Next Georgian', Arial;
-    font-weight: 700;
-}
-
-.cart-item {
-    border-bottom: 1px solid #e1e1e1;
-    padding: 15px 0;
-    display: flex;
-    align-items: center;
-}
-
-.cart-item img {
-    height: 100px;
-    object-fit: cover;
-    margin-right: 15px;
-}
-
-.cart-item .item-details {
-    flex-grow: 1;
-}
-
-.cart-item .item-quantity {
-    display: flex;
-    align-items: center;
-}
-
-.item-quantity button {
-    background-color: #00AB7A;
-    color: #fff;
-    border: none;
-    border-radius: 50%;
-    width: 30px;
-    height: 30px;
-    font-size: 18px;
-    font-weight: 700;
-    text-align: center;
-    line-height: 30px;
-    cursor: pointer;
-    transition: background-color 0.3s ease, transform 0.3s ease;
-}
-
-.item-quantity button:hover {
-    background-color: #fff;
-    color: #00AB7A;
-    border: 1px solid #00AB7A;
-}
-
-.item-quantity button:active {
-    background-color: #008E65;
-    transform: scale(0.95);
-}
-
-.item-quantity input {
-    width: 50px;
-    text-align: center;
+.card {
     border: 1px solid #e1e1e1;
-    border-radius: 5px;
-    font-size: 16px;
-    margin: 0 10px;
+    border-radius: 8px;
+    margin-bottom: 16px;
+    padding: 16px;
 }
 
-.total-price {
-    font-size: 20px;
-    font-weight: 700;
-    text-align: right;
+.card-img-top {
+    width: 100px;
+    height: auto;
 }
 
-.btn-checkout {
-    background-color: #00AB7A;
-    color: #fff;
-    border: none;
-    border-radius: 5px;
-    padding: 10px 20px;
-    font-size: 16px;
-    font-weight: 700;
-    transition: background-color 0.3s ease, transform 0.3s ease;
-    text-decoration: none;
-    display: inline-block;
+.card-body {
+    padding: 0 16px;
 }
 
-.btn-checkout:hover {
-    background-color: #fff;
-    color: #00AB7A;
-    border: 1px solid #00AB7A;
+.store-info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
 }
 
-.btn-checkout:active {
-    background-color: #008E65;
-    transform: scale(0.95);
-    color: #fff;
+.store-info h5 {
+    margin: 0;
+}
+
+.store-info span {
+    font-size: 0.875rem;
+    color: #888;
+}
+
+.product-details {
+    margin-bottom: 10px;
+}
+
+.product-details h5 {
+    font-size: 1.1rem;
+    margin: 0;
+}
+
+.product-details p {
+    margin: 0;
+    color: #333;
+}
+
+.product-actions {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.input-group {
+    width: 120px;
+}
+
+.input-group .btn {
+    border-radius: 0;
+}
+
+.btn-outline-secondary {
+    background-color: #f8f9fa;
+    border-color: #ced4da;
+}
+
+.btn-outline-secondary:hover {
+    background-color: #e2e6ea;
+}
+
+.btn-danger {
+    border-radius: 0;
+}
+
+.cart-summary {
+    background-color: #f8f9fa;
+    padding: 16px;
+    border-radius: 8px;
+}
+
+.cart-summary h4 {
+    font-size: 1.5rem;
+    margin-bottom: 20px;
+}
+
+.cart-summary p {
+    margin: 0;
+}
+
+.cart-summary .total {
+    font-weight: bold;
+    font-size: 1.25rem;
+    margin-top: 20px;
+}
+
+.btn-block {
+    display: block;
+    width: 100%;
 }
