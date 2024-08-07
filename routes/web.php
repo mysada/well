@@ -64,7 +64,7 @@ Route::get('/cart_items', [CartItemController::class, 'index'])->name('CartItemI
     ]);
 });
 
-// profile routes updated by Amsn, revised by Manish
+// profile routes updated by Aman, revised by Manish
 Route::middleware(['auth'])->group(function () {
     Route::get('/profile', [UserController::class, 'index'])->name('user.profile');
     Route::post('/profile/logout', [UserController::class, 'logout'])->name('user.logout');

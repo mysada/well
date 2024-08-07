@@ -115,63 +115,77 @@ h1, h2, h3 {
     color: #fff;
 }
 
-.contact-info i {
-    color: #00A875;
-    background-color: #fff;
-    border-radius: 50%;
-    padding: 10px;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    width: 40px;
-    height: 40px;
-    margin-right: 15px;
-    flex-shrink: 0;
-}
-
-.contact-text {
-    margin-left: 0;
-    text-align: center;
-}
 
 .contact-info a {
     color: #fff;
     text-decoration: none;
 }
 
-.contact-info a:hover {
-    text-decoration: underline;
-}
-
-.social-icons i {
-    margin: 0 10px;
-}
 
 .contact form .form-group {
     margin-bottom: 1rem;
 }
 
-.contact form .form-control {
-    padding: 0.75rem;
-    font-size: 1rem;
-    border: 1px solid #ccc;
-    border-radius: 5px;
+
+
+//about-icon page starts
+
+.contact-icon, .social-icon {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: 2px solid #ccc;
+    padding: 5px;
+    background-color: #fff;
+    background-image: radial-gradient(circle, #f9f9f9 40%, #fff 100%);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+    vertical-align: middle;
+    margin-right: 8px;
+    box-sizing: border-box;
+    position: relative;
 }
 
-.contact form .btn-black {
-    font-size: 1.1rem;
-    padding: 0.5rem 2rem;
-    background-color: #000;
-    color: #fff;
-    border: none;
-    border-radius: 5px;
-    text-align: right;
-    float: right;
+.contact-icon img, .social-icon img {
+    width: 60%;
+    height: auto;
+    transition: transform 0.3s ease;
 }
 
-.contact form .btn-black:hover {
-    background-color: #333;
+.contact-icon::before, .social-icon::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(0,0,0,0.1) 20%, transparent 80%);
+    opacity: 0;
+    transition: opacity 0.3s ease;
 }
+
+.contact-icon:hover, .social-icon:hover {
+    background-color: #e0e0e0;
+    border-color: #007bff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    transform: scale(1.1) rotate(10deg);
+}
+
+.contact-icon:hover::before, .social-icon:hover::before {
+    opacity: 1;
+}
+
+.contact-icon:hover img, .social-icon:hover img {
+    transform: scale(1.1);
+}
+
+//about icons page ends
+
+
 
 .footer {
     background-color: #000;
