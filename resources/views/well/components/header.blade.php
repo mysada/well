@@ -2,7 +2,7 @@
 <!-- Header Section -->
 <nav class="navbar navbar-expand-lg navbar-light bg-light" style="flex-direction: column;">
     <div id="header-content" class="d-flex justify-content-between my-2">
-        <a class="navbar-brand" href="#">
+        <a class="navbar-brand" href="{{route('home')}}">
             <img src="/images/logo/header_logo.png" alt="Brand Logo" style="height: 40px;">
         </a>
         <button id="navbar-toggler" class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation" onclick="hideButton()">
@@ -12,16 +12,16 @@
         <div class=" navbar-collapse col-md-8" id="navbarNav">
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item">
-                    <a class="nav-link {{ request()->is('/') ? 'active' : '' }}" href="{{ url('/') }}">Home</a>
+                    <a class="nav-link {{ request()->is('/') ? 'active' : '' }}" href="{{route('home')}}">Home</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link {{ request()->is('products') ? 'active' : '' }}" href="{{ url('/products') }}">Shop</a>
+                    <a class="nav-link {{ request()->is('products') ? 'active' : '' }}" href="{{route('products.index')}}">Shop</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link {{ request()->is('about') ? 'active' : '' }}" href="{{ url('/about') }}">About Us</a>
+                    <a class="nav-link {{ request()->is('about') ? 'active' : '' }}" href="{{route('about')}}">About Us</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link {{ request()->is('contact') ? 'active' : '' }}" href="{{ url('/contact') }}">Contact Us</a>
+                    <a class="nav-link {{ request()->is('contact') ? 'active' : '' }}" href="{{ route('contact.page') }}">Contact Us</a>
                 </li>
 
                 @guest
@@ -48,7 +48,7 @@
                         </form>
                     </div>
                 </li>
-                <a class="nav-link" href="#">
+                <a class="nav-link" href="{{route("CartIndex")}}">
                     <img src="https://fonts.gstatic.com/s/i/materialicons/shopping_cart/v8/24px.svg" alt="Cart" style="height: 24px;">
                 </a>
                 @endguest
