@@ -7,7 +7,7 @@
     @if ($randomHeroSection)
         <section class="hero-section">
             <img src="{{ asset($randomHeroSection['image']) }}" alt="Hero Image">
-            
+
             <div class="hero-content">
                 <h1>{{ $randomHeroSection['title'] }}</h1>
                 <p>{{ $randomHeroSection['description'] }}</p>
@@ -43,7 +43,7 @@
 <section class="best-seller-section">
         <div class="container">
             <h2>Best Seller</h2>
-            <div class="row-best-seller d-flex">
+            <div class="row-best-seller d-flex gap-4">
                 <div class="col-md-6">
                     <div class="row-best-seller-left text-center">
                         @foreach($bestSellers->slice(0, 1) as $product)
