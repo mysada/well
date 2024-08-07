@@ -12,6 +12,7 @@
                         <div>
                             <div class="product-title">{{$wishlist->product->name}}</div>
                             <div class="product-price">${{$wishlist->product->price}}</div>
+                            <div class="product-price">{{$wishlist->product->description}}</div>
                         </div>
                     </div>
                     <div class="product-actions">
