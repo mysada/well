@@ -65,7 +65,7 @@
                         <p>Subtotal: $<span id="subtotal">{{ number_format($cartItems->sum(fn($item) => $item->product ? $item->product->price * $item->quantity : 0), 2) }}</span></p>
                         <p class="total">Total: $<span id="cart-total">{{ number_format($cartItems->sum(fn($item) => $item->product ? $item->product->price * $item->quantity : 0), 2) }}</span></p>
 {{--                        <p>Your taxes and shipping charges will be calculate at checkout..</p>--}}
-                        <button class="btn btn-primary btn-block">Go to Checkout</button>
+                        <a href="{{ route('checkout.show') }}" class="btn btn-primary btn-block">Go to Checkout</a>
                     </div>
                 </div>
             @endif
