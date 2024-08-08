@@ -139,11 +139,7 @@
                     <div class="form-section">
                         <h4>Payment Information</h4>
                         <div class="error-container">
-                            <input type="text" name="amount" placeholder="Amount" value="{{ old('amount') }}" required>
-                            <div id="amount-error" class="error-message"></div>
-                        </div>
-                        <div class="error-container">
-                            <input type="text" name="card-number" placeholder="Card Number"
+                            <input type="number" name="card-number" placeholder="Card Number"
                                    value="{{ old('card-number') }}" required>
                             <div id="card-number-error" class="error-message"></div>
                         </div>
@@ -161,7 +157,7 @@
                         </div>
 
                         <div class="error-container">
-                            <input type="text" name="card-cvc" placeholder="CVC" value="{{ old('card-cvc') }}" required>
+                            <input type="number" name="card-cvc" placeholder="CVC" value="{{ old('card-cvc') }}" required>
                             <div id="card-cvc-error" class="error-message"></div>
                         </div>
 

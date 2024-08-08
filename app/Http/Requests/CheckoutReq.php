@@ -27,9 +27,9 @@ class CheckoutReq extends FormRequest
             'order-id'         => 'required|exists:orders,id',
             'card-number'      => 'required|regex:/^\d{16}$/',
             'card-name'        => 'required|regex:/^[a-zA-Z\s]+$/',
-            'card-expiry'      => 'required|regex:/^(0[1-9]|1[0-2])\/\d{2}$/',
+            'card-expiry'      => 'required|regex:/^(0[1-9]|1[0-2])\d{2}$/',
             'card-cvc'         => 'required|regex:/^\d{3}$/',
-            'card-type'        => 'required|in:Visa,MasterCard,American Express,Discover',
+            'card-type'        => 'required|in:visa,mastercard,amex',
 
             // Shipping Information
             'shipping-name'    => 'required|regex:/^[a-zA-Z\s]+$/',

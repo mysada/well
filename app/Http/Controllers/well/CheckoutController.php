@@ -18,7 +18,7 @@ class CheckoutController extends Controller
 
     public function __construct(PaymentService $paymentService)
     {
-        $this->$paymentService = $paymentService;
+        $this->paymentService = $paymentService;
     }
 
     public function showCheckout(int $id)

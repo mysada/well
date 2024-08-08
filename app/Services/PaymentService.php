@@ -2,7 +2,6 @@
 
 namespace App\Services;
 
-use App\Helpers\RouterTools;
 use App\Http\Requests\CheckoutReq;
 use App\Models\Country;
 use App\Models\Order;
@@ -30,12 +29,14 @@ class PaymentService
      */
     public function checkout(CheckoutReq $request)
     {
-        $req = $request->validated();
-        $order = Order::with('orderDetails')->find($req['order-id']);
-        $country = Country::find($req['shipping-country']);
+        $req       = $request->validated();
+        $order     = Order::with('orderDetails')->find($req['order-id']);
+        $country   = Country::find($req['shipping-country']);
         $gstAmount = 0;
         $pstAmount = 0;
-        $amount = $order->orderDetails->sum('total_price'); // Calculate total amount from order details
+        $amount    = $order->orderDetails->sum(
+          'total_price'
+        ); // Calculate total amount from order details
 
         if ($country->code === 'CA') {
             foreach ($country->provinces as $province) {
@@ -49,48 +50,57 @@ class PaymentService
                 }
             }
         }
-        $totalAmount = $amount + $gstAmount + $pstAmount + $country->shipping_rate;
+        $totalAmount = $amount + $gstAmount + $pstAmount
+                       + $country->shipping_rate;
 
-        DB::beginTransaction();
-        try {
-            // Update order with pricing information
-            $order->update([
-              'pre_tax_amount' => $amount,
-              'post_tax_amount' => $totalAmount - ($gstAmount + $pstAmount),
-              'gst' => $gstAmount,
-              'pst' => $pstAmount,
-            ]);
+        $paymentResponse = $this->fiveBx(
+          $totalAmount,
+          $req['card-number'],
+          $req['card-expiry-date'],
+          $req['card-cvv'],
+          $req['order-id'],
+          $req['card-type']
+        );
+        if ($paymentResponse) {
+            DB::beginTransaction();
+            try {
+                // Update order with pricing information
+                $order->update([
+                  'pre_tax_amount'  => $amount,
+                  'post_tax_amount' => $totalAmount - ($gstAmount + $pstAmount),
+                  'gst'             => $gstAmount,
+                  'pst'             => $pstAmount,
+                ]);
 
-            // Create payment record
-            $payment = Payment::create([
-              'order_id'   => $req['order-id'],
-              'method'     => 'Credit Card',
-              'amount'     => $totalAmount,
-              'gst'        => $gstAmount,
-              'pst'        => $pstAmount,
-              'discount'   => 0,
-              'status'     => 'Pending',
-              'payer_name' => $req['card-name'],
-              'payer_card' => $req['card-number'],
-            ]);
+                // Create payment record
+                $payment = Payment::create([
+                  'order_id'   => $req['order-id'],
+                  'method'     => 'Credit Card',
+                  'amount'     => $totalAmount,
+                  'gst'        => $gstAmount,
+                  'pst'        => $pstAmount,
+                  'discount'   => 0,
+                  'status'     => 'Pending',
+                  'payer_name' => $req['card-name'],
+                  'payer_card' => $req['card-number'],
+                ]);
 
-            // Create transaction record
-            Transaction::create([
-              'order_id'         => $req['order-id'],
-              'user_id'          => auth()->id(),
-              'amount'           => $totalAmount,
-              'transaction_type' => 'Payment',
-              'currency'         => 'USD', // Change as needed
-              'status'           => 'Pending',
-              'response'         => null,
-            ]);
+                // Create transaction record
+                Transaction::create([
+                  'order_id'         => $req['order-id'],
+                  'user_id'          => auth()->id(),
+                  'amount'           => $totalAmount,
+                  'transaction_type' => 'Payment',
+                  'currency'         => 'USD', // Change as needed
+                  'status'           => 'Pending',
+                  'response'         => null,
+                ]);
 
-            DB::commit();
-
-
-        } catch (\Exception $e) {
-            DB::rollBack();
-            throw new Exception('Pay failed');
+                DB::commit();
+            } catch (\Exception $e) {
+                DB::rollBack();
+                throw new Exception('Pay failed');
+            }
         }
     }
 

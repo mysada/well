@@ -29,7 +29,7 @@ class OrderService
             $order = Order::create([
               'user_id' => $userId,
               'quantity' => $cartItems->sum('quantity'),
-              'price' => $this->calculateTotalPrice($cartItems),
+              'pre_tax_amount' => $this->calculateTotalPrice($cartItems),
               'status' => 'Pending',
             ]);
 

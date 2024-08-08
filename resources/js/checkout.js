@@ -198,7 +198,7 @@ $('.btn-checkout-custom').click(function (e) {
 
   const cardNumberRegex = /^\d{16}$/;
   const cardNameRegex = /^[a-zA-Z\s]+$/;
-  const cardExpiryRegex = /^(0[1-9]|1[0-2])\/\d{2}$/;
+  const cardExpiryRegex = /^(0[1-9]|1[0-2])\d{2}$/;
   const cardCvcRegex = /^\d{3}$/;
 
   const nameRegex = /^[a-zA-Z\s]+$/;
@@ -212,7 +212,7 @@ $('.btn-checkout-custom').click(function (e) {
 
   isValid &= validateField($cardNumber, cardNumberRegex, 'Please enter a valid 16-digit card number.');
   isValid &= validateField($cardName, cardNameRegex, 'Please enter a valid cardholder name.');
-  isValid &= validateField($cardExpiry, cardExpiryRegex, 'Please enter a valid expiry date in MM/YY format.');
+  isValid &= validateField($cardExpiry, cardExpiryRegex, 'Please enter a valid expiry date in MMYY format.');
   isValid &= validateField($cardCvc, cardCvcRegex, 'Please enter a valid 3-digit CVC.');
   isValid &= validateField($cardType, /.+/, 'Please select a card type.');
 
