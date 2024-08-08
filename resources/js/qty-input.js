@@ -62,3 +62,16 @@ var QtyInput = (function () {
         $input.val(qty);
     });
 })();
+
+document.addEventListener('DOMContentLoaded', function () {
+    const qtyInputs = document.querySelectorAll('.product-qty');
+    const addToCartForms = document.querySelectorAll('.add-to-cart-form');
+
+    addToCartForms.forEach(form => {
+        form.addEventListener('submit', function (e) {
+            const qtyInput = this.querySelector('.product-qty-input');
+            const currentQty = qtyInput.closest('.qty-input').querySelector('.product-qty').value;
+            qtyInput.value = currentQty;
+        });
+    });
+});
