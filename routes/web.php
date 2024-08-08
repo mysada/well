@@ -12,6 +12,7 @@ use App\Http\Controllers\well\ContactController;
 use App\Http\Controllers\well\FaqController;
 use App\Http\Controllers\well\HomeController;
 use App\Http\Controllers\well\CheckoutController;
+use App\Http\Controllers\well\Privacy_PolicyController;
 use App\Http\Controllers\well\ProductController;
 use App\Http\Controllers\well\UserController;
 use App\Http\Controllers\well\WishlistController;
@@ -24,6 +25,7 @@ Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('/home', [HomeController::class, 'index']);
 Route::get('/about', [AboutController::class, 'index'])->name('about');
 Route::get('/faq', [FaqController::class, 'index'])->name("faq");
+Route::get('/privacy-policy', [Privacy_PolicyController::class, 'index'])->name('privacy_policy');
 
 //Manish_Contact_Page
 Route::get('/contact', function () {
