@@ -14,6 +14,7 @@ use App\Http\Controllers\well\FaqController;
 use App\Http\Controllers\well\HomeController;
 use App\Http\Controllers\well\CheckoutController;
 use App\Http\Controllers\well\PrivacyPolicyController;
+use App\Http\Controllers\well\CancellationRefundsController;
 use App\Http\Controllers\well\ProductController;
 use App\Http\Controllers\well\UserController;
 use App\Http\Controllers\well\WishlistController;
@@ -27,6 +28,7 @@ Route::get('/home', [HomeController::class, 'index']);
 Route::get('/about', [AboutController::class, 'index'])->name('about');
 Route::get('/faq', [FaqController::class, 'index'])->name("faq");
 Route::get('/privacy-policy', [PrivacyPolicyController::class, 'index'])->name('privacy_policy');
+Route::get('/cancellation-refunds', [CancellationRefundsController::class, 'index'])->name('cancellation_refunds');
 
 //Manish_Contact_Page
 Route::get('/contact', function () {
