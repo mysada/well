@@ -4,54 +4,184 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cancellation and Refunds - Wellness Balance</title>
-    <link rel="stylesheet" href="path/to/your/styles.css"> <!-- Link to your CSS file -->
-    <link rel="stylesheet" href="path/to/your/other/styles.css"> <!-- Additional CSS files if needed -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #fafafa !important;
+            font-family: 'Poppins', 'Avenir Next', Arial, sans-serif !important;
+            color: #333 !important;
+            margin: 0 !important;
+            padding: 0 !important;
+        }
+
+        .policy-container {
+            max-width: 1000px !important;
+            margin: 60px auto !important;
+            padding: 40px !important;
+            background-color: #ffffff !important;
+            border-radius: 8px !important;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1) !important;
+            line-height: 1.8 !important;
+            color: #4a4a4a !important;
+        }
+
+        .policy-container h1,
+        .policy-container h2,
+        .policy-container h3 {
+            font-family: 'Poppins', 'Avenir Next Georgian', Arial !important;
+            font-weight: 700 !important;
+            color: #212121 !important;
+            text-transform: uppercase !important;
+            border-bottom: 2px solid #20c997 !important;
+            padding-bottom: 10px !important;
+        }
+
+        .policy-container h1 {
+            font-size: 2.5rem !important;
+            margin-bottom: 30px !important;
+            text-align: center !important;
+        }
+
+        .policy-container h2 {
+            font-size: 1.75rem !important;
+            margin-top: 40px !important;
+        }
+
+        .policy-container h3 {
+            font-size: 1.25rem !important;
+            margin-top: 25px !important;
+        }
+
+        .policy-section {
+            margin-bottom: 40px !important;
+        }
+
+        .policy-section p {
+            font-size: 1rem !important;
+            margin-bottom: 20px !important;
+            text-align: justify !important;
+        }
+
+        .policy-section ul {
+            list-style-type: disc !important;
+            margin-left: 20px !important;
+            margin-top: 15px !important;
+        }
+
+        .policy-section li {
+            font-size: 1rem !important;
+            margin-bottom: 15px !important;
+            line-height: 1.6 !important;
+        }
+
+        .policy-section a {
+            color: #20c997 !important;
+            text-decoration: none !important;
+        }
+
+        .policy-section a:hover {
+            text-decoration: underline !important;
+        }
+
+        a {
+            color: #20c997 !important;
+            text-decoration: none !important;
+            font-weight: 600 !important;
+        }
+
+        a:hover {
+            text-decoration: underline !important;
+        }
+
+        @media (max-width: 768px) {
+            .policy-container {
+                padding: 20px !important;
+                max-width: 100% !important;
+            }
+
+            .policy-container h1 {
+                font-size: 2rem !important;
+            }
+
+            .policy-container h2 {
+                font-size: 1.5rem !important;
+            }
+
+            .policy-container h3 {
+                font-size: 1.125rem !important;
+            }
+        }
+    </style>
 </head>
 <body>
-<div class="cancellation-refunds-container">
-    <h1>Cancellation and Refunds Policy</h1>
 
-    <div class="policy-section">
-        <h2>Introduction</h2>
-        <p>Welcome to Wellness Balance's Cancellation and Refunds Policy. This page explains how you can cancel your order and request a refund, as well as our return and exchange policies.</p>
-    </div>
+<div class="header text-center" style="background-color: #007bff; color: white; padding: 10px 20px;">
+    <h1>Wellness Balance</h1>
+</div>
 
-    <div class="policy-section">
-        <h2>Cancellation Policy</h2>
-        <p>You may cancel your order within 24 hours of placing it. To request a cancellation, please contact our customer support team at <a href="mailto:support@wellnessbalance.com">support@wellnessbalance.com</a>. Note that certain products or services may not be eligible for cancellation.</p>
-    </div>
+<div class="container mt-5">
+    <div class="policy-container">
+        <h1 class="text-center mb-4">Cancellation and Refunds</h1>
 
-    <div class="policy-section">
-        <h2>Refund Policy</h2>
-        <p>Refunds are processed within 7-10 business days of receiving your return. To request a refund, please contact our support team. Refunds will be issued to the original payment method used for the purchase. Some items are non-refundable, including...</p>
-    </div>
+        <div class="policy-section">
+            <p>Welcome to Wellness Balance's Cancellation and Refunds Policy. This page outlines how you can cancel your order and request a refund, as well as our return and exchange policies.</p>
+        </div>
 
-    <div class="policy-section">
-        <h2>Return Policy</h2>
-        <p>Items can be returned within 30 days of receipt. Please ensure that the items are unused and in their original packaging. Return shipping costs may apply. To initiate a return, contact customer support for instructions.</p>
-    </div>
+        <div class="policy-section">
+            <h2>Cancellation Policy</h2>
+            <ul>
+                <li>You may cancel your order within 24 hours of placing it. To request a cancellation, please contact our customer support team at <a href="mailto:support@wellnessbalance.com">support@wellnessbalance.com</a>.</li>
+                <li>Note that certain products or services may not be eligible for cancellation.</li>
+            </ul>
+        </div>
 
-    <div class="policy-section">
-        <h2>Exchange Policy</h2>
-        <p>Exchanges are available for defective or incorrect items. To request an exchange, follow the return process and specify the item you wish to receive in exchange. Exchanges are subject to availability.</p>
-    </div>
+        <div class="policy-section">
+            <h2>Refund Policy</h2>
+            <ul>
+                <li>Refunds are processed within 7-10 business days of receiving your return. To request a refund, please contact our support team.</li>
+                <li>Refunds will be issued to the original payment method used for the purchase. Some items are non-refundable.</li>
+            </ul>
+        </div>
 
-    <div class="policy-section">
-        <h2>Contact Information</h2>
-        <p>If you have any questions or need assistance with cancellations, refunds, or returns, please contact us:</p>
-        <p>Email: <a href="mailto:support@wellnessbalance.com">support@wellnessbalance.com</a><br>
-            Phone: 9664165687</p>
-    </div>
+        <div class="policy-section">
+            <h2>Return Policy</h2>
+            <ul>
+                <li>Items can be returned within 30 days of receipt. Ensure that items are unused and in their original packaging.</li>
+                <li>Return shipping costs may apply. Contact customer support for instructions on initiating a return.</li>
+            </ul>
+        </div>
 
-    <div class="policy-section">
-        <h2>Legal and Compliance</h2>
-        <p>Our cancellation and refund policy complies with applicable consumer protection laws. For more details, please refer to the legal requirements governing such policies.</p>
-    </div>
+        <div class="policy-section">
+            <h2>Exchange Policy</h2>
+            <ul>
+                <li>Exchanges are available for defective or incorrect items. Follow the return process and specify the item you wish to receive in exchange.</li>
+                <li>Exchanges are subject to availability.</li>
+            </ul>
+        </div>
 
-    <div class="policy-section">
-        <h2>Updates to This Policy</h2>
-        <p>We may update this policy periodically. Any changes will be posted on this page with an updated effective date. Please review this policy regularly to stay informed about our cancellation and refund practices.</p>
+        <div class="policy-section">
+            <h2>Contact Information</h2>
+            <p>If you have any questions or need assistance with cancellations, refunds, or returns, please contact us:</p>
+            <p>Email: <a href="mailto:support@wellnessbalance.com">support@wellnessbalance.com</a><br>
+                Phone: 9664165687</p>
+        </div>
+
+        <div class="policy-section">
+            <h2>Legal and Compliance</h2>
+            <p>Our cancellation and refund policy complies with applicable consumer protection laws. For more details, please refer to the legal requirements governing such policies.</p>
+        </div>
+
+        <div class="policy-section">
+            <h2>Updates to This Policy</h2>
+            <p>We may update this policy periodically. Any changes will be posted on this page with an updated effective date. Please review this policy regularly to stay informed about our cancellation and refund practices.</p>
+        </div>
     </div>
 </div>
+
+<div class="footer" style="background-color: #007bff; color: white; padding: 10px 20px; text-align: center;">
+    <p>&copy; 2023 Wellness Balance. All rights reserved.</p>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
