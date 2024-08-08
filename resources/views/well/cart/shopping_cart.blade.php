@@ -66,7 +66,7 @@
                                 <p>GST (5%): $<span id="gst">{{ number_format(0.05 * $cartItems->sum(fn($item) => $item->product ? $item->product->price * $item->quantity : 0), 2) }}</span></p>
                                 <p>PST (7%): $<span id="pst">{{ number_format(0.07 * $cartItems->sum(fn($item) => $item->product ? $item->product->price * $item->quantity : 0), 2) }}</span></p>
                                 <p class="total">Total: $<span id="cart-total">{{ number_format(1.12 * $cartItems->sum(fn($item) => $item->product ? $item->product->price * $item->quantity : 0), 2) }}</span></p>
-                                <button class="btn btn-primary btn-block">Go to Checkout</button>
+                                <a href="{{ route('checkout.show') }}" class="btn btn-primary btn-block">Go to Checkout</a>
                             </div>
                         </div>
                     @endif

@@ -11,7 +11,7 @@ use App\Http\Controllers\well\CartItemController;
 use App\Http\Controllers\well\ContactController;
 use App\Http\Controllers\well\FaqController;
 use App\Http\Controllers\well\HomeController;
-use App\Http\Controllers\well\OrderController;
+use App\Http\Controllers\well\CheckoutController;
 use App\Http\Controllers\well\ProductController;
 use App\Http\Controllers\well\UserController;
 use App\Http\Controllers\well\WishlistController;
@@ -50,6 +50,9 @@ Route::middleware('auth')->group(function () {
       'destroy' => 'CartItemDestroy',
     ]);
 
+ //checkout route - Manish
+    Route::get('/checkout', [CheckoutController::class, 'showCheckout'])->name('checkout.show');
+    Route::post('/checkout/process', [CheckoutController::class, 'process'])->name('checkout.process');
     /**
      * order routes
      */
