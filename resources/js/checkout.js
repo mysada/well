@@ -347,6 +347,7 @@ document.addEventListener('DOMContentLoaded', function () {
         const cardName = document.querySelector('input[name="card-name"]');
         const cardExpiry = document.querySelector('input[name="card-expiry"]');
         const cardCvc = document.querySelector('input[name="card-cvc"]');
+        const cardType = document.querySelector('select[name="card-type"]');
 
         const shippingName = document.querySelector('input[name="shipping-name"]');
         const shippingAddress = document.querySelector('input[name="shipping-address"]');
@@ -382,6 +383,7 @@ document.addEventListener('DOMContentLoaded', function () {
         isValid &= validateField(cardName, cardNameRegex, 'Please enter a valid cardholder name.');
         isValid &= validateField(cardExpiry, cardExpiryRegex, 'Please enter a valid expiry date in MM/YY format.');
         isValid &= validateField(cardCvc, cardCvcRegex, 'Please enter a valid 3-digit CVC.');
+        isValid &= validateField(cardType, /.+/, 'Please select a card type.');
 
         isValid &= validateField(shippingName, nameRegex, 'Please enter a valid name.');
         isValid &= validateField(shippingAddress, addressRegex, 'Please enter a valid address.');

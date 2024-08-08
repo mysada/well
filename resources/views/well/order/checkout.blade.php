@@ -135,31 +135,43 @@
             <!-- Payment Information -->
             <div class="form-section">
                 <h4>Payment Information</h4>
-                <form id="payment-form">
-                    @csrf
-                    <div class="error-container">
-                        <input type="text" name="card-number" placeholder="Card Number" value="{{ old('card-number') }}" required>
-                        <div id="card-number-error" class="error-message"></div>
-                    </div>
+                <div class="error-container">
+                    <input type="text" name="amount" placeholder="Amount" value="{{ old('amount') }}" required>
+                    <div id="amount-error" class="error-message"></div>
+                </div>
+                <div class="error-container">
+                    <input type="text" name="card-number" placeholder="Card Number" value="{{ old('card-number') }}" required>
+                    <div id="card-number-error" class="error-message"></div>
+                </div>
 
-                    <div class="error-container">
-                        <input type="text" name="card-name" placeholder="Cardholder Name" value="{{ old('card-name') }}" required>
-                        <div id="card-name-error" class="error-message"></div>
-                    </div>
+                <div class="error-container">
+                    <input type="text" name="card-name" placeholder="Cardholder Name" value="{{ old('card-name') }}" required>
+                    <div id="card-name-error" class="error-message"></div>
+                </div>
 
-                    <div class="error-container">
-                        <input type="text" name="card-expiry" placeholder="Expiry Date (MM/YY)" value="{{ old('card-expiry') }}" required>
-                        <div id="card-expiry-error" class="error-message"></div>
-                    </div>
+                <div class="error-container">
+                    <input type="text" name="card-expiry" placeholder="Expiry Date (MM/YY)" value="{{ old('card-expiry') }}" required>
+                    <div id="card-expiry-error" class="error-message"></div>
+                </div>
 
-                    <div class="error-container">
-                        <input type="text" name="card-cvc" placeholder="CVC" value="{{ old('card-cvc') }}" required>
-                        <div id="card-cvc-error" class="error-message"></div>
-                    </div>
-                </form>
+                <div class="error-container">
+                    <input type="text" name="card-cvc" placeholder="CVC" value="{{ old('card-cvc') }}" required>
+                    <div id="card-cvc-error" class="error-message"></div>
+                </div>
+
+                <div class="error-container">
+                    <select name="card-type" required>
+                        <option value="">Select Card Type</option>
+                        <option value="visa" {{ old('card-type') == 'visa' ? 'selected' : '' }}>Visa</option>
+                        <option value="mastercard" {{ old('card-type') == 'mastercard' ? 'selected' : '' }}>MasterCard</option>
+                        <option value="amex" {{ old('card-type') == 'amex' ? 'selected' : '' }}>American Express</option>
+                    </select>
+                    <div id="card-type-error" class="error-message"></div>
+                </div>
             </div>
 
-            <a href="#" class="btn btn-primary btn-checkout-custom">Place Order</a>
+            <button type="submit" class="btn btn-primary btn-checkout-custom">Place Order</button>
+            </form>
         </div>
 
         <!-- Cart Summary -->
