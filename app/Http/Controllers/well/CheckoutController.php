@@ -11,7 +11,6 @@ use Illuminate\Support\Facades\DB;
 
 class CheckoutController extends Controller
 {
-
     public function showCheckout()
     {
         $countries = $this->getCountries();
