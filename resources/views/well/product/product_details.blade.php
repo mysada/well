@@ -78,7 +78,6 @@
     </div>
 </section>
 
-
 <!-- Related Products -->
 <section class="related-products py-5">
     <div class="container">
@@ -119,3 +118,5 @@
     </div>
 </section>
 @endsection
+
+

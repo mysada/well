@@ -4,112 +4,171 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin Dashboard</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap">
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
     <style>
         body {
-            display: flex;
-        }
-        .sidebar {
-            width: 250px;
-            background-color: #f8f9fa;
-            padding: 20px;
-            border-right: 1px solid #dee2e6;
-        }
-        .sidebar ul {
-            list-style: none;
-            padding: 0;
-        }
-        .sidebar ul li {
-            margin-bottom: 10px;
-        }
-        .sidebar ul li a {
-            text-decoration: none;
-            color: #333;
-            font-weight: bold;
-        }
-        .container {
-            flex: 1;
-            padding: 20px;
+            font-family: 'Poppins', 'Arial', 'Avenir Next Georgian', Arial!important;
         }
         header {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 20px;
+
+        }
+        .navbar-brand {
+            font-size: 56px;
+            font-weight: 700;
+        }
+        .sidebar {
+            min-height: 100vh;
             background-color: #f8f9fa;
-            border-bottom: 1px solid #dee2e6;
         }
-        .brand-logo img {
-            height: 50px;
+        .sidebar h1 {
+            font-size: 24px;
+            font-weight: 700;
+            margin-left: 10px;
+            margin-top: 40px;
+            margin-bottom: 20px;
         }
-        nav ul {
-            list-style: none;
-            padding: 0;
+        .sidebar a {
+            text-decoration: none;
+            color: #333;
+        }
+        .sidebar a:hover {
+            color: #00AB7A;
+        }
+
+        .stats {
+            margin-top: 50px;
+            margin-bottom: 80px;
+            border-radius: 10px;
+        }
+
+        .stat {
+            width: 180px;
+            height: 220px;
+            margin-right: 20px;
+            background-color: #00AB7A;
             display: flex;
-            gap: 20px;
+            flex-direction: column;
+            flex: 1;
+            border-radius: 10px;
+            color: #fff;
         }
-        nav ul li {
-            margin: 0;
+
+        .text-content {
+            margin-top: 50px;
+            margin-left: 30px;
         }
-        nav ul li a {
+
+        .text-content h3 {
+            font-size: 34px;
+            font-weight: 700;
+        }
+
+        .text-content p {
+            font-size: 18px;
+        }
+
+        .logs h2{
+            font-weight: 700;
+            margin-bottom: 30px;
+        }
+
+        footer {
+            background-color: #f8f9fa;
+            border-top: 1px solid #dee2e6;
+            padding: 10px;
+            text-align: center;
+        }
+        footer a {
             text-decoration: none;
             color: #333;
             font-weight: bold;
+        }
+        footer a:hover {
+            color: #007bff;
         }
     </style>
 </head>
 <body>
     <!-- Header -->
-    <header>
-        <nav>
-            <div class="brand-logo">
-                <img src="{{ asset('images/logo/header_logo.jpg') }}" alt="Brand Logo">
+    <header class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">WELL. Admin</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Dashboard</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Logout</a>
+                    </li>
+                </ul>
             </div>
-            <ul>
-                <li><a href="#">Dashboard</a></li>
-                <li><a href="#">Users</a></li>
-            </ul>
-        </nav>
+        </div>
     </header>
 
-    <!-- Sidebar -->
-    <aside class="sidebar">
-        <nav>
-            <ul>
-                <li><a href="#">Products</a></li>
-                <li><a href="#">Users</a></li>
-                <li><a href="#">Orders</a></li>
-                <li><a href="#">Payments</a></li>
-                <li><a href="#">Categories</a></li>
-                <li><a href="#">Reviews</a></li>
-            </ul>
-        </nav>
-    </aside>
+    <div class="d-flex">
+        <!-- Sidebar -->
+        <aside class="sidebar p-3">
+            <h1>Data Management</h1>
+            <nav>
+                <ul class="nav flex-column">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Products</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Users</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Orders</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Payments</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Categories</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Reviews</a>
+                    </li>
+                </ul>
+            </nav>
+        </aside>
 
-
-    <!-- Main Content -->
-    <main>
-        <div class="container">
-             <!-- Data Section -->
-            <section class="stats">
+        <!-- Main Content -->
+        <main class="container-fluid p-4">
+            <!-- Data Section -->
+            <section class="stats d-flex justify-content-around">
                 <div class="stat">
-                    <h3>Total Products</h3>
-                    <p>150</p>
+                    <div class="text-content">
+                        <h3>Total Products</h3>
+                        <p>150</p>
+                    </div>
                 </div>
                 <div class="stat">
-                    <h3>Total Users</h3>
-                    <p>1200</p>
+                    <div class="text-content">
+                        <h3>Total Users</h3>
+                        <p>1200</p>
+                    </div>
                 </div>
                 <div class="stat">
-                    <h3>Total Orders</h3>
-                    <p>300</p>
+                    <div class="text-content">
+                        <h3>Total Orders</h3>
+                        <p>300</p>
+                    </div>
                 </div>
             </section>
+
 
             <!-- Log Table -->
             <section class="logs">
                 <h2>Entry Logs</h2>
-                <table>
+                <table class="table table-striped">
                     <thead>
                         <tr>
                             <th>ID</th>
@@ -133,23 +192,34 @@
                             <td>Order placed</td>
                             <td>2024-08-08 12:10:00</td>
                         </tr>
+                        <tr>
+                            <td>4</td>
+                            <td>User logged in</td>
+                            <td>2024-08-08 12:00:00</td>
+                        </tr>
+                        <tr>
+                            <td>5</td>
+                            <td>Product added</td>
+                            <td>2024-08-08 12:05:00</td>
+                        </tr>
+                        <tr>
+                            <td>6</td>
+                            <td>Order placed</td>
+                            <td>2024-08-08 12:10:00</td>
+                        </tr>
                     </tbody>
                 </table>
             </section>
-        </div>
-    </main>
-
+        </main>
+    </div>
 
     <!-- Footer -->
     <footer>
-        <nav>
-            <ul>
-                <li><a href="#">Privacy Policy</a></li>
-                <li><a href="#">Terms of Service</a></li>
-            </ul>
-        </nav>
+        <p class="text-center" style="font-size:14px; padding:20px">© 2024 Natural Balance Ltd. All rights reserved.</p>
     </footer>
 
-
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
 </html>

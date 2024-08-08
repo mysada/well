@@ -22,9 +22,12 @@ class OrderSeeder extends Seeder
         try {
             // Insert an order for user_id 3
             $orderId = DB::table('orders')->insertGetId([
-                'user_id' => 3,
+                'user_id' => 1,
                 'quantity' => 2,
-                'price' => 100.00,
+                'pre_tax_amount' => 100.00,
+                'post_tax_amount' => 110.00,
+                'gst' => 5.00,
+                'pst' => 5.00,
                 'recipient_name' => 'John Doe',
                 'recipient_email' => 'john@gmail.com',
                 'recipient_phone' => '+1-431-123-1234',
@@ -60,8 +63,6 @@ class OrderSeeder extends Seeder
                     'order_id' => $orderId,
                     'method' => 'Credit Card',
                     'amount' => 100.00,
-                    'gst' => 5.00,
-                    'pst' => 5.00,
                     'discount' => 0.00,
                     'status' => 'Pending',
                     'payer_name' => 'Tom',
@@ -76,7 +77,7 @@ class OrderSeeder extends Seeder
             DB::table('transactions')->insert([
                 [
                     'order_id' => $orderId,
-                    'user_id' => 3, // Assuming this is the user_id for John Doe
+                    'user_id' => 1, // Assuming this is the user_id for John Doe
                     'amount' => 100.00,
                     'transaction_type' => 'Payment',
                     'currency' => 'USD',

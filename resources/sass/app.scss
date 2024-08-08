@@ -135,3 +135,28 @@ a{
   background-color: #f2dede;
   border-color: #ebccd1;
 }
+
+//cart icon
+.custom-cart-icon {
+    font-size: 24px; /* Adjust the size as needed */
+    position: relative;
+}
+
+#cart-item-count {
+    position: absolute;
+    top: -5px;
+    right: -5px;
+    background-color: red;
+    color: white;
+    border-radius: 50%;
+    width: 21px;
+    height: 21px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    line-height: 1;
+    padding: 0;
+}
+
+
