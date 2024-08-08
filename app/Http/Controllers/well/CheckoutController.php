@@ -41,11 +41,7 @@ class CheckoutController extends Controller
 
     public function process(CheckoutReq $request)
     {
-        try {
-            $this->paymentService->checkout($request);
-        } catch (\Exception $e) {
-            return RouterTools::errorBack("Error processing payment.");
-        }
+        $this->paymentService->checkout($request);
 
         // Redirect or return response
         return RouterTools::success(

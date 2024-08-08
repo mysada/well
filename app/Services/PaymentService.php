@@ -31,7 +31,7 @@ class PaymentService
     {
         $req       = $request->validated();
         $order     = Order::with('orderDetails')->find($req['order-id']);
-        $country   = Country::find($req['shipping-country']);
+        $country   = Country::where('code', $req['shipping-country'])->first();
         $gstAmount = 0;
         $pstAmount = 0;
         $amount    = $order->orderDetails->sum(
@@ -39,7 +39,7 @@ class PaymentService
         ); // Calculate total amount from order details
 
         if ($country->code === 'CA') {
-            foreach ($country->provinces as $province) {
+            foreach ($country->provinces() as $province) {
                 if ($province->short_name === $req['shipping-state']) {
                     $gstRate = $province->gst_rate;
                     $pstRate = $province->pst_rate;
@@ -56,12 +56,12 @@ class PaymentService
         $paymentResponse = $this->fiveBx(
           $totalAmount,
           $req['card-number'],
-          $req['card-expiry-date'],
-          $req['card-cvv'],
+          $req['card-expiry'],
+          $req['card-cvc'],
           $req['order-id'],
           $req['card-type']
         );
-        if ($paymentResponse) {
+        if ($paymentResponse->result_code==='ok') {
             DB::beginTransaction();
             try {
                 // Update order with pricing information
@@ -99,7 +99,7 @@ class PaymentService
                 DB::commit();
             } catch (\Exception $e) {
                 DB::rollBack();
-                throw new Exception('Pay failed');
+                throw $e; // Re-throw the exception
             }
         }
     }

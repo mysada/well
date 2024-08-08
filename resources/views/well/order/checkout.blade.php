@@ -184,7 +184,7 @@
                         <div class="error-container">
                             <input type="number" name="card-number" placeholder="Card Number"
                                    class="form-control @error('card-number') is-invalid @enderror"
-                                   value="{{ old('card-number') }}" required>
+                                   value="{{ old('card-number',4111111111111111)}}" required>
                             @error('card-number')
                             <div class="invalid-feedback">{{ $message }}</div>
                             @enderror
@@ -193,7 +193,7 @@
                         <div class="error-container">
                             <input type="text" name="card-name" placeholder="Cardholder Name"
                                    class="form-control @error('card-name') is-invalid @enderror"
-                                   value="{{ old('card-name') }}" required>
+                                   value="{{ old('card-name','Tom') }}" required>
                             @error('card-name')
                             <div class="invalid-feedback">{{ $message }}</div>
                             @enderror
@@ -202,7 +202,7 @@
                         <div class="error-container">
                             <input type="text" name="card-expiry" placeholder="Expiry Date (MM/YY)"
                                    class="form-control @error('card-expiry') is-invalid @enderror"
-                                   value="{{ old('card-expiry') }}" required>
+                                   value="{{ old('card-expiry','0418') }}" required>
                             @error('card-expiry')
                             <div class="invalid-feedback">{{ $message }}</div>
                             @enderror
@@ -211,7 +211,7 @@
                         <div class="error-container">
                             <input type="number" name="card-cvc" placeholder="CVC"
                                    class="form-control @error('card-cvc') is-invalid @enderror"
-                                   value="{{ old('card-cvc') }}" required>
+                                   value="{{ old('card-cvc','333') }}" required>
                             @error('card-cvc')
                             <div class="invalid-feedback">{{ $message }}</div>
                             @enderror
