@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\admin\AdminCategoryController;
+use App\Http\Controllers\Admin\AdminHomeController;
 use App\Http\Controllers\admin\AdminOrderController;
 use App\Http\Controllers\admin\AdminPaymentController;
 use App\Http\Controllers\admin\AdminProductController;
