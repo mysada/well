@@ -12,6 +12,9 @@
         body {
             font-family: 'Poppins', 'Arial', 'Avenir Next Georgian', Arial!important;
         }
+        header {
+
+        }
         .navbar-brand {
             font-size: 56px;
             font-weight: 700;
@@ -23,22 +26,43 @@
         .sidebar a {
             text-decoration: none;
             color: #333;
-            font-weight: bold;
         }
         .sidebar a:hover {
             color: #007bff;
         }
+
         .stats {
-            background-color: blue;
-            color: white;
-            padding: 20px;
+            margin-top: 50px;
+            margin-bottom: 50px;
             border-radius: 10px;
-            margin-bottom: 20px;
         }
+
         .stat {
-            text-align: center;
+            width: 180px;
+            height: 220px;
+            margin-right: 20px;
+            background-color: #00AB7A;
+            display: flex;
+            flex-direction: column;
             flex: 1;
+            border-radius: 10px;
+            color: #fff;
         }
+
+        .text-content {
+            margin-top: 50px;
+            margin-left: 30px;
+        }
+
+        .text-content h3 {
+            font-size: 34px;
+            font-weight: 700;
+        }
+
+        .text-content p {
+            font-size: 18px;
+        }
+
         footer {
             background-color: #f8f9fa;
             border-top: 1px solid #dee2e6;
@@ -108,18 +132,25 @@
             <!-- Data Section -->
             <section class="stats d-flex justify-content-around">
                 <div class="stat">
-                    <h3>Total Products</h3>
-                    <p>150</p>
+                    <div class="text-content">
+                        <h3>Total Products</h3>
+                        <p>150</p>
+                    </div>
                 </div>
                 <div class="stat">
-                    <h3>Total Users</h3>
-                    <p>1200</p>
+                    <div class="text-content">
+                        <h3>Total Users</h3>
+                        <p>1200</p>
+                    </div>
                 </div>
                 <div class="stat">
-                    <h3>Total Orders</h3>
-                    <p>300</p>
+                    <div class="text-content">
+                        <h3>Total Orders</h3>
+                        <p>300</p>
+                    </div>
                 </div>
             </section>
+
 
             <!-- Log Table -->
             <section class="logs">
