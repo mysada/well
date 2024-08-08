@@ -12,7 +12,8 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('countries', function (Blueprint $table) {
-            $table->string('code', 2)->primary();
+            $table->id();
+            $table->string('code', 2)->unique();
             $table->string('name');
             $table->boolean('available')->default(true);
             $table->decimal('shipping_rate', 8, 2);
