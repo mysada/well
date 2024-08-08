@@ -2,6 +2,14 @@
 
 namespace App\Services;
 
+use App\Helpers\RouterTools;
+use App\Http\Requests\CheckoutReq;
+use App\Models\Country;
+use App\Models\Order;
+use App\Models\Payment;
+use App\Models\Transaction;
+use Exception;
+use Illuminate\Support\Facades\DB;
 use Pacewdd\Bx\_5bx;
 
 class PaymentService
@@ -17,7 +25,76 @@ class PaymentService
         );
     }
 
-    public function processTransaction(
+    /**
+     * @throws \Exception
+     */
+    public function checkout(CheckoutReq $request)
+    {
+        $req = $request->validated();
+        $order = Order::with('orderDetails')->find($req['order-id']);
+        $country = Country::find($req['shipping-country']);
+        $gstAmount = 0;
+        $pstAmount = 0;
+        $amount = $order->orderDetails->sum('total_price'); // Calculate total amount from order details
+
+        if ($country->code === 'CA') {
+            foreach ($country->provinces as $province) {
+                if ($province->short_name === $req['shipping-state']) {
+                    $gstRate = $province->gst_rate;
+                    $pstRate = $province->pst_rate;
+                    // Calculate GST and PST
+                    $gstAmount = $amount * ($gstRate / 100);
+                    $pstAmount = $amount * ($pstRate / 100);
+                    break;
+                }
+            }
+        }
+        $totalAmount = $amount + $gstAmount + $pstAmount + $country->shipping_rate;
+
+        DB::beginTransaction();
+        try {
+            // Update order with pricing information
+            $order->update([
+              'pre_tax_amount' => $amount,
+              'post_tax_amount' => $totalAmount - ($gstAmount + $pstAmount),
+              'gst' => $gstAmount,
+              'pst' => $pstAmount,
+            ]);
+
+            // Create payment record
+            $payment = Payment::create([
+              'order_id'   => $req['order-id'],
+              'method'     => 'Credit Card',
+              'amount'     => $totalAmount,
+              'gst'        => $gstAmount,
+              'pst'        => $pstAmount,
+              'discount'   => 0,
+              'status'     => 'Pending',
+              'payer_name' => $req['card-name'],
+              'payer_card' => $req['card-number'],
+            ]);
+
+            // Create transaction record
+            Transaction::create([
+              'order_id'         => $req['order-id'],
+              'user_id'          => auth()->id(),
+              'amount'           => $totalAmount,
+              'transaction_type' => 'Payment',
+              'currency'         => 'USD', // Change as needed
+              'status'           => 'Pending',
+              'response'         => null,
+            ]);
+
+            DB::commit();
+
+
+        } catch (\Exception $e) {
+            DB::rollBack();
+            throw new Exception('Pay failed');
+        }
+    }
+
+    public function fiveBx(
       float $amount,
       string $cardNum,
       string $expDate,
