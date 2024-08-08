@@ -77,8 +77,6 @@ class PaymentService
                   'order_id'   => $req['order-id'],
                   'method'     => 'Credit Card',
                   'amount'     => $totalAmount,
-                  'gst'        => $gstAmount,
-                  'pst'        => $pstAmount,
                   'discount'   => 0,
                   'status'     => 'Pending',
                   'payer_name' => $req['card-name'],
