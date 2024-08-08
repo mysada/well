@@ -15,6 +15,7 @@
             <ul>
                 <li>You may cancel your order within 24 hours of placing it. To request a cancellation, please contact our customer support team at <a href="mailto:support@wellnessbalance.com">support@wellnessbalance.com</a>.</li>
                 <li>Note that certain products or services may not be eligible for cancellation.</li>
+                <li>Orders canceled after 24 hours may be subject to a restocking fee.</li>
             </ul>
         </div>
 
@@ -22,7 +23,8 @@
             <h2>Refund Policy</h2>
             <ul>
                 <li>Refunds are processed within 7-10 business days of receiving your return. To request a refund, please contact our support team.</li>
-                <li>Refunds will be issued to the original payment method used for the purchase. Some items are non-refundable.</li>
+                <li>Refunds will be issued to the original payment method used for the purchase. Some items are non-refundable unless defective.</li>
+                <li>Return shipping costs may apply, and items should be returned in their original packaging.</li>
             </ul>
         </div>
 
@@ -57,6 +59,12 @@
         <div class="policy-section">
             <h2>Updates to This Policy</h2>
             <p>We may update this policy periodically. Any changes will be posted on this page with an updated effective date. Please review this policy regularly to stay informed about our cancellation and refund practices.</p>
+        </div>
+
+        <div class="policy-section">
+            <h2>Additional Information</h2>
+            <p>For further assistance and detailed answers to common questions, please visit our <a href="{{ route('faq') }}">FAQ page</a>. Here, you’ll find answers to frequently asked questions about our services and policies.</p>
+            <p>To understand how we handle your personal information and protect your privacy, please review our <a href="{{ route('privacy_policy') }}">Privacy Policy</a>. This document outlines how we collect, use, and safeguard your data.</p>
         </div>
     </div>
 @endsection
