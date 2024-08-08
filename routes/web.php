@@ -12,6 +12,7 @@ use App\Http\Controllers\well\ContactController;
 use App\Http\Controllers\well\FaqController;
 use App\Http\Controllers\well\HomeController;
 use App\Http\Controllers\well\CheckoutController;
+use App\Http\Controllers\well\OrderController;
 use App\Http\Controllers\well\PrivacyPolicyController;
 use App\Http\Controllers\well\ProductController;
 use App\Http\Controllers\well\UserController;
@@ -28,20 +29,12 @@ Route::get('/faq', [FaqController::class, 'index'])->name("faq");
 Route::get('/privacy-policy', [PrivacyPolicyController::class, 'index'])->name('privacy_policy');
 
 //Manish_Contact_Page
-Route::get('/contact', function () {
-    return view('well.pages.contact');
-})->name('contact.page');
-Route::post('/contact', [ContactController::class, 'submit'])->name(
-  'contact.submit'
-);
+Route::get('/contact', function () {return view('well.pages.contact');})->name('contact.page');
+Route::post('/contact', [ContactController::class, 'submit'])->name('contact.submit');
 
 //product
-Route::get('/products', [ProductController::class, 'index'])->name(
-  'products.index'
-);
-Route::get('/products/{id}', [ProductController::class, 'show'])->name(
-  'products.show'
-);
+Route::get('/products', [ProductController::class, 'index'])->name('products.index');
+Route::get('/products/{id}', [ProductController::class, 'show'])->name('products.show');
 
 // Routes for cart item actions, accessible only to logged-in users
 Route::middleware('auth')->group(function () {
@@ -52,17 +45,11 @@ Route::middleware('auth')->group(function () {
       'destroy' => 'CartItemDestroy',
     ]);
 
- //checkout route - Manish
-//Route::get('/checkout', [CheckoutController::class, 'showCheckout'])->name('checkout.show');
-//Route::post('/checkout/process', [CheckoutController::class, 'process'])->name('checkout.process');
-
     /**
      * order routes
      */
     Route::resource('/orders', OrderController::class)->names([
-      'create' => 'OrderCreate', //page: order create
       'store'  => 'OrderStore', //processor: save an order
-      'show'   => 'OrderShow', //page: order detail
     ]);
 
     /**
@@ -89,7 +76,7 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/profile/logout', [UserController::class, 'logout'])->name('user.logout');
     Route::put('/profile/update', [UserController::class, 'update'])->name('user.update');
     Route::get('/reorder/{orderId}', [UserController::class, 'reorder'])->name('order.reorder');
-    Route::get('/checkout', [CheckoutController::class, 'showCheckout'])->name('checkout.show');
+    Route::get('/checkout/{orderId}', [CheckoutController::class, 'showCheckout'])->name('checkout.show');
     Route::post('/checkout/process', [CheckoutController::class, 'process'])->name('checkout.process');
 });
 //

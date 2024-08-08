@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\CheckoutReq;
 use App\Models\CartItem;
 use App\Models\Country;
+use App\Models\Order;
 use App\Services\OrderService;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -21,21 +22,15 @@ class CheckoutController extends Controller
         $this->orderService = $orderService;
     }
 
-    public function showCheckout()
+    public function showCheckout(int $id)
     {
         $countries = Country::all();
-        $cartItems = $this->fetchCartItems();
         $user      = Auth::user();
-
-        try {
-            $order = $this->orderService->createOrder();
-        } catch (\Exception $e) {
-            return RouterTools::errorBack('Checkout Error');
-        }
+        $order     = Order::find($id);
 
         return view(
           'well.order.checkout',
-          compact('countries', 'cartItems', 'user', 'order')
+          compact('countries', 'order', 'user')
         );
     }
 
