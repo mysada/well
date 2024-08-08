@@ -2,6 +2,18 @@
 @vite('resources/sass/checkout.scss')
 @vite('resources/js/checkout.js')
 @section('content')
+<style>
+    .error-message {
+        color: red;
+        font-size: 0.875em;
+        margin-top: 0.25em;
+        display: block;
+    }
+
+    .error-container {
+        margin-bottom: 1em;
+    }
+</style>
 <section class="py-5">
     <div class="container d-flex">
         <!-- Form Container -->
@@ -9,16 +21,15 @@
             <!-- Shipping Address -->
             <div class="form-section">
                 <h4>Shipping Address</h4>
-                <div id="shipping-errors"></div>
                 <form id="shipping-form">
                     @csrf
                     <div class="error-container">
-                        <input type="text" name="shipping-name" placeholder="Name" value="{{ old('shipping-name') }}" required>
+                        <input type="text" name="shipping-name" placeholder="Name" value="{{ old('shipping-name', $user->name ?? '') }}" required>
                         <div id="shipping-name-error" class="error-message"></div>
                     </div>
 
                     <div class="error-container">
-                        <input type="text" name="shipping-address" placeholder="Address" value="{{ old('shipping-address') }}" required>
+                        <input type="text" name="shipping-address" placeholder="Address" value="{{ old('shipping-address', $user->shipping_address ?? '') }}" required>
                         <div id="shipping-address-error" class="error-message"></div>
                     </div>
 
@@ -50,12 +61,12 @@
                     </div>
 
                     <div class="error-container">
-                        <input type="email" name="shipping-email" placeholder="Email" value="{{ old('shipping-email') }}" required>
+                        <input type="email" name="shipping-email" placeholder="Email" value="{{ old('shipping-email', $user->email ?? '') }}" required>
                         <div id="shipping-email-error" class="error-message"></div>
                     </div>
 
                     <div class="error-container">
-                        <input type="tel" name="shipping-phone" placeholder="Phone" value="{{ old('shipping-phone') }}" required>
+                        <input type="tel" name="shipping-phone" placeholder="Phone" value="{{ old('shipping-phone', $user->phone ?? '') }}" required>
                         <div id="shipping-phone-error" class="error-message"></div>
                     </div>
                 </form>
@@ -63,23 +74,22 @@
 
             <!-- Checkbox to Toggle Billing Address -->
             <div class="checkout-section form-section">
-                <input type="checkbox" id="same-address" {{ old('same-address') ? 'checked' : '' }}>
-                <label for="same-address">Billing address is same as shipping address</label>
+                <input type="checkbox" id="same-address" {{ old('same-address') ? 'checked' : '' }}><label for="same-address">Billing address is same as shipping address</label>
+
             </div>
 
             <!-- Billing Address -->
             <div id="billing-address-section" class="form-section">
                 <h4>Billing Address</h4>
-                <div id="billing-errors"></div>
                 <form id="billing-form">
                     @csrf
                     <div class="error-container">
-                        <input type="text" name="billing-name" placeholder="Name" value="{{ old('billing-name') }}" required>
+                        <input type="text" name="billing-name" placeholder="Name" value="{{ old('billing-name', $user->name ?? '') }}" required>
                         <div id="billing-name-error" class="error-message"></div>
                     </div>
 
                     <div class="error-container">
-                        <input type="text" name="billing-address" placeholder="Address" value="{{ old('billing-address') }}" required>
+                        <input type="text" name="billing-address" placeholder="Address" value="{{ old('billing-address', $user->billing_address ?? '') }}" required>
                         <div id="billing-address-error" class="error-message"></div>
                     </div>
 
@@ -111,12 +121,12 @@
                     </div>
 
                     <div class="error-container">
-                        <input type="email" name="billing-email" placeholder="Email" value="{{ old('billing-email') }}" required>
+                        <input type="email" name="billing-email" placeholder="Email" value="{{ old('billing-email', $user->email ?? '') }}" required>
                         <div id="billing-email-error" class="error-message"></div>
                     </div>
 
                     <div class="error-container">
-                        <input type="tel" name="billing-phone" placeholder="Phone" value="{{ old('billing-phone') }}" required>
+                        <input type="tel" name="billing-phone" placeholder="Phone" value="{{ old('billing-phone', $user->phone ?? '') }}" required>
                         <div id="billing-phone-error" class="error-message"></div>
                     </div>
                 </form>
@@ -125,7 +135,6 @@
             <!-- Payment Information -->
             <div class="form-section">
                 <h4>Payment Information</h4>
-                <div id="payment-errors"></div>
                 <form id="payment-form">
                     @csrf
                     <div class="error-container">

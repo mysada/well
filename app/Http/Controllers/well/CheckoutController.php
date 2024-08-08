@@ -13,8 +13,9 @@ class CheckoutController extends Controller
     {
         $countries = $this->getCountries();
         $cartItems = $this->fetchCartItems();
+        $user = Auth::user();
 
-        return view('well.order.checkout', compact('countries', 'cartItems'));
+        return view('well.order.checkout', compact('countries', 'cartItems', 'user'));
     }
 
     private function getCountries()

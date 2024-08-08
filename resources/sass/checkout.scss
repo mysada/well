@@ -15,7 +15,6 @@ h4 {
     background-color: #000;
     color: #fff !important;
     border-radius: 5px;
-
 }
 
 .form-section {
@@ -105,26 +104,53 @@ h4 {
     z-index: 1000;
 }
 
-.btn-primary{
+.btn-primary {
     background-color: #00A875 !important;
     color: #fff !important;
     padding: 20px !important;
     font-size: 25px !important;
     border: 2px solid !important;
-
 }
 
-#same-address{
-    margin-left: 5px;
+.checkout-section.form-section #same-address {
+    margin-right: 10px;
+    width: 15px;
+    height: 15px;
+    transform: scale(1.5);
+}
+
+.checkout-section.form-section label[for="same-address"] {
+    display: inline-block;
+    margin-left: 10px;
+    vertical-align: middle;
 }
 
 .error-message {
-    color: #da1212;
-    font-size:18px;
-    margin-top: 0;
+    color: #ca2f2f !important;
+    font-size: 20px !important;
     display: block;
 }
 
 .error-container {
     margin-bottom: 1em;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .container.d-flex {
+        flex-direction: column;
+    }
+
+    .cart-summary {
+        width: 100%;
+        margin-bottom: 20px;
+    }
+
+    .form-section {
+        width: 100%;
+    }
+
+    .cart-summary {
+        margin-left: 0;
+    }
 }
