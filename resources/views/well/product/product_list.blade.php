@@ -50,13 +50,21 @@
                                 <div class="card-body d-flex flex-column">
                                     <h5 class="card-title">{{ htmlspecialchars($product->name) }}</h5>
                                     <p class="card-text mt-auto">$ {{ number_format($product->price, 2) }}</p>
-                                    <div class="add-to-cart-btn">
-                                        <a href="#">
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="white" class="bi bi-plus" viewBox="0 0 16 16">
-                                                <path d="M8 8v5a.5.5 0 0 0 1 0V8h5a.5.5 0 0 0 0-1H9V2a.5.5 0 0 0-1 0v5H2a.5.5 0 0 0 0 1h5z"/>
-                                            </svg>
-                                        </a>
+                                    <div style="display: flex; justify-content: center; align-items: center;">
+                                        <form action="{{ route('CartItemStore') }}" method="POST" style="display: inline;">
+                                            @csrf
+                                            <input type="hidden" name="product_id" value="{{ $product->id }}">
+                                            <input type="hidden" name="quantity" value="1">
+                                            <button type="submit" style="background-color: #00AA79; border: none; border-radius: 50%; width: 40px; height: 40px; display: flex; align-items: center; justify-content: center;">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="white" class="bi bi-plus" viewBox="0 0 16 16">
+                                                    <path d="M8 8v5a.5.5 0 0 0 1 0V8h5a.5.5 0 0 0 0-1H9V2a.5.5 0 0 0-1 0v5H2a.5.5 0 0 0 0 1h5z"/>
+                                                </svg>
+                                            </button>
+                                        </form>
                                     </div>
+
+
+
                                 </div>
                             </div>
                         </a>

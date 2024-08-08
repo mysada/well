@@ -5,9 +5,6 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css">
 
 @section('content')
-
-    <link rel="stylesheet" href="{{ asset('css/styles.css') }}">
-
     <div class="hero container mb-5">
         <div class="hero-box d-flex align-items-center justify-content-between p-5" style="border-radius: 10px;">
             <div class="hero-content">
