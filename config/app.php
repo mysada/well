@@ -1,6 +1,5 @@
 <?php
 
-use App\Providers\PaymentServiceProvider;
 
 return [
 
@@ -125,8 +124,5 @@ return [
         'store' => env('APP_MAINTENANCE_STORE', 'database'),
     ],
 
-    'providers' => [
-        PaymentServiceProvider::class,
-    ],
 
 ];
