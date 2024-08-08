@@ -1,8 +1,5 @@
 @extends('layouts.app')
 @vite('resources/sass/cancellation_refunds.scss') <!-- Link to the relevant SCSS file -->
-
-@section('title', 'Cancellation and Refunds - Wellness Balance')
-
 @section('content')
 
     <!-- Cancellation and Refunds Section -->
