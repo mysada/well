@@ -73,6 +73,11 @@ class ProductController extends Controller
 
     }
 
+    public function showReviews($id)
+    {
+        $product = Product::with(['reviews.user'])->findOrFail($id);
+        return view('well.product.product_reviews', compact('product'));
+    }
 
 
 }

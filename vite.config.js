@@ -21,6 +21,7 @@ export default defineConfig({
         'resources/sass/checkout.scss',
         'resources/sass/wishlist.scss',
           'resources/sass/privacy_policy.scss',
+          'resources/sass/reviews.scss',
           'resources/sass/faq.scss',
       ],
       refresh: true,
