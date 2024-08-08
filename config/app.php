@@ -1,5 +1,7 @@
 <?php
 
+use App\Providers\PaymentServiceProvider;
+
 return [
 
     /*
@@ -121,6 +123,10 @@ return [
     'maintenance' => [
         'driver' => env('APP_MAINTENANCE_DRIVER', 'file'),
         'store' => env('APP_MAINTENANCE_STORE', 'database'),
+    ],
+
+    'providers' => [
+        PaymentServiceProvider::class,
     ],
 
 ];

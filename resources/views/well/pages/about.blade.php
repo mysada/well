@@ -1,7 +1,6 @@
 @extends('layouts.app')
 @vite('resources/sass/about.scss')
 @section('content')
-    <link rel="stylesheet" href="{{ asset('css/styles.css') }}">
 
     <div class="hero container mb-5">
         <div class="hero-box d-flex align-items-center justify-content-between p-5" style="border-radius: 10px;">
