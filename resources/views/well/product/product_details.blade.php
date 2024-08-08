@@ -26,13 +26,13 @@
                         <div class="qty-input">
                             <button class="qty-count qty-count--minus" data-action="minus" type="button">-</button>
                             <input class="product-qty" type="number" name="quantity" min="1"
-                                   max="{{ $product->stock }}" value="1">
+                                   max="{{ $product->stock }}" value="1" data-product-id="{{ $product->id }}">
                             <button class="qty-count qty-count--add" data-action="add" type="button">+</button>
                         </div>
                         <span class="text-success" style="margin-left: 30px;">{{ $product->stock }} in stock</span>
                     </div>
                     <div class="d-flex gap-4">
-                        <form action="{{ route('CartItemStore') }}" method="POST" class="mr-3 w-50">
+                        <form id="add-to-cart-form" action="{{ route('CartItemStore') }}" method="POST" class="mr-3 w-50">
                             @csrf
                             <input type="hidden" name="product_id" value="{{ $product->id }}">
                             <input type="hidden" name="quantity" class="product-qty-input" value="1">
@@ -95,7 +95,7 @@
                                     <p class="card-text">$ {{ number_format($relatedProduct->price, 2) }}</p>
                                     <form action="{{ route('CartItemStore') }}" method="POST" style="display: inline; padding-top: 30px">
                                         @csrf
-                                        <input type="hidden" name="product_id" value="{{ $product->id }}">
+                                        <input type="hidden" name="product_id" value="{{ $relatedProduct->id }}">
                                         <input type="hidden" name="quantity" value="1">
                                         <button type="submit" style="background-color: #00AA79; border: none; border-radius: 50%; width: 40px; height: 40px;  display: flex; align-items: center; justify-content: center;">
                                             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="white" class="bi bi-plus" viewBox="0 0 16 16">
@@ -116,3 +116,5 @@
         </div>
     </section>
 @endsection
+
+

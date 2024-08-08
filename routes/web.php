@@ -44,6 +44,7 @@ Route::get('/products/{id}', [ProductController::class, 'show'])->name(
   'products.show'
 );
 
+
 // Routes for cart item actions, accessible only to logged-in users
 Route::middleware('auth')->group(function () {
     Route::resource('/cart_items', CartItemController::class)->names([
@@ -53,7 +54,9 @@ Route::middleware('auth')->group(function () {
       'destroy' => 'CartItemDestroy',
     ]);
 
- //checkout route - Manish
+    Route::post('/cart_items/update_quantity', [CartItemController::class, 'updateQuantity'])->name('CartItemUpdateQuantity');
+
+    //checkout route - Manish
 //Route::get('/checkout', [CheckoutController::class, 'showCheckout'])->name('checkout.show');
 //Route::post('/checkout/process', [CheckoutController::class, 'process'])->name('checkout.process');
 
