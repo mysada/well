@@ -1,88 +1,102 @@
-// Import Poppins font
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap');
-
-// Global Styles
+/* Global Styles */
 body {
-    font-family: 'Poppins', 'Avenir Next Georgian', Arial, sans-serif !important;
+    font-family: 'Poppins', 'Arial', 'Avenir Next', Arial, sans-serif !important;
     line-height: 1.6 !important;
     color: #333 !important;
+    background-color: #f5f5f5 !important;
 }
 
-// Headings
+/* Headings */
 h1, h2, h3, h4, h5, h6 {
     font-weight: 700 !important;
-    font-family: 'Poppins', 'Avenir Next Georgian', Arial, sans-serif !important;
+    font-family: 'Poppins', 'Avenir Next', Arial, sans-serif !important;
+    color: #2c3e50 !important;
 }
 
-// Specific Heading Sizes
+/* Specific Heading Sizes */
 h2 {
-    font-size: 40px !important;
+    font-size: 2.5rem !important;
+    margin-bottom: 1rem !important;
 }
 
-// FAQ Section
+/* FAQ Section */
 .faq-section {
-    margin: 3rem auto !important; // Center align FAQ section
-    text-align: center !important;
-
+    margin: 4rem auto !important;
+    padding: 2rem !important;
+    max-width: 900px !important;
+    background-color: #ffffff !important;
+    border-radius: 0.75rem !important;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1) !important;
 }
 
 .faq-section h2 {
-    margin-bottom: 1.5rem !important;
+    margin-bottom: 2rem !important;
 }
 
-// Card Styles
+/* Card Styles */
 .card {
-    border-radius: 0.5rem !important;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1) !important;
-    margin-bottom: 1rem !important;
-    text-align: center !important; // Center align text within the card
+    border-radius: 0.75rem !important;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1) !important;
+    margin-bottom: 1.5rem !important;
+    text-align: center !important;
+    background-color: #ffffff !important;
+    border: 1px solid #e1e1e1 !important;
 }
 
 .card-header {
-    background-color: #f8f9fa !important;
+    background-color: #f1f1f1 !important;
+    border-bottom: 1px solid #e1e1e1 !important;
 }
 
 .card-header h5 {
     margin-bottom: 0 !important;
+    font-size: 1.125rem !important;
 }
 
 .btn-link {
-    color: #343a40 !important;
+    color: #007bff !important;
     font-weight: 700 !important;
-    text-align: center !important; // Center align button text
+    text-align: center !important;
+    text-decoration: none !important;
+    transition: color 0.3s ease !important;
 }
 
-.btn-link.collapsed {
-    color: #343a40 !important;
+.btn-link:hover {
+    color: #0056b3 !important;
 }
 
 .card-body {
-    font-family: 'Poppins', 'Avenir Next Georgian', Arial, sans-serif !important;
-    text-align: center !important; // Center align text in the card body
+    font-family: 'Poppins', 'Avenir Next', Arial, sans-serif !important;
+    text-align: center !important;
+    padding: 1.5rem !important;
+    color: #555 !important;
 }
 
-// Footer Styles
+/* Footer Styles */
 .footer {
     background-color: #343a40 !important;
     color: #ffffff !important;
-    padding: 3rem 0 !important;
-    text-align: center !important; // Center align text in the footer
+    padding: 2rem 0 !important;
+    text-align: center !important;
 }
 
 .footer h5 {
     font-weight: 700 !important;
+    margin-bottom: 1rem !important;
 }
 
 .footer p, .footer a {
-    font-family: 'Poppins', 'Avenir Next Georgian', Arial, sans-serif !important;
+    font-family: 'Poppins', 'Avenir Next', Arial, sans-serif !important;
 }
 
 .footer a {
     color: #ffffff !important;
     text-decoration: none !important;
+    transition: color 0.3s ease !important;
 }
 
 .footer a:hover {
+    color: #d1d1d1 !important;
     text-decoration: underline !important;
 }
 
