@@ -4,34 +4,25 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-return new class extends Migration {
-
-    /**
-     * Run the migrations.
-     */
-    public function up(): void
+class CreateReviewsTable extends Migration
+{
+    public function up()
     {
         Schema::create('reviews', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('product_id')
-                  ->constrained('products');
-            $table->foreignId('user_id')
-                  ->constrained('users');
-            $table->integer('rating');
-            $table->text('review_text')->nullable();
-            // Add indexes to the foreign key columns
-            $table->index('product_id');
+            $table->unsignedBigInteger('user_id');
+            $table->unsignedBigInteger('product_id');
+            $table->tinyInteger('rating');
+            $table->text('content');
             $table->timestamps();
-            $table->softDeletes();
+
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+            $table->foreign('product_id')->references('id')->on('products')->onDelete('cascade');
         });
     }
 
-    /**
-     * Reverse the migrations.
-     */
-    public function down(): void
+    public function down()
     {
         Schema::dropIfExists('reviews');
     }
-
-};
+}

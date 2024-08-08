@@ -14,6 +14,7 @@ use App\Http\Controllers\well\HomeController;
 use App\Http\Controllers\well\CheckoutController;
 use App\Http\Controllers\well\PrivacyPolicyController;
 use App\Http\Controllers\well\ProductController;
+use App\Http\Controllers\well\ReviewController;
 use App\Http\Controllers\well\UserController;
 use App\Http\Controllers\well\WishlistController;
 use App\Http\Middleware\AdminAuthInterceptor;
@@ -91,6 +92,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/reorder/{orderId}', [UserController::class, 'reorder'])->name('order.reorder');
     Route::get('/checkout', [CheckoutController::class, 'showCheckout'])->name('checkout.show');
     Route::post('/checkout/process', [CheckoutController::class, 'process'])->name('checkout.process');
+    Route::post('/reviews', [ReviewsController::class, 'store'])->name('reviews.store');
 });
 //
 Auth::routes();
