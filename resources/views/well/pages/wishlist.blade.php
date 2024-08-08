@@ -11,8 +11,8 @@
                         <img src="{{asset($wishlist->product->image_url)}}" alt="Product 1">
                         <div>
                             <div class="product-title">{{$wishlist->product->name}}</div>
+                            <div class="product-description">{{$wishlist->product->description}}</div>
                             <div class="product-price">${{$wishlist->product->price}}</div>
-                            <div class="product-price">{{$wishlist->product->description}}</div>
                         </div>
                     </div>
                     <div class="product-actions">
