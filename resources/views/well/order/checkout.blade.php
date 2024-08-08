@@ -11,71 +11,92 @@
         <div class="container d-flex">
             <!-- Form Container -->
             <div class="flex-fill">
-                <form id="shipping-form" action="{{route('checkout.process')}}" method="post">
+                <form id="shipping-form" action="{{ route('checkout.process') }}" method="post" novalidate>
                     @csrf
                     <!-- Shipping Address -->
-                    <input type="text" name="order-id" value="{{$id}}" hidden>
+                    <input type="hidden" name="order-id" value="{{ old('order-id', $id) }}">
                     <div class="form-section">
                         <h4>Shipping Address</h4>
                         <div class="error-container">
                             <input type="text" name="shipping-name" placeholder="Name"
+                                   class="form-control @error('shipping-name') is-invalid @enderror"
                                    value="{{ old('shipping-name', $user->name ?? '') }}" required>
-                            <div id="shipping-name-error" class="error-message"></div>
+                            @error('shipping-name')
+                            <div class="invalid-feedback">{{ $message }}</div>
+                            @enderror
                         </div>
 
                         <div class="error-container">
                             <input type="text" name="shipping-address" placeholder="Address"
+                                   class="form-control @error('shipping-address') is-invalid @enderror"
                                    value="{{ old('shipping-address', $user->shipping_address ?? '') }}" required>
-                            <div id="shipping-address-error" class="error-message"></div>
+                            @error('shipping-address')
+                            <div class="invalid-feedback">{{ $message }}</div>
+                            @enderror
                         </div>
 
                         <div class="error-container">
                             <input type="text" name="shipping-city" placeholder="City"
+                                   class="form-control @error('shipping-city') is-invalid @enderror"
                                    value="{{ old('shipping-city') }}" required>
-                            <div id="shipping-city-error" class="error-message"></div>
+                            @error('shipping-city')
+                            <div class="invalid-feedback">{{ $message }}</div>
+                            @enderror
                         </div>
 
                         <div class="error-container">
-                            <select id="shipping-country" name="shipping-country" required>
+                            <select id="shipping-country" name="shipping-country" class="form-control @error('shipping-country') is-invalid @enderror" required>
                                 <option value="">Select Country</option>
                                 @foreach($countries as $country)
                                     <option value="{{ $country['code'] }}" {{ old('shipping-country') == $country['code'] ? 'selected' : '' }}>{{ $country['name'] }}</option>
                                 @endforeach
                             </select>
-                            <div id="shipping-country-error" class="error-message"></div>
+                            @error('shipping-country')
+                            <div class="invalid-feedback">{{ $message }}</div>
+                            @enderror
                         </div>
 
                         <div class="error-container">
-                            <select id="shipping-state" name="shipping-state" style="display: none;" required>
+                            <select id="shipping-state" name="shipping-state" class="form-control" style="display: none;" required>
                                 <!-- States will be populated based on country selection -->
                             </select>
-                            <div id="shipping-state-error" class="error-message"></div>
+                            @error('shipping-state')
+                            <div class="invalid-feedback">{{ $message }}</div>
+                            @enderror
                         </div>
 
                         <div class="error-container">
                             <input type="text" name="shipping-zip" placeholder="ZIP/Postal Code"
+                                   class="form-control @error('shipping-zip') is-invalid @enderror"
                                    value="{{ old('shipping-zip') }}" required>
-                            <div id="shipping-zip-error" class="error-message"></div>
+                            @error('shipping-zip')
+                            <div class="invalid-feedback">{{ $message }}</div>
+                            @enderror
                         </div>
 
                         <div class="error-container">
                             <input type="email" name="shipping-email" placeholder="Email"
+                                   class="form-control @error('shipping-email') is-invalid @enderror"
                                    value="{{ old('shipping-email', $user->email ?? '') }}" required>
-                            <div id="shipping-email-error" class="error-message"></div>
+                            @error('shipping-email')
+                            <div class="invalid-feedback">{{ $message }}</div>
+                            @enderror
                         </div>
 
                         <div class="error-container">
                             <input type="tel" name="shipping-phone" placeholder="Phone"
+                                   class="form-control @error('shipping-phone') is-invalid @enderror"
                                    value="{{ old('shipping-phone', $user->phone ?? '') }}" required>
-                            <div id="shipping-phone-error" class="error-message"></div>
+                            @error('shipping-phone')
+                            <div class="invalid-feedback">{{ $message }}</div>
+                            @enderror
                         </div>
                     </div>
 
                     <!-- Checkbox to Toggle Billing Address -->
                     <div class="checkout-section form-section">
-                        <input type="checkbox" id="same-address" {{ old('same-address') ? 'checked' : '' }}><label
-                                for="same-address">Billing address is same as shipping address</label>
-
+                        <input type="checkbox" id="same-address" name="same-address" {{ old('same-address') ? 'checked' : '' }}>
+                        <label for="same-address">Billing address is same as shipping address</label>
                     </div>
 
                     <!-- Billing Address -->
@@ -83,55 +104,77 @@
                         <h4>Billing Address</h4>
                         <div class="error-container">
                             <input type="text" name="billing-name" placeholder="Name"
+                                   class="form-control @error('billing-name') is-invalid @enderror"
                                    value="{{ old('billing-name', $user->name ?? '') }}" required>
-                            <div id="billing-name-error" class="error-message"></div>
+                            @error('billing-name')
+                            <div class="invalid-feedback">{{ $message }}</div>
+                            @enderror
                         </div>
 
                         <div class="error-container">
                             <input type="text" name="billing-address" placeholder="Address"
+                                   class="form-control @error('billing-address') is-invalid @enderror"
                                    value="{{ old('billing-address', $user->billing_address ?? '') }}" required>
-                            <div id="billing-address-error" class="error-message"></div>
+                            @error('billing-address')
+                            <div class="invalid-feedback">{{ $message }}</div>
+                            @enderror
                         </div>
 
                         <div class="error-container">
-                            <input type="text" name="billing-city" placeholder="City" value="{{ old('billing-city') }}"
-                                   required>
-                            <div id="billing-city-error" class="error-message"></div>
+                            <input type="text" name="billing-city" placeholder="City"
+                                   class="form-control @error('billing-city') is-invalid @enderror"
+                                   value="{{ old('billing-city') }}" required>
+                            @error('billing-city')
+                            <div class="invalid-feedback">{{ $message }}</div>
+                            @enderror
                         </div>
 
                         <div class="error-container">
-                            <select id="billing-country" name="billing-country" required>
+                            <select id="billing-country" name="billing-country" class="form-control @error('billing-country') is-invalid @enderror" required>
                                 <option value="">Select Country</option>
                                 @foreach($countries as $country)
                                     <option value="{{ $country['code'] }}" {{ old('billing-country') == $country['code'] ? 'selected' : '' }}>{{ $country['name'] }}</option>
                                 @endforeach
                             </select>
-                            <div id="billing-country-error" class="error-message"></div>
+                            @error('billing-country')
+                            <div class="invalid-feedback">{{ $message }}</div>
+                            @enderror
                         </div>
 
                         <div class="error-container">
-                            <select id="billing-state" name="billing-state" style="display: none;" required>
+                            <select id="billing-state" name="billing-state" class="form-control" style="display: none;" required>
                                 <!-- States will be populated based on country selection -->
                             </select>
-                            <div id="billing-state-error" class="error-message"></div>
+                            @error('billing-state')
+                            <div class="invalid-feedback">{{ $message }}</div>
+                            @enderror
                         </div>
 
                         <div class="error-container">
                             <input type="text" name="billing-zip" placeholder="ZIP/Postal Code"
+                                   class="form-control @error('billing-zip') is-invalid @enderror"
                                    value="{{ old('billing-zip') }}" required>
-                            <div id="billing-zip-error" class="error-message"></div>
+                            @error('billing-zip')
+                            <div class="invalid-feedback">{{ $message }}</div>
+                            @enderror
                         </div>
 
                         <div class="error-container">
                             <input type="email" name="billing-email" placeholder="Email"
+                                   class="form-control @error('billing-email') is-invalid @enderror"
                                    value="{{ old('billing-email', $user->email ?? '') }}" required>
-                            <div id="billing-email-error" class="error-message"></div>
+                            @error('billing-email')
+                            <div class="invalid-feedback">{{ $message }}</div>
+                            @enderror
                         </div>
 
                         <div class="error-container">
                             <input type="tel" name="billing-phone" placeholder="Phone"
+                                   class="form-control @error('billing-phone') is-invalid @enderror"
                                    value="{{ old('billing-phone', $user->phone ?? '') }}" required>
-                            <div id="billing-phone-error" class="error-message"></div>
+                            @error('billing-phone')
+                            <div class="invalid-feedback">{{ $message }}</div>
+                            @enderror
                         </div>
                     </div>
 
@@ -140,39 +183,50 @@
                         <h4>Payment Information</h4>
                         <div class="error-container">
                             <input type="number" name="card-number" placeholder="Card Number"
+                                   class="form-control @error('card-number') is-invalid @enderror"
                                    value="{{ old('card-number') }}" required>
-                            <div id="card-number-error" class="error-message"></div>
+                            @error('card-number')
+                            <div class="invalid-feedback">{{ $message }}</div>
+                            @enderror
                         </div>
 
                         <div class="error-container">
                             <input type="text" name="card-name" placeholder="Cardholder Name"
+                                   class="form-control @error('card-name') is-invalid @enderror"
                                    value="{{ old('card-name') }}" required>
-                            <div id="card-name-error" class="error-message"></div>
+                            @error('card-name')
+                            <div class="invalid-feedback">{{ $message }}</div>
+                            @enderror
                         </div>
 
                         <div class="error-container">
                             <input type="text" name="card-expiry" placeholder="Expiry Date (MM/YY)"
+                                   class="form-control @error('card-expiry') is-invalid @enderror"
                                    value="{{ old('card-expiry') }}" required>
-                            <div id="card-expiry-error" class="error-message"></div>
+                            @error('card-expiry')
+                            <div class="invalid-feedback">{{ $message }}</div>
+                            @enderror
                         </div>
 
                         <div class="error-container">
-                            <input type="number" name="card-cvc" placeholder="CVC" value="{{ old('card-cvc') }}" required>
-                            <div id="card-cvc-error" class="error-message"></div>
+                            <input type="number" name="card-cvc" placeholder="CVC"
+                                   class="form-control @error('card-cvc') is-invalid @enderror"
+                                   value="{{ old('card-cvc') }}" required>
+                            @error('card-cvc')
+                            <div class="invalid-feedback">{{ $message }}</div>
+                            @enderror
                         </div>
 
                         <div class="error-container">
-                            <select name="card-type" required>
+                            <select name="card-type" class="form-control @error('card-type') is-invalid @enderror" required>
                                 <option value="">Select Card Type</option>
                                 <option value="visa" {{ old('card-type') == 'visa' ? 'selected' : '' }}>Visa</option>
-                                <option value="mastercard" {{ old('card-type') == 'mastercard' ? 'selected' : '' }}>
-                                    MasterCard
-                                </option>
-                                <option value="amex" {{ old('card-type') == 'amex' ? 'selected' : '' }}>American
-                                    Express
-                                </option>
+                                <option value="mastercard" {{ old('card-type') == 'mastercard' ? 'selected' : '' }}>MasterCard</option>
+                                <option value="amex" {{ old('card-type') == 'amex' ? 'selected' : '' }}>American Express</option>
                             </select>
-                            <div id="card-type-error" class="error-message"></div>
+                            @error('card-type')
+                            <div class="invalid-feedback">{{ $message }}</div>
+                            @enderror
                         </div>
                     </div>
 
@@ -185,24 +239,13 @@
                 <h4>Order Summary</h4>
 
                 <div class="tax-breakdown">
-                    <p><strong>Subtotal:</strong> $<span
-                                id="subtotal">{{$order['pre_tax_amount']}}</span>
-                    </p>
-                    <p><strong>Quantity:</strong> <span
-                                id="quantity">{{$order['quantity']}}</span>
-                    </p>
-                    <p><strong>GST:</strong> $<span
-                                id="gst">0.00</span>
-                    </p>
-                    <p><strong>PST:</strong> $<span
-                                id="pst">0.00</span>
-                    </p>
-                    <p><strong>Shipping Rate:</strong> $<span id="shipping_rate"></span>
-                    </p>
+                    <p><strong>Subtotal:</strong> $<span id="subtotal">{{ $order['pre_tax_amount'] }}</span></p>
+                    <p><strong>Quantity:</strong> <span id="quantity">{{ $order['quantity'] }}</span></p>
+                    <p><strong>GST:</strong> $<span id="gst">0.00</span></p>
+                    <p><strong>PST:</strong> $<span id="pst">0.00</span></p>
+                    <p><strong>Shipping Rate:</strong> $<span id="shipping_rate"></span></p>
                 </div>
-                <div class="total-price"><strong>Total:</strong> $<span
-                            id="cart-total"></span>
-                </div>
+                <div class="total-price"><strong>Total:</strong> $<span id="cart-total"></span></div>
             </div>
         </div>
     </section>

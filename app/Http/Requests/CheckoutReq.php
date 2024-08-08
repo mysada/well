@@ -23,34 +23,30 @@ class CheckoutReq extends FormRequest
     public function rules(): array
     {
         return [
-            // Card Information
-            'order-id'         => 'required|exists:orders,id',
-            'card-number'      => 'required|regex:/^\d{16}$/',
-            'card-name'        => 'required|regex:/^[a-zA-Z\s]+$/',
-            'card-expiry'      => 'required|regex:/^(0[1-9]|1[0-2])\d{2}$/',
-            'card-cvc'         => 'required|regex:/^\d{3}$/',
-            'card-type'        => 'required|in:visa,mastercard,amex',
-
-            // Shipping Information
-            'shipping-name'    => 'required|regex:/^[a-zA-Z\s]+$/',
-            'shipping-address' => 'required|regex:/^[a-zA-Z0-9\s,\'-]+$/',
-            'shipping-city'    => 'required|regex:/^[a-zA-Z\s]+$/',
-            'shipping-country' => 'required|exists:countries,code',
-            'shipping-zip'     => 'required|regex:/^[a-zA-Z0-9\s-]+$/',
-            'shipping-email'   => 'required|email',
-            'shipping-phone'   => 'required|regex:/^\d{10,15}$/',
-            'shipping-state'   => 'nullable',
-
-            // Billing Information
-            'billing-name'     => 'nullable|regex:/^[a-zA-Z\s]+$/',
-            'billing-address'  => 'nullable|regex:/^[a-zA-Z0-9\s,\'-]+$/',
-            'billing-city'     => 'nullable|regex:/^[a-zA-Z\s]+$/',
-            'billing-country'  => 'nullable|exists:countries,code',
-            'billing-zip'      => 'nullable|regex:/^[a-zA-Z0-9\s-]+$/',
-            'billing-email'    => 'nullable|email',
-            'billing-phone'    => 'nullable|regex:/^\d{10,15}$/',
+          'order-id'         => 'required|exists:orders,id',
+          'card-number'      => 'required|digits:16',
+          'card-name'        => 'required|alpha',
+          'card-expiry'      => 'required|size:4',
+          'card-cvc'         => 'required|digits:3',
+          'card-type'        => 'required|in:visa,mastercard,amex',
+          'shipping-name'    => 'required|alpha',
+          'shipping-address' => 'required|string',
+          'shipping-city'    => 'required|alpha',
+          'shipping-country' => 'required|exists:countries,code',
+          'shipping-zip'     => 'required|string',
+          'shipping-email'   => 'required|email',
+          'shipping-phone'   => 'required|digits_between:10,15',
+          'shipping-state'   => 'nullable|string',
+          'billing-name'     => 'nullable|alpha',
+          'billing-address'  => 'nullable|string',
+          'billing-city'     => 'nullable|alpha',
+          'billing-country'  => 'nullable|exists:countries,code',
+          'billing-zip'      => 'nullable|string',
+          'billing-email'    => 'nullable|email',
+          'billing-phone'    => 'nullable|digits_between:10,15',
         ];
     }
+
 
     /**
      * Get the custom validation messages.
@@ -98,5 +94,4 @@ class CheckoutReq extends FormRequest
             'billing-phone.regex'       => 'Phone number must be between 10 and 15 digits.',
         ];
     }
-
 }
