@@ -1,6 +1,5 @@
 @extends('layouts.app')
 @vite('resources/sass/cart.scss')
-@vite('resources/js/cart.js')
 @section('content')
     <section class="cart py-5">
         <div class="container">
