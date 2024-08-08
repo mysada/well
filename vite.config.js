@@ -22,6 +22,7 @@ export default defineConfig({
         'resources/sass/wishlist.scss',
           'resources/sass/privacy_policy.scss',
           'resources/sass/faq.scss',
+          'resources/sass/cancellation_refunds.scss',
       ],
       refresh: true,
     }),
