@@ -64,6 +64,8 @@ const populateCountries = () => {
 const updateStateSelects = (countryCode) => {
   $stateSelects.each(function () {
     const $stateSelect = $(this);
+    gstRate=0;
+    pstRate=0;
     if (countryCode === 'CA') {
       $stateSelect.show().empty().append('<option value="">Select Province</option>');
       provinces
