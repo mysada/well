@@ -27,7 +27,10 @@ class Order extends Model
     protected $fillable
       = [
         'user_id',
-        'price',
+        'pre_tax_amount',
+        'post_tax_amount',
+        'gst',
+        'pst',
         'quantity',
         'recipient_name',
         'recipient_email',

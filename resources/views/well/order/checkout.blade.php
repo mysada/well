@@ -190,7 +190,7 @@
 
                 <div class="tax-breakdown">
                     <p><strong>Subtotal:</strong> $<span
-                                id="subtotal">{{$order['price']}}</span>
+                                id="subtotal">{{$order['pre_tax_amount']}}</span>
                     </p>
                     <p><strong>Quantity:</strong> <span
                                 id="quantity">{{$order['quantity']}}</span>

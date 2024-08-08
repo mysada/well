@@ -16,7 +16,10 @@ return new class extends Migration {
             $table->foreignId('user_id')
                   ->constrained('users');
             $table->integer('quantity')->nullable();
-            $table->decimal('price', 10, 2)->nullable();
+            $table->decimal('pre_tax_amount', 10, 2)->nullable();
+            $table->decimal('post_tax_amount', 10, 2)->nullable();
+            $table->decimal('gst', 10, 2)->nullable();
+            $table->decimal('pst', 10, 2)->nullable();
             $table->string('recipient_name', 255)->nullable();
             $table->string('recipient_email', 255)->nullable();
             $table->string('recipient_phone', 255)->nullable();
