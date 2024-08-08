@@ -2,10 +2,13 @@
 
 namespace App\Http\Controllers\well;
 
+use App\Helpers\RouterTools;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\WishlistReq;
+use App\Models\CartItem;
 use App\Models\Wishlist;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class WishlistController extends Controller
 {
@@ -24,20 +27,68 @@ class WishlistController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
+     * Store a product into wishlist
      */
     public function store(WishlistReq $req)
     {
-        $wishlist = $req->validated();
+        $wishlist  = $req->validated();
+        $userId    = Auth::id();
+        $productId = $wishlist['product_id'];
 
-        Wishlist::create([
-          'user_id' => Auth::id(),
-          'product_id' => $wishlist['product_id'],
-        ]);
+        $existingWishlist = Wishlist::where('user_id', $userId)
+                                    ->where('product_id', $productId)
+                                    ->first();
 
-        return redirect()->route('WishlistIndex')->with(
-          'success',
-          'Add to wishlist successfully.'
+        if ($existingWishlist) {
+            $existingWishlist->delete();
+
+            return RouterTools::successBack(
+              'Removed from wishlist successfully'
+            );
+        } else {
+            Wishlist::create([
+              'user_id'    => $userId,
+              'product_id' => $productId,
+            ]);
+
+            return RouterTools::successBack('Add to wishlist successfully');
+        }
+    }
+
+    public function addToCart(WishlistReq $req)
+    {
+        $validated = $req->validated();
+
+        DB::transaction(function () use ($validated) {
+            $userId    = Auth::id();
+            $productId = $validated['product_id'];
+
+            $cartItem = CartItem::where('user_id', $userId)
+                                ->where('product_id', $productId)
+                                ->first();
+
+            if ($cartItem) {
+                $cartItem->increment('quantity');
+            } else {
+                CartItem::create([
+                  'user_id'    => $userId,
+                  'product_id' => $productId,
+                  'quantity'   => 1,
+                ]);
+            }
+
+            $product = Wishlist::where('user_id', $userId)
+                               ->where('product_id', $productId)
+                               ->first();
+
+            if ($product) {
+                $product->delete();
+            }
+        });
+
+        return RouterTools::success(
+          'Add to cart successfully',
+          'WishlistIndex'
         );
     }
 
@@ -52,15 +103,15 @@ class WishlistController extends Controller
         if ($product) {
             $product->delete();
 
-            return redirect()->route('WishlistIndex')->with(
-              'success',
-              "Deleted {$product->name} successfully."
+            return RouterTools::success(
+              "Deleted {$product->name} successfully.",
+              'WishlistIndex'
             );
         }
 
-        return redirect()->route('WishlistIndex')->with(
-          'error',
-          'Product not found.'
+        return RouterTools::error(
+          "Deleted {$product->name} successfully.",
+          'WishlistIndex'
         );
     }
 
