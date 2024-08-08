@@ -37,36 +37,51 @@ class CartItemController extends Controller
     /**
      * Add product to cart
      */
-    /**
-     * Add product to cart
-     */
     public function store(Request $request)
     {
-        // Validate the request data
         $request->validate([
             'product_id' => 'required|exists:products,id',
             'quantity' => 'required|integer|min:1'
         ]);
 
-        // Find the existing cart item
+        $product = Product::findOrFail($request->product_id);
         $cartItem = CartItem::where('user_id', Auth::id())
             ->where('product_id', $request->product_id)
             ->first();
 
         if ($cartItem) {
-            // If the item already exists, update the quantity
+            // If the item already exists, update the quantity and subtotal
             $cartItem->quantity += $request->quantity;
+            $cartItem->subtotal = $cartItem->product->price * $cartItem->quantity;
             $cartItem->save();
         } else {
             // Otherwise, create a new cart item
             CartItem::create([
                 'user_id' => Auth::id(),
                 'product_id' => $request->product_id,
-                'quantity' => $request->quantity
+                'quantity' => $request->quantity,
+                'subtotal' => $product->price * $request->quantity,
+                'total' => $product->price * $request->quantity,
+                'items' => $request->quantity  // Setting initial items count
             ]);
         }
 
+        // Update the total and items for the entire cart
+        $this->updateCartTotals(Auth::id());
+
         return redirect()->route('CartIndex')->with('success', 'Product added to cart successfully.');
+    }
+
+    private function updateCartTotals($userId)
+    {
+        $cartItems = CartItem::where('user_id', $userId)->get();
+        $total = $cartItems->sum('subtotal');
+        $itemCount = $cartItems->sum('quantity');
+        $cartItems->each(function($item) use ($total, $itemCount) {
+            $item->total = $total;
+            $item->items = $itemCount;
+            $item->save();
+        });
     }
 
     /**
@@ -82,13 +97,26 @@ class CartItemController extends Controller
         if ($cartItem) {
             if ($request->quantity == 0) {
                 $cartItem->delete();
-                $total = $this->calculateTotal();
-                return response()->json(['message' => 'Removed item successfully', 'total' => number_format($total, 2)]);
             } else {
-                $cartItem->update(['quantity' => $request->quantity]);
-                $total = $this->calculateTotal();
-                return response()->json(['message' => 'Updated successfully', 'total' => number_format($total, 2)]);
+                $cartItem->quantity = $request->quantity;
+                $cartItem->subtotal = $cartItem->product->price * $request->quantity;
+                $cartItem->save();
             }
+
+            // Update the total and items for the entire cart
+            $this->updateCartTotals(Auth::id());
+
+            $cartItems = CartItem::where('user_id', Auth::id())->with('product')->get();
+            $total = $cartItems->sum('subtotal');
+            $itemCount = $cartItems->sum('quantity');
+            $totalFormatted = number_format($total, 2);
+
+            return response()->json([
+                'message' => $request->quantity == 0 ? 'Removed item successfully' : 'Updated successfully',
+                'itemCount' => $itemCount,
+                'subtotal' => number_format($total, 2),
+                'total' => $totalFormatted
+            ]);
         }
 
         return response()->json(['message' => 'Update failed'], 400);
@@ -104,7 +132,6 @@ class CartItemController extends Controller
         $cartItem = CartItem::where("user_id", Auth::id())->where('id', $id)->first();
         if ($cartItem) {
             $cartItem->delete();
-            $total = $this->calculateTotal();
 
             // Redirect to the cart_items page with a success flash message
             return redirect()->route('CartIndex')->with('success', 'Removed item successfully.');
@@ -151,10 +178,5 @@ class CartItemController extends Controller
         return redirect(url('/cart_items'))->with('error', $msg);
     }
 
-    private function calculateTotal()
-    {
-        return CartItem::where('user_id', Auth::id())->with('product')->get()->sum(function ($cartItem) {
-            return $cartItem->product ? $cartItem->product->price * $cartItem->quantity : 0;
-        });
-    }
+
 }

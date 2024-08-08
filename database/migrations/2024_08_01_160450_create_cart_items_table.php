@@ -18,7 +18,12 @@ return new class extends Migration {
                   ->constrained('users');
             $table->foreignId('product_id')
                   ->constrained('products');
-            $table->integer('quantity')->default(1);
+            $table->integer('quantity')->default(0);
+            $table->integer('items')->default(0);  // Define items as an integer field
+
+            $table->decimal('subtotal', 8, 2)->default(0);
+            $table->decimal('total', 8, 2)->default(0);
+
 
             $table->timestamps();
 
