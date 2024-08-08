@@ -23,17 +23,24 @@
             min-height: 100vh;
             background-color: #f8f9fa;
         }
+        .sidebar h1 {
+            font-size: 24px;
+            font-weight: 700;
+            margin-left: 10px;
+            margin-top: 40px;
+            margin-bottom: 20px;
+        }
         .sidebar a {
             text-decoration: none;
             color: #333;
         }
         .sidebar a:hover {
-            color: #007bff;
+            color: #00AB7A;
         }
 
         .stats {
             margin-top: 50px;
-            margin-bottom: 50px;
+            margin-bottom: 80px;
             border-radius: 10px;
         }
 
@@ -61,6 +68,11 @@
 
         .text-content p {
             font-size: 18px;
+        }
+
+        .logs h2{
+            font-weight: 700;
+            margin-bottom: 30px;
         }
 
         footer {
@@ -103,6 +115,7 @@
     <div class="d-flex">
         <!-- Sidebar -->
         <aside class="sidebar p-3">
+            <h1>Data Management</h1>
             <nav>
                 <ul class="nav flex-column">
                     <li class="nav-item">
@@ -179,6 +192,21 @@
                             <td>Order placed</td>
                             <td>2024-08-08 12:10:00</td>
                         </tr>
+                        <tr>
+                            <td>4</td>
+                            <td>User logged in</td>
+                            <td>2024-08-08 12:00:00</td>
+                        </tr>
+                        <tr>
+                            <td>5</td>
+                            <td>Product added</td>
+                            <td>2024-08-08 12:05:00</td>
+                        </tr>
+                        <tr>
+                            <td>6</td>
+                            <td>Order placed</td>
+                            <td>2024-08-08 12:10:00</td>
+                        </tr>
                     </tbody>
                 </table>
             </section>
@@ -187,12 +215,7 @@
 
     <!-- Footer -->
     <footer>
-        <nav>
-            <ul class="nav justify-content-center">
-                <li class="nav-item"><a class="nav-link" href="#">Privacy Policy</a></li>
-                <li class="nav-item"><a class="nav-link" href="#">Terms of Service</a></li>
-            </ul>
-        </nav>
+        <p class="text-center" style="font-size:14px; padding:20px">© 2024 Natural Balance Ltd. All rights reserved.</p>
     </footer>
 
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
