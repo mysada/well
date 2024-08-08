@@ -29,15 +29,18 @@
             color: #007bff;
         }
         .stats {
-            background-color: blue;
             color: white;
             padding: 20px;
-            border-radius: 10px;
             margin-bottom: 20px;
         }
         .stat {
+            width: 180px;
+            height: 220px;
+            margin-right:20px;
+            background-color: #00AB7A;
             text-align: center;
             flex: 1;
+                        border-radius: 10px;
         }
         footer {
             background-color: #f8f9fa;
