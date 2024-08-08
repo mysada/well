@@ -7,11 +7,19 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\CheckoutReq;
 use App\Models\CartItem;
 use App\Models\Country;
+use App\Services\OrderService;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
 class CheckoutController extends Controller
 {
+
+    protected OrderService $orderService;
+
+    public function __construct(OrderService $orderService)
+    {
+        $this->orderService = $orderService;
+    }
 
     public function showCheckout()
     {
@@ -19,9 +27,15 @@ class CheckoutController extends Controller
         $cartItems = $this->fetchCartItems();
         $user      = Auth::user();
 
+        try {
+            $order = $this->orderService->createOrder();
+        } catch (\Exception $e) {
+            return RouterTools::errorBack('Checkout Error');
+        }
+
         return view(
           'well.order.checkout',
-          compact('countries', 'cartItems', 'user')
+          compact('countries', 'cartItems', 'user', 'order')
         );
     }
 
