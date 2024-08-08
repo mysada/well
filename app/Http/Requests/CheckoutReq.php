@@ -24,6 +24,7 @@ class CheckoutReq extends FormRequest
     {
         return [
             // Card Information
+            'order-id'         => 'required|exists:orders,id',
             'card-number'      => 'required|regex:/^\d{16}$/',
             'card-name'        => 'required|regex:/^[a-zA-Z\s]+$/',
             'card-expiry'      => 'required|regex:/^(0[1-9]|1[0-2])\/\d{2}$/',
@@ -34,16 +35,17 @@ class CheckoutReq extends FormRequest
             'shipping-name'    => 'required|regex:/^[a-zA-Z\s]+$/',
             'shipping-address' => 'required|regex:/^[a-zA-Z0-9\s,\'-]+$/',
             'shipping-city'    => 'required|regex:/^[a-zA-Z\s]+$/',
-            'shipping-country' => 'required|exists:countries,id',
+            'shipping-country' => 'required|exists:countries,code',
             'shipping-zip'     => 'required|regex:/^[a-zA-Z0-9\s-]+$/',
             'shipping-email'   => 'required|email',
             'shipping-phone'   => 'required|regex:/^\d{10,15}$/',
+            'shipping-state'   => 'nullable',
 
             // Billing Information
             'billing-name'     => 'nullable|regex:/^[a-zA-Z\s]+$/',
             'billing-address'  => 'nullable|regex:/^[a-zA-Z0-9\s,\'-]+$/',
             'billing-city'     => 'nullable|regex:/^[a-zA-Z\s]+$/',
-            'billing-country'  => 'nullable|exists:countries,id',
+            'billing-country'  => 'nullable|exists:countries,code',
             'billing-zip'      => 'nullable|regex:/^[a-zA-Z0-9\s-]+$/',
             'billing-email'    => 'nullable|email',
             'billing-phone'    => 'nullable|regex:/^\d{10,15}$/',

@@ -14,6 +14,7 @@
                 <form id="shipping-form" action="{{route('checkout.process')}}" method="post">
                     @csrf
                     <!-- Shipping Address -->
+                    <input type="text" name="order-id" value="{{$id}}" hidden>
                     <div class="form-section">
                         <h4>Shipping Address</h4>
                         <div class="error-container">
