@@ -1,6 +1,10 @@
-import './bootstrap';
-//don't import bug
+import 'bootstrap/dist/js/bootstrap.bundle.min';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
-function hideButton() {
-  document.getElementById('navbar-toggler').style.display = 'none';
-}
+import $ from 'jquery';
+
+$(document).ready(function() {
+  $('#navbar-toggler').click(function() {
+    $(this).hide();
+  });
+});

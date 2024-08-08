@@ -4,8 +4,6 @@
 
 @section('content')
 
-<link rel="stylesheet" href="{{ asset('css/styles.css') }}">
-
 <div class="section-title text-center my-5">
     <h2>Contact Us</h2>
 </div>

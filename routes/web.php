@@ -7,11 +7,11 @@ use App\Http\Controllers\admin\AdminProductController;
 use App\Http\Controllers\admin\AdminReviewController;
 use App\Http\Controllers\admin\AdminUserController;
 use App\Http\Controllers\well\AboutController;
-use App\Http\Controllers\well\FaqController;
 use App\Http\Controllers\well\CartItemController;
 use App\Http\Controllers\well\ContactController;
+use App\Http\Controllers\well\FaqController;
 use App\Http\Controllers\well\HomeController;
-use App\Http\Controllers\well\OrderController;
+use App\Http\Controllers\well\CheckoutController;
 use App\Http\Controllers\well\ProductController;
 use App\Http\Controllers\well\UserController;
 use App\Http\Controllers\well\WishlistController;
@@ -22,8 +22,8 @@ use Illuminate\Support\Facades\Route;
 //home pages
 Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('/home', [HomeController::class, 'index']);
-Route::get('/about', [AboutController::class, 'index']);
-Route::get('/faq', [FaqController::class, 'index']);
+Route::get('/about', [AboutController::class, 'index'])->name('about');
+Route::get('/faq', [FaqController::class, 'index'])->name("faq");
 
 //Manish_Contact_Page
 Route::get('/contact', function () {
@@ -49,6 +49,10 @@ Route::middleware('auth')->group(function () {
       'update'  => 'CartItemUpdate',
       'destroy' => 'CartItemDestroy',
     ]);
+
+ //checkout route - Manish
+//Route::get('/checkout', [CheckoutController::class, 'showCheckout'])->name('checkout.show');
+//Route::post('/checkout/process', [CheckoutController::class, 'process'])->name('checkout.process');
 
     /**
      * order routes
@@ -79,15 +83,12 @@ Route::middleware('auth')->group(function () {
 
 // profile routes updated by Aman, revised by Manish
 Route::middleware(['auth'])->group(function () {
-    Route::get('/profile', [UserController::class, 'index'])->name(
-      'user.profile'
-    );
-    Route::post('/profile/logout', [UserController::class, 'logout'])->name(
-      'user.logout'
-    );
-    Route::put('/profile/update', [UserController::class, 'update'])->name(
-      'user.update'
-    );
+    Route::get('/profile', [UserController::class, 'index'])->name('user.profile');
+    Route::post('/profile/logout', [UserController::class, 'logout'])->name('user.logout');
+    Route::put('/profile/update', [UserController::class, 'update'])->name('user.update');
+    Route::get('/reorder/{orderId}', [UserController::class, 'reorder'])->name('order.reorder');
+    Route::get('/checkout', [CheckoutController::class, 'showCheckout'])->name('checkout.show');
+    Route::post('/checkout/process', [CheckoutController::class, 'process'])->name('checkout.process');
 });
 //
 Auth::routes();

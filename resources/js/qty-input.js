@@ -1,3 +1,5 @@
+import $ from 'jquery';
+
 var QtyInput = (function () {
     let $qtyInputs = $(".qty-input");
 

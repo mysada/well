@@ -12,6 +12,16 @@ use Illuminate\Http\RedirectResponse;
 
 class CartItemController extends Controller
 {
+
+    /**
+     * Fetch cart items for the logged-in user (Creatd by Manish to Fetch Cart Summary in Checkput)
+     */
+    public function fetchCartItems()
+    {
+        return CartItem::with('product')->where('user_id', Auth::id())->get();
+    }
+
+
     /**
      * Display the cart of the user
      */
