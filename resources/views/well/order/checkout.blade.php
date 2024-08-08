@@ -186,29 +186,23 @@
             <!-- Cart Summary -->
             <div class="cart-summary ml-4 sticky-form">
                 <h4>Order Summary</h4>
-                @foreach ($cartItems as $cartItem)
-                    @if($cartItem->product)
-                        <div class="item">
-                            <div class="item-details">
-                                <p>{{ $cartItem->product->name }} x {{ $cartItem->quantity }} =
-                                    ${{ number_format($cartItem->product->price * $cartItem->quantity, 2) }}</p>
-                            </div>
-                        </div>
-                    @endif
-                @endforeach
+
                 <div class="tax-breakdown">
                     <p><strong>Subtotal:</strong> $<span
-                                id="subtotal">{{ number_format($cartItems->sum(fn($item) => $item->product ? $item->product->price * $item->quantity : 0), 2) }}</span>
+                                id="subtotal">{{$order['price']}}</span>
+                    </p>
+                    <p><strong>Quantity:</strong> <span
+                                id="quantity">{{$order['quantity']}}</span>
                     </p>
                     <p><strong>GST (5%):</strong> $<span
-                                id="gst">{{ number_format(0.05 * $cartItems->sum(fn($item) => $item->product ? $item->product->price * $item->quantity : 0), 2) }}</span>
+                                id="gst"></span>
                     </p>
                     <p><strong>PST (7%):</strong> $<span
-                                id="pst">{{ number_format(0.07 * $cartItems->sum(fn($item) => $item->product ? $item->product->price * $item->quantity : 0), 2) }}</span>
+                                id="pst"></span>
                     </p>
                 </div>
                 <div class="total-price"><strong>Total:</strong> $<span
-                            id="cart-total">{{ number_format(1.12 * $cartItems->sum(fn($item) => $item->product ? $item->product->price * $item->quantity : 0), 2) }}</span>
+                            id="cart-total"></span>
                 </div>
             </div>
         </div>

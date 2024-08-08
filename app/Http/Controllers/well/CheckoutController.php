@@ -15,13 +15,6 @@ use Illuminate\Support\Facades\DB;
 class CheckoutController extends Controller
 {
 
-    protected OrderService $orderService;
-
-    public function __construct(OrderService $orderService)
-    {
-        $this->orderService = $orderService;
-    }
-
     public function showCheckout(int $id)
     {
         $countries = Country::all();

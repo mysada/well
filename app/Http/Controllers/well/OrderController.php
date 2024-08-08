@@ -4,9 +4,17 @@ namespace App\Http\Controllers\well;
 
 use App\Helpers\RouterTools;
 use App\Http\Controllers\Controller;
+use App\Services\OrderService;
 
 class OrderController extends Controller
 {
+
+    protected OrderService $orderService;
+
+    public function __construct(OrderService $orderService)
+    {
+        $this->orderService = $orderService;
+    }
 
     public function store()
     {
@@ -15,11 +23,11 @@ class OrderController extends Controller
         } catch (\Exception $e) {
             return RouterTools::errorBack('Create order Error');
         }
+        $orderId = $order->id;
 
         return RouterTools::success(
           "Create order successfully",
-          'checkout.show',
-          $order->id
+          'checkout.show', [$orderId]
         );
     }
 
