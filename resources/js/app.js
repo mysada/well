@@ -1,7 +1,2 @@
-import jQuery from 'jquery';
-import 'bootstrap';
-import { createPopper } from '@popperjs/core';
-
-function hideButton() {
-  document.getElementById('navbar-toggler').style.display = 'none';
-}
+import 'bootstrap/dist/js/bootstrap.bundle.min';
+import 'bootstrap/dist/css/bootstrap.min.css';
