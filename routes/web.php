@@ -51,8 +51,9 @@ Route::middleware('auth')->group(function () {
     ]);
 
  //checkout route - Manish
-    Route::get('/checkout', [CheckoutController::class, 'showCheckout'])->name('checkout.show');
-    Route::post('/checkout/process', [CheckoutController::class, 'process'])->name('checkout.process');
+//Route::get('/checkout', [CheckoutController::class, 'showCheckout'])->name('checkout.show');
+//Route::post('/checkout/process', [CheckoutController::class, 'process'])->name('checkout.process');
+
     /**
      * order routes
      */
@@ -82,15 +83,12 @@ Route::middleware('auth')->group(function () {
 
 // profile routes updated by Aman, revised by Manish
 Route::middleware(['auth'])->group(function () {
-    Route::get('/profile', [UserController::class, 'index'])->name(
-      'user.profile'
-    );
-    Route::post('/profile/logout', [UserController::class, 'logout'])->name(
-      'user.logout'
-    );
-    Route::put('/profile/update', [UserController::class, 'update'])->name(
-      'user.update'
-    );
+    Route::get('/profile', [UserController::class, 'index'])->name('user.profile');
+    Route::post('/profile/logout', [UserController::class, 'logout'])->name('user.logout');
+    Route::put('/profile/update', [UserController::class, 'update'])->name('user.update');
+    Route::get('/reorder/{orderId}', [UserController::class, 'reorder'])->name('order.reorder');
+    Route::get('/checkout', [CheckoutController::class, 'showCheckout'])->name('checkout.show');
+    Route::post('/checkout/process', [CheckoutController::class, 'process'])->name('checkout.process');
 });
 //
 Auth::routes();
