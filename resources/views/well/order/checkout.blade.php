@@ -78,7 +78,7 @@
                     </div>
 
                     <!-- Billing Address -->
-                    <div id="billing-address-section" class="form-section">
+                    <div id="billing-address-section" class="bill-form form-section">
                         <h4>Billing Address</h4>
                         <div class="error-container">
                             <input type="text" name="billing-name" placeholder="Name"
