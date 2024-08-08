@@ -3,6 +3,8 @@ import $ from 'jquery';
 // Initialize empty arrays
 const countries = [];
 const provinces = [];
+let gstRate = 0;
+let pstRate = 0;
 const $countrySelects = $('#billing-country, #shipping-country');
 const $stateSelects = $('#billing-state, #shipping-state');
 const $sameAddressCheckbox = $('#same-address');
@@ -72,6 +74,7 @@ const updateStateSelects = (countryCode) => {
     } else {
       $stateSelect.hide().empty();
     }
+    updateShippingCost();
   });
 };
 
@@ -80,24 +83,34 @@ const updateShippingCost = (countryCode) => {
   const country = countries.find(c => c.code === countryCode);
   const shippingRate = country ? parseFloat(country.shipping_rate) : 0;
   $('#shipping_rate').text(shippingRate.toFixed(2));
+  calculate();
 };
 
+// Bind change event to update taxes based on province selection
+$('#shipping-state').change(function () {
+  const provinceCode = $(this).val();
+  updateTaxes(provinceCode);
+});
 // Update taxes based on province selection
 const updateTaxes = (provinceCode) => {
-  if (provinceCode === 'CA') {
+  if ($('#shipping-country').val() === 'CA') {
     const province = provinces.find(p => p.short_name === provinceCode);
-    const gstRate = province ? parseFloat(province.gst_rate) : 0;
-    const pstRate = province ? parseFloat(province.pst_rate) : 0;
-    const subtotal = parseFloat($('#subtotal').text());
-
-    const gst = (subtotal * gstRate / 100).toFixed(2);
-    const pst = (subtotal * pstRate / 100).toFixed(2);
-    const total = (subtotal + parseFloat(gst) + parseFloat(pst)).toFixed(2);
-
-    $('#gst').text(gst);
-    $('#pst').text(pst);
-    $('#cart-total').text(total);
+    gstRate = province ? parseFloat(province.gst_rate) : 0;
+    pstRate = province ? parseFloat(province.pst_rate) : 0;
   }
+  calculate();
+};
+
+const calculate = () => {
+  const subtotal = parseFloat($('#subtotal').text());
+  const shippingFee = parseFloat($('#shipping_rate').text());
+  const gst = (subtotal * gstRate / 100).toFixed(2);
+  const pst = (subtotal * pstRate / 100).toFixed(2);
+  const total = (subtotal + shippingFee + parseFloat(gst) + parseFloat(pst)).toFixed(2);
+
+  $('#gst').text(gst);
+  $('#pst').text(pst);
+  $('#cart-total').text(total);
 };
 
 // Bind change event to country selects
@@ -107,7 +120,6 @@ $countrySelects.each(function () {
     const countryCode = $(this).val();
     updateStateSelects(countryCode);
     updateShippingCost(countryCode);
-    updateTaxes(countryCode);
   });
 
   // Trigger change event to populate states on page load
@@ -155,7 +167,6 @@ const removeError = ($field) => {
   $field.siblings('.error-message').remove();
   $field.removeClass('error');
 };
-
 
 // Form validation
 $('.btn-checkout-custom').click(function (e) {
