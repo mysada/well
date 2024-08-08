@@ -96,6 +96,10 @@ Route::middleware(['auth'])->group(function () {
 Auth::routes();
 
 Route::middleware(AdminAuthInterceptor::class)->group(function () {
+    Route::resource('/admin', AdminHomeController::class)->names([
+        'index' => 'admin.home',
+    ]);
+
     Route::resource('/admin/user', AdminUserController::class)->names([
       'index'   => 'AdminUserList',
       'create'  => 'AdminUserCreate',
