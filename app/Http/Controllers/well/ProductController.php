@@ -58,11 +58,21 @@ class ProductController extends Controller
             ->limit(4)
             ->get();
 
+        //check if the product in the wishlist when login
+        $wishlist = false;
+        if (Auth::check()) {
+            $wishlist = Wishlist::where('user_id', Auth::id())
+                ->where('product_id', $product->id)
+                ->exists();
+        }
+
         return view(
             'well.product.product_details',
-            compact('product', 'title', 'relatedProducts')
+            compact('product', 'title', 'relatedProducts', 'wishlist')
         );
+
     }
+
 
 
 }
