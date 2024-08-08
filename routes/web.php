@@ -46,6 +46,11 @@ Route::get('/products/{id}', [ProductController::class, 'show'])->name(
   'products.show'
 );
 
+//Reviews ROutes -MANISH
+Route::get('/products/{id}/reviews', [ProductController::class, 'showReviews'])->name('product.reviews');
+Route::post('/products/{id}/reviews', [ReviewController::class, 'store'])->name('reviews.store1');
+
+
 // Routes for cart item actions, accessible only to logged-in users
 Route::middleware('auth')->group(function () {
     Route::resource('/cart_items', CartItemController::class)->names([
@@ -94,7 +99,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/reorder/{orderId}', [UserController::class, 'reorder'])->name('order.reorder');
     Route::get('/checkout', [CheckoutController::class, 'showCheckout'])->name('checkout.show');
     Route::post('/checkout/process', [CheckoutController::class, 'process'])->name('checkout.process');
-    Route::post('/reviews', [ReviewsController::class, 'store'])->name('reviews.store');
+
 });
 //
 Auth::routes();

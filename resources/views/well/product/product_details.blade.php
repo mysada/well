@@ -53,6 +53,8 @@
                     </form>
 
                 </div>
+                <a href="{{ route('product.reviews', $product->id) }}" class="btn btn-primary mt-3" id="see_reviews">See Reviews</a>
+
             </div>
         </div>
     </div>
@@ -76,48 +78,6 @@
     </div>
 </section>
 
-<!-- Reviews Section -->
-<section class="reviews py-5">
-    <div class="container">
-        <div class="col-md-12 mb-3">
-            <h2 class="product-title text-center">Customer Reviews</h2>
-        </div>
-        @foreach ($product->reviews as $review)
-        <div class="review">
-            <h4>{{ $review->user->name }}</h4>
-            <p>Rating: {{ $review->rating }} stars</p>
-            <p>{{ $review->content }}</p>
-            <p>Reviewed on: {{ $review->created_at->format('Y-m-d') }}</p>
-        </div>
-        @endforeach
-
-        @auth
-        <div class="col-md-12 mb-3">
-            <h3 class="product-title">Leave a Review</h3>
-            <form action="{{ route('reviews.store') }}" method="POST">
-                @csrf
-                <input type="hidden" name="product_id" value="{{ $product->id }}">
-                <div class="form-group">
-                    <label for="rating">Rating</label>
-                    <select name="rating" id="rating" class="form-control" required>
-                        <option value="">Select Rating</option>
-                        <option value="5">5 Star</option>
-                        <option value="4">4 Star</option>
-                        <option value="3">3 Star</option>
-                        <option value="2">2 Star</option>
-                        <option value="1">1 Star</option>
-                    </select>
-                </div>
-                <div class="form-group">
-                    <label for="content">Review</label>
-                    <textarea name="content" id="content" class="form-control" required></textarea>
-                </div>
-                <button type="submit" class="btn btn-primary">Submit Review</button>
-            </form>
-        </div>
-        @endauth
-    </div>
-</section>
 
 <!-- Related Products -->
 <section class="related-products py-5">

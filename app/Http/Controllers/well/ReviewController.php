@@ -1,28 +1,31 @@
 <?php
 
+
 namespace App\Http\Controllers\well;
 
+use App\Http\Controllers\Controller;
 use App\Models\Review;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
-class ReviewsController extends Controller
+class ReviewController extends Controller
 {
-    public function store(Request $request)
+    public function store(Request $request, $id)
     {
         $request->validate([
-            'product_id' => 'required|exists:products,id',
             'rating' => 'required|integer|min:1|max:5',
-            'content' => 'required|string|max:1000'
+            'review_text' => 'required|string|max:1000',
         ]);
 
-        Review::create([
+        //$test = Review::create([
+            Review::create([
             'user_id' => Auth::id(),
-            'product_id' => $request->product_id,
+            'product_id' => $id,
             'rating' => $request->rating,
-            'content' => $request->content
+            'review_text' => $request->review_text,
         ]);
 
-        return back()->with('success', 'Review submitted successfully.');
+        //dd($test);
+        return redirect()->route('product.reviews', ['id' => $id])->with('success', 'Review submitted successfully.');
     }
 }
