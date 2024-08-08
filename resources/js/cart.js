@@ -25,12 +25,45 @@ document.addEventListener('DOMContentLoaded', () => {
                         document.getElementById('item-count').textContent = data.itemCount;
                         document.getElementById('subtotal').textContent = data.subtotal;
                         document.getElementById('cart-total').textContent = data.total;
+                        document.getElementById('cart-item-count').textContent = data.itemCount; // Update cart count badge
                     } else if (data.message === 'Removed item successfully') {
                         event.target.closest('tr').remove();
 
                         document.getElementById('item-count').textContent = data.itemCount;
                         document.getElementById('subtotal').textContent = data.subtotal;
                         document.getElementById('cart-total').textContent = data.total;
+                        document.getElementById('cart-item-count').textContent = data.itemCount; // Update cart count badge
+                    }
+                })
+                .catch(error => console.error('Error:', error));
+        });
+    });
+
+    // Handle Add to Cart button submission
+    const addToCartForms = document.querySelectorAll('.add-to-cart-form');
+
+    addToCartForms.forEach(form => {
+        form.addEventListener('submit', event => {
+            event.preventDefault(); // Prevent default form submission
+
+            const formData = new FormData(form);
+            const productId = formData.get('product_id');
+            const quantity = formData.get('quantity');
+
+            fetch(form.action, {
+                method: 'POST',
+                headers: {
+                    'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
+                },
+                body: formData
+            })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.message === 'Product added to cart successfully.') {
+                        // Update the UI as needed, e.g., update the cart icon, display a success message, etc.
+                        console.log('Product added successfully:', data);
+                    } else {
+                        console.error('Failed to add product:', data);
                     }
                 })
                 .catch(error => console.error('Error:', error));

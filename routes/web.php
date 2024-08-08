@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\admin\AdminCategoryController;
+use App\Http\Controllers\Admin\AdminHomeController;
 use App\Http\Controllers\admin\AdminOrderController;
 use App\Http\Controllers\admin\AdminPaymentController;
 use App\Http\Controllers\admin\AdminProductController;
@@ -54,6 +55,7 @@ Route::get('/products/{id}', [ProductController::class, 'show'])->name(
   'products.show'
 );
 
+
 // Routes for cart item actions, accessible only to logged-in users
 Route::middleware('auth')->group(function () {
     Route::resource('/cart_items', CartItemController::class)->names([
@@ -62,6 +64,12 @@ Route::middleware('auth')->group(function () {
       'update'  => 'CartItemUpdate',
       'destroy' => 'CartItemDestroy',
     ]);
+
+    Route::post('/cart_items/update_quantity', [CartItemController::class, 'updateQuantity'])->name('CartItemUpdateQuantity');
+
+    //checkout route - Manish
+//Route::get('/checkout', [CheckoutController::class, 'showCheckout'])->name('checkout.show');
+//Route::post('/checkout/process', [CheckoutController::class, 'process'])->name('checkout.process');
 
     /**
      * order routes
@@ -112,6 +120,10 @@ Route::middleware(['auth'])->group(function () {
 Auth::routes();
 
 Route::middleware(AdminAuthInterceptor::class)->group(function () {
+    Route::resource('/admin', AdminHomeController::class)->names([
+        'index' => 'admin.home',
+    ]);
+
     Route::resource('/admin/user', AdminUserController::class)->names([
       'index'   => 'AdminUserList',
       'create'  => 'AdminUserCreate',

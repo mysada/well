@@ -30,7 +30,7 @@ h2 {
     margin-bottom: 10px;
     font-size: 18px;
     font-weight: 500;
-    color: #000;
+    color: #333;
     text-decoration: none;
     border: 2px solid transparent;
     border-radius: 5px;
@@ -178,7 +178,7 @@ h2 {
 
 .card.product-card {
     transition: transform 0.2s;
-    border: 2px solid #00AB7A;
+    // border: 2px solid #00AB7A;
 }
 
 .card.product-card:hover {
@@ -246,7 +246,10 @@ h2 {
     .btn-custom {
         background-color: #00AB7A;
         color: #fff;
+        font-size: 20px;
+        padding:10px;
         border: 1px solid #00AB7A;
+        margin-left: 5px;
         transition: background-color 0.3s, color 0.3s;
 
         &:hover {

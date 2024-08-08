@@ -50,8 +50,8 @@ class CartItemController extends Controller
             ->first();
 
         if ($cartItem) {
-            // If the item already exists, update the quantity and subtotal
-            $cartItem->quantity += $request->quantity;
+            // If the item already exists, update the quantity to the exact value provided (do not add to it)
+            $cartItem->quantity = $request->quantity;
             $cartItem->subtotal = $cartItem->product->price * $cartItem->quantity;
             $cartItem->save();
         } else {
@@ -121,6 +121,43 @@ class CartItemController extends Controller
 
         return response()->json(['message' => 'Update failed'], 400);
     }
+
+
+    public function updateQuantity(Request $request)
+    {
+        $validated = $request->validate([
+            'product_id' => 'required|integer|exists:products,id',
+            'quantity' => 'required|integer|min:1'
+        ]);
+
+        $cartItem = CartItem::where('user_id', Auth::id())
+            ->where('product_id', $validated['product_id'])
+            ->first();
+
+        if ($cartItem) {
+            // Update the quantity and subtotal
+            $cartItem->quantity = $validated['quantity'];
+            $cartItem->subtotal = $cartItem->product->price * $validated['quantity'];
+            $cartItem->save();
+        } else {
+            // Create a new cart item
+            $product = Product::findOrFail($validated['product_id']);
+            CartItem::create([
+                'user_id' => Auth::id(),
+                'product_id' => $validated['product_id'],
+                'quantity' => $validated['quantity'],
+                'subtotal' => $product->price * $validated['quantity'],
+                'total' => $product->price * $validated['quantity'],
+                'items' => $validated['quantity'] // Setting initial items count
+            ]);
+        }
+
+        // Update the total and items for the entire cart
+        $this->updateCartTotals(Auth::id());
+
+        return response()->json(['message' => 'Updated successfully']);
+    }
+
 
 
 
