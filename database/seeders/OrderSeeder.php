@@ -22,7 +22,7 @@ class OrderSeeder extends Seeder
         try {
             // Insert an order for user_id 3
             $orderId = DB::table('orders')->insertGetId([
-                'user_id' => 3,
+                'user_id' => 1,
                 'quantity' => 2,
                 'price' => 100.00,
                 'recipient_name' => 'John Doe',
@@ -76,7 +76,7 @@ class OrderSeeder extends Seeder
             DB::table('transactions')->insert([
                 [
                     'order_id' => $orderId,
-                    'user_id' => 3, // Assuming this is the user_id for John Doe
+                    'user_id' => 1, // Assuming this is the user_id for John Doe
                     'amount' => 100.00,
                     'transaction_type' => 'Payment',
                     'currency' => 'USD',
