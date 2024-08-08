@@ -1,4 +1,3 @@
-<!-- profile.blade.php -->
 @extends('layouts.app')
 
 @section('title', 'Profile')
@@ -75,8 +74,6 @@
                 <form id="profile-settings-form" method="POST" action="{{ route('user.update') }}">
                     @csrf
                     @method('PUT')
-
-                    <!-- Personal Information -->
                     <div class="form-group">
                         <label for="first_name">First Name</label>
                         <input type="text" name="first_name" id="first_name" class="form-control @error('first_name') is-invalid @enderror" required value="{{ old('first_name', $firstName) }}">
@@ -113,8 +110,6 @@
                         </div>
                         @enderror
                     </div>
-
-                    <!-- Address Information -->
                     <div class="form-group">
                         <label for="billing_address">Billing Address</label>
                         <input type="text" name="billing_address" id="billing_address" class="form-control @error('billing_address') is-invalid @enderror" required value="{{ old('billing_address', $user->billing_address) }}">
@@ -125,34 +120,6 @@
                         @enderror
                     </div>
                     <div class="form-group">
-                        <label for="billing_city">Billing City</label>
-                        <input type="text" name="billing_city" id="billing_city" class="form-control @error('billing_city') is-invalid @enderror" required value="{{ old('billing_city', $user->billing_city) }}">
-                        @error('billing_city')
-                        <div class="invalid-feedback">
-                            {{ $message }}
-                        </div>
-                        @enderror
-                    </div>
-                    <div class="form-group">
-                        <label for="billing_state">Billing State</label>
-                        <input type="text" name="billing_state" id="billing_state" class="form-control @error('billing_state') is-invalid @enderror" required value="{{ old('billing_state', $user->billing_state) }}">
-                        @error('billing_state')
-                        <div class="invalid-feedback">
-                            {{ $message }}
-                        </div>
-                        @enderror
-                    </div>
-                    <div class="form-group">
-                        <label for="billing_zip">Billing ZIP/Postal Code</label>
-                        <input type="text" name="billing_zip" id="billing_zip" class="form-control @error('billing_zip') is-invalid @enderror" required value="{{ old('billing_zip', $user->billing_zip) }}">
-                        @error('billing_zip')
-                        <div class="invalid-feedback">
-                            {{ $message }}
-                        </div>
-                        @enderror
-                    </div>
-
-                    <div class="form-group">
                         <label for="shipping_address">Shipping Address</label>
                         <input type="text" name="shipping_address" id="shipping_address" class="form-control @error('shipping_address') is-invalid @enderror" required value="{{ old('shipping_address', $user->shipping_address) }}">
                         @error('shipping_address')
@@ -161,34 +128,6 @@
                         </div>
                         @enderror
                     </div>
-                    <div class="form-group">
-                        <label for="shipping_city">Shipping City</label>
-                        <input type="text" name="shipping_city" id="shipping_city" class="form-control @error('shipping_city') is-invalid @enderror" required value="{{ old('shipping_city', $user->shipping_city) }}">
-                        @error('shipping_city')
-                        <div class="invalid-feedback">
-                            {{ $message }}
-                        </div>
-                        @enderror
-                    </div>
-                    <div class="form-group">
-                        <label for="shipping_state">Shipping State</label>
-                        <input type="text" name="shipping_state" id="shipping_state" class="form-control @error('shipping_state') is-invalid @enderror" required value="{{ old('shipping_state', $user->shipping_state) }}">
-                        @error('shipping_state')
-                        <div class="invalid-feedback">
-                            {{ $message }}
-                        </div>
-                        @enderror
-                    </div>
-                    <div class="form-group">
-                        <label for="shipping_zip">Shipping ZIP/Postal Code</label>
-                        <input type="text" name="shipping_zip" id="shipping_zip" class="form-control @error('shipping_zip') is-invalid @enderror" required value="{{ old('shipping_zip', $user->shipping_zip) }}">
-                        @error('shipping_zip')
-                        <div class="invalid-feedback">
-                            {{ $message }}
-                        </div>
-                        @enderror
-                    </div>
-
                     <button type="submit" class="btn btn-primary">Update Profile</button>
                 </form>
             </div>
