@@ -19,6 +19,20 @@
         </nav>
     </header>
 
+    <!-- Sidebar -->
+    <aside class="sidebar">
+        <nav>
+            <ul>
+                <li><a href="#">Products</a></li>
+                <li><a href="#">Users</a></li>
+                <li><a href="#">Orders</a></li>
+                <li><a href="#">Payments</a></li>
+                <li><a href="#">Categories</a></li>
+                <li><a href="#">Reviews</a></li>
+            </ul>
+        </nav>
+    </aside>
+
 
     <!-- Main Content -->
     <main>
