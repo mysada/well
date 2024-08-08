@@ -25,12 +25,14 @@ document.addEventListener('DOMContentLoaded', () => {
                         document.getElementById('item-count').textContent = data.itemCount;
                         document.getElementById('subtotal').textContent = data.subtotal;
                         document.getElementById('cart-total').textContent = data.total;
+                        document.getElementById('cart-item-count').textContent = data.itemCount; // Update cart count badge
                     } else if (data.message === 'Removed item successfully') {
                         event.target.closest('tr').remove();
 
                         document.getElementById('item-count').textContent = data.itemCount;
                         document.getElementById('subtotal').textContent = data.subtotal;
                         document.getElementById('cart-total').textContent = data.total;
+                        document.getElementById('cart-item-count').textContent = data.itemCount; // Update cart count badge
                     }
                 })
                 .catch(error => console.error('Error:', error));

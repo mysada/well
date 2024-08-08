@@ -44,9 +44,9 @@
                         </ul>
                     </li>
                     <!-- Cart Icon with Badge -->
-                    <li class="nav-item">
+                    <li class="nav-item position-relative">
                         <a class="nav-link" href="{{ route('CartIndex') }}">
-                            <i class="fas fa-shopping-cart"></i>
+                            <i class="fas fa-shopping-cart custom-cart-icon"></i>
                             <span class="badge bg-danger" id="cart-item-count">
                                 {{ \App\Models\CartItem::where('user_id', Auth::id())->sum('quantity') }}
                             </span>
