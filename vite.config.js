@@ -20,6 +20,7 @@ export default defineConfig({
         'resources/sass/about.scss',
         'resources/sass/checkout.scss',
         'resources/sass/wishlist.scss',
+          'resources/sass/admin.scss',
       ],
       refresh: true,
     }),

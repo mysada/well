@@ -6,6 +6,7 @@ use App\Http\Controllers\admin\AdminPaymentController;
 use App\Http\Controllers\admin\AdminProductController;
 use App\Http\Controllers\admin\AdminReviewController;
 use App\Http\Controllers\admin\AdminUserController;
+use App\Http\Controllers\admin\AdminHomeControllerr;
 use App\Http\Controllers\well\AboutController;
 use App\Http\Controllers\well\CartItemController;
 use App\Http\Controllers\well\ContactController;
