@@ -8,6 +8,7 @@ export default defineConfig({
                 'resources/sass/app.scss',
                 'resources/js/app.js',
                 'resources/js/checkout.js',
+                'resources/js/cart.js',
                 'resources/js/qty-input.js',
                 'resources/js/slider-init.js',
                 'resources/js/billing.js',
