@@ -1,79 +1,86 @@
 import $ from 'jquery';
 
-var QtyInput = (function () {
-    let $qtyInputs = $(".qty-input");
+document.addEventListener('DOMContentLoaded', function() {
+    var QtyInput = (function () {
+        let $qtyInputs = $(".qty-input");
 
-    if (!$qtyInputs.length) {
-        return;
-    }
-
-    var $inputs = $qtyInputs.find(".product-qty");
-    var $countBtn = $qtyInputs.find(".qty-count");
-    var qtyMin = parseInt($inputs.attr("min"));
-    var qtyMax = parseInt($inputs.attr("max"));
-
-    $inputs.change(function () {
-        var $this = $(this);
-        var $minusBtn = $this.siblings(".qty-count--minus");
-        var $addBtn = $this.siblings(".qty-count--add");
-        var qty = parseInt($this.val());
-
-        if (isNaN(qty) || qty <= qtyMin) {
-            $this.val(qtyMin);
-            $minusBtn.attr("disabled", true);
-        } else {
-            $minusBtn.attr("disabled", false);
-
-            if (qty >= qtyMax) {
-                $this.val(qtyMax);
-                $addBtn.attr("disabled", true);
-            } else {
-                $this.val(qty);
-                $addBtn.attr("disabled", false);
-            }
-        }
-    });
-
-    $countBtn.click(function () {
-        var operator = this.dataset.action;
-        var $this = $(this);
-        var $input = $this.siblings(".product-qty");
-        var qty = parseInt($input.val());
-
-        if (operator == "add") {
-            qty += 1;
-            if (qty >= qtyMin + 1) {
-                $this.siblings(".qty-count--minus").attr("disabled", false);
-            }
-
-            if (qty >= qtyMax) {
-                $this.attr("disabled", true);
-            }
-        } else {
-            qty = qty <= qtyMin ? qtyMin : (qty -= 1);
-
-            if (qty == qtyMin) {
-                $this.attr("disabled", true);
-            }
-
-            if (qty < qtyMax) {
-                $this.siblings(".qty-count--add").attr("disabled", false);
-            }
+        if (!$qtyInputs.length) {
+            return;
         }
 
-        $input.val(qty);
-    });
-})();
+        var $inputs = $qtyInputs.find(".product-qty");
+        var $countBtn = $qtyInputs.find(".qty-count");
 
-document.addEventListener('DOMContentLoaded', function () {
-    const qtyInputs = document.querySelectorAll('.product-qty');
-    const addToCartForms = document.querySelectorAll('.add-to-cart-form');
+        $inputs.each(function () {
+            var $input = $(this);
+            var qtyMin = parseInt($input.attr("min"));
+            var qtyMax = parseInt($input.attr("max"));
 
-    addToCartForms.forEach(form => {
-        form.addEventListener('submit', function (e) {
-            const qtyInput = this.querySelector('.product-qty-input');
-            const currentQty = qtyInput.closest('.qty-input').querySelector('.product-qty').value;
-            qtyInput.value = currentQty;
+            $input.change(function () {
+                var qty = parseInt($input.val());
+
+                if (isNaN(qty) || qty < qtyMin) {
+                    $input.val(qtyMin);
+                    qty = qtyMin;
+                } else if (qty > qtyMax) {
+                    $input.val(qtyMax);
+                    qty = qtyMax;
+                }
+
+                updateQuantity($input.data('product-id'), qty);
+            });
         });
-    });
+
+        $countBtn.click(function () {
+            var $this = $(this);
+            var operator = $this.data('action');
+            var $input = $this.siblings(".product-qty");
+            var qty = parseInt($input.val());
+            var qtyMin = parseInt($input.attr("min"));
+            var qtyMax = parseInt($input.attr("max"));
+
+            if (operator == "add") {
+                qty += 1;
+                if (qty > qtyMax) {
+                    qty = qtyMax;
+                }
+            } else {
+                qty -= 1;
+                if (qty < qtyMin) {
+                    qty = qtyMin;
+                }
+            }
+
+            $input.val(qty);
+            updateQuantity($input.data('product-id'), qty);
+        });
+
+        function updateQuantity(productId, quantity) {
+            const data = { product_id: productId, quantity: quantity };
+            console.log('Sending data to server:', data); // Debugging line
+
+            fetch(`/cart_items/update_quantity`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
+                },
+                body: JSON.stringify(data)
+            })
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Failed to update quantity');
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    if (data.message === 'Updated successfully') {
+                        console.log('Quantity updated successfully');
+                    } else {
+                        console.error('Failed to update quantity');
+                    }
+                })
+                .catch(error => console.error('Error:', error));
+        }
+    })();
 });
