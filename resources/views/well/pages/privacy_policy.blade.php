@@ -1,9 +1,10 @@
 @extends('layouts.app')
 @vite('resources/sass/privacy_policy.scss')
+@section('title', 'Privacy Policy - Wellness Balance')
 @section('content')
-
+    <link rel="stylesheet" href="{{ asset('css/styles.css') }}">
     <!-- Privacy Policy Section -->
-    <section class="container my-5">
+    <div class="container mt-5">
         <h1 class="text-center mb-4">Privacy Policy</h1>
 
         <div class="section">
@@ -74,6 +75,5 @@
             <h2>Compliance with Canadian Laws</h2>
             <p>Wellness Balance complies with the Personal Information Protection and Electronic Documents Act (PIPEDA) and other relevant Canadian privacy legislation. We ensure that your personal information is protected and processed in accordance with these laws. If you are a resident of Canada, you have the right to access your personal information and request corrections if necessary. For more details, please visit the official PIPEDA website.</p>
         </div>
-    </section>
-
+    </div>
 @endsection
