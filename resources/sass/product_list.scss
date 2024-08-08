@@ -246,7 +246,10 @@ h2 {
     .btn-custom {
         background-color: #00AB7A;
         color: #fff;
+        font-size: 20px;
+        padding:10px;
         border: 1px solid #00AB7A;
+        margin-left: 5px;
         transition: background-color 0.3s, color 0.3s;
 
         &:hover {
