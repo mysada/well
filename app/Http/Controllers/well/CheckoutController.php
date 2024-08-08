@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\well;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\CheckoutReq;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\CartItem;
@@ -270,8 +271,8 @@ class CheckoutController extends Controller
         return CartItem::with('product')->where('user_id', Auth::id())->get();
     }
 
-    public function process(Request $request)
+    public function process(CheckoutReq $request)
     {
-
+        $req = $request->validated();
     }
 }
