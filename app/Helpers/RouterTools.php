@@ -18,9 +18,13 @@ class RouterTools
      */
     public static function success(
       string $message,
-      string $routeName
+      string $routeName,
+      array $routeParams = []
     ): RedirectResponse {
-        return Redirect::route($routeName)->with('success', $message);
+        return Redirect::route($routeName, $routeParams)->with(
+          'success',
+          $message
+        );
     }
 
     /**
