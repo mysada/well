@@ -215,12 +215,7 @@
 
     <!-- Footer -->
     <footer>
-        <nav>
-            <ul class="nav justify-content-center">
-                <li class="nav-item"><a class="nav-link" href="#">Privacy Policy</a></li>
-                <li class="nav-item"><a class="nav-link" href="#">Terms of Service</a></li>
-            </ul>
-        </nav>
+        <p class="text-center" style="font-size:14px; padding:20px">© 2024 Natural Balance Ltd. All rights reserved.</p>
     </footer>
 
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
