@@ -30,6 +30,14 @@ Route::get('/privacy-policy', [PrivacyPolicyController::class, 'index'])->name(
   'privacy_policy'
 );
 
+//country
+Route::get('/api/countries', [CountryTaxController::class, 'countries'])->name(
+  'api.countries'
+);
+Route::get('/api/provinces', [CountryTaxController::class, 'provinces'])->name(
+  'api.provinces'
+);
+
 //Manish_Contact_Page
 Route::get('/contact', function () {
     return view('well.pages.contact');

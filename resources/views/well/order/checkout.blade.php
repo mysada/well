@@ -194,11 +194,13 @@
                     <p><strong>Quantity:</strong> <span
                                 id="quantity">{{$order['quantity']}}</span>
                     </p>
-                    <p><strong>GST (5%):</strong> $<span
-                                id="gst"></span>
+                    <p><strong>GST:</strong> $<span
+                                id="gst">0.00</span>
                     </p>
-                    <p><strong>PST (7%):</strong> $<span
-                                id="pst"></span>
+                    <p><strong>PST:</strong> $<span
+                                id="pst">0.00</span>
+                    </p>
+                    <p><strong>Shipping Rate:</strong> $<span id="shipping_rate"></span>
                     </p>
                 </div>
                 <div class="total-price"><strong>Total:</strong> $<span
