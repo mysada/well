@@ -410,13 +410,4 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     });
 
-    // CSRF token setup
-    document.querySelectorAll('form').forEach(form => {
-        const csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
-        const input = document.createElement('input');
-        input.type = 'hidden';
-        input.name = '_token';
-        input.value = csrfToken;
-        form.appendChild(input);
-    });
 });

@@ -3,13 +3,6 @@
 @vite('resources/js/checkout.js')
 @section('content')
     <style>
-      .error-message {
-        color: red;
-        font-size: 0.875em;
-        margin-top: 0.25em;
-        display: block;
-      }
-
       .error-container {
         margin-bottom: 1em;
       }
