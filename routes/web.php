@@ -10,7 +10,7 @@ use App\Http\Controllers\well\AboutController;
 use App\Http\Controllers\well\CartItemController;
 use App\Http\Controllers\well\CheckoutController;
 use App\Http\Controllers\well\ContactController;
-use App\Http\Controllers\well\FaqController;
+use App\Http\Controllers\well\CountryTaxController;
 use App\Http\Controllers\well\HomeController;
 use App\Http\Controllers\well\OrderController;
 use App\Http\Controllers\well\PrivacyPolicyController;
@@ -25,7 +25,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('/home', [HomeController::class, 'index']);
 Route::get('/about', [AboutController::class, 'index'])->name('about');
-Route::get('/faq', [FaqController::class, 'index'])->name("faq");
+Route::get('/faq', [CountryTaxController::class, 'index'])->name("faq");
 Route::get('/privacy-policy', [PrivacyPolicyController::class, 'index'])->name(
   'privacy_policy'
 );
