@@ -38,7 +38,7 @@
                 </div>
             </div>
             <div class="copyright text-center mt-4">
-                <p>&copy; 2024 Natural Balance Ltd. All rights reserved.</p>
+                <p>&copy; {{ date('Y') }} Natural Balance Ltd. All rights reserved.</p>
             </div>
         </div>
     </footer>
