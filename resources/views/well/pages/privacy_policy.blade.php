@@ -4,7 +4,6 @@
 @section('title', 'Privacy Policy - Wellness Balance')
 
 @section('content')
-    <link rel="stylesheet" href="{{ asset('css/styles.css') }}">
 
     <!-- Privacy Policy Section -->
     <div class="policy-container mt-5">
