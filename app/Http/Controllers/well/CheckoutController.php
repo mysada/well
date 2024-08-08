@@ -272,8 +272,7 @@ class CheckoutController extends Controller
 
     public function process(Request $request)
     {
-        //DB queires
-        // Redirect to the order confirmation route
+
         return redirect()->route('order.confirmation');
     }
 }
