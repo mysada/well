@@ -11,7 +11,6 @@
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5.121 17.804A11.953 11.953 0 0112 15c2.347 0 4.548.676 6.443 1.837M16 11a4 4 0 11-8 0 4 4 0 018 0zM12 21c-4.418 0-8-3.582-8-8a8 8 0 1116 0c0 4.418-3.582 8-8 8z" />
             </svg>
-
         </div>
         <div class="profile-info">
             <h2>Welcome, {{ $firstName }} {{ $lastName }}!</h2>
@@ -45,9 +44,10 @@
                         <p>Quantity: {{ $detail->quantity }}</p>
                         <p>Price: ${{ number_format($detail->price, 2) }}</p>
                         <p>Total Price: ${{ number_format($detail->total_price, 2) }}</p>
+                        <p>Status: {{ ucfirst($order->status) }}</p>
                         <p>Ordered on: {{ $order->created_at->format('Y-m-d') }}</p>
                     </div>
-                    <button class="btn btn-secondary">Reorder</button>
+                    <button class="btn btn-secondary" onclick="location.href='{{ route('order.reorder', $order->id) }}'">Reorder</button>
                 </div>
                 @endforeach
             </div>
@@ -76,7 +76,6 @@
                     @method('PUT')
                     <div class="form-group">
                         <label for="first_name">First Name</label>
-                        <!-- <input type="text" name="first_name" id="first_name" class="form-control" required value="{{ $firstName }}"> -->
                         <input type="text" name="first_name" id="first_name" class="form-control @error('first_name') is-invalid @enderror" required value="{{ old('first_name', $firstName) }}">
                         @error('first_name')
                         <div class="invalid-feedback">
