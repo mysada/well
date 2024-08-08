@@ -4,60 +4,40 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin Dashboard</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap">
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
     <style>
         body {
-            display: flex;
-            flex-direction: column;
-            min-height: 100vh;
+            font-family: 'Poppins', 'Arial', 'Avenir Next Georgian', Arial!important;
         }
-        header {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 20px;
-            background-color: #f8f9fa;
-            border-bottom: 1px solid #dee2e6;
-        }
-        .brand-logo img {
-            height: 50px;
-        }
-        nav ul {
-            list-style: none;
-            padding: 0;
-            display: flex;
-            gap: 20px;
-        }
-        nav ul li {
-            margin: 0;
-        }
-        nav ul li a {
-            text-decoration: none;
-            color: #333;
-            font-weight: bold;
+        .navbar-brand {
+            font-size: 56px;
+            font-weight: 700;
         }
         .sidebar {
-            width: 250px;
+            min-height: 100vh;
             background-color: #f8f9fa;
-            padding: 20px;
-            border-right: 1px solid #dee2e6;
-            flex-shrink: 0;
         }
-        .sidebar ul {
-            list-style: none;
-            padding: 0;
-        }
-        .sidebar ul li {
-            margin-bottom: 10px;
-        }
-        .sidebar ul li a {
+        .sidebar a {
             text-decoration: none;
             color: #333;
             font-weight: bold;
         }
-        .container {
-            flex: 1;
+        .sidebar a:hover {
+            color: #007bff;
+        }
+        .stats {
+            background-color: blue;
+            color: white;
             padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+        }
+        .stat {
+            text-align: center;
+            flex: 1;
         }
         footer {
             background-color: #f8f9fa;
@@ -65,109 +45,127 @@
             padding: 10px;
             text-align: center;
         }
-        footer ul {
-            list-style: none;
-            padding: 0;
-            display: flex;
-            justify-content: center;
-            gap: 20px;
-        }
-        footer ul li {
-            margin: 0;
-        }
-        footer ul li a {
+        footer a {
             text-decoration: none;
             color: #333;
             font-weight: bold;
+        }
+        footer a:hover {
+            color: #007bff;
         }
     </style>
 </head>
 <body>
     <!-- Header -->
-    <header>
-        <div class="brand-logo">
-            <h1>TR. Admin</h1>
+    <header class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">WELL. Admin</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Dashboard</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Logout</a>
+                    </li>
+                </ul>
+            </div>
         </div>
-        <nav>
-            <ul>
-                <li><a href="#">Dashboard</a></li>
-                <li><a href="#">Logout</a></li>
-            </ul>
-        </nav>
     </header>
 
-    <!-- Sidebar -->
-    <aside class="sidebar">
-        <nav>
-            <ul>
-                <li><a href="#">Products</a></li>
-                <li><a href="#">Users</a></li>
-                <li><a href="#">Orders</a></li>
-                <li><a href="#">Payments</a></li>
-                <li><a href="#">Categories</a></li>
-                <li><a href="#">Reviews</a></li>
-            </ul>
-        </nav>
-    </aside>
+    <div class="d-flex">
+        <!-- Sidebar -->
+        <aside class="sidebar p-3">
+            <nav>
+                <ul class="nav flex-column">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Products</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Users</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Orders</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Payments</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Categories</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Reviews</a>
+                    </li>
+                </ul>
+            </nav>
+        </aside>
 
-    <!-- Main Content -->
-    <main class="container">
-        <!-- Data Section -->
-        <section class="stats">
-            <div class="stat">
-                <h3>Total Products</h3>
-                <p>150</p>
-            </div>
-            <div class="stat">
-                <h3>Total Users</h3>
-                <p>1200</p>
-            </div>
-            <div class="stat">
-                <h3>Total Orders</h3>
-                <p>300</p>
-            </div>
-        </section>
+        <!-- Main Content -->
+        <main class="container-fluid p-4">
+            <!-- Data Section -->
+            <section class="stats d-flex justify-content-around">
+                <div class="stat">
+                    <h3>Total Products</h3>
+                    <p>150</p>
+                </div>
+                <div class="stat">
+                    <h3>Total Users</h3>
+                    <p>1200</p>
+                </div>
+                <div class="stat">
+                    <h3>Total Orders</h3>
+                    <p>300</p>
+                </div>
+            </section>
 
-        <!-- Log Table -->
-        <section class="logs">
-            <h2>Entry Logs</h2>
-            <table>
-                <thead>
-                    <tr>
-                        <th>ID</th>
-                        <th>Message</th>
-                        <th>Timestamp</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>1</td>
-                        <td>User logged in</td>
-                        <td>2024-08-08 12:00:00</td>
-                    </tr>
-                    <tr>
-                        <td>2</td>
-                        <td>Product added</td>
-                        <td>2024-08-08 12:05:00</td>
-                    </tr>
-                    <tr>
-                        <td>3</td>
-                        <td>Order placed</td>
-                        <td>2024-08-08 12:10:00</td>
-                    </tr>
-                </tbody>
-            </table>
-        </section>
-    </main>
+            <!-- Log Table -->
+            <section class="logs">
+                <h2>Entry Logs</h2>
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Message</th>
+                            <th>Timestamp</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>1</td>
+                            <td>User logged in</td>
+                            <td>2024-08-08 12:00:00</td>
+                        </tr>
+                        <tr>
+                            <td>2</td>
+                            <td>Product added</td>
+                            <td>2024-08-08 12:05:00</td>
+                        </tr>
+                        <tr>
+                            <td>3</td>
+                            <td>Order placed</td>
+                            <td>2024-08-08 12:10:00</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </section>
+        </main>
+    </div>
 
     <!-- Footer -->
     <footer>
         <nav>
-            <ul>
-                <li><a href="#">Privacy Policy</a></li>
-                <li><a href="#">Terms of Service</a></li>
+            <ul class="nav justify-content-center">
+                <li class="nav-item"><a class="nav-link" href="#">Privacy Policy</a></li>
+                <li class="nav-item"><a class="nav-link" href="#">Terms of Service</a></li>
             </ul>
         </nav>
     </footer>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
 </html>
