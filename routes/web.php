@@ -114,12 +114,8 @@ Route::middleware(['auth'])->group(function () {
 //
 Auth::routes();
 
-Route::middleware(AdminAuthInterceptor::class)->group(function () {
-    Route::resource('/admin', AdminHomeController::class)->names([
-        'index' => 'admin.home',
-    ]);
-
-    Route::resource('/admin/user', AdminUserController::class)->names([
+Route::middleware(AdminAuthInterceptor::class)->prefix('admin')->group(function () {
+    Route::resource('/user', AdminUserController::class)->names([
       'index'   => 'AdminUserList',
       'create'  => 'AdminUserCreate',
       'store'   => 'AdminUserStore',
@@ -128,7 +124,7 @@ Route::middleware(AdminAuthInterceptor::class)->group(function () {
       'destroy' => 'AdminUserDestroy',
     ]);
 
-    Route::resource('/admin/orders', AdminOrderController::class)->names([
+    Route::resource('/orders', AdminOrderController::class)->names([
       'index'   => 'AdminOrderList',
       'create'  => 'AdminOrderCreate',
       'store'   => 'AdminOrderStore',
@@ -138,7 +134,7 @@ Route::middleware(AdminAuthInterceptor::class)->group(function () {
       'destroy' => 'AdminOrderDestroy',
     ]);
 
-    Route::resource('/admin/products', AdminProductController::class)->names([
+    Route::resource('/products', AdminProductController::class)->names([
       'index'   => 'AdminProductList',
       'create'  => 'AdminProductCreate',
       'store'   => 'AdminProductStore',
@@ -148,29 +144,31 @@ Route::middleware(AdminAuthInterceptor::class)->group(function () {
       'destroy' => 'AdminProductDestroy',
     ]);
 
-    Route::resource('/admin/reviews', AdminReviewController::class)->names([
+    Route::resource('/reviews', AdminReviewController::class)->names([
       'index'   => 'AdminReviewList',
       'edit'    => 'AdminReviewEdit',
       'update'  => 'AdminReviewUpdate',
       'destroy' => 'AdminReviewDestroy',
     ]);
 
-    Route::resource('/admin/payments', AdminPaymentController::class)->names([
+    Route::resource('/payments', AdminPaymentController::class)->names([
       'index'   => 'AdminPaymentList',
       'show'    => 'AdminPaymentShow',
       'destroy' => 'AdminPaymentDestroy',
     ]);
 
-    Route::resource('/admin/categories', AdminCategoryController::class)->names(
-      [
-        'index'   => 'AdminCategoryList',
-        'create'  => 'AdminCategoryCreate',
-        'store'   => 'AdminCategoryStore',
-        'edit'    => 'AdminCategoryEdit',
-        'update'  => 'AdminCategoryUpdate',
-        'destroy' => 'AdminCategoryDestroy',
-      ]
-    );
+    Route::resource('/categories', AdminCategoryController::class)->names([
+      'index'   => 'AdminCategoryList',
+      'create'  => 'AdminCategoryCreate',
+      'store'   => 'AdminCategoryStore',
+      'edit'    => 'AdminCategoryEdit',
+      'update'  => 'AdminCategoryUpdate',
+      'destroy' => 'AdminCategoryDestroy',
+    ]);
+
+    Route::resource('/', AdminHomeController::class)->names([
+      'index' => 'admin.home',
+    ]);
 });
 
 
