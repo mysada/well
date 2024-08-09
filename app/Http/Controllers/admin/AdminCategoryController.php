@@ -38,8 +38,18 @@ class AdminCategoryController extends Controller
         ]);
 
         // Handle the image upload
+        if ($request->hasFile('image')) {
+            // Store the uploaded image in a specific directory
+            $imagePath = $request->file('image')->store('images/home', 'public');
 
+            // Create the new category
+            Category::create([
+                'name' => $request->name,
+                'image_path' => $imagePath,  // Save the path to the image
+            ]);
+        }
 
+            // Redirect
     }
 
     /**
