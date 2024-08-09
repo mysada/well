@@ -18,6 +18,14 @@
             <tr>
                 <td>{{ $category->id }}</td>
                 <td>{{ $category->name }}</td>
+                <td>
+                    <a href="{{ route('AdminCategoryEdit', $category->id) }}" class="btn btn-warning">Edit</a>
+                    <form action="{{ route('AdminCategoryDestroy', $category->id) }}" method="POST" style="display:inline;" onsubmit="return confirmDeletion();">
+                        @csrf
+                        @method('DELETE')
+                        <button type="submit" class="btn btn-danger">Delete</button>
+                    </form>
+                </td>
             </tr>
             @endforeach
         </tbody>
