@@ -28,7 +28,7 @@
                         @foreach ($products as $product)
                             <tr>
                                 <td>{{ $product->id }}</td>
-                                <td><img src="{{ asset($product->image_url) }}" alt="{{ $product->name }}" style="width: 50px;"></td>
+                                <td><img src="{{ asset($product->image_url) }}" alt="" style="width: 50px;"></td>
                                 <td>{{ $product->name }}</td>
                                 <td>{{ Str::limit($product->description, 50) }}</td>
                                 <td>{{ $product->rating }}</td>
