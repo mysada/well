@@ -15,7 +15,9 @@
         @include('admin.components.sidebar')
         <main class="flex-1 ml-32 w-full">
             @include('admin.components.header')
+            <div class="p-4">
             @yield('content')
+            </div>
             @include('admin.components.footer')
         </main>
     </body>

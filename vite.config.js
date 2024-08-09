@@ -24,6 +24,7 @@ export default defineConfig({
         'resources/sass/privacy_policy.scss',
         'resources/sass/reviews.scss',
         'resources/sass/faq.scss',
+        'resources/sass/login.scss',
         'resources/admin/style/admin.css',
         'resources/admin/js/admin.js',
       ],
