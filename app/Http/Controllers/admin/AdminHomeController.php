@@ -12,7 +12,8 @@ class AdminHomeController extends Controller
      */
     public function index()
     {
-        return view('admin.pages.home');
+        $title='Well Dashboard';
+        return view('admin.pages.home',compact('title'));
     }
 
     /**

@@ -10,14 +10,22 @@
         @vite(['resources/admin/style/app.css', 'resources/admin/js/admin.js'])
 
     </head>
-    <body class="h-screen flex">
-        @include('admin.components.sidebar')
-        <main class="flex-1 flex flex-col ml-36 w-full">
-            @include('admin.components.header')
-            <div class="p-4 flex-1">
-                @yield('content')
+    <body class="h-screen">
+        <div class="drawer lg:drawer-open">
+            <input id="my-drawer-2" type="checkbox" class="drawer-toggle" />
+            <div class="drawer-content flex flex-col items-center justify-center">
+                <label for="my-drawer-2" class="btn btn-primary drawer-button lg:hidden">
+                    Open drawer
+                </label>
+                @include('admin.components.header')
+                <main class="w-full p-4">
+                    @yield('content')
+                </main>
+
+                @include('admin.components.footer')
             </div>
-            @include('admin.components.footer')
-        </main>
+            @include('admin.components.sidebar')
+        </div>
+
     </body>
 </html>

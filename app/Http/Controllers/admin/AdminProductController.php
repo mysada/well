@@ -14,9 +14,9 @@ class AdminProductController extends Controller
      */
     public function index()
     {
-        $products = Product::all(); // Fetch all products from the database
-        return view('admin.pages.product.index', compact('products'));
-
+        $products = Product::with('category')->orderByDesc('id')->get(); // Fetch all products from the database
+        $title ='Product Management - List';
+        return view('admin.pages.product.index', compact('products','title'));
     }
 
     /**

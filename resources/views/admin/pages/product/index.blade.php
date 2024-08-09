@@ -3,7 +3,7 @@
 @section('content')
     <div class="overflow-x-auto w-full">
         <div class="flex justify-between py-4">
-            <h2 class="text-4xl font-bold mb-4">Product List</h2>
+            <div></div>
             <div class="flex gap-4">
                 <label class="input input-bordered flex items-center gap-2">
                     <form action="">
@@ -19,34 +19,43 @@
             <thead>
                 <tr>
                     <th>ID</th>
-                    <th>Image</th>
                     <th>Name</th>
                     <th>Description</th>
                     <th>Price</th>
                     <th>Rating</th>
-                    <th>Actions</th>
+                    <th>Stock</th>
+                    <th>Color</th>
+                    <th class="px-0">Actions</th>
                 </tr>
             </thead>
             <tbody>
                 @foreach ($products as $product)
-                    <tr>
+                    <tr >
+
                         <td>{{ $product->id }}</td>
                         <td>
-                            <div class="avatar">
-                                <div class="mask mask-squircle h-12 w-12">
-                                    <a href="{{ route('AdminProductShow', $product->id) }}">
-                                        <img
-                                                src="{{ asset($product->image_url) }}"
-                                                alt="img"/>
-                                    </a>
+                            <div class="flex items-center gap-3">
+                                <div class="avatar">
+                                    <div class="mask mask-squircle h-12 w-12">
+                                        <a href="{{ route('AdminProductShow', $product->id) }}">
+                                            <img
+                                                    src="{{ asset($product->image_url) }}"
+                                                    alt="img"/>
+                                        </a>
+                                    </div>
+                                </div>
+                                <div>
+                                    <a href="{{ route('AdminProductShow', $product->id) }}">{{ $product->name }}</a>
+                                    <p class="opacity-75 text-sm">{{$product->category->name}}</p>
                                 </div>
                             </div>
-                        <td>
-                            <a href="{{ route('AdminProductShow', $product->id) }}">{{ $product->name }}</a>
                         </td>
+
                         <td>{{ Str::limit($product->description, 50) }}</td>
                         <td>${{ $product->price }}</td>
                         <td>{{ $product->rating }}</td>
+                        <td>{{ $product->stock }}</td>
+                        <td>{{ $product->color }}</td>
                         <td class="flex gap-4 px-0">
                             <a href="{{ route('AdminProductEdit', $product->id) }}"
                                class="btn btn-primary flex-1">Edit</a>
