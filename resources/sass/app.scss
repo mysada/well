@@ -11,6 +11,15 @@ body {
   font-family: 'Poppins', 'Arial', 'Avenir Next Georgian', Arial, sans-serif;
 }
 
+#app{
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  main{
+    flex:1;
+  }
+}
+
 h1,
 h2,
 h3 {
