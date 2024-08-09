@@ -1,8 +1,6 @@
 @extends('layouts.app')
 @vite('resources/sass/privacy_policy.scss')
-
 @section('title', 'Privacy Policy - Wellness Balance')
-
 @section('content')
 
     <!-- Privacy Policy Section -->

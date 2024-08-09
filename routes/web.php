@@ -9,6 +9,7 @@ use App\Http\Controllers\admin\AdminReviewController;
 use App\Http\Controllers\admin\AdminUserController;
 use App\Http\Controllers\well\AboutController;
 use App\Http\Controllers\well\CartItemController;
+use App\Http\Controllers\well\CancellationRefundsController;
 use App\Http\Controllers\well\CheckoutController;
 use App\Http\Controllers\well\ContactController;
 use App\Http\Controllers\well\CountryTaxController;
@@ -32,6 +33,7 @@ Route::get('/faq', [FaqController::class, 'index'])->name("faq");
 Route::get('/privacy-policy', [PrivacyPolicyController::class, 'index'])->name(
   'privacy_policy'
 );
+Route::get('/cancellation-refunds', [CancellationRefundsController::class, 'index'])->name('cancellation_refunds');
 
 //country
 Route::get('/api/countries', [CountryTaxController::class, 'countries'])->name(
