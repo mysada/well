@@ -9,7 +9,7 @@
             <tr>
                 <th>ID</th>
                 <th>Name</th>
-                <th>Description</th>
+                <th>Image</th>
                 <th>Actions</th>
             </tr>
         </thead>
@@ -18,6 +18,9 @@
             <tr>
                 <td>{{ $category->id }}</td>
                 <td>{{ $category->name }}</td>
+                <td>
+                    <img src="{{ asset('images/home/' . $category->image_path) }}" alt="{{ $category->name }}" style="max-width: 100px;">
+                </td>
                 <td>
                     <a href="{{ route('AdminCategoryEdit', $category->id) }}" class="btn btn-warning">Edit</a>
                     <form action="{{ route('AdminCategoryDestroy', $category->id) }}" method="POST" style="display:inline;" onsubmit="return confirmDeletion();">
