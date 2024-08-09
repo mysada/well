@@ -142,7 +142,7 @@ h1, h2, h3 {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+
     transition: all 0.3s ease;
     vertical-align: middle;
     margin-right: 8px;
@@ -172,7 +172,7 @@ h1, h2, h3 {
 .contact-icon:hover, .social-icon:hover {
     background-color: #e0e0e0;
     border-color: #007bff;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+
     transform: scale(1.1) rotate(10deg);
 }
 

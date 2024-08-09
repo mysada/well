@@ -99,7 +99,7 @@ h2 {
   flex-direction: row;
   border-radius: 0!important;
   border: 0!important;
-  box-shadow: none!important;
+
 }
 
 .category-section,
@@ -274,7 +274,7 @@ h2 {
 
 .btn-primary:active {
   background-color: #008E65 !important;
-  box-shadow: none !important;
+
   transform: scale(0.95);
   color: #fff;
 }
@@ -285,7 +285,7 @@ h2 {
 .btn-primary:focus:hover,
 .btn-primary:focus:visited {
   outline: none;
-  box-shadow: none;
+
   color: #fff;
   background-color: #00AB7A;
   border: none;

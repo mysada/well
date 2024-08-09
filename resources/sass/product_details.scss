@@ -136,7 +136,7 @@
     align-items: center;
     overflow: hidden;
     border-radius: unset!important;
-    box-shadow: 0 1em 2em -0.9em rgba(0, 0, 0, 0.7);
+
 }
 
 .qty-input .product-qty,
@@ -222,7 +222,7 @@
 
 .card {
     border: none;
-    box-shadow: 4px 4px 4px 8px rgba(0, 0, 0, 0.1);
+
     transition: transform 0.3s;
     border-radius: unset!important; /* Adjust radius as needed */
     overflow: hidden; /* Ensure children follow the border-radius */

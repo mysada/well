@@ -7,7 +7,7 @@
         background-color: #f8f9fa;
         padding: 2rem;
         border-radius: unset!important;
-        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+
 
         .contact-icons {
             p {
@@ -44,7 +44,7 @@
                 border-radius: unset!important;
                 &:focus {
                     border-color: #00AB7A;
-                    box-shadow: none;
+
                 }
                 &.is-invalid {
                     border-color: #dc3545;

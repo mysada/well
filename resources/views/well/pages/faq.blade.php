@@ -10,7 +10,7 @@
             <div class="col-md-6">
                 <h3 class="text-center mb-4">General FAQs</h3>
                 <div class="accordion" id="faqAccordion">
-                    <div class="card rounded-lg shadow-sm mb-3">
+                    <div class="card   mb-3">
                         <div class="card-header bg-light" id="headingOne">
                             <h5 class="mb-0">
                                 <button class="btn btn-link text-dark font-weight-bold" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne"
@@ -25,7 +25,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="card rounded-lg shadow-sm mb-3">
+                    <div class="card   mb-3">
                         <div class="card-header bg-light" id="headingTwo">
                             <h5 class="mb-0">
                                 <button class="btn btn-link text-dark font-weight-bold collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo"
@@ -40,7 +40,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="card rounded-lg shadow-sm mb-3">
+                    <div class="card   mb-3">
                         <div class="card-header bg-light" id="headingThree">
                             <h5 class="mb-0">
                                 <button class="btn btn-link text-dark font-weight-bold collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree"
@@ -55,7 +55,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="card rounded-lg shadow-sm mb-3">
+                    <div class="card   mb-3">
                         <div class="card-header bg-light" id="headingFour">
                             <h5 class="mb-0">
                                 <button class="btn btn-link text-dark font-weight-bold collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFour"
@@ -70,7 +70,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="card rounded-lg shadow-sm mb-3">
+                    <div class="card   mb-3">
                         <div class="card-header bg-light" id="headingFive">
                             <h5 class="mb-0">
                                 <button class="btn btn-link text-dark font-weight-bold collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFive"
@@ -85,7 +85,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="card rounded-lg shadow-sm mb-3">
+                    <div class="card   mb-3">
                         <div class="card-header bg-light" id="headingSix">
                             <h5 class="mb-0">
                                 <button class="btn btn-link text-dark font-weight-bold collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSix"
@@ -107,7 +107,7 @@
             <div class="col-md-6">
                 <h3 class="text-center mb-4">Health & Personal Care FAQs</h3>
                 <div class="accordion" id="healthCareAccordion">
-                    <div class="card rounded-lg shadow-sm mb-3">
+                    <div class="card   mb-3">
                         <div class="card-header bg-light" id="headingSeven">
                             <h5 class="mb-0">
                                 <button class="btn btn-link text-dark font-weight-bold" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSeven"
@@ -122,7 +122,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="card rounded-lg shadow-sm mb-3">
+                    <div class="card   mb-3">
                         <div class="card-header bg-light" id="headingEight">
                             <h5 class="mb-0">
                                 <button class="btn btn-link text-dark font-weight-bold collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseEight"
@@ -137,7 +137,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="card rounded-lg shadow-sm mb-3">
+                    <div class="card   mb-3">
                         <div class="card-header bg-light" id="headingNine">
                             <h5 class="mb-0">
                                 <button class="btn btn-link text-dark font-weight-bold collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseNine"
@@ -152,7 +152,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="card rounded-lg shadow-sm mb-3">
+                    <div class="card   mb-3">
                         <div class="card-header bg-light" id="headingTen">
                             <h5 class="mb-0">
                                 <button class="btn btn-link text-dark font-weight-bold collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTen"
@@ -167,7 +167,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="card rounded-lg shadow-sm mb-3">
+                    <div class="card   mb-3">
                         <div class="card-header bg-light" id="headingEleven">
                             <h5 class="mb-0">
                                 <button class="btn btn-link text-dark font-weight-bold collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseEleven"
@@ -182,7 +182,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="card rounded-lg shadow-sm mb-3">
+                    <div class="card   mb-3">
                         <div class="card-header bg-light" id="headingTwelve">
                             <h5 class="mb-0">
                                 <button class="btn btn-link text-dark font-weight-bold collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwelve"
