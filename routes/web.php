@@ -32,6 +32,7 @@ Route::get('/faq', [FaqController::class, 'index'])->name("faq");
 Route::get('/privacy-policy', [PrivacyPolicyController::class, 'index'])->name(
   'privacy_policy'
 );
+Route::get('/cancellation-refunds', [CancellationRefundsController::class, 'index'])->name('cancellation_refunds');
 
 //country
 Route::get('/api/countries', [CountryTaxController::class, 'countries'])->name(

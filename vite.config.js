@@ -27,8 +27,10 @@ export default defineConfig({
             'resources/sass/privacy_policy.scss',
             'resources/sass/reviews.scss',
             'resources/sass/faq.scss',
+            'resources/sass/cancellation_refunds.scss',
             'resources/adminsass/admin.scss',
             'resources/adminsass/admin_dashboard.scss',
+
         ],
         refresh: true,
     }),
