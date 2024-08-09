@@ -69,7 +69,11 @@ class AdminCategoryController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        // Fetch the category by ID
+        $category = Category::findOrFail($id);
+
+        
+
     }
 
     /**
