@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Product;
 use Illuminate\Http\Request;
 
 class AdminProductController extends Controller
@@ -12,7 +13,9 @@ class AdminProductController extends Controller
      */
     public function index()
     {
-        //
+        $products = Product::all(); // Fetch all products from the database
+        return view('admin.pages.product.index', compact('products'));
+
     }
 
     /**
@@ -34,10 +37,11 @@ class AdminProductController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(Product $product)
     {
-        //
+        return view('admin.pages.product.show', compact('product'));
     }
+
 
     /**
      * Show the form for editing the specified resource.
@@ -58,8 +62,11 @@ class AdminProductController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Product $product)
     {
-        //
+        $product->delete();
+
+        return redirect()->route('AdminProductList')->with('success', 'Product deleted successfully.');
     }
+
 }
