@@ -31,9 +31,11 @@
                         <td>
                             <div class="avatar">
                                 <div class="mask mask-squircle h-12 w-12">
+                                    <a href="{{ route('AdminProductShow', $product->id) }}">
                                     <img
                                             src="{{ asset($product->image_url) }}"
                                             alt="img" />
+                                    </a>
                                 </div>
                             </div>
                         <td>
