@@ -108,8 +108,10 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/reorder/{orderId}', [UserController::class, 'reorder'])->name('order.reorder');
     Route::get('/checkout/{id}', [CheckoutController::class, 'showCheckout'])->name('checkout.show');
     Route::post('/checkout/process', [CheckoutController::class, 'process'])->name('checkout.process');
-
 });
+
+//thankyou page route
+
 
 //
 Auth::routes();
