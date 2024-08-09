@@ -4,8 +4,9 @@
 @section('content')
     <!-- FAQ Section -->
     <section class="container my-5">
-        <div class="faq-container p-4">
-            <h2 class="text-center mb-5">Frequently Asked Questions</h2>
+        <h2 class="text-center mb-5">Frequently Asked Questions</h2>
+        <hr class="faq-heading-divider mx-auto"> <!-- Added colored line below the heading -->
+        <div class="faq-container p-4 shadow-lg rounded mt-4">
             <div class="row">
                 <!-- General FAQ Section -->
                 <div class="col-md-6">
