@@ -7,7 +7,6 @@ export default defineConfig({
       input: [
         'resources/sass/app.scss',
         'resources/js/app.js',
-        'resources/js/admin.js',
         'resources/js/checkout.js',
         'resources/js/cart.js',
         'resources/js/quantity.js',
@@ -24,8 +23,9 @@ export default defineConfig({
         'resources/sass/privacy_policy.scss',
         'resources/sass/reviews.scss',
         'resources/sass/faq.scss',
-        'resources/adminsass/admin.scss',
-        'resources/adminsass/admin_dashboard.scss',
+        'resources/admin/style/admin.css',
+        'resources/admin/js/admin.js',
+
       ],
       refresh: true,
     }),
