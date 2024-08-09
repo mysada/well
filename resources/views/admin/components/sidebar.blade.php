@@ -1,5 +1,7 @@
-<aside class="w-64 p-4">
-    <h1 class="text-2xl font-bold mb-4">Data Management</h1>
+<aside class="w-64 fixed h-full">
+    <div class="p-4">
+        <h1 class="text-2xl font-bold">Well Admin</h1>
+    </div>
     <nav>
         <ul class="menu menu-compact">
             <li><a class="menu-item" href="#">Products</a></li>

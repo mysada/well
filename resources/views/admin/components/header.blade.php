@@ -1,6 +1,5 @@
-<div class="navbar bg-primary">
+<div class="navbar">
     <div class="flex-1">
-        <a class="btn btn-ghost text-xl">Well Dashboard</a>
     </div>
     <div class="flex-none">
         <div class="dropdown dropdown-end">

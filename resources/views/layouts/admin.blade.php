@@ -11,11 +11,11 @@
         <!-- Vite -->
 
     </head>
-    <body class="h-screen">
-        <main class="flex flex-col h-screen">
+    <body class="h-screen flex">
+        @include('admin.components.sidebar')
+        <main class="flex-1 ml-64">
             @include('admin.components.header')
-            <div class="flex-1">
-                @include('admin.components.sidebar')
+            <div class="flex-1 flex">
                 <div>
                     @yield('content')
                 </div>
