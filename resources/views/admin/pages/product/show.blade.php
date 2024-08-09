@@ -1,37 +1,54 @@
-@extends('layouts.admin')
+@extends('admin.admin')
 
 @section('content')
-    <div class="container-fluid">
-        <div class="row">
-            <div class="col-12">
-                <h1 class="my-4">Product Details</h1>
-                <a href="{{ route('AdminProductList') }}" class="btn btn-secondary mb-3">Back to Product List</a>
-                <div class="card">
-                    <div class="card-header">
-                        <h2>{{ $product->name }}</h2>
-                    </div>
-                    <div class="card-body">
-                        <div class="row">
-                            <div class="col-md-4">
-                                <img src="{{ asset($product->image_url) }}" alt="{{ $product->name }}" class="img-fluid">
-                            </div>
-                            <div class="col-md-8" style="text-align: left">
-                                <p><strong>Name:</strong> {{ $product->name }}</p>
-                                <p><strong>Description:</strong> {{ $product->description }}</p>
-                                <p><strong>Long Description:</strong> {{ $product->long_description }}</p>
-                                <p><strong>Price:</strong> ${{ number_format($product->price, 2) }}</p>
-                                <p><strong>Category ID:</strong> {{ $product->category_id }}</p>
-                                <p><strong>Stock:</strong> {{ $product->stock }}</p>
-                                <p><strong>Color:</strong> {{ $product->color }}</p>
-                                <p><strong>Rating:</strong> {{ $product->rating }}</p>
-                                <p><strong>Discount:</strong> {{ $product->discount }}%</p>
-                                <p><strong>Created At:</strong> {{ $product->created_at }}</p>
-                                <p><strong>Updated At:</strong> {{ $product->updated_at }}</p>
-                            </div>
+    <div class="container mx-auto p-4">
+        <div class="flex justify-between items-center mb-6">
+            <h1 class="text-3xl font-bold">Product Details</h1>
+            <a href="{{ route('AdminProductList') }}" class="btn btn-primary">Back to Product List</a>
+        </div>
+
+        <div class="bg-base-100 shadow-xl rounded-lg overflow-hidden">
+            <div class="md:flex">
+                <div class="md:w-1/3">
+                    <img src="{{ asset($product->image_url) }}" alt="{{ $product->name }}"
+                         class="w-full h-full object-cover"/>
+                </div>
+                <div class="md:w-2/3 p-6">
+                    <h2 class="text-2xl font-bold mb-4">{{ $product->name }}</h2>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
+                        <div>
+                            <p><span class="font-semibold">Price:</span> ${{ number_format($product->price, 2) }}</p>
+                            <p><span class="font-semibold">Category ID:</span> {{ $product->category_id }}</p>
+                            <p><span class="font-semibold">Stock:</span> {{ $product->stock }}</p>
+                        </div>
+                        <div>
+                            <p><span class="font-semibold">Color:</span> {{ $product->color }}</p>
+                            <p><span class="font-semibold">Rating:</span> {{ $product->rating }}</p>
+                            <p><span class="font-semibold">Discount:</span> {{ $product->discount }}%</p>
                         </div>
                     </div>
-                    <div class="card-footer">
-                        <a href="{{ route('AdminProductEdit', $product->id) }}" class="btn btn-warning">Edit Product</a>
+
+                    <div class="mb-6">
+                        <h3 class="text-xl font-semibold mb-2">Description</h3>
+                        <p class="text-gray-700">{{ $product->description }}</p>
+                    </div>
+
+
+                    <div class="collapse">
+                        <input type="checkbox"/>
+                        <div class="collapse-title text-xl font-medium p-0">Click to show/hidden long description</div>
+                        <div class="collapse-content">
+                            <p class="text-gray-700">{{ $product->long_description }}</p>
+                        </div>
+                    </div>
+
+                    <div class="flex justify-between items-center">
+                        <div class="text-sm text-gray-500">
+                            <p>Created: {{ $product->created_at->format('Y-m-d H:i') }}</p>
+                            <p>Updated: {{ $product->updated_at->format('Y-m-d H:i') }}</p>
+                        </div>
+                        <a href="{{ route('AdminProductEdit', $product->id) }}" class="btn btn-primary">Edit Product</a>
                     </div>
                 </div>
             </div>

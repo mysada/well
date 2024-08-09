@@ -1,78 +1,120 @@
-@extends('layouts.admin')
+@extends('admin.admin')
 
 @section('content')
-    <div class="container-fluid">
-        <div class="row">
-            <div class="col-12">
-                <h1 class="my-4">Add New Product</h1>
-                <a href="{{ route('AdminProductList') }}" class="btn btn-secondary mb-3">Back to Product List</a>
-
-                @if ($errors->any())
-                    <div class="alert alert-danger">
-                        <ul>
-                            @foreach ($errors->all() as $error)
-                                <li>{{ $error }}</li>
-                            @endforeach
-                        </ul>
-                    </div>
-                @endif
-
-                <form action="{{ route('AdminProductStore') }}" method="POST" enctype="multipart/form-data">
-                    @csrf
-
-                    <div class="form-group">
-                        <label for="name">Product Name</label>
-                        <input type="text" class="form-control" id="name" name="name" value="{{ old('name') }}" required>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="description">Description</label>
-                        <textarea class="form-control" id="description" name="description" rows="3" required>{{ old('description') }}</textarea>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="long_description">Long Description</label>
-                        <textarea class="form-control" id="long_description" name="long_description" rows="5">{{ old('long_description') }}</textarea>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="price">Price</label>
-                        <input type="number" step="0.01" class="form-control" id="price" name="price" value="{{ old('price') }}" required>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="category_id">Category ID</label>
-                        <input type="number" class="form-control" id="category_id" name="category_id" value="{{ old('category_id') }}" required>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="stock">Stock</label>
-                        <input type="number" class="form-control" id="stock" name="stock" value="{{ old('stock') }}" required>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="image">Product Image</label>
-                        <input type="file" class="form-control-file" id="image" name="image">
-                    </div>
-
-                    <div class="form-group">
-                        <label for="color">Color</label>
-                        <input type="text" class="form-control" id="color" name="color" value="{{ old('color') }}">
-                    </div>
-
-                    <div class="form-group">
-                        <label for="rating">Rating</label>
-                        <input type="number" step="0.01" class="form-control" id="rating" name="rating" value="{{ old('rating') }}" min="0" max="5">
-                    </div>
-
-                    <div class="form-group">
-                        <label for="discount">Discount (%)</label>
-                        <input type="number" step="0.01" class="form-control" id="discount" name="discount" value="{{ old('discount') }}" min="0" max="100">
-                    </div>
-
-                    <button type="submit" class="btn btn-success">Add Product</button>
-                </form>
-            </div>
+    <div class="container mx-auto p-4">
+        <div class="flex justify-between">
+            <h1 class="text-4xl font-bold mb-4">Add New Product</h1>
+            <a href="{{ route('AdminProductList') }}" class="btn btn-primary mb-3">Back to Product List</a>
         </div>
+        <form action="{{ route('AdminProductStore') }}" method="POST" enctype="multipart/form-data">
+            @csrf
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <!-- Column 1 -->
+                <div>
+                    <label class="input input-bordered flex items-center gap-2 ">
+                        <span>Product Name</span>
+                        <input type="text" class="grow" id="name" name="name" value="{{ old('name') }}"
+                               placeholder="Enter product name"/>
+                    </label>
+                    @error('name')
+                    <div class="text-red-500 text-sm mt-1">{{ $message }}</div>
+                    @enderror
+                </div>
+
+                <div>
+                    <label class="input input-bordered flex items-center gap-2 ">
+                        <span>Price</span>
+                        <input type="number" step="0.01" class="grow" id="price" name="price" value="{{ old('price') }}"
+                               placeholder="Enter price"/>
+                    </label>
+                    @error('price')
+                    <div class="text-red-500 text-sm mt-1">{{ $message }}</div>
+                    @enderror
+                </div>
+
+                <div>
+                    <label class="input input-bordered flex items-center gap-2 ">
+                        <span>Category ID</span>
+                        <input type="number" class="grow" id="category_id" name="category_id"
+                               value="{{ old('category_id') }}" placeholder="Enter category ID"/>
+                    </label>
+                    @error('category_id')
+                    <div class="text-red-500 text-sm mt-1">{{ $message }}</div>
+                    @enderror
+                </div>
+
+                <div>
+                    <label class="input input-bordered flex items-center gap-2 ">
+                        <span>Stock</span>
+                        <input type="number" class="grow" id="stock" name="stock" value="{{ old('stock') }}"
+                               placeholder="Enter stock quantity"/>
+                    </label>
+                    @error('stock')
+                    <div class="text-red-500 text-sm mt-1">{{ $message }}</div>
+                    @enderror
+                </div>
+
+                <div>
+                    <label class="input input-bordered flex items-center gap-2 ">
+                        <span>Color</span>
+                        <input type="text" class="grow" id="color" name="color" value="{{ old('color') }}"
+                               placeholder="Enter color"/>
+                    </label>
+                    @error('color')
+                    <div class="text-red-500 text-sm mt-1">{{ $message }}</div>
+                    @enderror
+                </div>
+
+                <div>
+                    <label class="input input-bordered flex items-center gap-2 ">
+                        <span>Rating</span>
+                        <input type="number" step="0.01" class="grow" id="rating" name="rating"
+                               value="{{ old('rating') }}" min="0" max="5" placeholder="Enter rating"/>
+                    </label>
+                    @error('rating')
+                    <div class="text-red-500 text-sm mt-1">{{ $message }}</div>
+                    @enderror
+                </div>
+
+                <div>
+                    <label class="input input-bordered flex items-center gap-2 ">
+                        <span>Discount (%)</span>
+                        <input type="number" step="0.01" class="grow" id="discount" name="discount"
+                               value="{{ old('discount') }}" min="0" max="100" placeholder="Enter discount"/>
+                    </label>
+                    @error('discount')
+                    <div class="text-red-500 text-sm mt-1">{{ $message }}</div>
+                    @enderror
+                </div>
+
+                <div>
+                    <input type="file" class="file-input file-input-bordered grow w-full " id="image" name="image"/>
+                    @error('image')
+                    <div class="text-red-500 text-sm mt-1">{{ $message }}</div>
+                    @enderror
+                </div>
+                <!-- Column 2 -->
+                <div>
+                        <textarea class="textarea textarea-bordered w-full " id="description" name="description"
+                                  rows="3"
+                                  placeholder="Enter product description">{{ old('description') }}</textarea>
+                    @error('description')
+                    <div class="text-red-500 text-sm mt-1">{{ $message }}</div>
+                    @enderror
+                </div>
+
+                <div>
+                        <textarea class="textarea textarea-bordered w-full " id="long_description"
+                                  name="long_description"
+                                  rows="5" placeholder="Enter long description">{{ old('long_description') }}</textarea>
+                    @error('long_description')
+                    <div class="text-red-500 text-sm mt-1">{{ $message }}</div>
+                    @enderror
+                </div>
+                <button type="submit" class="btn btn-primary w-full ">Add Product</button>
+
+            </div>
+
+        </form>
     </div>
 @endsection
