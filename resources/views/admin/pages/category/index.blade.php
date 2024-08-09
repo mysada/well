@@ -1,10 +1,10 @@
-@extends('layouts.admin')
+@extends('admin.admin')
 
 @section('content')
-<div class="container">
-    <h1>Category List</h1>
-    <a href="{{ route('AdminCategoryCreate') }}" class="btn btn-primary">Add New Category</a>
-    <table class="table">
+<div class="container mx-auto p-4">
+    <h1 class="text-3xl font-bold mb-4">Category List</h1>
+    <a href="{{ route('AdminCategoryCreate') }}" class="btn btn-primary mb-4">Add New Category</a>
+    <table class="table w-full">
         <thead>
             <tr>
                 <th>ID</th>
@@ -19,14 +19,14 @@
                 <td>{{ $category->id }}</td>
                 <td>{{ $category->name }}</td>
                 <td>
-                    <img src="{{ asset('images/home/' . $category->image_path) }}" alt="{{ $category->name }}" style="max-width: 100px;">
+                    <img src="{{ asset( $category->image.'.jpg') }}" alt="{{ $category->name }}" class="w-24">
                 </td>
-                <td>
+                <td class="flex space-x-2">
                     <a href="{{ route('AdminCategoryEdit', $category->id) }}" class="btn btn-warning">Edit</a>
-                    <form action="{{ route('AdminCategoryDestroy', $category->id) }}" method="POST" style="display:inline;" onsubmit="return confirmDeletion();">
+                    <form action="{{ route('AdminCategoryDestroy', $category->id) }}" method="POST" onsubmit="return confirmDeletion();">
                         @csrf
                         @method('DELETE')
-                        <button type="submit" class="btn btn-danger">Delete</button>
+                        <button type="submit" class="btn btn-error">Delete</button>
                     </form>
                 </td>
             </tr>
@@ -37,7 +37,7 @@
 
 <script>
     function confirmDeletion() {
-        return confirm('Are you sure you want to delete this category? ');
+        return confirm('Are you sure you want to delete this category?');
     }
 </script>
 @endsection
