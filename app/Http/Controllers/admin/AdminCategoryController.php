@@ -69,7 +69,12 @@ class AdminCategoryController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        // Fetch the category by ID
+        $category = Category::findOrFail($id);
+
+        // Return the edit view with the category data
+        return view('admin.pages.category.edit', compact('category'));
+
     }
 
     /**
