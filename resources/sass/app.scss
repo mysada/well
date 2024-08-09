@@ -11,6 +11,15 @@ body {
   font-family: 'Poppins', 'Arial', 'Avenir Next Georgian', Arial, sans-serif;
 }
 
+#app{
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  main{
+    flex:1;
+  }
+}
+
 h1,
 h2,
 h3 {
@@ -44,7 +53,7 @@ a{
 
 .navbar-toggler {
   padding: .25rem .75rem;
-  font-size: 1.25rem;
+  font-size: 1.5rem;
   line-height: 1;
   background-color: transparent;
   border: none;
@@ -58,7 +67,7 @@ a{
   &:hover {
     background-color: #ffffff;
     color: #000;
-    border-radius: 5px;
+    border-radius: unset!important;
   }
 
   &.active {
@@ -73,7 +82,7 @@ a{
       right: 0;
       height: 2px;
       background-color: #000;
-      border-radius: 5px;
+      border-radius: unset!important;
     }
   }
 }
@@ -119,8 +128,8 @@ a{
 // flash message
 .alert {
   padding: 20px;
-  border: 1px solid transparent;
-  border-radius: 0px;
+  border: 1px solid #eee;
+  border-radius: unset!important;
   margin-bottom: 0px;
 }
 
@@ -135,3 +144,28 @@ a{
   background-color: #f2dede;
   border-color: #ebccd1;
 }
+
+//cart icon
+.custom-cart-icon {
+    font-size: 24px; /* Adjust the size as needed */
+    position: relative;
+}
+
+#cart-item-count {
+    position: absolute;
+    top: -5px;
+    right: -5px;
+    background-color: red;
+    color: white;
+    border-radius: 50%;
+    width: 21px;
+    height: 21px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    line-height: 1;
+    padding: 0;
+}
+
+

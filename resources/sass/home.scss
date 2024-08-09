@@ -99,7 +99,7 @@ h2 {
   flex-direction: row;
   border-radius: 0!important;
   border: 0!important;
-  box-shadow: none!important;
+
 }
 
 .category-section,
@@ -255,7 +255,7 @@ h2 {
   height: 50px;
   color: #fff;
   border: none;
-  border-radius: 0px;
+  border-radius: unset!important;
   padding: 12px 20px;
   font-size: 17px;
   font-weight: 700;
@@ -269,12 +269,12 @@ h2 {
 .btn-primary:hover {
   background-color: #fff;
   color: #00AB7A;
-  border: 1px solid #00AB7A;
+  border: 1px solid #eee;
 }
 
 .btn-primary:active {
   background-color: #008E65 !important;
-  box-shadow: none !important;
+
   transform: scale(0.95);
   color: #fff;
 }
@@ -285,7 +285,7 @@ h2 {
 .btn-primary:focus:hover,
 .btn-primary:focus:visited {
   outline: none;
-  box-shadow: none;
+
   color: #fff;
   background-color: #00AB7A;
   border: none;
@@ -297,7 +297,7 @@ h2 {
   height: 50px;
   color: #333;
   border: none;
-  border-radius: 0px;
+  border-radius: unset!important;
   padding: 12px 20px;
   font-size: 17px;
   font-weight: 700;

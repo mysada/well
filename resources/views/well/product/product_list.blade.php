@@ -37,7 +37,7 @@
                 </form>
 
                 @if(request('search'))
-                <p>You searched for: <strong>{{ request('search') }}</strong></p>
+                <p style="font-size:18px">You searched for: <strong>{{ request('search') }}</strong></p>
                 @endif
 
                 <!-- Products -->
@@ -46,7 +46,7 @@
                     <div class="col-md-4 mb-4">
                         <a href="{{ route('products.show', $product->id) }}" class="text-decoration-none text-dark">
                             <div class="card product-card h-100">
-                                <img src="{{ asset($product->image_url) }}" class="card-img-top" alt="{{ htmlspecialchars($product->name) }}">
+                                <img src="{{ asset($product->image_url) }}"  alt="{{ htmlspecialchars($product->name) }}">
                                 <div class="card-body d-flex flex-column">
                                     <h5 class="card-title">{{ htmlspecialchars($product->name) }}</h5>
                                     <p class="card-text mt-auto">$ {{ number_format($product->price, 2) }}</p>
@@ -71,7 +71,7 @@
                     </div>
                     @empty
                     <div class="col-12">
-                        <p>No products found matching your search criteria.</p>
+                        <p style="color: #666">No products found matching your search criteria.</p>
                     </div>
                     @endforelse
                 </div>

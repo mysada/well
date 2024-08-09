@@ -11,10 +11,14 @@ class CartItem extends Model
 
     use HasFactory;
 
-    protected $fillable =
-        ['user_id',
-            'product_id',
-            'quantity'];
+    protected $fillable = [
+        'user_id',
+        'product_id',
+        'quantity',
+        'subtotal',
+        'total',
+        'items'
+    ];
 
     public function product(): BelongsTo
     {

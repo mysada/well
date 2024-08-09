@@ -14,13 +14,13 @@ h4 {
     padding: 10px;
     background-color: #000;
     color: #fff !important;
-    border-radius: 5px;
+    border-radius: unset!important;
 }
 
 .form-section {
-    border: 1px solid #00AB7A;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 171, 122, 0.1);
+    border: 1px solid #eee;
+    border-radius: unset!important;
+
     padding: 20px;
     margin-bottom: 30px;
     background-color: #f9f9f9;
@@ -29,8 +29,8 @@ h4 {
 
 .form-section input,
 .form-section select {
-    border-radius: 5px;
-    border: 1px solid #e1e1e1;
+    border-radius: unset!important;
+    border: 1px solid #eee;
     padding: 10px;
     margin-bottom: 15px;
     width: calc(100% - 22px);
@@ -39,14 +39,14 @@ h4 {
 .form-section input:focus,
 .form-section select:focus {
     border-color: #00AB7A;
-    box-shadow: 0 0 5px rgba(0, 171, 122, 0.5);
+
 }
 
 .btn-checkout-custom {
     background-color: #00AB7A;
     color: #fff;
     border: none;
-    border-radius: 5px;
+    border-radius: unset!important;
     padding: 10px 20px;
     font-size: 16px;
     font-weight: 700;
@@ -59,7 +59,7 @@ h4 {
 .btn-checkout-custom:hover {
     background-color: #fff;
     color: #00AB7A;
-    border: 1px solid #00AB7A;
+    border: 1px solid #eee;
 }
 
 .btn-checkout-custom:active {
@@ -70,9 +70,9 @@ h4 {
 
 .cart-summary {
     background-color: #f9f9f9;
-    border: 1px solid #00AB7A;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 171, 122, 0.1);
+    border: 1px solid #eee;
+    border-radius: unset!important;
+
     padding: 20px;
     margin-left: 5px;
     width: 450px;
@@ -86,8 +86,8 @@ h4 {
 .tax-breakdown p {
     margin-bottom: 0;
     padding: 10px;
-    border: 1px solid #e1e1e1;
-    border-radius: 5px;
+    border: 1px solid #eee;
+    border-radius: unset!important;
     background-color: #f1f1f1;
 }
 

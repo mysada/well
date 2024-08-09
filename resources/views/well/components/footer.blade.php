@@ -23,6 +23,7 @@
                         <li><a href="#" class="text-white">Help Centre</a></li>
                         <li><a href="#" class="text-white">Contact Us</a></li>
                         <li><a  href="{{ url('/faq') }}" class="text-white">FAQ's</a></li>
+                        <li><a  href="{{ url('/privacy-policy') }}" class="text-white">Privacy Policy</a></li>
                     </ul>
                 </div>
                 <div class="col-md-2">
@@ -40,11 +41,6 @@
             </div>
         </div>
     </footer>
-
-    <!-- Bootstrap JS and dependencies -->
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
 
 </html>

@@ -21,6 +21,7 @@ return new class extends Migration {
             $table->text('review_text')->nullable();
             // Add indexes to the foreign key columns
             $table->index('product_id');
+            $table->string('image')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });
