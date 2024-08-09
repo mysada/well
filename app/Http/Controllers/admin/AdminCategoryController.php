@@ -20,7 +20,8 @@ class AdminCategoryController extends Controller
      */
     public function create()
     {
-        return view('admin.pages.category.create');
+        $title = 'Add New Category';
+        return view('admin.pages.category.create', compact('title'));
     }
 
     /**
