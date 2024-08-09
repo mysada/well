@@ -22,11 +22,11 @@
                     <img src="{{ asset( $category->image.'.jpg') }}" alt="{{ $category->name }}" class="w-24">
                 </td>
                 <td class="flex space-x-2">
-                    <a href="{{ route('AdminCategoryEdit', $category->id) }}" class="btn btn-warning">Edit</a>
+                    <a href="{{ route('AdminCategoryEdit', $category->id) }}" class="btn btn-primary">Edit</a>
                     <form action="{{ route('AdminCategoryDestroy', $category->id) }}" method="POST" onsubmit="return confirmDeletion();">
                         @csrf
                         @method('DELETE')
-                        <button type="submit" class="btn btn-error">Delete</button>
+                        <button type="submit" class="btn btn-default">Delete</button>
                     </form>
                 </td>
             </tr>
