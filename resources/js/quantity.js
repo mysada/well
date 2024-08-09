@@ -53,7 +53,6 @@ document.addEventListener('DOMContentLoaded', function () {
             .then(response => response.json())
             .then(data => {
                 if (data.message) {
-                    // alert(data.message);
                     // Update the stock display and other UI components here if necessary
                     document.querySelector(`input[data-product-id="${productId}"]`).max = data.newStock;
                     document.querySelector('.product-stock-display').textContent = `${data.newStock} in stock`;
