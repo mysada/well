@@ -120,5 +120,8 @@ class AdminCategoryController extends Controller
 
         $category->delete();
 
+        // Redirect to the category list with a success message
+        return redirect()->route('AdminCategoryList')->with('success', 'Category deleted successfully.');
+
     }
 }
