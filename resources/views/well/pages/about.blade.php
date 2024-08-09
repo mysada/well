@@ -6,7 +6,7 @@
         <div class="hero-box d-flex align-items-center justify-content-between p-5" style="border-radius: unset!important;">
             <div class="hero-content">
                 <h1>We provide you the best products</h1>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.</p>
+                <p>At Well, our mission is to deliver exceptional products that enhance your lifestyle. We are committed to quality and innovation, ensuring that each item we offer meets the highest standards. Our team is dedicated to sourcing and creating products that not only satisfy your needs but also bring you joy and convenience.</p>
                 <a href="#products" class="btn">Buy Now</a>
             </div>
             <div class="hero-image">
@@ -27,7 +27,7 @@
             <div class="col-md-6 d-flex align-items-center">
                 <div>
                     <h3>Who We Are</h3>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.</p>
+                    <p>We are a passionate team dedicated to providing top-notch products and services. Our commitment to excellence is reflected in everything we do, from the products we offer to the customer experience we provide. We value integrity, innovation, and customer satisfaction, and strive to build lasting relationships with our clients.</p>
                 </div>
             </div>
         </div>
@@ -38,12 +38,13 @@
             <div class="col-md-6 d-flex align-items-center order-md-1">
                 <div>
                     <h3>What We Do</h3>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.</p>
+                    <p>Our focus is on delivering products that make a real difference in your life. Whether it's through innovative solutions, high-quality materials, or outstanding customer support, we are dedicated to exceeding your expectations. Explore our offerings and see how we can help you achieve your goals with ease and confidence.</p>
                 </div>
             </div>
         </div>
     </div>
 
+    <!--
     <div class="section-title text-center my-5">
         <h2>Reach Us Via</h2>
     </div>
@@ -73,5 +74,5 @@
             </div>
         </div>
     </div>
-
+        -->
 @endsection

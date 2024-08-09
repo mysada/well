@@ -56,7 +56,7 @@ h2 {
 }
 
 .product-card {
-    border: 1px solid #e1e1e1;
+    border: 1px solid #eee;
     border-radius: unset!important;
     margin-bottom: 20px;
     position: relative;
@@ -87,7 +87,7 @@ h2 {
 .btn-add:hover {
     background-color: #fff;
     color: #00AB7A;
-    border: 1px solid #00AB7A;
+    border: 1px solid #eee;
 }
 
 .btn-add:active {
@@ -135,7 +135,7 @@ h2 {
 .btn-load-more:hover {
     background-color: #fff;
     color: #00AB7A;
-    border: 1px solid #00AB7A;
+    border: 1px solid #eee;
 }
 
 .btn-load-more:active {
@@ -152,7 +152,7 @@ h2 {
 .page-link {
     background-color: #00AB7A;
     color: #fff;
-    border: 1px solid #00AB7A;
+    border: 1px solid #eee;
     padding: 10px 15px;
     font-size: 16px;
     font-weight: 700;
@@ -162,7 +162,7 @@ h2 {
 .page-link:hover {
     background-color: #fff;
     color: #00AB7A;
-    border: 1px solid #00AB7A;
+    border: 1px solid #eee;
 }
 
 .page-link:active {
@@ -173,7 +173,7 @@ h2 {
 
 .page-item.active .page-link {
     background-color: #008E65;
-    border: 1px solid #008E65;
+    border: 1px solid #eee;
 }
 
 .card.product-card {
@@ -202,7 +202,7 @@ h2 {
             text-decoration: none;
             color: #008E65;
             background-color: #fff;
-            border: 1px solid #dee2e6;
+            border: 1px solid #eee;
             border-radius: unset!important;
             transition: background-color 0.3s, color 0.3s;
         }
@@ -228,27 +228,18 @@ h2 {
 }
 
 .search-form {
-    .input-group {
-        border: 1px solid transparent;
-        border-radius: unset!important;
-        transition: border-color 0.3s;
-
-        &:focus-within {
-            border-color: #00AB7A;
-        }
-    }
-
     .form-control:focus {
 
         border-color: #00AB7A;
     }
 
     .btn-custom {
+        border-radius: unset!important;
         background-color: #00AB7A;
         color: #fff;
         font-size: 20px;
         padding:10px;
-        border: 1px solid #00AB7A;
+        border: 1px solid #eee;
         margin-left: 5px;
         transition: background-color 0.3s, color 0.3s;
 
@@ -262,14 +253,14 @@ h2 {
     .search-bar {
         height: 50px;
         border-radius: 5px 0 0 5px;
-        border: 1px solid #ddd;
+        border: 1px solid #eee;
         font-size: 1rem;
         padding: 0 15px;
     }
 }
 
 .product-card {
-    border: 1px solid #ddd;
+    border: 1px solid #eee;
     border-radius: unset!important;
     overflow: hidden;
     transition: box-shadow 0.3s ease;
