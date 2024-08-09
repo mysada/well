@@ -89,6 +89,10 @@ class AdminCategoryController extends Controller
         // Update the name
         $category->name = $request->name;
 
+        // Store the new image
+        $imagePath = $request->file('image')->store('images/admin', 'public');
+        $category->image_path = $imagePath;
+
     }
 
     /**
