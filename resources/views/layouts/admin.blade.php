@@ -6,23 +6,18 @@
         <!-- CSRF Token -->
         <meta name="csrf-token" content="{{ csrf_token() }}">
         <title>{{ config('app.name', 'Laravel') . ' - ' . ($title ?? '') }}</title>
-
-        <!-- Fonts -->
-        <link rel="dns-prefetch" href="//fonts.bunny.net">
-        <link href="https://fonts.bunny.net/css?family=Nunito" rel="stylesheet">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-
+        <link href="https://cdn.jsdelivr.net/npm/daisyui@4.12.10/dist/full.min.css" rel="stylesheet" type="text/css"/>
+        <script src="https://cdn.tailwindcss.com"></script>
         <!-- Vite -->
-        @vite(['resources/adminsass/admin.scss', 'resources/js/admin.js'])
 
     </head>
     <body>
-        <div id="app">
+        <div>
             @include('admin.components.header')
-            <div class="d-flex">
+            <div>
                 @include('admin.components.sidebar')
-                <main class="container-fluid p-4">
-                @yield('content')
+                <main>
+                    @yield('content')
                 </main>
             </div>
             @include('admin.components.footer')
