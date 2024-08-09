@@ -1,8 +1,8 @@
 @extends('admin.admin')
 
 @section('content')
-    <div class="overflow-x-auto w-full">
-        <div class="flex justify-between py-4">
+    <div class="container mx-auto">
+        <div class="flex justify-between">
             <div></div>
             <div class="flex gap-4">
                 <label class="input input-bordered flex items-center gap-2">

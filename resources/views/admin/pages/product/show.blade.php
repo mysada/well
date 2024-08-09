@@ -1,9 +1,9 @@
 @extends('admin.admin')
 
 @section('content')
-    <div class="container mx-auto p-4">
+    <div class="container mx-auto">
         <div class="flex justify-between items-center mb-6">
-            <h1 class="text-3xl font-bold">Product Details</h1>
+            <div></div>
             <a href="{{ route('AdminProductList') }}" class="btn btn-primary">Back to Product List</a>
         </div>
 

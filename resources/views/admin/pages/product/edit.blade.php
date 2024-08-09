@@ -1,9 +1,9 @@
 @extends('admin.admin')
 
 @section('content')
-    <div class="container mx-auto p-4">
+    <div class="container mx-auto">
         <div class="flex justify-between">
-            <h1 class="text-4xl font-bold mb-4">Edit Product</h1>
+            <div></div>
             <a href="{{ route('AdminProductList') }}" class="btn btn-primary mb-3">Back to Product List</a>
         </div>
         <form action="{{ route('AdminProductUpdate', $product->id) }}" method="POST" enctype="multipart/form-data">

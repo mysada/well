@@ -12,7 +12,7 @@ class AdminHomeController extends Controller
      */
     public function index()
     {
-        $title='Well Dashboard';
+        $title='Dashboard';
         return view('admin.pages.home',compact('title'));
     }
 

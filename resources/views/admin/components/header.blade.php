@@ -2,10 +2,11 @@
   bg-base-100 text-base-content sticky top-0 z-30 flex h-16 w-full justify-center bg-opacity-90 backdrop-blur transition-shadow duration-100 [transform:translate3d(0,0,0)]
   ">
     <div class="navbar w-full">
-        <h1 class="flex-1 text-2xl font-bold">
+        <h1 class="flex-1 text-2xl">
             {{$title??'Transfer the title'}}
         </h1>
-        <div class="flex-none">
+        <div class="flex-none gap-4">
+            <span>{{Auth::getUser()->name}}</span>
             <div class="dropdown dropdown-end">
                 <div tabindex="0" role="button" class="btn btn-ghost btn-circle avatar">
                     <div class="w-10 rounded-full">
