@@ -18,7 +18,7 @@ h2 {
     background-color: #00AB7A;
     color: #fff;
     padding: 10px;
-    border-radius: 5px;
+    border-radius: unset!important;
     margin-bottom: 15px;
     text-align: center;
 }
@@ -33,7 +33,7 @@ h2 {
     color: #333;
     text-decoration: none;
     border: 2px solid transparent;
-    border-radius: 5px;
+    border-radius: unset!important;
 }
 
 .category-list a svg {
@@ -57,7 +57,7 @@ h2 {
 
 .product-card {
     border: 1px solid #e1e1e1;
-    border-radius: 8px;
+    border-radius: unset!important;
     margin-bottom: 20px;
     position: relative;
 }
@@ -123,7 +123,7 @@ h2 {
     background-color: #00AB7A;
     color: #fff;
     border: none;
-    border-radius: 5px;
+    border-radius: unset!important;
     padding: 10px 20px;
     font-size: 16px;
     font-weight: 700;
@@ -145,7 +145,7 @@ h2 {
 }
 
 .page-item {
-    border-radius: 5px;
+    border-radius: unset!important;
     margin: 0 5px;
 }
 
@@ -203,7 +203,7 @@ h2 {
             color: #008E65;
             background-color: #fff;
             border: 1px solid #dee2e6;
-            border-radius: 4px;
+            border-radius: unset!important;
             transition: background-color 0.3s, color 0.3s;
         }
 
@@ -230,7 +230,7 @@ h2 {
 .search-form {
     .input-group {
         border: 1px solid transparent;
-        border-radius: 4px;
+        border-radius: unset!important;
         transition: border-color 0.3s;
 
         &:focus-within {
@@ -270,7 +270,7 @@ h2 {
 
 .product-card {
     border: 1px solid #ddd;
-    border-radius: 5px;
+    border-radius: unset!important;
     overflow: hidden;
     transition: box-shadow 0.3s ease;
 }

@@ -3,14 +3,14 @@
 @section('content')
 
     <div class="hero container mb-5">
-        <div class="hero-box d-flex align-items-center justify-content-between p-5" style="border-radius: 10px;">
+        <div class="hero-box d-flex align-items-center justify-content-between p-5" style="border-radius: unset!important;">
             <div class="hero-content">
                 <h1>We provide you the best products</h1>
                 <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.</p>
                 <a href="#products" class="btn">Buy Now</a>
             </div>
             <div class="hero-image">
-                <img src="{{ asset('images/about/about_us_banner.jpg') }}" alt="Product" class="img-fluid" style="border-radius: 10px;">
+                <img src="{{ asset('images/about/about_us_banner.jpg') }}" alt="Product" class="img-fluid" style="border-radius: unset!important;">
             </div>
         </div>
     </div>

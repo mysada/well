@@ -37,7 +37,7 @@ h1, h2, h3 {
     padding: 2rem;
     // background-color: #e0f7fa;
     background-color: #EFF8F5;
-    border-radius: 10px;
+    border-radius: unset!important;
 }
 
 .hero-content h1 {
@@ -56,7 +56,7 @@ h1, h2, h3 {
     background-color: #00A875;
     color: #fff;
     border: none;
-    border-radius: 5px;
+    border-radius: unset!important;
     text-align: right;
 }
 
@@ -66,7 +66,7 @@ h1, h2, h3 {
 
 .hero-image img {
     max-width: 100%;
-    border-radius: 10px;
+    border-radius: unset!important;
 }
 
 .section-title h2 {
@@ -80,7 +80,7 @@ h1, h2, h3 {
 
 .content img {
     width: 100%;
-    border-radius: 10px;
+    border-radius: unset!important;
 }
 
 .content h3 {
@@ -101,7 +101,7 @@ h1, h2, h3 {
 .contact-info-box {
     background-color: #333;
     padding: 20px;
-    border-radius: 10px;
+    border-radius: unset!important;
     color: #fff;
     text-align: left;
     margin-bottom: 20px;

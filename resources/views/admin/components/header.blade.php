@@ -38,7 +38,7 @@
         .stats {
             margin-top: 50px;
             margin-bottom: 80px;
-            border-radius: 10px;
+            border-radius: unset!important;
         }
 
         .stat {
@@ -49,7 +49,7 @@
             display: flex;
             flex-direction: column;
             flex: 1;
-            border-radius: 10px;
+            border-radius: unset!important;
             color: #fff;
         }
 

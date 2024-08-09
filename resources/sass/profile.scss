@@ -13,7 +13,7 @@ h1, h2, h3, h4, h5 {
     margin: 0 auto;
     padding: 20px;
     background-color: #fff;
-    border-radius: 10px;
+    border-radius: unset!important;
     box-shadow: 0 4px 8px rgba(0, 171, 122, 0.1);
     position: relative;
 }
@@ -64,7 +64,7 @@ h1, h2, h3, h4, h5 {
     background-color: #00AB7A;
     color: #fff;
     border: none;
-    border-radius: 5px;
+    border-radius: unset!important;
     padding: 10px 20px;
     font-size: 16px;
     font-weight: 700;
@@ -88,7 +88,7 @@ h1, h2, h3, h4, h5 {
 
 .profile-section {
     border: 1px solid #00AB7A;
-    border-radius: 10px;
+    border-radius: unset!important;
     box-shadow: 0 4px 8px rgba(0, 171, 122, 0.1);
     padding: 20px;
     margin-bottom: 30px;
@@ -101,7 +101,7 @@ h1, h2, h3, h4, h5 {
 
 .profile-section input,
 .profile-section select {
-    border-radius: 5px;
+    border-radius: unset!important;
     border: 1px solid #e1e1e1;
     padding: 10px;
     margin-bottom: 15px;
@@ -118,7 +118,7 @@ h1, h2, h3, h4, h5 {
     background-color: #000 !important;
     color: #fff;
     border: none;
-    border-radius: 5px;
+    border-radius: unset!important;
     padding: 10px 20px;
     font-size: 16px;
     font-weight: 700;
@@ -142,7 +142,7 @@ h1, h2, h3, h4, h5 {
     background-color: #000 !important;
     color: #fff;
     border: none;
-    border-radius: 5px;
+    border-radius: unset!important;
     padding: 10px 20px;
     font-size: 16px;
     font-weight: 700;
@@ -163,7 +163,7 @@ h1, h2, h3, h4, h5 {
     height: 150px;
     object-fit: cover;
     margin-right: 15px;
-    border-radius: 10px;
+    border-radius: unset!important;
 }
 
 .order-details {
@@ -179,7 +179,7 @@ h1, h2, h3, h4, h5 {
     background-color: #00AB7A;
     color: #fff;
     border: none;
-    border-radius: 5px;
+    border-radius: unset!important;
     padding: 5px 10px;
     font-size: 14px;
     font-weight: 700;
@@ -200,7 +200,7 @@ h1, h2, h3, h4, h5 {
 
 .profile-sidebar {
     border: 1px solid #00AB7A;
-    border-radius: 10px;
+    border-radius: unset!important;
     box-shadow: 0 4px 8px rgba(0, 171, 122, 0.1);
     padding: 20px;
     margin-right: 20px;
@@ -238,7 +238,7 @@ h1, h2, h3, h4, h5 {
 
 .address-box {
     border: 1px solid #e1e1e1;
-    border-radius: 10px;
+    border-radius: unset!important;
     padding: 15px;
     margin-bottom: 15px;
     background-color: #fff;
