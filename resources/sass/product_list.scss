@@ -229,24 +229,24 @@ h2 {
 
 .search-form {
     .form-control:focus {
-
         border-color: #00AB7A;
     }
 
     .btn-custom {
         border-radius: unset!important;
-        background-color: #00AB7A;
-        color: #fff;
-        font-size: 20px;
+        // background-color: #00AB7A;
+        color: #00AB7A;
+        font-size: 16px;
+        font-weight: 700;
         padding:10px;
-        border: 1px solid #eee;
+        // border: 1px solid #eee;
         margin-left: 5px;
         transition: background-color 0.3s, color 0.3s;
 
         &:hover {
-            background-color: #008F64;
-            border-color: #008F64;
-            color: #fff;
+            // background-color: #008F64;
+            // border-color: #008F64;
+            color: #333;
         }
     }
 
@@ -266,9 +266,6 @@ h2 {
     transition: box-shadow 0.3s ease;
 }
 
-.product-card:hover {
-
-}
 
 .product-card .card-title {
     font-size: 1.1rem;
