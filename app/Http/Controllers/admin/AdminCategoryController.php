@@ -83,7 +83,12 @@ class AdminCategoryController extends Controller
             'image' => 'required|image|mimes:jpg,jpeg,png,gif|max:2048',
         ]);
 
-        
+        // Fetch the category
+        $category = Category::findOrFail($id);
+
+        // Update the name
+        $category->name = $request->name;
+
     }
 
     /**
