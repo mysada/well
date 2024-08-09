@@ -38,6 +38,46 @@ class CartItemController extends Controller
     /**
      * Add product to cart
      */
+//    public function store(Request $request)
+//    {
+//        $request->validate([
+//            'product_id' => 'required|exists:products,id',
+//            'quantity' => 'required|integer|min:1'
+//        ]);
+//
+//        $product = Product::findOrFail($request->product_id);
+//
+//        if ($product->stock < $request->quantity) {
+//            return redirect()->back()->with('error', 'Not enough stock available.');
+//        }
+//
+//        $cartItem = CartItem::where('user_id', Auth::id())
+//            ->where('product_id', $request->product_id)
+//            ->first();
+//
+//        if ($cartItem) {
+//            // Update the quantity and subtotal
+//            $cartItem->quantity += $request->quantity;
+//            $cartItem->subtotal = $product->price * $cartItem->quantity;
+//            $cartItem->save();
+//        } else {
+//            // Create a new cart item
+//            CartItem::create([
+//                'user_id' => Auth::id(),
+//                'product_id' => $request->product_id,
+//                'quantity' => $request->quantity,
+//                'subtotal' => $product->price * $request->quantity,
+//                'total' => $product->price * $request->quantity,
+//                'items' => $request->quantity  // Setting initial items count
+//            ]);
+//        }
+//
+//        // Update the total and items for the entire cart
+//        $this->updateCartTotals(Auth::id());
+//
+//        return redirect()->route('CartIndex')->with('success', 'Product added to cart successfully.');
+//    }
+
     public function store(Request $request)
     {
         $request->validate([
@@ -45,41 +85,37 @@ class CartItemController extends Controller
             'quantity' => 'required|integer|min:1'
         ]);
 
-        Log::info('Store method called with data: ', $request->all()); // Log the request data
-
         $product = Product::findOrFail($request->product_id);
+
+        if ($product->stock < $request->quantity) {
+            return redirect()->back()->with('error', 'Not enough stock available.');
+        }
+
         $cartItem = CartItem::where('user_id', Auth::id())
             ->where('product_id', $request->product_id)
             ->first();
 
         if ($cartItem) {
-            // Update the quantity to the exact value provided
-            $cartItem->quantity = $request->quantity;
+            // Update the existing cart item
+            $cartItem->quantity = $request->quantity; // Update with the submitted quantity
             $cartItem->subtotal = $product->price * $cartItem->quantity;
+            $cartItem->total = $cartItem->subtotal; // Assuming total is the same as subtotal
+            $cartItem->items = $cartItem->quantity; // Set items equal to quantity
             $cartItem->save();
-            Log::info('Updated cart item: ', $cartItem->toArray()); // Log the updated cart item
         } else {
             // Create a new cart item
-            $newCartItem = CartItem::create([
+            CartItem::create([
                 'user_id' => Auth::id(),
                 'product_id' => $request->product_id,
-                'quantity' => $request->quantity,
+                'quantity' => $request->quantity, // Use the submitted quantity
+                'items' => $request->quantity, // Set initial items count to the submitted quantity
                 'subtotal' => $product->price * $request->quantity,
                 'total' => $product->price * $request->quantity,
-                'items' => $request->quantity  // Setting initial items count
             ]);
-            Log::info('Created new cart item: ', $newCartItem->toArray()); // Log the new cart item
         }
 
-        // Update the total and items for the entire cart
-        $this->updateCartTotals(Auth::id());
-
         return redirect()->route('CartIndex')->with('success', 'Product added to cart successfully.');
-
-//        return response()->json(['message' => 'Product added to cart successfully.']);
     }
-
-
 
 
     private function updateCartTotals($userId)
@@ -133,45 +169,7 @@ class CartItemController extends Controller
     }
 
 
-    public function updateQuantity(Request $request)
-    {
-        $validated = $request->validate([
-            'product_id' => 'required|integer|exists:products,id',
-            'quantity' => 'required|integer|min:1'
-        ]);
-
-        $cartItem = CartItem::where('user_id', Auth::id())
-            ->where('product_id', $validated['product_id'])
-            ->first();
-
-        if ($cartItem) {
-            // Update the quantity and subtotal
-            $cartItem->quantity = $validated['quantity'];
-            $cartItem->subtotal = $cartItem->product->price * $validated['quantity'];
-            $cartItem->save();
-        } else {
-            // Create a new cart item
-            $product = Product::findOrFail($validated['product_id']);
-            CartItem::create([
-                'user_id' => Auth::id(),
-                'product_id' => $validated['product_id'],
-                'quantity' => $validated['quantity'],
-                'subtotal' => $product->price * $validated['quantity'],
-                'total' => $product->price * $validated['quantity'],
-                'items' => $validated['quantity'] // Setting initial items count
-            ]);
-        }
-
-        // Update the total and items for the entire cart
-        $this->updateCartTotals(Auth::id());
-
-        return response()->json(['message' => 'Updated successfully']);
-    }
-
-
-
-
-    /**
+   /**
      * Delete the cart item.
      */
     public function destroy(string $id)

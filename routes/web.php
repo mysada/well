@@ -9,6 +9,7 @@ use App\Http\Controllers\admin\AdminReviewController;
 use App\Http\Controllers\admin\AdminUserController;
 use App\Http\Controllers\well\AboutController;
 use App\Http\Controllers\well\CartItemController;
+use App\Http\Controllers\well\CancellationRefundsController;
 use App\Http\Controllers\well\CheckoutController;
 use App\Http\Controllers\well\ContactController;
 use App\Http\Controllers\well\CountryTaxController;
@@ -32,6 +33,7 @@ Route::get('/faq', [FaqController::class, 'index'])->name("faq");
 Route::get('/privacy-policy', [PrivacyPolicyController::class, 'index'])->name(
   'privacy_policy'
 );
+Route::get('/cancellation-refunds', [CancellationRefundsController::class, 'index'])->name('cancellation_refunds');
 
 //country
 Route::get('/api/countries', [CountryTaxController::class, 'countries'])->name(
@@ -60,6 +62,8 @@ Route::get('/products/{id}', [ProductController::class, 'show'])->name(
 //Reviews ROutes -MANISH
 Route::get('/products/{id}/reviews', [ProductController::class, 'showReviews'])->name('product.reviews');
 Route::post('/products/{id}/reviews', [ReviewController::class, 'store'])->name('reviews.store1');
+Route::get('/products/{id}/reviews', [ReviewController::class, 'show'])->name('product.reviews');
+
 
 // Routes for cart item actions, accessible only to logged-in users
 Route::middleware('auth')->group(function () {
@@ -69,12 +73,6 @@ Route::middleware('auth')->group(function () {
       'update'  => 'CartItemUpdate',
       'destroy' => 'CartItemDestroy',
     ]);
-    Route::post('/cart_items/update_quantity', [CartItemController::class, 'updateQuantity'])->name('cart.update_quantity');
-
-
-    //checkout route - Manish
-//Route::get('/checkout', [CheckoutController::class, 'showCheckout'])->name('checkout.show');
-//Route::post('/checkout/process', [CheckoutController::class, 'process'])->name('checkout.process');
 
     /**
      * order routes
@@ -114,12 +112,8 @@ Route::middleware(['auth'])->group(function () {
 //
 Auth::routes();
 
-Route::middleware(AdminAuthInterceptor::class)->group(function () {
-    Route::resource('/admin', AdminHomeController::class)->names([
-        'index' => 'admin.home',
-    ]);
-
-    Route::resource('/admin/user', AdminUserController::class)->names([
+Route::middleware(AdminAuthInterceptor::class)->prefix('admin')->group(function () {
+    Route::resource('/user', AdminUserController::class)->names([
       'index'   => 'AdminUserList',
       'create'  => 'AdminUserCreate',
       'store'   => 'AdminUserStore',
@@ -128,7 +122,7 @@ Route::middleware(AdminAuthInterceptor::class)->group(function () {
       'destroy' => 'AdminUserDestroy',
     ]);
 
-    Route::resource('/admin/orders', AdminOrderController::class)->names([
+    Route::resource('/orders', AdminOrderController::class)->names([
       'index'   => 'AdminOrderList',
       'create'  => 'AdminOrderCreate',
       'store'   => 'AdminOrderStore',
@@ -138,7 +132,7 @@ Route::middleware(AdminAuthInterceptor::class)->group(function () {
       'destroy' => 'AdminOrderDestroy',
     ]);
 
-    Route::resource('/admin/products', AdminProductController::class)->names([
+    Route::resource('/products', AdminProductController::class)->names([
       'index'   => 'AdminProductList',
       'create'  => 'AdminProductCreate',
       'store'   => 'AdminProductStore',
@@ -148,29 +142,31 @@ Route::middleware(AdminAuthInterceptor::class)->group(function () {
       'destroy' => 'AdminProductDestroy',
     ]);
 
-    Route::resource('/admin/reviews', AdminReviewController::class)->names([
+    Route::resource('/reviews', AdminReviewController::class)->names([
       'index'   => 'AdminReviewList',
       'edit'    => 'AdminReviewEdit',
       'update'  => 'AdminReviewUpdate',
       'destroy' => 'AdminReviewDestroy',
     ]);
 
-    Route::resource('/admin/payments', AdminPaymentController::class)->names([
+    Route::resource('/payments', AdminPaymentController::class)->names([
       'index'   => 'AdminPaymentList',
       'show'    => 'AdminPaymentShow',
       'destroy' => 'AdminPaymentDestroy',
     ]);
 
-    Route::resource('/admin/categories', AdminCategoryController::class)->names(
-      [
-        'index'   => 'AdminCategoryList',
-        'create'  => 'AdminCategoryCreate',
-        'store'   => 'AdminCategoryStore',
-        'edit'    => 'AdminCategoryEdit',
-        'update'  => 'AdminCategoryUpdate',
-        'destroy' => 'AdminCategoryDestroy',
-      ]
-    );
+    Route::resource('/categories', AdminCategoryController::class)->names([
+      'index'   => 'AdminCategoryList',
+      'create'  => 'AdminCategoryCreate',
+      'store'   => 'AdminCategoryStore',
+      'edit'    => 'AdminCategoryEdit',
+      'update'  => 'AdminCategoryUpdate',
+      'destroy' => 'AdminCategoryDestroy',
+    ]);
+
+    Route::resource('/', AdminHomeController::class)->names([
+      'index' => 'admin.home',
+    ]);
 });
 
 
