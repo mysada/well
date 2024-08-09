@@ -18,7 +18,7 @@ h2 {
     background-color: #00AB7A;
     color: #fff;
     padding: 10px;
-    border-radius: 5px;
+    border-radius: unset!important;
     margin-bottom: 15px;
     text-align: center;
 }
@@ -30,10 +30,10 @@ h2 {
     margin-bottom: 10px;
     font-size: 18px;
     font-weight: 500;
-    color: #000;
+    color: #333;
     text-decoration: none;
     border: 2px solid transparent;
-    border-radius: 5px;
+    border-radius: unset!important;
 }
 
 .category-list a svg {
@@ -56,8 +56,8 @@ h2 {
 }
 
 .product-card {
-    border: 1px solid #e1e1e1;
-    border-radius: 8px;
+    border: 1px solid #eee;
+    border-radius: unset!important;
     margin-bottom: 20px;
     position: relative;
 }
@@ -87,7 +87,7 @@ h2 {
 .btn-add:hover {
     background-color: #fff;
     color: #00AB7A;
-    border: 1px solid #00AB7A;
+    border: 1px solid #eee;
 }
 
 .btn-add:active {
@@ -102,7 +102,7 @@ h2 {
 .btn-add:focus:hover,
 .btn-add:focus:visited {
     outline: none;
-    box-shadow: none;
+
     color: #fff;
     background-color: #00AB7A;
     border: none;
@@ -123,7 +123,7 @@ h2 {
     background-color: #00AB7A;
     color: #fff;
     border: none;
-    border-radius: 5px;
+    border-radius: unset!important;
     padding: 10px 20px;
     font-size: 16px;
     font-weight: 700;
@@ -135,7 +135,7 @@ h2 {
 .btn-load-more:hover {
     background-color: #fff;
     color: #00AB7A;
-    border: 1px solid #00AB7A;
+    border: 1px solid #eee;
 }
 
 .btn-load-more:active {
@@ -145,14 +145,14 @@ h2 {
 }
 
 .page-item {
-    border-radius: 5px;
+    border-radius: unset!important;
     margin: 0 5px;
 }
 
 .page-link {
     background-color: #00AB7A;
     color: #fff;
-    border: 1px solid #00AB7A;
+    border: 1px solid #eee;
     padding: 10px 15px;
     font-size: 16px;
     font-weight: 700;
@@ -162,7 +162,7 @@ h2 {
 .page-link:hover {
     background-color: #fff;
     color: #00AB7A;
-    border: 1px solid #00AB7A;
+    border: 1px solid #eee;
 }
 
 .page-link:active {
@@ -173,12 +173,12 @@ h2 {
 
 .page-item.active .page-link {
     background-color: #008E65;
-    border: 1px solid #008E65;
+    border: 1px solid #eee;
 }
 
 .card.product-card {
     transition: transform 0.2s;
-    border: 2px solid #00AB7A;
+    // border: 2px solid #00AB7A;
 }
 
 .card.product-card:hover {
@@ -202,8 +202,8 @@ h2 {
             text-decoration: none;
             color: #008E65;
             background-color: #fff;
-            border: 1px solid #dee2e6;
-            border-radius: 4px;
+            border: 1px solid #eee;
+            border-radius: unset!important;
             transition: background-color 0.3s, color 0.3s;
         }
 
@@ -228,27 +228,18 @@ h2 {
 }
 
 .search-form {
-    .input-group {
-        border: 1px solid transparent;
-        border-radius: 4px;
-        transition: border-color 0.3s;
-
-        &:focus-within {
-            border-color: #00AB7A;
-        }
-    }
-
     .form-control:focus {
-        box-shadow: none;
+
         border-color: #00AB7A;
     }
 
     .btn-custom {
+        border-radius: unset!important;
         background-color: #00AB7A;
         color: #fff;
         font-size: 20px;
         padding:10px;
-        border: 1px solid #00AB7A;
+        border: 1px solid #eee;
         margin-left: 5px;
         transition: background-color 0.3s, color 0.3s;
 
@@ -262,21 +253,21 @@ h2 {
     .search-bar {
         height: 50px;
         border-radius: 5px 0 0 5px;
-        border: 1px solid #ddd;
+        border: 1px solid #eee;
         font-size: 1rem;
         padding: 0 15px;
     }
 }
 
 .product-card {
-    border: 1px solid #ddd;
-    border-radius: 5px;
+    border: 1px solid #eee;
+    border-radius: unset!important;
     overflow: hidden;
     transition: box-shadow 0.3s ease;
 }
 
 .product-card:hover {
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+
 }
 
 .product-card .card-title {
