@@ -13,8 +13,8 @@ h1, h2, h3, h4, h5 {
     margin: 0 auto;
     padding: 20px;
     background-color: #fff;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 171, 122, 0.1);
+    border-radius: unset!important;
+
     position: relative;
 }
 
@@ -64,7 +64,7 @@ h1, h2, h3, h4, h5 {
     background-color: #00AB7A;
     color: #fff;
     border: none;
-    border-radius: 5px;
+    border-radius: unset!important;
     padding: 10px 20px;
     font-size: 16px;
     font-weight: 700;
@@ -87,9 +87,9 @@ h1, h2, h3, h4, h5 {
 }
 
 .profile-section {
-    border: 1px solid #00AB7A;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 171, 122, 0.1);
+    border: 1px solid #eee;
+    border-radius: unset!important;
+
     padding: 20px;
     margin-bottom: 30px;
     background-color: #f9f9f9;
@@ -101,8 +101,8 @@ h1, h2, h3, h4, h5 {
 
 .profile-section input,
 .profile-section select {
-    border-radius: 5px;
-    border: 1px solid #e1e1e1;
+    border-radius: unset!important;
+    border: 1px solid #eee;
     padding: 10px;
     margin-bottom: 15px;
     width: calc(100% - 22px);
@@ -111,14 +111,14 @@ h1, h2, h3, h4, h5 {
 .profile-section input:focus,
 .profile-section select:focus {
     border-color: #00AB7A;
-    box-shadow: 0 0 5px rgba(0, 171, 122, 0.5);
+
 }
 
 .btn-primary {
     background-color: #000 !important;
     color: #fff;
     border: none;
-    border-radius: 5px;
+    border-radius: unset!important;
     padding: 10px 20px;
     font-size: 16px;
     font-weight: 700;
@@ -130,7 +130,7 @@ h1, h2, h3, h4, h5 {
 
 .btn-primary:hover {
     background-color: #fff;
-    border: 1px solid #00AB7A;
+    border: 1px solid #eee;
 }
 
 .btn-primary:active {
@@ -142,7 +142,7 @@ h1, h2, h3, h4, h5 {
     background-color: #000 !important;
     color: #fff;
     border: none;
-    border-radius: 5px;
+    border-radius: unset!important;
     padding: 10px 20px;
     font-size: 16px;
     font-weight: 700;
@@ -163,7 +163,7 @@ h1, h2, h3, h4, h5 {
     height: 150px;
     object-fit: cover;
     margin-right: 15px;
-    border-radius: 10px;
+    border-radius: unset!important;
 }
 
 .order-details {
@@ -179,7 +179,7 @@ h1, h2, h3, h4, h5 {
     background-color: #00AB7A;
     color: #fff;
     border: none;
-    border-radius: 5px;
+    border-radius: unset!important;
     padding: 5px 10px;
     font-size: 14px;
     font-weight: 700;
@@ -190,7 +190,7 @@ h1, h2, h3, h4, h5 {
 .order-item .btn-reorder:hover {
     background-color: #fff;
     color: #00AB7A;
-    border: 1px solid #00AB7A;
+    border: 1px solid #eee;
 }
 
 .order-item .btn-reorder:active {
@@ -199,9 +199,9 @@ h1, h2, h3, h4, h5 {
 }
 
 .profile-sidebar {
-    border: 1px solid #00AB7A;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 171, 122, 0.1);
+    border: 1px solid #eee;
+    border-radius: unset!important;
+
     padding: 20px;
     margin-right: 20px;
     background-color: #f9f9f9;
@@ -237,12 +237,12 @@ h1, h2, h3, h4, h5 {
 }
 
 .address-box {
-    border: 1px solid #e1e1e1;
-    border-radius: 10px;
+    border: 1px solid #eee;
+    border-radius: unset!important;
     padding: 15px;
     margin-bottom: 15px;
     background-color: #fff;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+
 }
 
 

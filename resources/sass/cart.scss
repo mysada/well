@@ -19,9 +19,9 @@
             flex: 3; // Adjusted for better spacing
             padding: 20px;
             background: #fff; // Ensuring a clean background
-            border: 1px solid #ccc; // Light border for definition
-            border-radius: 8px; // Softening edges
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1); // Subtle shadow for depth
+            border: 1px solid #eee; // Light border for definition
+            border-radius: unset!important; // Softening edges
+
 
             table {
                 width: 100%;
@@ -42,7 +42,7 @@
                     img {
                         width: 80px; // Setting a standard image size
                         height: auto;
-                        border-radius: 4px;
+                        border-radius: unset!important;
                     }
 
                 }
@@ -53,9 +53,9 @@
             flex: 1;
             padding: 20px;
             background-color: #f8f9fa;
-            border: 1px solid #ccc;
-            border-radius: 8px;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            border: 1px solid #eee;
+            border-radius: unset!important;
+
             margin-left: 20px;
 
             h4 {
@@ -70,13 +70,13 @@
             }
 
             .btn-block{
-                border: 1px solid #018F64 !important;
+                border: 1px solid #eee;
                 //width: 20%;
                 background-color: #018F64 ;
                 color: #ffffff !important;
                 font-weight: bold;
                 padding: 10px 20px;
-                border-radius: 5px;
+                border-radius: unset!important;
                 border: none;
                 font-size: 1.2em;
                 cursor: pointer;
@@ -116,7 +116,7 @@
             font-weight: bold; // Making the text bold
             padding: 6px 14px !important;// Adequate padding for better clickability
             border: none; // No border for a cleaner look
-            border-radius: 4px; // Rounded corners for a modern look
+            border-radius: unset!important; // Rounded corners for a modern look
             cursor: pointer; // Pointer cursor to indicate clickable
             transition: background-color 0.3s, color 0.3s; // Smooth transition for hover effect
             margin: 0px;

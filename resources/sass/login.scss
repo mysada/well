@@ -1,34 +1,38 @@
-
-/* Style the card header */
 .card-header {
     background-color: #ffffff;
     border-bottom: none;
     font-size: 1.5rem;
     font-weight: lighter;
+    border: 1px solid #00A875;
+    border-radius: unset !important;
 }
 
-/* Style the card body */
 .card-body {
     padding: 2rem;
     background-color: #f9f9f9;
-    border-radius: 5px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: unset!important;
 }
 
-/* Style the form labels */
 .form-label {
     font-weight: bold;
     font-size: 1rem;
 }
 
-/* Full width for the input fields with padding */
+
 .form-control {
     padding: 0.75rem;
     border: 1px solid #ced4da;
-    border-radius: unset !important;
+    border-radius: 5px;
+    margin-bottom: 30px;
+    width: 100%;
+
+    &:focus {
+        border-color: #00A875 !important;
+        box-shadow: #00A875 !important;
+        outline: none;
+    }
 }
 
-/* Style the button */
 .btn-dark {
     background-color: #000000;
     border: none;
@@ -38,7 +42,6 @@
 
 }
 
-/* Style the link for forgot password */
 #forgot-password-link {
     font-size: 0.875rem;
     background-color: #000;
@@ -50,14 +53,12 @@
 }
 
 
-
-/* Style the bottom text */
 #login-form .mt-3 p {
     font-size: 0.875rem;
 }
 
 #create-account-link {
-    background-color: #1a1a1a;
+    background-color: #00A875;
     padding: 5px;
     font-size: 14px;
     color: #fff;
@@ -66,8 +67,6 @@
 }
 
 
-
-/* Responsive design adjustments */
 @media (max-width: 768px) {
     .container {
         padding: 1rem;

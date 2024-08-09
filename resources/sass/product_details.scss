@@ -1,28 +1,33 @@
 .product-image img {
     width: 100%;
 }
+
 .introduction img {
     width: 100%;
     height: auto;
 }
+
 .related-products .card {
     margin-bottom: 1rem;
 }
+
 .related-products img {
     height: 200px;
     object-fit: cover;
 }
+
 .footer {
     background-color: #000;
     color: #fff;
     padding: 2rem 0;
 }
+
 .footer a {
     color: #fff;
 }
 
 .product-detail {
-    border: 1px solid #e5e5e5;
+    border: 1px solid #eee;
     padding: 20px;
 }
 
@@ -49,6 +54,15 @@
 
 .right-arrow {
     right: 10px;
+}
+
+#see_reviews{
+    padding: 12px;
+    background-color: #00A875;
+    color: #fff9ea;
+    font-size: 16px;
+    border-radius: unset;
+    border: none;
 }
 
 .product-title h1{
@@ -87,7 +101,7 @@
     display: inline-block;
     padding: 10px 20px;
     text-align: center;
-    /*border-radius: 5px;*/
+    /*border-radius: unset!important;*/
 }
 
 .btn-dark {
@@ -96,7 +110,7 @@
 }
 
 .btn-outline-dark {
-    border: 1px solid #333;
+    border: 1px solid #eee;
     color: #333;
     background-color: transparent;
 }
@@ -121,8 +135,8 @@
     display: flex;
     align-items: center;
     overflow: hidden;
-    border-radius: 4px;
-    box-shadow: 0 1em 2em -0.9em rgba(0, 0, 0, 0.7);
+    border-radius: unset!important;
+
 }
 
 .qty-input .product-qty,
@@ -208,9 +222,9 @@
 
 .card {
     border: none;
-    box-shadow: 4px 4px 4px 8px rgba(0, 0, 0, 0.1);
+
     transition: transform 0.3s;
-    border-radius: 25px; /* Adjust radius as needed */
+    border-radius: unset!important; /* Adjust radius as needed */
     overflow: hidden; /* Ensure children follow the border-radius */
 }
 
@@ -269,7 +283,7 @@
 }
 
 .load-more {
-    border: 1px solid #018F64 !important;
+    border: 1px solid #eee;
     color: #018F64 !important;
     background-color: transparent; /* Match the background with the outline button */
     width: 20%;
