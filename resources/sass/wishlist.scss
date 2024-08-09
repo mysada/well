@@ -65,7 +65,7 @@
   height: 50px;
   color: #fff;
   border: none;
-  border-radius: 0px;
+  border-radius: unset!important;
   padding: 12px 20px;
   font-size: 17px;
   font-weight: 400;
@@ -84,7 +84,7 @@
 
 .btn-primary:active {
   background-color: #008E65 !important;
-  box-shadow: none !important;
+
   transform: scale(0.95);
   color: #fff;
 }
@@ -95,7 +95,7 @@
 .btn-primary:focus:hover,
 .btn-primary:focus:visited {
   outline: none;
-  box-shadow: none;
+
   color: #fff;
   background-color: #00AB7A;
   border: none;

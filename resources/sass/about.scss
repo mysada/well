@@ -37,7 +37,7 @@ h1, h2, h3 {
     padding: 2rem;
     // background-color: #e0f7fa;
     background-color: #EFF8F5;
-    border-radius: 10px;
+    border-radius: unset!important;
 }
 
 .hero-content h1 {
@@ -56,7 +56,7 @@ h1, h2, h3 {
     background-color: #00A875;
     color: #fff;
     border: none;
-    border-radius: 5px;
+    border-radius: unset!important;
     text-align: right;
 }
 
@@ -66,7 +66,7 @@ h1, h2, h3 {
 
 .hero-image img {
     max-width: 100%;
-    border-radius: 10px;
+    border-radius: unset!important;
 }
 
 .section-title h2 {
@@ -80,7 +80,7 @@ h1, h2, h3 {
 
 .content img {
     width: 100%;
-    border-radius: 10px;
+    border-radius: unset!important;
 }
 
 .content h3 {
@@ -101,7 +101,7 @@ h1, h2, h3 {
 .contact-info-box {
     background-color: #333;
     padding: 20px;
-    border-radius: 10px;
+    border-radius: unset!important;
     color: #fff;
     text-align: left;
     margin-bottom: 20px;
@@ -142,7 +142,7 @@ h1, h2, h3 {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+
     transition: all 0.3s ease;
     vertical-align: middle;
     margin-right: 8px;
@@ -172,7 +172,7 @@ h1, h2, h3 {
 .contact-icon:hover, .social-icon:hover {
     background-color: #e0e0e0;
     border-color: #007bff;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+
     transform: scale(1.1) rotate(10deg);
 }
 

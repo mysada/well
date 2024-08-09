@@ -35,8 +35,8 @@
     display: flex;
     align-items: center;
     overflow: hidden;
-    border-radius: 4px;
-    box-shadow: 0 1em 2em -0.9em rgba(0, 0, 0, 0.7);
+    border-radius: unset!important;
+
 
     .product-qty,
     .qty-count {
@@ -173,7 +173,7 @@
             color: #fff;
             padding: 10px 20px;
             text-decoration: none;
-            border-radius: 4px;
+            border-radius: unset!important;
             transition: background-color 0.3s ease;
 
             &:hover {
@@ -188,8 +188,8 @@
         .review {
             background-color: #f9f9f9;
             padding: 1.5rem;
-            border-radius: 8px;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            border-radius: unset!important;
+
             transition: transform 0.3s;
             border: 2px solid #00A875;
 
@@ -249,7 +249,7 @@
                         height: auto;
                         width: 100px;
                         object-fit: cover;
-                        border-radius: 5px;
+                        border-radius: unset!important;
                     }
                 }
             }
@@ -269,7 +269,7 @@
         }
 
         .form-control {
-            border-radius: 8px;
+            border-radius: unset!important;
             padding: 10px;
             font-size: 1rem;
             width: 70%;
@@ -295,7 +295,7 @@
     .alert-success {
         margin-top: 20px;
         padding: 15px;
-        border-radius: 8px;
+        border-radius: unset!important;
         background-color: #d4edda;
         color: #155724;
         border: 1px solid #c3e6cb;

@@ -9,8 +9,8 @@ body {
     margin: 0 auto;
     padding: 20px;
     background-color: #fff;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 171, 122, 0.1);
+    border-radius: unset!important;
+
     text-align: center;
 }
 
@@ -35,7 +35,7 @@ body {
     background-color: #00AB7A;
     color: #fff;
     border: none;
-    border-radius: 5px;
+    border-radius: unset!important;
     padding: 10px 20px;
     font-size: 16px;
     font-weight: 700;

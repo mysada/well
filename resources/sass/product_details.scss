@@ -101,7 +101,7 @@
     display: inline-block;
     padding: 10px 20px;
     text-align: center;
-    /*border-radius: 5px;*/
+    /*border-radius: unset!important;*/
 }
 
 .btn-dark {
@@ -135,8 +135,8 @@
     display: flex;
     align-items: center;
     overflow: hidden;
-    border-radius: 4px;
-    box-shadow: 0 1em 2em -0.9em rgba(0, 0, 0, 0.7);
+    border-radius: unset!important;
+
 }
 
 .qty-input .product-qty,
@@ -222,9 +222,9 @@
 
 .card {
     border: none;
-    box-shadow: 4px 4px 4px 8px rgba(0, 0, 0, 0.1);
+
     transition: transform 0.3s;
-    border-radius: 25px; /* Adjust radius as needed */
+    border-radius: unset!important; /* Adjust radius as needed */
     overflow: hidden; /* Ensure children follow the border-radius */
 }
 
