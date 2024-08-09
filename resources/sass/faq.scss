@@ -7,10 +7,9 @@ body {
 }
 
 /* Headings */
-h1, h2, h3, h4, h5, h6 {
+h1, h2, h3{
     font-weight: 700 !important;
     font-family: 'Poppins', 'Avenir Next', Arial, sans-serif !important;
-    color: #2c3e50 !important;
 }
 
 /* Specific Heading Sizes */
@@ -72,38 +71,3 @@ h2 {
     color: #555 !important;
 }
 
-/* Footer Styles */
-.footer {
-    background-color: #343a40 !important;
-    color: #ffffff !important;
-    padding: 2rem 0 !important;
-    text-align: center !important;
-}
-
-.footer h5 {
-    font-weight: 700 !important;
-    margin-bottom: 1rem !important;
-}
-
-.footer p, .footer a {
-    font-family: 'Poppins', 'Avenir Next', Arial, sans-serif !important;
-}
-
-.footer a {
-    color: #ffffff !important;
-    text-decoration: none !important;
-    transition: color 0.3s ease !important;
-}
-
-.footer a:hover {
-    color: #d1d1d1 !important;
-    text-decoration: underline !important;
-}
-
-.footer .text-muted {
-    color: rgba(255, 255, 255, 0.7) !important;
-}
-
-.footer .text-center {
-    margin-top: 1.5rem !important;
-}
