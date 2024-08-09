@@ -26,8 +26,8 @@ class OrderController extends Controller
         $orderId = $order->id;
 
         return RouterTools::success(
-          "Create order successfully",
-          'checkout.show', [$orderId]
+            "Create order successfully",
+            'checkout.show', [$orderId]
         );
     }
 
