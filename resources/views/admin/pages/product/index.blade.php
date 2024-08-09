@@ -1,9 +1,12 @@
 @extends('admin.admin')
 
 @section('content')
-    <div class="overflow-x-auto w-full p-4">
-        <h2 class="text-4xl font-bold mb-4">Product List</h2>
-        <a href="{{ route('AdminProductCreate') }}" class="btn btn-primary mb-3">Add New Product</a>
+    <div class="overflow-x-auto w-full">
+        <div class="flex justify-between">
+            <h2 class="text-4xl font-bold mb-4">Product List</h2>
+            <a href="{{ route('AdminProductCreate') }}" class="btn btn-primary mb-3">Add New Product</a>
+        </div>
+
         @if (session('success'))
             <div class="alert alert-success mb-4">
                 {{ session('success') }}
@@ -25,7 +28,14 @@
                 @foreach ($products as $product)
                     <tr>
                         <td>{{ $product->id }}</td>
-                        <td><img src="{{ asset($product->image_url) }}" alt="" class="w-12"></td>
+                        <td>
+                            <div class="avatar">
+                                <div class="mask mask-squircle h-12 w-12">
+                                    <img
+                                            src="{{ asset($product->image_url) }}"
+                                            alt="img" />
+                                </div>
+                            </div>
                         <td>
                             <a href="{{ route('AdminProductShow', $product->id) }}">{{ $product->name }}</a>
                         </td>
