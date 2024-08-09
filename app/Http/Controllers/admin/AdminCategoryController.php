@@ -47,9 +47,13 @@ class AdminCategoryController extends Controller
                 'name' => $request->name,
                 'image_path' => $imagePath,  // Save the path to the image
             ]);
-        }
 
-            // Redirect
+            // Redirect to the category list with a success message
+            return redirect()->route('AdminCategoryList')->with('success', 'Category created successfully.');
+        } else {
+            
+            return redirect()->back()->withErrors(['image' => 'Image upload failed.']);
+        }
     }
 
     /**
