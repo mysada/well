@@ -62,6 +62,8 @@ Route::get('/products/{id}', [ProductController::class, 'show'])->name(
 //Reviews ROutes -MANISH
 Route::get('/products/{id}/reviews', [ProductController::class, 'showReviews'])->name('product.reviews');
 Route::post('/products/{id}/reviews', [ReviewController::class, 'store'])->name('reviews.store1');
+Route::get('/products/{id}/reviews', [ReviewController::class, 'show'])->name('product.reviews');
+
 
 // Routes for cart item actions, accessible only to logged-in users
 Route::middleware('auth')->group(function () {
