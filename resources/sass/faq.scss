@@ -12,30 +12,18 @@ h1, h2, h3{
     font-family: 'Poppins', 'Avenir Next', Arial, sans-serif !important;
 }
 
-/* Specific Heading Sizes */
-h2 {
-    font-size: 2.5rem !important;
-    margin-bottom: 1rem !important;
-}
-
-/* FAQ Section */
-.faq-section {
-    margin: 4rem auto !important;
-    padding: 2rem !important;
-    max-width: 900px !important;
+/* FAQ Section Container */
+.faq-container {
     background-color: #ffffff !important;
+    padding: 2rem !important;
     border-radius: 0.75rem !important;
-
-}
-
-.faq-section h2 {
-    margin-bottom: 2rem !important;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1) !important;
+    border: 1px solid #ddd !important;
 }
 
 /* Card Styles */
 .card {
     border-radius: 0.75rem !important;
-
     margin-bottom: 1.5rem !important;
     text-align: center !important;
     background-color: #ffffff !important;
@@ -70,4 +58,3 @@ h2 {
     padding: 1.5rem !important;
     color: #555 !important;
 }
-
