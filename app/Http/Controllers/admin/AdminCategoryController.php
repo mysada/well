@@ -93,6 +93,10 @@ class AdminCategoryController extends Controller
         $imagePath = $request->file('image')->store('images/admin', 'public');
         $category->image_path = $imagePath;
 
+        $category->save();
+
+        // Redirect to the category list with a success message
+        return redirect()->route('AdminCategoryList')->with('success', 'Category updated successfully.');
     }
 
     /**
