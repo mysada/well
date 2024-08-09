@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Log;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\DB;
 use App\Models\Review;
 
 class ReviewController extends Controller
@@ -21,15 +22,23 @@ class ReviewController extends Controller
             'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|',
         ]);
 
-        // Check if an image file is present
-        if ($request->hasFile('image')) {
-            $path = $request->file('image')->store('images', 'public');
-        } else {
-            $path = null;
+        // Check if the user has purchased the product
+        $orderDetails = DB::table('order_details')
+            ->join('orders', 'order_details.order_id', '=', 'orders.id')
+            ->where('orders.user_id', auth()->id())
+            ->where('order_details.product_id', $request->product_id)
+            ->whereIn('orders.status', ['Pending', 'Shipped', 'Delivered'])
+            ->exists();
+
+        if (!$orderDetails) {
+            return back()->with('error', 'You can only review products that you have purchased and are not cancelled.');
         }
 
+        // Check if an image file is present
+        $path = $request->hasFile('image') ? $request->file('image')->store('images', 'public') : null;
+
         // Create the review in the database
-        $review = Review::create([
+        Review::create([
             'user_id' => auth()->id(),
             'product_id' => $request->product_id,
             'rating' => $request->rating,
@@ -39,5 +48,4 @@ class ReviewController extends Controller
 
         return back()->with('success', 'Review submitted successfully.');
     }
-
 }
