@@ -34,4 +34,10 @@
         </tbody>
     </table>
 </div>
+
+<script>
+    function confirmDeletion() {
+        return confirm('Are you sure you want to delete this category? ');
+    }
+</script>
 @endsection
