@@ -13,13 +13,9 @@
     </head>
     <body class="h-screen flex">
         @include('admin.components.sidebar')
-        <main class="flex-1 ml-64">
+        <main class="flex-1 ml-32 w-full">
             @include('admin.components.header')
-            <div class="flex-1 flex">
-                <div>
-                    @yield('content')
-                </div>
-            </div>
+            @yield('content')
             @include('admin.components.footer')
         </main>
     </body>

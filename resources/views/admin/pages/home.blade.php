@@ -2,8 +2,8 @@
 @section('title', 'Dashboard')
 
 @section('content')
-    <div class="flex flex-col">
-        <div class="stats shadow">
+    <div class="flex flex-col ">
+        <div class="stats shadow w-full">
             <div class="stat">
                 <div class="stat-figure text-primary">
                     <svg
@@ -46,7 +46,7 @@
                 <div class="stat-figure text-secondary">
                     <div class="avatar online">
                         <div class="w-16 rounded-full">
-                            <img src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp" />
+                            <img src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp"/>
                         </div>
                     </div>
                 </div>
@@ -55,7 +55,7 @@
                 <div class="stat-desc text-secondary">31 tasks remaining</div>
             </div>
         </div>
-        <div class="overflow-x-auto">
+        <div class="overflow-x-auto w-full">
             <table class="table">
                 <!-- head -->
                 <thead>
@@ -93,27 +93,8 @@
                         <td>Brice Swyre</td>
                         <td>Tax Accountant</td>
                         <td>Red</td>
-                    </tr>         <tr>
-                        <th>3</th>
-                        <td>Brice Swyre</td>
-                        <td>Tax Accountant</td>
-                        <td>Red</td>
-                    </tr>         <tr>
-                        <th>3</th>
-                        <td>Brice Swyre</td>
-                        <td>Tax Accountant</td>
-                        <td>Red</td>
-                    </tr>         <tr>
-                        <th>3</th>
-                        <td>Brice Swyre</td>
-                        <td>Tax Accountant</td>
-                        <td>Red</td>
-                    </tr>         <tr>
-                        <th>3</th>
-                        <td>Brice Swyre</td>
-                        <td>Tax Accountant</td>
-                        <td>Red</td>
-                    </tr>         <tr>
+                    </tr>
+                    <tr>
                         <th>3</th>
                         <td>Brice Swyre</td>
                         <td>Tax Accountant</td>
@@ -124,27 +105,56 @@
                         <td>Brice Swyre</td>
                         <td>Tax Accountant</td>
                         <td>Red</td>
-                    </tr>         <tr>
+                    </tr>
+                    <tr>
                         <th>3</th>
                         <td>Brice Swyre</td>
                         <td>Tax Accountant</td>
                         <td>Red</td>
-                    </tr>         <tr>
+                    </tr>
+                    <tr>
                         <th>3</th>
                         <td>Brice Swyre</td>
                         <td>Tax Accountant</td>
                         <td>Red</td>
-                    </tr>         <tr>
+                    </tr>
+                    <tr>
                         <th>3</th>
                         <td>Brice Swyre</td>
                         <td>Tax Accountant</td>
                         <td>Red</td>
-                    </tr>         <tr>
+                    </tr>
+                    <tr>
                         <th>3</th>
                         <td>Brice Swyre</td>
                         <td>Tax Accountant</td>
                         <td>Red</td>
-                    </tr>         <tr>
+                    </tr>
+                    <tr>
+                        <th>3</th>
+                        <td>Brice Swyre</td>
+                        <td>Tax Accountant</td>
+                        <td>Red</td>
+                    </tr>
+                    <tr>
+                        <th>3</th>
+                        <td>Brice Swyre</td>
+                        <td>Tax Accountant</td>
+                        <td>Red</td>
+                    </tr>
+                    <tr>
+                        <th>3</th>
+                        <td>Brice Swyre</td>
+                        <td>Tax Accountant</td>
+                        <td>Red</td>
+                    </tr>
+                    <tr>
+                        <th>3</th>
+                        <td>Brice Swyre</td>
+                        <td>Tax Accountant</td>
+                        <td>Red</td>
+                    </tr>
+                    <tr>
                         <th>3</th>
                         <td>Brice Swyre</td>
                         <td>Tax Accountant</td>
