@@ -115,6 +115,13 @@ class AdminCategoryController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        // Find ID
+        $category = Category::findOrFail($id);
+
+        $category->delete();
+
+        // Redirect to the category list with a success message
+        return redirect()->route('AdminCategoryList')->with('success', 'Category deleted successfully.');
+
     }
 }
