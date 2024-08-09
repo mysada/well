@@ -6,10 +6,8 @@
         <!-- CSRF Token -->
         <meta name="csrf-token" content="{{ csrf_token() }}">
         <title>{{ config('app.name', 'Laravel') . ' - ' . ($title ?? '') }}</title>
-        <link href="https://cdn.jsdelivr.net/npm/daisyui@4.12.10/dist/full.min.css" rel="stylesheet" type="text/css"/>
-        <script src="https://cdn.tailwindcss.com"></script>
         <!-- Vite -->
-        @vite(['resources/admin/style/admin.scss', 'resources/admin/js/admin.js'])
+        @vite(['resources/admin/style/app.css', 'resources/admin/js/admin.js'])
 
     </head>
     <body class="h-screen flex">
