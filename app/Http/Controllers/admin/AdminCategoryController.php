@@ -31,7 +31,29 @@ class AdminCategoryController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // Validate the incoming request data
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'image' => 'required|image|mimes:jpg,jpeg,png,gif|max:2048',
+        ]);
+
+        // Handle the image upload
+        if ($request->hasFile('image')) {
+            // Store the uploaded image in a specific directory
+            $imagePath = $request->file('image')->store('images/home', 'public');
+
+            // Create the new category
+            Category::create([
+                'name' => $request->name,
+                'image_path' => $imagePath,  // Save the path to the image
+            ]);
+
+            // Redirect to the category list with a success message
+            return redirect()->route('AdminCategoryList')->with('success', 'Category created successfully.');
+        } else {
+            
+            return redirect()->back()->withErrors(['image' => 'Image upload failed.']);
+        }
     }
 
     /**
