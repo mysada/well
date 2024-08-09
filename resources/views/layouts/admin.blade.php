@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@yield('title', 'Admin Dashboard')</title>
-    @vite('resources/sass/admin.scss')
+    @vite('resources/adminsass/admin.scss')
 </head>
 <body>
 <div id="app">
