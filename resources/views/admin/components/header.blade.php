@@ -6,35 +6,7 @@
     <title>Admin Dashboard</title>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap">
 
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <link rel="stylesheet" href="{{ asset('css/app.css') }}">
     <style>
-        body {
-            font-family: 'Poppins', 'Arial', 'Avenir Next Georgian', Arial!important;
-        }
-        .navbar-brand {
-            font-size: 56px;
-            font-weight: 700;
-        }
-        .sidebar {
-            min-height: 100vh;
-            background-color: #f8f9fa;
-        }
-        .sidebar h1 {
-            font-size: 24px;
-            font-weight: 700;
-            margin-left: 10px;
-            margin-top: 40px;
-            margin-bottom: 20px;
-        }
-        .sidebar a {
-            text-decoration: none;
-            color: #333;
-        }
-        .sidebar a:hover {
-            color: #00AB7A;
-        }
-
         .stats {
             margin-top: 50px;
             margin-bottom: 80px;
