@@ -9,6 +9,7 @@
         <link href="https://cdn.jsdelivr.net/npm/daisyui@4.12.10/dist/full.min.css" rel="stylesheet" type="text/css"/>
         <script src="https://cdn.tailwindcss.com"></script>
         <!-- Vite -->
+        @vite(['resources/admin/style/admin.scss', 'resources/admin/js/admin.js'])
 
     </head>
     <body class="h-screen flex">
@@ -16,7 +17,7 @@
         <main class="flex-1 ml-32 w-full">
             @include('admin.components.header')
             <div class="p-4">
-            @yield('content')
+                @yield('content')
             </div>
             @include('admin.components.footer')
         </main>
