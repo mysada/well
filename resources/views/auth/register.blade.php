@@ -1,5 +1,5 @@
 @extends('layouts.app')
-
+@vite('resources/sass/register.scss')
 @section('content')
 <div class="container">
     <div class="row justify-content-center">

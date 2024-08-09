@@ -75,8 +75,23 @@ class ProductController extends Controller
 
     public function showReviews($id)
     {
-        $product = Product::with(['reviews.user'])->findOrFail($id);
-        return view('well.product.product_reviews', compact('product'));
+        $product  = Product::with(['reviews.user'])->findOrFail($id);
+
+        // Fetch related products from the same category
+        $relatedProducts = Product::where('category_id', $product->category_id)
+            ->where('id', '!=', $id)
+            ->limit(4)
+            ->get();
+
+        // Check if the product is in the wishlist when logged in
+        $wishlist = false;
+        if (Auth::check()) {
+            $wishlist = Wishlist::where('user_id', Auth::id())
+                ->where('product_id', $product->id)
+                ->exists();
+        }
+
+        return view('well.product.product_reviews', compact('product', 'relatedProducts', 'wishlist'));
     }
 
 

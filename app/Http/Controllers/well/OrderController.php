@@ -21,7 +21,7 @@ class OrderController extends Controller
         try {
             $order = $this->orderService->createOrder();
         } catch (\Exception $e) {
-            return RouterTools::errorBack('Create order Error');
+            return RouterTools::errorBack($e->getMessage());
         }
         $orderId = $order->id;
 

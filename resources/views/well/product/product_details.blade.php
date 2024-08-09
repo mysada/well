@@ -1,6 +1,7 @@
 @extends('layouts.app')
 @vite('resources/sass/product_details.scss')
 @vite('resources/js/qty-input.js')
+{{--@vite('resources/js/stock.js')--}}
 
 @section('content')
 
@@ -87,7 +88,7 @@
         <div class="row">
             @foreach($relatedProducts as $relatedProduct)
             <div class="col-md-3">
-                <div class="card shadow-sm">
+                <div class="card ">
                     <img src="{{ asset($relatedProduct->image_url) }}" class="card-img-top"
                          alt="{{ $relatedProduct->name }}">
                     <div class="card-body">
