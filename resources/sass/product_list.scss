@@ -228,22 +228,13 @@ h2 {
 }
 
 .search-form {
-    .input-group {
-        border: 1px solid #eee;
-        border-radius: unset!important;
-        transition: border-color 0.3s;
-
-        &:focus-within {
-            border-color: #00AB7A;
-        }
-    }
-
     .form-control:focus {
 
         border-color: #00AB7A;
     }
 
     .btn-custom {
+        border-radius: unset!important;
         background-color: #00AB7A;
         color: #fff;
         font-size: 20px;
