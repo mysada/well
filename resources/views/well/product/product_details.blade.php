@@ -37,7 +37,6 @@
                             <input type="hidden" name="quantity" class="product-qty-input" value="1">
                             <button type="submit" class="btn-product btn-dark w-100">Add to Cart</button>
                         </form>
-
                         <form action="{{route('WishlistStore')}}" method="POST" class="mr-3 w-50">
                             @csrf
                             <input type="hidden" name="product_id" value="{{ $product->id }}">
@@ -115,5 +114,3 @@
         </div>
     </section>
 @endsection
-
-

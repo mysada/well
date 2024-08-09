@@ -31,7 +31,29 @@ class AdminCategoryController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // Validate the incoming request data
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'image' => 'required|image|mimes:jpg,jpeg,png,gif|max:2048',
+        ]);
+
+        // Handle the image upload
+        if ($request->hasFile('image')) {
+            // Store the uploaded image in a specific directory
+            $imagePath = $request->file('image')->store('images/home', 'public');
+
+            // Create the new category
+            Category::create([
+                'name' => $request->name,
+                'image_path' => $imagePath,  // Save the path to the image
+            ]);
+
+            // Redirect to the category list with a success message
+            return redirect()->route('AdminCategoryList')->with('success', 'Category created successfully.');
+        } else {
+            
+            return redirect()->back()->withErrors(['image' => 'Image upload failed.']);
+        }
     }
 
     /**
@@ -47,7 +69,12 @@ class AdminCategoryController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        // Fetch the category by ID
+        $category = Category::findOrFail($id);
+
+        // Return the edit view with the category data
+        return view('admin.pages.category.edit', compact('category'));
+
     }
 
     /**
@@ -55,7 +82,32 @@ class AdminCategoryController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        // Validate the incoming request data
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'image' => 'nullable|image|mimes:jpg,jpeg,png,gif|max:2048',
+        ]);
+
+        // Fetch the category
+        $category = Category::findOrFail($id);
+
+        // Update the name
+        $category->name = $request->name;
+
+        if ($request->hasFile('image')) {
+            // Delete the old image if it exists
+            if ($category->image_path) {
+                Storage::delete('public/' . $category->image_path);
+            }
+
+            // Save the new image and update the image path
+            $category->image_path = $request->file('image')->store('images/admin', 'public');
+        }
+
+        $category->save();
+
+        // Redirect to the category list with a success message
+        return redirect()->route('AdminCategoryList')->with('success', 'Category updated successfully.');
     }
 
     /**

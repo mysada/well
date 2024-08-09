@@ -67,7 +67,9 @@
                     @endfor
                 </div>
                 <p class="ml-3">{{ $product->reviews->count() }} Reviews</p>
-                <a class="review_btn" href="#write-review" >Write a Review</a>
+                @if($hasPurchased)
+                <a class="review_btn" href="#write-review">Write a Review</a>
+                @endif
             </div>
             <div class="review-list">
                 @foreach ($product->reviews as $review)
@@ -104,10 +106,9 @@
             </div>
         </div>
     </div>
-</section>
 
-<section id="review_section" class="container mt-5">
     @auth
+    @if($hasPurchased)
     <div id="write-review" class="row mt-5">
         <div class="col-md-12">
             <h4>Write a Review</h4>
@@ -144,6 +145,7 @@
             @endif
         </div>
     </div>
+    @endif
     @endauth
 </section>
 @endsection

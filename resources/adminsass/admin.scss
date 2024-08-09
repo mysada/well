@@ -1,7 +1,9 @@
-// resources/sass/admin.scss
+// Fonts
+@import url('https://fonts.bunny.net/css?family=Nunito');
+@import 'bootstrap/scss/bootstrap';
 
 body {
-    background-color: #f8f9fa;
+  font-family: 'Poppins', 'Arial', 'Avenir Next Georgian', Arial, sans-serif !important;
 }
 
 .navbar {

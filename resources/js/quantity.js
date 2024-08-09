@@ -1,65 +1,70 @@
-document.addEventListener('DOMContentLoaded', function () {
-    const qtyInputs = document.querySelectorAll('.qty-input');
+document.addEventListener('DOMContentLoaded', function() {
+    console.log("JavaScript Loaded"); // Check if the script is running
 
-    qtyInputs.forEach(inputGroup => {
-        const minusButton = inputGroup.querySelector('.qty-count--minus');
-        const plusButton = inputGroup.querySelector('.qty-count--add');
-        const qtyInput = inputGroup.querySelector('.product-qty');
+    const qtyInputs = document.querySelectorAll('.product-qty');
+    console.log('Quantity Inputs Found:', qtyInputs.length); // Log how many quantity inputs are found
 
-        minusButton.addEventListener('click', function () {
-            let currentQty = parseInt(qtyInput.value);
-            if (currentQty > 1) {
-                qtyInput.value = --currentQty;
-                updateQuantity(qtyInput.dataset.productId, currentQty);
-            }
-        });
+    qtyInputs.forEach(input => {
+        console.log('Processing Input:', input); // Log each input element being processed
 
-        plusButton.addEventListener('click', function () {
-            let currentQty = parseInt(qtyInput.value);
-            const maxQty = parseInt(qtyInput.max);
-            if (currentQty < maxQty) {
-                qtyInput.value = ++currentQty;
-                updateQuantity(qtyInput.dataset.productId, currentQty);
-            }
-        });
+        const qtyInputContainer = input.closest('.qty-input');
+        console.log('Quantity Input Container:', qtyInputContainer); // Log the closest quantity input container
 
-        qtyInput.addEventListener('change', function () {
-            let currentQty = parseInt(qtyInput.value);
-            if (currentQty < 1) {
-                qtyInput.value = 1;
-                currentQty = 1;
+        if (qtyInputContainer) {
+            const minusBtn = qtyInputContainer.querySelector('.qty-count--minus');
+            const addBtn = qtyInputContainer.querySelector('.qty-count--add');
+
+            console.log('Minus Button:', minusBtn); // Debugging
+            console.log('Add Button:', addBtn); // Debugging
+
+            // Ensure the buttons exist before adding event listeners
+            if (minusBtn) {
+                minusBtn.addEventListener('click', function() {
+                    let qty = parseInt(input.value, 10);
+                    if (qty > 1) {
+                        input.value = --qty;
+                        updateHiddenQty(input);
+                    }
+                });
+            } else {
+                console.warn('Minus Button Not Found');
             }
-            const maxQty = parseInt(qtyInput.max);
-            if (currentQty > maxQty) {
-                qtyInput.value = maxQty;
-                currentQty = maxQty;
+
+            if (addBtn) {
+                addBtn.addEventListener('click', function() {
+                    let qty = parseInt(input.value, 10);
+                    const max = parseInt(input.getAttribute('max'), 10);
+                    if (qty < max) {
+                        input.value = ++qty;
+                        updateHiddenQty(input);
+                    }
+                });
+            } else {
+                console.warn('Add Button Not Found');
             }
-            updateQuantity(qtyInput.dataset.productId, currentQty);
-        });
+
+            // Update the hidden input value when the quantity changes
+            input.addEventListener('input', function() {
+                updateHiddenQty(input);
+            });
+        } else {
+            console.warn('Quantity Input Container Not Found');
+        }
     });
 
-    function updateQuantity(productId, quantity) {
-        fetch('/update-cart-quantity', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-                'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
-            },
-            body: JSON.stringify({
-                product_id: productId,
-                quantity: quantity
-            })
-        })
-            .then(response => response.json())
-            .then(data => {
-                if (data.message) {
-                    // Update the stock display and other UI components here if necessary
-                    document.querySelector(`input[data-product-id="${productId}"]`).max = data.newStock;
-                    document.querySelector('.product-stock-display').textContent = `${data.newStock} in stock`;
-                }
-            })
-            .catch(error => {
-                console.error('Error updating quantity:', error);
-            });
+    function updateHiddenQty(input) {
+        // Instead of relying on .d-flex, select the form more directly
+        const form = document.querySelector('#add-to-cart-form');
+        if (form) {
+            const hiddenInput = form.querySelector('.product-qty-input');
+            if (hiddenInput) {
+                hiddenInput.value = input.value;
+                console.log('Hidden Input Updated:', hiddenInput.value); // Debugging
+            } else {
+                console.warn('Hidden Input Not Found');
+            }
+        } else {
+            console.warn('Form Not Found for Quantity Input');
+        }
     }
 });
