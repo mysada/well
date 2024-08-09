@@ -1,10 +1,10 @@
 @extends('admin.admin')
 
 @section('content')
-    <div class="container mx-auto p-4">
+    <div class="container mx-auto">
         <div class="flex justify-between items-center mb-6">
-            <h1 class="text-3xl font-bold">Product Details</h1>
-            <a href="{{ route('AdminProductList') }}" class="btn btn-primary">Back to Product List</a>
+            <div></div>
+            <a href="{{ route('AdminProductList') }}" class="btn btn-outline btn-primary">Back to Product List</a>
         </div>
 
         <div class="bg-base-100 shadow-xl rounded-lg overflow-hidden">
@@ -48,7 +48,7 @@
                             <p>Created: {{ $product->created_at->format('Y-m-d H:i') }}</p>
                             <p>Updated: {{ $product->updated_at->format('Y-m-d H:i') }}</p>
                         </div>
-                        <a href="{{ route('AdminProductEdit', $product->id) }}" class="btn btn-primary">Edit Product</a>
+                        <a href="{{ route('AdminProductEdit', $product->id) }}" class="btn btn-outline btn-primary">Edit Product</a>
                     </div>
                 </div>
             </div>

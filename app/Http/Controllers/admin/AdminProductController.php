@@ -14,9 +14,9 @@ class AdminProductController extends Controller
      */
     public function index()
     {
-        $products = Product::all(); // Fetch all products from the database
-        return view('admin.pages.product.index', compact('products'));
-
+        $products = Product::with('category')->orderByDesc('id')->get(); // Fetch all products from the database
+        $title ='Product Management - List';
+        return view('admin.pages.product.index', compact('products','title'));
     }
 
     /**
@@ -24,8 +24,8 @@ class AdminProductController extends Controller
      */
     public function create()
     {
-        return view('admin.pages.product.create');
-
+        $title ='Product Management - Create';
+        return view('admin.pages.product.create',compact('title'));
     }
 
     /**
@@ -73,7 +73,8 @@ class AdminProductController extends Controller
      */
     public function show(Product $product)
     {
-        return view('admin.pages.product.show', compact('product'));
+        $title ="Product Management - $product->name";
+        return view('admin.pages.product.show', compact('product','title'));
     }
 
 
@@ -82,7 +83,9 @@ class AdminProductController extends Controller
      */
     public function edit(Product $product)
     {
-        return view('admin.pages.product.edit', compact('product'));
+        $title ="Product Management - Edit $product->name";
+
+        return view('admin.pages.product.edit', compact('product','title'));
     }
 
 
