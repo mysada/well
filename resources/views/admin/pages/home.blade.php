@@ -51,109 +51,156 @@
         </div>
         <div class="overflow-x-auto w-full">
             <h2 class="text-4xl font-bold">Recent Logs</h2>
-            <table class="table">
+            <table class="table w-full">
                 <!-- head -->
                 <thead>
                     <tr>
-                        <th></th>
-                        <th>Name</th>
-                        <th>Job</th>
-                        <th>Favorite Color</th>
+                        <th>Time</th>
+                        <th>Level</th>
+                        <th>Message</th>
+                        <th>Context</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <!-- row 1 -->
+                    <!-- Example row 1 -->
                     <tr>
-                        <th>1</th>
-                        <td>Cy Ganderton</td>
-                        <td>Quality Control Specialist</td>
-                        <td>Blue</td>
+                        <td>2024-08-09 14:00:01</td>
+                        <td>INFO</td>
+                        <td>User logged in successfully</td>
+                        <td>{"user_id":1}</td>
                     </tr>
-                    <!-- row 2 -->
-                    <tr class="hover">
-                        <th>2</th>
-                        <td>Hart Hagerty</td>
-                        <td>Desktop Support Technician</td>
-                        <td>Purple</td>
-                    </tr>
-                    <!-- row 3 -->
+                    <!-- Example row 2 -->
                     <tr>
-                        <th>3</th>
-                        <td>Brice Swyre</td>
-                        <td>Tax Accountant</td>
-                        <td>Red</td>
+                        <td>2024-08-09 14:05:23</td>
+                        <td>ERROR</td>
+                        <td>Failed to process payment</td>
+                        <td>{"error_code":123, "order_id":456}</td>
                     </tr>
+                    <!-- Example row 3 -->
                     <tr>
-                        <th>3</th>
-                        <td>Brice Swyre</td>
-                        <td>Tax Accountant</td>
-                        <td>Red</td>
+                        <td>2024-08-09 14:10:34</td>
+                        <td>WARNING</td>
+                        <td>Disk space running low</td>
+                        <td>{"disk":"/", "free_space":"500MB"}</td>
                     </tr>
+                    <!-- Example row 4 -->
                     <tr>
-                        <th>3</th>
-                        <td>Brice Swyre</td>
-                        <td>Tax Accountant</td>
-                        <td>Red</td>
+                        <td>2024-08-09 14:15:45</td>
+                        <td>DEBUG</td>
+                        <td>Debugging request</td>
+                        <td>{"request_id":"abc123"}</td>
                     </tr>
+                    <!-- Example row 5 -->
                     <tr>
-                        <th>3</th>
-                        <td>Brice Swyre</td>
-                        <td>Tax Accountant</td>
-                        <td>Red</td>
+                        <td>2024-08-09 14:20:56</td>
+                        <td>INFO</td>
+                        <td>User updated profile</td>
+                        <td>{"user_id":2}</td>
                     </tr>
+                    <!-- Example row 6 -->
                     <tr>
-                        <th>3</th>
-                        <td>Brice Swyre</td>
-                        <td>Tax Accountant</td>
-                        <td>Red</td>
+                        <td>2024-08-09 14:25:07</td>
+                        <td>ERROR</td>
+                        <td>Invalid login attempt</td>
+                        <td>{"user_id":3}</td>
                     </tr>
+                    <!-- Example row 7 -->
                     <tr>
-                        <th>3</th>
-                        <td>Brice Swyre</td>
-                        <td>Tax Accountant</td>
-                        <td>Red</td>
+                        <td>2024-08-09 14:30:18</td>
+                        <td>WARNING</td>
+                        <td>API rate limit exceeded</td>
+                        <td>{"api_key":"xyz789"}</td>
                     </tr>
+                    <!-- Example row 8 -->
                     <tr>
-                        <th>3</th>
-                        <td>Brice Swyre</td>
-                        <td>Tax Accountant</td>
-                        <td>Red</td>
+                        <td>2024-08-09 14:35:29</td>
+                        <td>DEBUG</td>
+                        <td>Cache cleared</td>
+                        <td>{"cache_key":"user:1"}</td>
                     </tr>
+                    <!-- Example row 9 -->
                     <tr>
-                        <th>3</th>
-                        <td>Brice Swyre</td>
-                        <td>Tax Accountant</td>
-                        <td>Red</td>
+                        <td>2024-08-09 14:40:40</td>
+                        <td>INFO</td>
+                        <td>Password reset email sent</td>
+                        <td>{"user_id":4}</td>
                     </tr>
+                    <!-- Example row 10 -->
                     <tr>
-                        <th>3</th>
-                        <td>Brice Swyre</td>
-                        <td>Tax Accountant</td>
-                        <td>Red</td>
+                        <td>2024-08-09 14:45:51</td>
+                        <td>ERROR</td>
+                        <td>Database connection failed</td>
+                        <td>{"error_code":500}</td>
                     </tr>
+                    <!-- Example row 11 -->
                     <tr>
-                        <th>3</th>
-                        <td>Brice Swyre</td>
-                        <td>Tax Accountant</td>
-                        <td>Red</td>
+                        <td>2024-08-09 14:50:02</td>
+                        <td>WARNING</td>
+                        <td>High memory usage</td>
+                        <td>{"memory_usage":"80%"}</td>
                     </tr>
+                    <!-- Example row 12 -->
                     <tr>
-                        <th>3</th>
-                        <td>Brice Swyre</td>
-                        <td>Tax Accountant</td>
-                        <td>Red</td>
+                        <td>2024-08-09 14:55:13</td>
+                        <td>DEBUG</td>
+                        <td>Session started</td>
+                        <td>{"session_id":"def456"}</td>
                     </tr>
+                    <!-- Example row 13 -->
                     <tr>
-                        <th>3</th>
-                        <td>Brice Swyre</td>
-                        <td>Tax Accountant</td>
-                        <td>Red</td>
+                        <td>2024-08-09 15:00:24</td>
+                        <td>INFO</td>
+                        <td>Order placed successfully</td>
+                        <td>{"order_id":789}</td>
                     </tr>
+                    <!-- Example row 14 -->
                     <tr>
-                        <th>3</th>
-                        <td>Brice Swyre</td>
-                        <td>Tax Accountant</td>
-                        <td>Red</td>
+                        <td>2024-08-09 15:05:35</td>
+                        <td>ERROR</td>
+                        <td>Payment gateway timeout</td>
+                        <td>{"gateway":"stripe"}</td>
+                    </tr>
+                    <!-- Example row 15 -->
+                    <tr>
+                        <td>2024-08-09 15:10:46</td>
+                        <td>WARNING</td>
+                        <td>Unusual login location</td>
+                        <td>{"location":"New York"}</td>
+                    </tr>
+                    <!-- Example row 16 -->
+                    <tr>
+                        <td>2024-08-09 15:15:57</td>
+                        <td>DEBUG</td>
+                        <td>User data cache refreshed</td>
+                        <td>{"user_id":5}</td>
+                    </tr>
+                    <!-- Example row 17 -->
+                    <tr>
+                        <td>2024-08-09 15:21:08</td>
+                        <td>INFO</td>
+                        <td>Email verification sent</td>
+                        <td>{"user_id":6}</td>
+                    </tr>
+                    <!-- Example row 18 -->
+                    <tr>
+                        <td>2024-08-09 15:26:19</td>
+                        <td>ERROR</td>
+                        <td>File upload failed</td>
+                        <td>{"file_name":"report.pdf"}</td>
+                    </tr>
+                    <!-- Example row 19 -->
+                    <tr>
+                        <td>2024-08-09 15:31:30</td>
+                        <td>WARNING</td>
+                        <td>API deprecated endpoint</td>
+                        <td>{"endpoint":"/api/v1/old"}</td>
+                    </tr>
+                    <!-- Example row 20 -->
+                    <tr>
+                        <td>2024-08-09 15:36:41</td>
+                        <td>DEBUG</td>
+                        <td>Background job completed</td>
+                        <td>{"job_id":"xyz123"}</td>
                     </tr>
                 </tbody>
             </table>
