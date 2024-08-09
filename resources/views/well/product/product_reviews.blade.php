@@ -68,6 +68,11 @@
                                     <p class="review-date">Posted on {{ $review->created_at->format('M d, Y') }}</p>
                                 </div>
                             </div>
+                            @if($review->image)
+                            <div class="review-image">
+                                <img src="{{ asset('storage/' . $review->image) }}" alt="Review Image" class="img-fluid">
+                            </div>
+                            @endif
                             <div class="review-rating">
                                 @for ($i = 0; $i < 5; $i++)
                                 @if ($review->rating > $i)
@@ -100,8 +105,10 @@
     <div class="row mt-5">
         <div class="col-md-12">
             <h4>Write a Review</h4>
-            <form action="{{ route('reviews.store1', ['id' => $product->id]) }}" method="POST">
+            <form action="{{ route('reviews.store1', ['id' => $product->id]) }}" method="POST" enctype="multipart/form-data">
                 @csrf
+                <input type="hidden" name="product_id" value="{{ $product->id }}">
+
                 <div class="form-group">
                     <label for="rating">Rating</label>
                     <select name="rating" id="rating" class="form-control" required>
@@ -117,6 +124,11 @@
                     <label for="review_text">Review</label>
                     <textarea name="review_text" id="review_text" class="form-control" required></textarea>
                 </div>
+                <div class="form-group">
+                    <label for="image">Upload Image</label>
+                    <input type="file" name="image" id="image" class="form-control">
+                </div>
+
                 <button type="submit" class="btn btn-primary">Submit Review</button>
             </form>
             @if(session('success'))
