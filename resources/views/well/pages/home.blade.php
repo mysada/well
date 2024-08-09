@@ -1,6 +1,6 @@
 @extends('layouts.app')
 @section('content')
-@vite('resources/sass/home.scss')
+    @vite('resources/sass/home.scss')
 
 
     <!-- Category Section -->
@@ -26,10 +26,12 @@
             <div class="row">
                 @foreach($categories as $category)
                     <div class="col-md-4">
-                        <div class="card category-card" style="background-image: url('{{ asset($category->image) }}.jpg');">
+                        <div class="card category-card"
+                             style="background-image: url('{{ asset($category->image) }}.jpg');">
                             <h1 class="category-card-title">{{ $category->name }}</h1>
                             <div class="card-body">
-                                <a href="{{ route('products.index', ['category_id' => $category->id]) }}" class="btn btn-primary">Buy Now</a>
+                                <a href="{{ route('products.index', ['category_id' => $category->id]) }}"
+                                   class="btn btn-primary">Buy Now</a>
                             </div>
                         </div>
                     </div>
@@ -40,19 +42,21 @@
 
 
     <!-- Best Seller Section -->
-<section class="best-seller-section">
+    <section class="best-seller-section">
         <div class="container">
             <h2>Best Seller</h2>
             <div class="row-best-seller d-flex gap-4">
                 <div class="col-md-6">
                     <div class="row-best-seller-left text-center">
                         @foreach($bestSellers->slice(0, 1) as $product)
-                            <div class="card best-seller-card" style="background-image: url('{{ asset($product->image_url) }}');">
+                            <div class="card best-seller-card"
+                                 style="background-image: url('{{ asset($product->image_url) }}');">
                                 <div class="card-body">
                                     <h5 class="card-title">{{ $product->name }}</h5>
                                     <p class="card-text">{{ $product->description }}</p>
                                     <!-- <a href="#" class="btn btn-primary">Buy Now</a> -->
-                                    <a href="{{ route('products.show', $product->id) }}" class="btn btn-primary">Buy Now</a>
+                                    <a href="{{ route('products.show', $product->id) }}" class="btn btn-primary">Buy
+                                        Now</a>
                                 </div>
                             </div>
                         @endforeach
@@ -62,12 +66,14 @@
                     <div class="row-best-seller-right">
                         @foreach($bestSellers->slice(1) as $product)
                             <div class="card-right">
-                                <div class="best-seller-card-right" style="background-image: url('{{ asset($product->image_url) }}');"></div>
+                                <div class="best-seller-card-right"
+                                     style="background-image: url('{{ asset($product->image_url) }}');"></div>
                                 <div class="bs-text">
                                     <h5 class="bs-title">{{ $product->name }}</h5>
                                     <p>{{ $product->description }}</p>
                                     <!-- <a href="#" class="btn btn-primary">Buy Now</a> -->
-                                    <a href="{{ route('products.show', $product->id) }}" class="btn btn-primary">Buy Now</a>
+                                    <a href="{{ route('products.show', $product->id) }}" class="btn btn-primary">Buy
+                                        Now</a>
                                 </div>
                             </div>
                         @endforeach
@@ -88,10 +94,10 @@
                     <div>
                         <p style="color: #00AB7A; font-size: 18px;">PRODUCTS</p>
                         <h3 style="font-size: 42px;">We Provide You The Best Products</h3>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque vel orci efficitur diam.
-                            Nulla facilisi. Duis libero odio, fermentum id nulla quis, hendrerit feugiat leo. In
-                            imperdiet metus ac diam consequat, eu blandit sapien lobortis.</p>
-                        <!-- <a href="#" class="btn btn-primary">Buy Now</a> -->
+                        <p>At Well, we are dedicated to bringing you the finest products that enhance your lifestyle.
+                            Our carefully curated selection features top-quality items designed to meet your needs and
+                            exceed your expectations.</p>
+
                         <a href="{{ route('products.index') }}" class="btn btn-primary">Buy Now</a>
                     </div>
                 </div>
