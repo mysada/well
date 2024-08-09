@@ -9,6 +9,7 @@ use App\Models\Product;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\RedirectResponse;
+use Illuminate\Support\Facades\Log;
 
 class CartItemController extends Controller
 {
@@ -44,19 +45,22 @@ class CartItemController extends Controller
             'quantity' => 'required|integer|min:1'
         ]);
 
+        Log::info('Store method called with data: ', $request->all()); // Log the request data
+
         $product = Product::findOrFail($request->product_id);
         $cartItem = CartItem::where('user_id', Auth::id())
             ->where('product_id', $request->product_id)
             ->first();
 
         if ($cartItem) {
-            // If the item already exists, update the quantity to the exact value provided (do not add to it)
+            // Update the quantity to the exact value provided
             $cartItem->quantity = $request->quantity;
-            $cartItem->subtotal = $cartItem->product->price * $cartItem->quantity;
+            $cartItem->subtotal = $product->price * $cartItem->quantity;
             $cartItem->save();
+            Log::info('Updated cart item: ', $cartItem->toArray()); // Log the updated cart item
         } else {
-            // Otherwise, create a new cart item
-            CartItem::create([
+            // Create a new cart item
+            $newCartItem = CartItem::create([
                 'user_id' => Auth::id(),
                 'product_id' => $request->product_id,
                 'quantity' => $request->quantity,
@@ -64,13 +68,19 @@ class CartItemController extends Controller
                 'total' => $product->price * $request->quantity,
                 'items' => $request->quantity  // Setting initial items count
             ]);
+            Log::info('Created new cart item: ', $newCartItem->toArray()); // Log the new cart item
         }
 
         // Update the total and items for the entire cart
         $this->updateCartTotals(Auth::id());
 
         return redirect()->route('CartIndex')->with('success', 'Product added to cart successfully.');
+
+//        return response()->json(['message' => 'Product added to cart successfully.']);
     }
+
+
+
 
     private function updateCartTotals($userId)
     {

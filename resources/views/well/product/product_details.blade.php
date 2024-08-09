@@ -1,6 +1,7 @@
 @extends('layouts.app')
 @vite('resources/sass/product_details.scss')
 @vite('resources/js/qty-input.js')
+{{--@vite('resources/js/stock.js')--}}
 
 @section('content')
 
