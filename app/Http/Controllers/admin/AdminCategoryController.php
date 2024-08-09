@@ -82,7 +82,32 @@ class AdminCategoryController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        // Validate the incoming request data
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'image' => 'nullable|image|mimes:jpg,jpeg,png,gif|max:2048',
+        ]);
+
+        // Fetch the category
+        $category = Category::findOrFail($id);
+
+        // Update the name
+        $category->name = $request->name;
+
+        if ($request->hasFile('image')) {
+            // Delete the old image if it exists
+            if ($category->image_path) {
+                Storage::delete('public/' . $category->image_path);
+            }
+
+            // Save the new image and update the image path
+            $category->image_path = $request->file('image')->store('images/admin', 'public');
+        }
+
+        $category->save();
+
+        // Redirect to the category list with a success message
+        return redirect()->route('AdminCategoryList')->with('success', 'Category updated successfully.');
     }
 
     /**
