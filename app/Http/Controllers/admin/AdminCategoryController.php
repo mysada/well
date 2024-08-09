@@ -31,9 +31,13 @@ class AdminCategoryController extends Controller
      */
     public function store(Request $request)
     {
+        // Validate the incoming request data
         $request->validate([
             'name' => 'required|string|max:255',
+            'image' => 'required|image|mimes:jpg,jpeg,png,gif|max:2048',
         ]);
+
+        // Handle the image upload
 
 
     }
