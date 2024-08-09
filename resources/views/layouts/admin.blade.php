@@ -19,11 +19,12 @@
     <body>
         <div id="app">
             @include('admin.components.header')
-
-            <main class="py-4">
+            <div class="d-flex">
+                @include('admin.components.sidebar')
+                <main class="container-fluid p-4">
                 @yield('content')
-            </main>
-
+                </main>
+            </div>
             @include('admin.components.footer')
         </div>
     </body>
