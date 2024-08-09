@@ -44,6 +44,7 @@
         </div>
     </div>
 
+    <!--
     <div class="section-title text-center my-5">
         <h2>Reach Us Via</h2>
     </div>
@@ -73,5 +74,5 @@
             </div>
         </div>
     </div>
-
+        -->
 @endsection
