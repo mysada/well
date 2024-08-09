@@ -11,4 +11,20 @@ class Transaction extends Model
 
     use HasFactory;
     use SoftDeletes;
+
+    protected $fillable = [
+      'order_id',
+      'user_id',
+      'amount',
+      'transaction_type',
+      'currency',
+      'status',
+      'response',
+    ];
+
+    // Define the relationship to the Order model
+    public function order()
+    {
+        return $this->belongsTo(Order::class);
+    }
 }

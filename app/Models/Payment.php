@@ -11,4 +11,24 @@ class Payment extends Model
 
     use HasFactory;
     use SoftDeletes;
+
+    protected $fillable
+      = [
+        'order_id',
+        'method',
+        'amount',
+        'gst',
+        'pst',
+        'discount',
+        'status',
+        'payer_name',
+        'payer_card',
+      ];
+
+    // Define the relationship to the Order model
+    public function order()
+    {
+        return $this->belongsTo(Order::class);
+    }
+
 }

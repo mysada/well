@@ -10,10 +10,12 @@ use App\Http\Controllers\admin\AdminUserController;
 use App\Http\Controllers\admin\AdminHomeControllerr;
 use App\Http\Controllers\well\AboutController;
 use App\Http\Controllers\well\CartItemController;
+use App\Http\Controllers\well\CheckoutController;
 use App\Http\Controllers\well\ContactController;
+use App\Http\Controllers\well\CountryTaxController;
 use App\Http\Controllers\well\FaqController;
 use App\Http\Controllers\well\HomeController;
-use App\Http\Controllers\well\CheckoutController;
+use App\Http\Controllers\well\OrderController;
 use App\Http\Controllers\well\PrivacyPolicyController;
 use App\Http\Controllers\well\ProductController;
 use App\Http\Controllers\well\ReviewController;
@@ -28,7 +30,17 @@ Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('/home', [HomeController::class, 'index']);
 Route::get('/about', [AboutController::class, 'index'])->name('about');
 Route::get('/faq', [FaqController::class, 'index'])->name("faq");
-Route::get('/privacy-policy', [PrivacyPolicyController::class, 'index'])->name('privacy_policy');
+Route::get('/privacy-policy', [PrivacyPolicyController::class, 'index'])->name(
+  'privacy_policy'
+);
+
+//country
+Route::get('/api/countries', [CountryTaxController::class, 'countries'])->name(
+  'api.countries'
+);
+Route::get('/api/provinces', [CountryTaxController::class, 'provinces'])->name(
+  'api.provinces'
+);
 
 //Manish_Contact_Page
 Route::get('/contact', function () {
@@ -50,7 +62,6 @@ Route::get('/products/{id}', [ProductController::class, 'show'])->name(
 Route::get('/products/{id}/reviews', [ProductController::class, 'showReviews'])->name('product.reviews');
 Route::post('/products/{id}/reviews', [ReviewController::class, 'store'])->name('reviews.store1');
 
-
 // Routes for cart item actions, accessible only to logged-in users
 Route::middleware('auth')->group(function () {
     Route::resource('/cart_items', CartItemController::class)->names([
@@ -60,19 +71,18 @@ Route::middleware('auth')->group(function () {
       'destroy' => 'CartItemDestroy',
     ]);
 
- //checkout route - Manish
+    Route::post('/cart_items/update_quantity', [CartItemController::class, 'updateQuantity'])->name('CartItemUpdateQuantity');
+
+    //checkout route - Manish
 //Route::get('/checkout', [CheckoutController::class, 'showCheckout'])->name('checkout.show');
 //Route::post('/checkout/process', [CheckoutController::class, 'process'])->name('checkout.process');
 
     /**
      * order routes
      */
-    Route::resource('/orders', OrderController::class)->names([
-      'create' => 'OrderCreate', //page: order create
-      'store'  => 'OrderStore', //processor: save an order
-      'show'   => 'OrderShow', //page: order detail
-    ]);
-
+    Route::post('/orders/store', [OrderController::class, 'store'])->name(
+      'OrderStore'
+    );
     /**
      * Wishlist route
      */
@@ -101,6 +111,7 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/checkout/process', [CheckoutController::class, 'process'])->name('checkout.process');
 
 });
+
 //
 Auth::routes();
 
