@@ -7,7 +7,6 @@ use App\Http\Controllers\admin\AdminPaymentController;
 use App\Http\Controllers\admin\AdminProductController;
 use App\Http\Controllers\admin\AdminReviewController;
 use App\Http\Controllers\admin\AdminUserController;
-use App\Http\Controllers\admin\AdminHomeControllerr;
 use App\Http\Controllers\well\AboutController;
 use App\Http\Controllers\well\CartItemController;
 use App\Http\Controllers\well\CheckoutController;
@@ -107,7 +106,7 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/profile/logout', [UserController::class, 'logout'])->name('user.logout');
     Route::put('/profile/update', [UserController::class, 'update'])->name('user.update');
     Route::get('/reorder/{orderId}', [UserController::class, 'reorder'])->name('order.reorder');
-    Route::get('/checkout', [CheckoutController::class, 'showCheckout'])->name('checkout.show');
+    Route::get('/checkout/{id}', [CheckoutController::class, 'showCheckout'])->name('checkout.show');
     Route::post('/checkout/process', [CheckoutController::class, 'process'])->name('checkout.process');
 
 });

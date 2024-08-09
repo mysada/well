@@ -70,6 +70,7 @@ class PaymentService
                   'post_tax_amount' => $totalAmount - ($gstAmount + $pstAmount),
                   'gst'             => $gstAmount,
                   'pst'             => $pstAmount,
+                  'status' =>'Shipped'
                 ]);
 
                 // Create payment record
@@ -78,7 +79,7 @@ class PaymentService
                   'method'     => 'Credit Card',
                   'amount'     => $totalAmount,
                   'discount'   => 0,
-                  'status'     => 'Pending',
+                  'status'     => 'Completed',
                   'payer_name' => $req['card-name'],
                   'payer_card' => $req['card-number'],
                 ]);
@@ -89,8 +90,8 @@ class PaymentService
                   'user_id'          => auth()->id(),
                   'amount'           => $totalAmount,
                   'transaction_type' => 'Payment',
-                  'currency'         => 'USD', // Change as needed
-                  'status'           => 'Pending',
+                  'currency'         => 'CAD', // Change as needed
+                  'status'           => 'Completed',
                   'response'         => null,
                 ]);
 
