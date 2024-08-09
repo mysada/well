@@ -52,7 +52,7 @@ Route::middleware('auth')->group(function () {
       'update'  => 'CartItemUpdate',
       'destroy' => 'CartItemDestroy',
     ]);
-    Route::post('/cart_items/update_quantity', [CartItemController::class, 'updateQuantity'])->name('cart.update_quantity');
+    Route::post('/update-cart-quantity', [CartItemController::class, 'updateQuantity']);
 
 
     //checkout route - Manish

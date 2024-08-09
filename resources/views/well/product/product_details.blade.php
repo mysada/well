@@ -1,8 +1,6 @@
 @extends('layouts.app')
 @vite('resources/sass/product_details.scss')
-@vite('resources/js/qty-input.js')
-{{--@vite('resources/js/stock.js')--}}
-
+@vite('resources/js/quantity.js')
 @section('content')
 
     <!-- Product Detail -->
@@ -26,12 +24,12 @@
                     <div class="d-flex align-items-center mb-4">
                         <div class="qty-input">
                             <button class="qty-count qty-count--minus" data-action="minus" type="button">-</button>
-                            <input class="product-qty" type="number" name="quantity" min="1"
-                                   max="{{ $product->stock }}" value="1" data-product-id="{{ $product->id }}">
+                            <input class="product-qty" type="number" name="quantity" min="1" max="{{ $product->stock }}" value="1" data-product-id="{{ $product->id }}">
                             <button class="qty-count qty-count--add" data-action="add" type="button">+</button>
                         </div>
-                        <span class="text-success" style="margin-left: 30px;">{{ $product->stock }} in stock</span>
+                        <span class="text-success product-stock-display" style="margin-left: 30px;">{{ $product->stock }} in stock</span>
                     </div>
+
                     <div class="d-flex gap-4">
                         <form id="add-to-cart-form" action="{{ route('CartItemStore') }}" method="POST" class="mr-3 w-50">
                             @csrf
