@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}" data-theme="emerald">
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -11,16 +11,16 @@
         <!-- Vite -->
 
     </head>
-    <body>
-        <div>
+    <body class="h-screen">
+        <main class="flex flex-col h-screen">
             @include('admin.components.header')
-            <div>
+            <div class="flex-1">
                 @include('admin.components.sidebar')
-                <main>
+                <div>
                     @yield('content')
-                </main>
+                </div>
             </div>
             @include('admin.components.footer')
-        </div>
+        </main>
     </body>
 </html>

@@ -1,4 +1,4 @@
-<aside class="w-64 bg-base-200 p-4">
+<aside class="w-64 p-4">
     <h1 class="text-2xl font-bold mb-4">Data Management</h1>
     <nav>
         <ul class="menu menu-compact">

@@ -1,4 +1,4 @@
-<div class="navbar bg-base-100">
+<div class="navbar bg-primary">
     <div class="flex-1">
         <a class="btn btn-ghost text-xl">Well Dashboard</a>
     </div>
