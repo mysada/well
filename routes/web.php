@@ -69,12 +69,6 @@ Route::middleware('auth')->group(function () {
       'update'  => 'CartItemUpdate',
       'destroy' => 'CartItemDestroy',
     ]);
-    Route::post('/update-cart-quantity', [CartItemController::class, 'updateQuantity']);
-
-
-    //checkout route - Manish
-//Route::get('/checkout', [CheckoutController::class, 'showCheckout'])->name('checkout.show');
-//Route::post('/checkout/process', [CheckoutController::class, 'process'])->name('checkout.process');
 
     /**
      * order routes
