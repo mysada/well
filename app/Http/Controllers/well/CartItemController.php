@@ -35,49 +35,6 @@ class CartItemController extends Controller
         return view('well.cart.shopping_cart', compact('cartItems', 'title'));
     }
 
-    /**
-     * Add product to cart
-     */
-//    public function store(Request $request)
-//    {
-//        $request->validate([
-//            'product_id' => 'required|exists:products,id',
-//            'quantity' => 'required|integer|min:1'
-//        ]);
-//
-//        $product = Product::findOrFail($request->product_id);
-//
-//        if ($product->stock < $request->quantity) {
-//            return redirect()->back()->with('error', 'Not enough stock available.');
-//        }
-//
-//        $cartItem = CartItem::where('user_id', Auth::id())
-//            ->where('product_id', $request->product_id)
-//            ->first();
-//
-//        if ($cartItem) {
-//            // Update the quantity and subtotal
-//            $cartItem->quantity += $request->quantity;
-//            $cartItem->subtotal = $product->price * $cartItem->quantity;
-//            $cartItem->save();
-//        } else {
-//            // Create a new cart item
-//            CartItem::create([
-//                'user_id' => Auth::id(),
-//                'product_id' => $request->product_id,
-//                'quantity' => $request->quantity,
-//                'subtotal' => $product->price * $request->quantity,
-//                'total' => $product->price * $request->quantity,
-//                'items' => $request->quantity  // Setting initial items count
-//            ]);
-//        }
-//
-//        // Update the total and items for the entire cart
-//        $this->updateCartTotals(Auth::id());
-//
-//        return redirect()->route('CartIndex')->with('success', 'Product added to cart successfully.');
-//    }
-
     public function store(Request $request)
     {
         $request->validate([
