@@ -1,9 +1,9 @@
-<aside class="w-32 fixed h-full bg-primary">
+<aside class="w-36 glass fixed h-full bg-primary ">
     <div class="p-4">
         <h1 class="text-2xl font-bold"><a href="{{route('admin.home')}}">Well</a></h1>
     </div>
     <nav>
-        <ul class="menu menu-compact">
+        <ul class="menu menu-compact text-lg">
             <li><a class="menu-item" href="{{route('AdminProductList')}}">Products</a></li>
             <li><a class="menu-item" href="{{route("AdminUserList")}}">Users</a></li>
             <li><a class="menu-item" href="{{route('AdminOrderList')}}">Orders</a></li>

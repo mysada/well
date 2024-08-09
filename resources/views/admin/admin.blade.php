@@ -12,7 +12,7 @@
     </head>
     <body class="h-screen flex">
         @include('admin.components.sidebar')
-        <main class="flex-1 flex flex-col ml-32 w-full">
+        <main class="flex-1 flex flex-col ml-36 w-full">
             @include('admin.components.header')
             <div class="p-4 flex-1">
                 @yield('content')
