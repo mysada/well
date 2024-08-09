@@ -115,6 +115,10 @@ class AdminCategoryController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        // Find ID
+        $category = Category::findOrFail($id);
+
+        $category->delete();
+
     }
 }
