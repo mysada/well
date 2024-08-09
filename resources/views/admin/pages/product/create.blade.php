@@ -111,7 +111,7 @@
                     <div class="text-red-500 text-sm mt-1">{{ $message }}</div>
                     @enderror
                 </div>
-                <button type="submit" class="btn btn-success w-full ">Add Product</button>
+                <button type="submit" class="btn btn-primary w-full ">Add Product</button>
 
             </div>
 

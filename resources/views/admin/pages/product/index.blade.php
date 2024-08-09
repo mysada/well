@@ -4,14 +4,9 @@
     <div class="overflow-x-auto w-full">
         <div class="flex justify-between">
             <h2 class="text-4xl font-bold mb-4">Product List</h2>
-            <a href="{{ route('AdminProductCreate') }}" class="btn btn-primary mb-3">Add New Product</a>
+            <a href="{{ route('AdminProductCreate') }}" class="btn btn-primary btn-wide mb-3">Add New Product</a>
         </div>
 
-        @if (session('success'))
-            <div class="alert alert-success mb-4">
-                {{ session('success') }}
-            </div>
-        @endif
         <table class="table w-full">
             <!-- head -->
             <thead>

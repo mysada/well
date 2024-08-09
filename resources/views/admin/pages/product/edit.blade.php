@@ -89,12 +89,14 @@
                 </div>
 
                 <div>
-                    @if ($product->image_url)
-                        <div class="mb-2">
-                            <img src="{{ asset($product->image_url) }}" alt="{{ $product->name }}" class="max-w-xs">
-                        </div>
-                    @endif
-                    <input type="file" class="file-input file-input-bordered grow w-full " id="image" name="image"/>
+                    <div class="flex items-center gap-4">
+                        @if ($product->image_url)
+                            <div class="mb-2">
+                                <img src="{{ asset($product->image_url) }}" alt="{{ $product->name }}" width="100px" height="100px" class="max-w-xs rounded-md">
+                            </div>
+                        @endif
+                        <input type="file" class="file-input file-input-bordered grow w-full " id="image" name="image"/>
+                    </div>
                     @error('image')
                     <div class="text-red-500 text-sm mt-1">{{ $message }}</div>
                     @enderror
@@ -117,7 +119,7 @@
                     <div class="text-red-500 text-sm mt-1">{{ $message }}</div>
                     @enderror
                 </div>
-                <button type="submit" class="btn btn-success w-full ">Update Product</button>
+                <button type="submit" class="btn btn-primary w-full ">Update Product</button>
 
             </div>
 
