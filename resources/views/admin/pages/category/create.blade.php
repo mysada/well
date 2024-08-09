@@ -15,8 +15,16 @@
         </div>
 
         <div class="form-control">
+            <label class="label" for="image">
+                <span class="label-text">Category Image</span>
+            </label>
+            <input type="file" name="image" id="image" class="file-input file-input-bordered w-full" required>
+        </div>
+
+        <div class="form-control">
             <button type="submit" class="btn btn-primary">Create Category</button>
         </div>
     </form>
 </div>
 @endsection
+
