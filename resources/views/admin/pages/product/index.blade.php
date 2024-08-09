@@ -10,7 +10,7 @@
                         <input type="text" class="grow" placeholder="Search"/>
                     </form>
                 </label>
-                <a href="{{ route('AdminProductCreate') }}" class="btn btn-primary">Add New Product</a>
+                <a href="{{ route('AdminProductCreate') }}" class="btn btn-outline btn-primary">Add New Product</a>
             </div>
         </div>
 
@@ -58,12 +58,12 @@
                         <td>{{ $product->color }}</td>
                         <td class="flex gap-4 px-0">
                             <a href="{{ route('AdminProductEdit', $product->id) }}"
-                               class="btn btn-primary flex-1">Edit</a>
+                               class="btn btn-outline btn-primary flex-1">Edit</a>
                             <form action="{{ route('AdminProductDestroy', $product->id) }}" method="POST"
                                   class="flex-1">
                                 @csrf
                                 @method('DELETE')
-                                <button type="submit" class="btn btn-danger">Delete</button>
+                                <button type="submit" class="btn btn-outline btn-danger">Delete</button>
                             </form>
                         </td>
                     </tr>

@@ -22,7 +22,7 @@
         </div>
 
         <div class="form-control">
-            <button type="submit" class="btn btn-primary">Create Category</button>
+            <button type="submit" class="btn btn-outline btn-primary">Create Category</button>
         </div>
     </form>
 </div>
