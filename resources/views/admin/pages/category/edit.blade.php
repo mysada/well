@@ -16,6 +16,12 @@
             <input type="text" name="name" id="name" class="input input-bordered w-full" value="{{ $category->name }}" required>
         </div>
 
+        <div class="form-control">
+            <label class="label" for="image">
+                <span class="label-text">Category Image</span>
+            </label>
+            <input type="file" name="image" id="image" class="file-input file-input-bordered w-full">
+        </div>
 
         <div class="form-control">
             <button type="submit" class="btn btn-primary">Update Category</button>
