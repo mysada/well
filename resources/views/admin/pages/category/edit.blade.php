@@ -21,6 +21,10 @@
                 <span class="label-text">Category Image</span>
             </label>
             <input type="file" name="image" id="image" class="file-input file-input-bordered w-full">
+            <div class="mt-2">
+                <img src="{{ asset($category->image.'.jpg') }}" alt="{{ $category->name }}" class="w-24">
+                <p>Current Image</p>
+            </div>
         </div>
 
         <div class="form-control">
