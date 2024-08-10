@@ -1,58 +1,137 @@
-body {
-    font-family: 'Poppins', 'Arial', 'Avenir Next Georgian', Arial;
-    background-color: #f9f9f9;
-    padding-top: 50px;
-}
+.thank-you-page {
+    .thank-you-message {
+        margin-top: 30px;
+        h1 {
+            color: #20c997; // Customize this color to match your theme
+            font-weight: bold;
+        }
+        p {
+            font-size: 18px;
+            color: #666;
+        }
+    }
 
-.thank-you-container {
-    max-width: 600px;
-    margin: 0 auto;
-    padding: 20px;
-    background-color: #fff;
-    border-radius: unset!important;
+    .progress-tracker {
+        background-color: #f8f9fa;
+        border-radius: 10px;
+        padding: 20px;
 
-    text-align: center;
-}
+        .tracker {
+            position: relative;
+            padding: 20px 0;
+            ul.progressbar {
+                display: flex;
+                justify-content: space-between;
+                list-style-type: none;
+                counter-reset: step;
+                padding: 0;
+                margin: 0;
 
-.thank-you-container h1 {
-    font-family: 'Poppins', 'Avenir Next Georgian', Arial;
-    font-weight: 700;
-    color: #00AB7A;
-}
+                li {
+                    text-align: center;
+                    position: relative;
+                    flex: 1;
+                    color: #b0b0b0;
 
-.thank-you-container p {
-    font-size: 16px;
-    color: #333;
-}
+                    &.completed {
+                        color: #20c997;
+                        font-weight: bold;
 
-.order-id {
-    font-size: 18px;
-    font-weight: 700;
-    color: #00AB7A;
-}
+                        &::before,
+                        &::after {
+                            background-color: #20c997;
+                        }
+                    }
 
-.btn-home {
-    background-color: #00AB7A;
-    color: #fff;
-    border: none;
-    border-radius: unset!important;
-    padding: 10px 20px;
-    font-size: 16px;
-    font-weight: 700;
-    transition: background-color 0.3s ease, transform 0.3s ease;
-    text-decoration: none;
-    display: inline-block;
-    margin-top: 20px;
-}
+                    &::before {
+                        counter-increment: step;
+                        content: counter(step);
+                        width: 30px;
+                        height: 30px;
+                        line-height: 30px;
+                        border: 2px solid #b0b0b0;
+                        display: block;
+                        text-align: center;
+                        margin: 0 auto 10px auto;
+                        border-radius: 50%;
+                        background-color: white;
+                    }
 
-.btn-home:hover {
-    background-color: #fff;
-    color: #00AB7A;
-    border: 1px solid #eee;
-}
+                    &::after {
+                        content: '';
+                        position: absolute;
+                        width: 100%;
+                        height: 2px;
+                        background-color: #b0b0b0;
+                        top: 15px;
+                        left: -50%;
+                        z-index: -1;
+                    }
 
-.btn-home:active {
-    background-color: #008E65;
-    transform: scale(0.95);
-    color: #fff;
+                    &:first-child::after {
+                        content: none;
+                    }
+                }
+            }
+
+            .tracker-details {
+                text-align: right;
+                p {
+                    margin: 0;
+                    color: #666;
+                }
+            }
+        }
+    }
+
+    .order-details, .payment-details, .shipping-details {
+        background-color: white;
+        border-radius: 10px;
+        padding: 20px;
+
+        .card-title {
+            color: #20c997;
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
+
+        ul.list-group {
+            list-style: none;
+            padding: 0;
+
+            li.list-group-item {
+                display: flex;
+                align-items: center;
+                margin-bottom: 15px;
+
+                img {
+                    max-width: 60px;
+                    margin-right: 15px;
+                    border-radius: 5px;
+                }
+
+                div {
+                    strong {
+                        display: block;
+                        color: #333;
+                        font-size: 16px;
+                    }
+
+                    span {
+                        color: #999;
+                        font-size: 14px;
+                    }
+                }
+            }
+        }
+    }
+
+    .btn-checkout-custom {
+        background-color: #20c997;
+        border-color: #20c997;
+        &:hover {
+            background-color: #1ea87c;
+            border-color: #1ea87c;
+        }
+    }
 }
