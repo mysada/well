@@ -40,7 +40,7 @@
             </thead>
             <tbody>
                 @foreach ($items as $product)
-                    <tr>
+                    <tr class="hover">
                         <td>{{ $product->id }}</td>
                         <td>
                             <div class="flex items-center gap-3">
