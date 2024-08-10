@@ -1,21 +1,13 @@
-/* Base Styling */
+// Base Styling
 body {
     background-color: #fafafa;
     font-family: 'Poppins', 'Arial', 'Avenir Next Georgian', Arial !important;
     color: #333;
     margin: 0;
     padding: 0;
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh; /* Ensures body takes up full viewport height */
 }
 
-/* Main Content Wrapper */
-.main-content {
-    flex: 1; /* Takes up remaining space, pushing footer to the bottom */
-}
-
-/* Container for the policy content */
+// Container for the policy content
 .policy-container {
     max-width: 1000px;
     margin: 60px auto;
@@ -27,7 +19,7 @@ body {
     color: #4a4a4a;
 }
 
-/* Header Styling */
+// Header Styling
 .policy-container h1,
 .policy-container h2,
 .policy-container h3 {
@@ -55,7 +47,7 @@ body {
     margin-top: 25px;
 }
 
-/* Section Styling */
+// Section Styling
 .policy-section {
     margin-bottom: 40px;
 }
@@ -87,7 +79,7 @@ body {
     text-decoration: underline;
 }
 
-/* Link Styling */
+// Link Styling
 a {
     color: #20c997;
     text-decoration: none;
@@ -98,7 +90,7 @@ a:hover {
     text-decoration: underline;
 }
 
-/* Responsive Design */
+// Responsive Design
 @media (max-width: 768px) {
     .policy-container {
         padding: 20px;

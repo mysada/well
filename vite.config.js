@@ -1,34 +1,22 @@
 import { defineConfig } from 'vite';
 import laravel from 'laravel-vite-plugin';
+import { sync as globSync } from 'glob';
+
+const jsFiles = globSync('resources/js/**/*.js');
+const cssFiles = globSync('resources/sass/**/*.scss');
+const adminStyleScssFiles = globSync('resources/admin/style/**/*.css');
+const adminJsFiles = globSync('resources/admin/js/**/*.js');
 
 export default defineConfig({
   plugins: [
     laravel({
-        input: [
-            'resources/sass/app.scss',
-            'resources/js/app.js',
-            'resources/js/checkout.js',
-            'resources/js/slider-init.js',
-            'resources/js/billing.js',
-            'resources/sass/home.scss',
-            'resources/sass/cart.scss',
-            'resources/sass/product_details.scss',
-            'resources/sass/thankyou.scss',
-            'resources/sass/product_list.scss',
-            'resources/sass/about.scss',
-            'resources/sass/checkout.scss',
-            'resources/sass/login.scss',
-            'resources/sass/verify.scss',
-            'resources/sass/wishlist.scss',
-            'resources/js/cart.js',
-            'resources/js/qty-input.js',
-            'resources/sass/privacy_policy.scss',
-            'resources/sass/reviews.scss',
-            'resources/sass/faq.scss',
-            'resources/adminsass/admin.scss',
-            'resources/adminsass/admin_dashboard.scss',
-        ],
-        refresh: true,
+      input: [
+        ...jsFiles,
+        ...cssFiles,
+        ...adminStyleScssFiles,
+        ...adminJsFiles,
+      ],
+      refresh: true,
     }),
-],
+  ],
 });

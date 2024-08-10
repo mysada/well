@@ -24,6 +24,7 @@
                         <li><a href="#" class="text-white">Contact Us</a></li>
                         <li><a  href="{{ url('/faq') }}" class="text-white">FAQ's</a></li>
                         <li><a  href="{{ url('/privacy-policy') }}" class="text-white">Privacy Policy</a></li>
+                        <li><a  href="{{ url('/cancellation-refunds') }}" class="text-white">Cancellation & Refunds</a></li>
                     </ul>
                 </div>
                 <div class="col-md-2">
@@ -37,7 +38,7 @@
                 </div>
             </div>
             <div class="copyright text-center mt-4">
-                <p>&copy; 2024 Natural Balance Ltd. All rights reserved.</p>
+                <p>&copy; {{ date('Y') }} Natural Balance Ltd. All rights reserved.</p>
             </div>
         </div>
     </footer>
