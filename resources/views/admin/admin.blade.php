@@ -18,7 +18,7 @@
                     Open drawer
                 </label>
                 @include('admin.components.header')
-                <main class="w-full p-4">
+                <main class="w-full p-4 flex-1">
                     @yield('content')
                 </main>
 
