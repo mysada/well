@@ -41,7 +41,7 @@
             </thead>
             <tbody>
                 @foreach ($items as $order)
-                    <tr>
+                    <tr class="hover">
                         <td>
                             <a href="{{ route('AdminOrderShow', $order->id) }}"> {{ $order->id }}</a>
                         </td>
