@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers\admin;
-
+use App\Models\User;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
@@ -12,7 +12,11 @@ class AdminUserController extends Controller
      */
     public function index()
     {
-        //
+        // Retrieve a paginated list of users
+        $users = User::paginate(10); // Adjust the number of users per page as needed
+
+        // Return the view with the users data
+        return view('admin.pages.user.index', compact('users'));
     }
 
     /**
