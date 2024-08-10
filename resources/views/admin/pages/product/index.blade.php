@@ -2,15 +2,25 @@
 
 @section('content')
     <div class="container mx-auto">
-        <div class="flex justify-between">
-            <div></div>
-            <div class="flex gap-4">
-                <label class="input input-bordered flex items-center gap-2">
+        <div class="flex justify-between ">
+            <div class=" opacity-75">
+                @if($search)
+                    Search
+                    <span class="badge badge-primary badge-outline">{{$search}}</span>
+                    find {{count($items)}} result
+                @endif
+            </div>
+            <div class="flex join">
+                <label class="input input-bordered flex items-center gap-2 join-item">
                     <form action="">
-                        <input type="text" class="grow" placeholder="Search"/>
+                        <input type="text" name="search" value="{{ old('search', $search) }}"
+                               placeholder="Search...">
                     </form>
                 </label>
-                <a href="{{ route('AdminProductCreate') }}" class="btn btn-outline btn-primary">Add New Product</a>
+                @if($search)
+                    <a href="{{ route('AdminProductList') }}" class="btn join-item">Get All</a>
+                @endif
+                <a href="{{ route('AdminProductCreate') }}" class="btn  btn-primary join-item">Add New Product</a>
             </div>
         </div>
 
@@ -29,9 +39,8 @@
                 </tr>
             </thead>
             <tbody>
-                @foreach ($products as $product)
-                    <tr >
-
+                @foreach ($items as $product)
+                    <tr>
                         <td>{{ $product->id }}</td>
                         <td>
                             <div class="flex items-center gap-3">
@@ -56,19 +65,23 @@
                         <td>{{ $product->rating }}</td>
                         <td>{{ $product->stock }}</td>
                         <td>{{ $product->color }}</td>
-                        <td class="flex gap-4 px-0">
-                            <a href="{{ route('AdminProductEdit', $product->id) }}"
-                               class="btn btn-outline btn-primary flex-1">Edit</a>
-                            <form action="{{ route('AdminProductDestroy', $product->id) }}" method="POST"
-                                  class="flex-1">
-                                @csrf
-                                @method('DELETE')
-                                <button type="submit" class="btn btn-outline btn-danger">Delete</button>
-                            </form>
+                        <td class="px-0">
+                            <div class="join flex w-full">
+                                <a href="{{ route('AdminProductEdit', $product->id) }}"
+                                   class="btn btn-primary join-item flex-1">Edit</a>
+                                <form action="{{ route('AdminProductDestroy', $product->id) }}" method="POST"
+                                      class="flex-1">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="submit" class="btn join-item">Delete</button>
+                                </form>
+                            </div>
                         </td>
                     </tr>
                 @endforeach
             </tbody>
         </table>
+
+        @include('admin.components.pagination')
     </div>
 @endsection
