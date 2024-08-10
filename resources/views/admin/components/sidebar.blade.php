@@ -1,25 +1,18 @@
-<aside class="sidebar p-3">
-    <h1>Data Management</h1>
-    <nav>
-        <ul class="nav flex-column">
-            <li class="nav-item">
-                <a class="nav-link" href="#">Products</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#">Users</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#">Orders</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#">Payments</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#">Categories</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#">Reviews</a>
-            </li>
+<div class="drawer-side">
+    <div class="menu text-base-content min-h-full w-40 p-4 gap-8">
+        <div class="top-0 z-20 flex items-center gap-2 px-4 py-2">
+            <a href="{{route('admin.home')}}">
+                <img src="/images/logo/header_logo.png" alt="Brand Logo" style="height: 40px;">
+            </a>
+        </div>
+        <ul class="text-lg">
+            <li><a class="menu-item" href="{{route('AdminProductList')}}">Products</a></li>
+            <li><a class="menu-item" href="{{route("AdminUserList")}}">Users</a></li>
+            <li><a class="menu-item" href="{{route('AdminOrderList')}}">Orders</a></li>
+            <li><a class="menu-item" href="{{route('AdminPaymentList')}}">Payments</a></li>
+            <li><a class="menu-item" href="{{route('AdminCategoryList')}}">Categories</a></li>
+            <li><a class="menu-item" href="{{route('AdminReviewList')}}">Reviews</a></li>
         </ul>
-    </nav>
-</aside>
+    </div>
+
+</div>

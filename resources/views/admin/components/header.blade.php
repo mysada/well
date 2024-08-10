@@ -1,19 +1,32 @@
-<!-- Header -->
-<header class="navbar navbar-expand-lg navbar-light bg-light">
-    <div class="container-fluid">
-        <a class="navbar-brand" href="#">WELL. Admin</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav ml-auto">
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Dashboard</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Logout</a>
-                </li>
-            </ul>
+<header class="
+  bg-base-100 text-base-content sticky top-0 z-30 flex h-16
+  w-full justify-center bg-opacity-90 backdrop-blur px-2
+  transition-shadow duration-100 [transform:translate3d(0,0,0)]
+  ">
+    <div class="navbar w-full">
+        <h1 class="flex-1 text-2xl">
+            {{$title??'Transfer the title'}}
+        </h1>
+        <div class="flex-none gap-4">
+            <span>{{Auth::getUser()->name}}</span>
+            <div class="dropdown dropdown-end">
+                <div tabindex="0" role="button" class="btn btn-ghost btn-circle avatar">
+                    <div class="w-10 rounded-full">
+                        <img
+                                alt="avatar"
+                                src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp"/>
+                    </div>
+                </div>
+                <ul tabindex="0"
+                    class="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow">
+                    <li>
+                        <form class="flex flex-col" action="{{route('logout')}}" method="post">
+                            @csrf
+                            <button type="submit" class="w-full h-full text-left">Logout</button>
+                        </form>
+                    </li>
+                </ul>
+            </div>
         </div>
     </div>
 </header>
