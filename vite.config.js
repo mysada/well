@@ -14,7 +14,7 @@ export default defineConfig({
             'resources/sass/home.scss',
             'resources/sass/cart.scss',
             'resources/sass/product_details.scss',
-            'resources/sass/thank_you.scss',
+            'resources/sass/thankyou.scss',
             'resources/sass/product_list.scss',
             'resources/sass/about.scss',
             'resources/sass/headfooter.scss',

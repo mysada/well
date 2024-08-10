@@ -41,12 +41,14 @@ class CheckoutController extends Controller
 
     public function process(CheckoutReq $request)
     {
-        $this->paymentService->checkout($request);
+        // Process payment and retrieve order details
+        $order = $this->paymentService->checkout($request);
 
-        // Redirect or return response
+        // Redirect to the thank you page with order ID
         return RouterTools::success(
-          "Payment processed successfully.",
-          'user.profile'
+            "Payment processed successfully.",
+            'thankyou',
+            ['orderId' => $order->id]
         );
     }
 

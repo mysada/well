@@ -1,6 +1,4 @@
 @extends('layouts.app')
-@extends('layouts.app')
-
 @section('content')
 <div class="thank-you-page">
     <div class="container">

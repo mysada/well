@@ -96,6 +96,7 @@ class PaymentService
                 ]);
 
                 DB::commit();
+                return $order;
             } catch (\Exception $e) {
                 DB::rollBack();
                 throw $e; // Re-throw the exception

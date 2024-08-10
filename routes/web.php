@@ -18,6 +18,7 @@ use App\Http\Controllers\well\OrderController;
 use App\Http\Controllers\well\PrivacyPolicyController;
 use App\Http\Controllers\well\ProductController;
 use App\Http\Controllers\well\ReviewController;
+use App\Http\Controllers\well\ThankYouController;
 use App\Http\Controllers\well\UserController;
 use App\Http\Controllers\well\WishlistController;
 use App\Http\Middleware\AdminAuthInterceptor;
@@ -76,12 +77,18 @@ Route::middleware('auth')->group(function () {
 //Route::get('/checkout', [CheckoutController::class, 'showCheckout'])->name('checkout.show');
 //Route::post('/checkout/process', [CheckoutController::class, 'process'])->name('checkout.process');
 
+//thankyou route - MAnish
+
+Route::get('/thank-you/{orderId}', [ThankYouController::class, 'show'])->name('thankyou');
+
+
     /**
      * order routes
      */
     Route::post('/orders/store', [OrderController::class, 'store'])->name(
       'OrderStore'
     );
+
     /**
      * Wishlist route
      */
@@ -110,7 +117,6 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/checkout/process', [CheckoutController::class, 'process'])->name('checkout.process');
 });
 
-//thankyou page route
 
 
 //

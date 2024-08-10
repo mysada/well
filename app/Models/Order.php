@@ -16,7 +16,6 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
  */
 class Order extends Model
 {
-
     use HasFactory;
 
     /**
@@ -25,24 +24,24 @@ class Order extends Model
      * @var array
      */
     protected $fillable
-      = [
-        'user_id',
-        'pre_tax_amount',
-        'post_tax_amount',
-        'gst',
-        'pst',
-        'quantity',
-        'recipient_name',
-        'recipient_email',
-        'recipient_phone',
-        'recipient_address',
-        'shipping_city',
-        'shipping_province',
-        'shipping_country',
-        'shipping_postal_code',
-        'coupon_code',
-        'status',
-      ];
+        = [
+            'user_id',
+            'pre_tax_amount',
+            'post_tax_amount',
+            'gst',
+            'pst',
+            'quantity',
+            'recipient_name',
+            'recipient_email',
+            'recipient_phone',
+            'recipient_address',
+            'shipping_city',
+            'shipping_province',
+            'shipping_country',
+            'shipping_postal_code',
+            'coupon_code',
+            'status',
+        ];
 
     /**
      * Get the order details associated with the order.
@@ -56,6 +55,20 @@ class Order extends Model
     public function orderDetails(): HasMany
     {
         return $this->hasMany(OrderDetail::class);
+    }
+
+    /**
+     * Get the payments associated with the order.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     *
+     * This method defines a one-to-many relationship between the Order and
+     *   Payment models. It retrieves all the payments associated with a
+     *   particular order.
+     */
+    public function payments(): HasMany
+    {
+        return $this->hasMany(Payment::class);
     }
 
 }
