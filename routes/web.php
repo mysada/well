@@ -111,7 +111,7 @@ Route::middleware(['auth'])->group(function () {
 
 //
 Auth::routes();
-
+//aman -- admin user management routing
 Route::middleware(AdminAuthInterceptor::class)->prefix('admin')->group(function () {
     Route::resource('/user', AdminUserController::class)->names([
       'index'   => 'AdminUserList',
@@ -121,6 +121,7 @@ Route::middleware(AdminAuthInterceptor::class)->prefix('admin')->group(function 
       'update'  => 'AdminUserUpdate',
       'destroy' => 'AdminUserDestroy',
     ]);
+    //aman -- admin user management routing ends here
 
     Route::resource('/orders', AdminOrderController::class)->names([
       'index'   => 'AdminOrderList',
