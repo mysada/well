@@ -19,8 +19,8 @@ class PaymentService
     public function __construct()
     {
         $this->transaction = new _5bx(
-          config('payment.bx_login'),
-          config('payment.bx_key')
+            config('payment.bx_login'),
+            config('payment.bx_key')
         );
     }
 
@@ -35,7 +35,7 @@ class PaymentService
         $gstAmount = 0;
         $pstAmount = 0;
         $amount    = $order->orderDetails->sum(
-          'total_price'
+            'total_price'
         ); // Calculate total amount from order details
 
         if ($country->code === 'CA') {
@@ -51,48 +51,64 @@ class PaymentService
             }
         }
         $totalAmount = $amount + $gstAmount + $pstAmount
-                       + $country->shipping_rate;
+            + $country->shipping_rate;
 
         $paymentResponse = $this->fiveBx(
-          $totalAmount,
-          $req['card-number'],
-          $req['card-expiry'],
-          $req['card-cvc'],
-          $req['order-id'],
-          $req['card-type']
+            $totalAmount,
+            $req['card-number'],
+            $req['card-expiry'],
+            $req['card-cvc'],
+            $req['order-id'],
+            $req['card-type']
         );
         if ($paymentResponse->result_code==='ok') {
             DB::beginTransaction();
             try {
-                // Update order with pricing information
+                // Update order with pricing and address information
                 $order->update([
-                  'pre_tax_amount'  => $amount,
-                  'post_tax_amount' => $totalAmount - ($gstAmount + $pstAmount),
-                  'gst'             => $gstAmount,
-                  'pst'             => $pstAmount,
-                  'status' =>'Shipped'
+                    'pre_tax_amount'  => $amount,
+                    'post_tax_amount' => $totalAmount - ($gstAmount + $pstAmount),
+                    'gst'             => $gstAmount,
+                    'pst'             => $pstAmount,
+                    'status'          => 'Shipped',
+                    'shipping_name'       => $req['shipping-name'],
+                    'shipping_email'      => $req['shipping-email'],
+                    'shipping_phone'      => $req['shipping-phone'],
+                    'shipping_address'    => $req['shipping-address'],
+                    'shipping_city'       => $req['shipping-city'],
+                    'shipping_province'   => $req['shipping-state'] ?? null,
+                    'shipping_country'    => $req['shipping-country'],
+                    'shipping_postal_code'=> $req['shipping-zip'],
+                    'billing_name'        => $req['billing-name'],
+                    'billing_email'       => $req['billing-email'],
+                    'billing_phone'       => $req['billing-phone'],
+                    'billing_address'     => $req['billing-address'],
+                    'billing_city'        => $req['billing-city'],
+                    'billing_province'    => $req['billing-state'] ?? null,
+                    'billing_country'     => $req['billing-country'],
+                    'billing_postal_code' => $req['billing-zip'],
                 ]);
 
                 // Create payment record
                 $payment = Payment::create([
-                  'order_id'   => $req['order-id'],
-                  'method'     => 'Credit Card',
-                  'amount'     => $totalAmount,
-                  'discount'   => 0,
-                  'status'     => 'Completed',
-                  'payer_name' => $req['card-name'],
-                  'payer_card' => $req['card-number'],
+                    'order_id'   => $req['order-id'],
+                    'method'     => 'Credit Card',
+                    'amount'     => $totalAmount,
+                    'discount'   => 0,
+                    'status'     => 'Completed',
+                    'payer_name' => $req['card-name'],
+                    'payer_card' => $req['card-number'],
                 ]);
 
                 // Create transaction record
                 Transaction::create([
-                  'order_id'         => $req['order-id'],
-                  'user_id'          => auth()->id(),
-                  'amount'           => $totalAmount,
-                  'transaction_type' => 'Payment',
-                  'currency'         => 'CAD', // Change as needed
-                  'status'           => 'Completed',
-                  'response'         => null,
+                    'order_id'         => $req['order-id'],
+                    'user_id'          => auth()->id(),
+                    'amount'           => $totalAmount,
+                    'transaction_type' => 'Payment',
+                    'currency'         => 'CAD', // Change as needed
+                    'status'           => 'Completed',
+                    'response'         => null,
                 ]);
 
                 DB::commit();
@@ -105,12 +121,12 @@ class PaymentService
     }
 
     public function fiveBx(
-      float $amount,
-      string $cardNum,
-      string $expDate,
-      int $cvv,
-      string $refNum,
-      string $cardType
+        float $amount,
+        string $cardNum,
+        string $expDate,
+        int $cvv,
+        string $refNum,
+        string $cardType
     ) {
         $this->transaction->amount($amount);
         $this->transaction->card_num($cardNum);

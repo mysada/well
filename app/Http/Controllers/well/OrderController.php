@@ -6,7 +6,7 @@ use App\Helpers\RouterTools;
 use App\Http\Controllers\Controller;
 use App\Services\OrderService;
 use Illuminate\Support\Facades\Auth;
-use App\Models\Order;
+use Illuminate\Http\Request;
 
 class OrderController extends Controller
 {
@@ -17,13 +17,26 @@ class OrderController extends Controller
         $this->orderService = $orderService;
     }
 
-    public function store()
+    public function store(Request $request)
     {
         try {
-            $order = $this->orderService->createOrder();
+            // Gather shipping and billing details from the request
+            $shippingDetails = $request->only([
+                'shipping_name', 'shipping_email', 'shipping_phone', 'shipping_address',
+                'shipping_city', 'shipping_province', 'shipping_country', 'shipping_postal_code'
+            ]);
+
+            $billingDetails = $request->only([
+                'billing_name', 'billing_email', 'billing_phone', 'billing_address',
+                'billing_city', 'billing_province', 'billing_country', 'billing_postal_code'
+            ]);
+
+
+            $order = $this->orderService->createOrder($shippingDetails, $billingDetails);
         } catch (\Exception $e) {
             return RouterTools::errorBack($e->getMessage());
         }
+
         $orderId = $order->id;
 
         return RouterTools::success(
@@ -31,5 +44,4 @@ class OrderController extends Controller
             'checkout.show', [$orderId]
         );
     }
-
 }

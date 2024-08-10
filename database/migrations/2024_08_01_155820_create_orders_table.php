@@ -20,9 +20,9 @@ return new class extends Migration {
             $table->decimal('post_tax_amount', 10, 2)->nullable();
             $table->decimal('gst', 10, 2)->nullable();
             $table->decimal('pst', 10, 2)->nullable();
-            $table->string('recipient_name', 255)->nullable();
-            $table->string('recipient_email', 255)->nullable();
-            $table->string('recipient_phone', 255)->nullable();
+            $table->string('shipping_name', 255)->nullable();
+            $table->string('shipping_email', 255)->nullable();
+            $table->string('shipping_phone', 255)->nullable();
             $table->string('shipping_address', 255)->nullable();
             $table->string('shipping_city', 100)->nullable();
             $table->string('shipping_province', 100)->nullable();
