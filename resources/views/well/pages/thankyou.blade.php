@@ -19,10 +19,6 @@
                         <li class="{{ $order->status === 'En Route' ? 'completed' : '' }}">Order En Route</li>
                         <li class="{{ $order->status === 'Arrived' ? 'completed' : '' }}">Order Arrived</li>
                     </ul>
-                    <div class="tracker-details">
-                        <p><strong>Expected Arrival:</strong> {{ $order->expected_arrival }}</p>
-                        <p><strong>Tracking Number:</strong> {{ $order->tracking_number }}</p>
-                    </div>
                 </div>
             </div>
         </div>
@@ -33,13 +29,11 @@
                 <h2 class="card-title">Order Details</h2>
                 <p><strong>Order ID:</strong> {{ $order->id }}</p>
                 <p><strong>Order Date:</strong> {{ $order->created_at->format('F d, Y') }}</p>
-                <p><strong>Total Amount:</strong> ${{ number_format($order->post_tax_amount, 2) }}</p>
-
                 <h3>Items Ordered</h3>
                 <ul class="list-group">
                     @foreach ($order->orderDetails as $item)
                     <li class="list-group-item">
-                        <img src="{{ $item->product->image_url }}" alt="{{ $item->product->name }}">
+                        <img src="/{{ $item->product->image_url }}" alt="{{ $item->product->name }}">
                         <div>
                             <strong>{{ $item->product->name }}</strong>
                             <span>Quantity: {{ $item->quantity }} - Price: ${{ number_format($item->price, 2) }}</span>
@@ -54,12 +48,15 @@
         <div class="payment-details card mb-4">
             <div class="card-body">
                 <h2 class="card-title">Payment Details</h2>
-                @foreach ($order->payments as $payment)
-                <p><strong>Payment Method:</strong> {{ $payment->method }}</p>
-                <p><strong>Amount Paid:</strong> ${{ number_format($payment->amount, 2) }}</p>
-                <p><strong>Payment Status:</strong> {{ $payment->status }}</p>
-                <p><strong>Payer Name:</strong> {{ $payment->payer_name }}</p>
-                @endforeach
+                <p><strong>Payment Method:</strong> {{ $order->payments->first()->method }}</p>
+                <p><strong>Before Tax Price:</strong> ${{ number_format($order->pre_tax_amount, 2) }}</p>
+                <p><strong>GST:</strong> ${{ number_format($order->gst, 2) }}</p>
+                <p><strong>PST:</strong> ${{ number_format($order->pst, 2) }}</p>
+                <p><strong>Shipping Cost:</strong> ${{ number_format($order->shipping_fee, 2) }}</p>
+                <p><strong>After Tax Price:</strong> ${{ number_format($order->post_tax_amount, 2) }}</p>
+                <p><strong>Amount Paid:</strong> ${{ number_format($order->payments->first()->amount, 2) }}</p>
+                <p><strong>Payment Status:</strong> {{ $order->payments->first()->status }}</p>
+                <p><strong>Payer Name:</strong> {{ $order->payments->first()->payer_name }}</p>
             </div>
         </div>
 
