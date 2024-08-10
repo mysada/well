@@ -5,10 +5,11 @@ namespace App\Http\Controllers\well;
 use App\Helpers\RouterTools;
 use App\Http\Controllers\Controller;
 use App\Services\OrderService;
+use Illuminate\Support\Facades\Auth;
+use App\Models\Order;
 
 class OrderController extends Controller
 {
-
     protected OrderService $orderService;
 
     public function __construct(OrderService $orderService)
@@ -26,8 +27,8 @@ class OrderController extends Controller
         $orderId = $order->id;
 
         return RouterTools::success(
-          "Create order successfully",
-          'checkout.show', [$orderId]
+            "Create order successfully",
+            'checkout.show', [$orderId]
         );
     }
 
