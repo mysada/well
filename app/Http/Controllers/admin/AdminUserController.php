@@ -12,11 +12,14 @@ class AdminUserController extends Controller
      */
     public function index()
     {
-        // Retrieve a paginated list of users
-        $users = User::paginate(10); // Adjust the number of users per page as needed
+        // Retrieve users (modify as needed for pagination or other logic)
+        $users = User::paginate(10); // Example with pagination
 
-        // Return the view with the users data
-        return view('admin.pages.user.index', compact('users'));
+        // Define the title
+        $title = 'User Management - List';
+
+        // Pass data to the view
+        return view('admin.pages.user.index', compact('users', 'title'));
     }
 
     /**
@@ -66,4 +69,6 @@ class AdminUserController extends Controller
     {
         //
     }
+
+
 }
