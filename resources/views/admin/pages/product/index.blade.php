@@ -73,7 +73,9 @@
                                       class="flex-1">
                                     @csrf
                                     @method('DELETE')
-                                    <button type="submit" class="btn join-item">Delete</button>
+                                    <button type="submit" onclick="return confirm('delete-form-1')"
+                                            class=" btn join-item">Delete
+                                    </button>
                                 </form>
                             </div>
                         </td>
