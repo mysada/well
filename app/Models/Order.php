@@ -31,14 +31,22 @@ class Order extends Model
             'gst',
             'pst',
             'quantity',
-            'recipient_name',
-            'recipient_email',
-            'recipient_phone',
-            'recipient_address',
+            'shipping_name',
+            'shipping_email',
+            'shipping_phone',
+            'shipping_address',
             'shipping_city',
             'shipping_province',
             'shipping_country',
             'shipping_postal_code',
+            'billing_name',
+            'billing_email',
+            'billing_phone',
+            'billing_address',
+            'billing_city',
+            'billing_province',
+            'billing_country',
+            'billing_postal_code',
             'coupon_code',
             'status',
         ];
@@ -70,5 +78,4 @@ class Order extends Model
     {
         return $this->hasMany(Payment::class);
     }
-
 }
