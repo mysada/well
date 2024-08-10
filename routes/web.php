@@ -132,11 +132,7 @@ Route::middleware(AdminAuthInterceptor::class)->prefix('admin')->group(function 
 
     Route::resource('/orders', AdminOrderController::class)->names([
       'index'   => 'AdminOrderList',
-      'create'  => 'AdminOrderCreate',
-      'store'   => 'AdminOrderStore',
       'show'    => 'AdminOrderShow',
-      'edit'    => 'AdminOrderEdit',
-      'update'  => 'AdminOrderUpdate',
       'destroy' => 'AdminOrderDestroy',
     ]);
 
@@ -160,7 +156,6 @@ Route::middleware(AdminAuthInterceptor::class)->prefix('admin')->group(function 
     Route::resource('/payments', AdminPaymentController::class)->names([
       'index'   => 'AdminPaymentList',
       'show'    => 'AdminPaymentShow',
-      'destroy' => 'AdminPaymentDestroy',
     ]);
 
     Route::resource('/categories', AdminCategoryController::class)->names([

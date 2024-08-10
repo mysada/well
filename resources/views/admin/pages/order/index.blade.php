@@ -20,7 +20,6 @@
                 @if($search)
                     <a href="{{ route('AdminOrderList') }}" class="btn join-item">Get All</a>
                 @endif
-                <a href="{{ route('AdminOrderCreate') }}" class="btn btn-primary join-item">Add New Order</a>
             </div>
         </div>
 
