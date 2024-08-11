@@ -150,45 +150,4 @@ class AdminUserController extends Controller
         // Redirect back to the user list page with a success message
         return redirect()->route('AdminUserList')->with('success', 'User deleted successfully!');
     }
-
-    /**
-     * Display a listing of soft deleted resources.
-     */
-    public function deleted()
-    {
-        // Fetch all soft deleted users
-        $users = User::onlyTrashed()->paginate(10);
-
-        return view('admin.pages.user.deleted', compact('users'));
-    }
-
-    /**
-     * Restore the specified soft deleted resource.
-     */
-    public function restore($id)
-    {
-        // Find the soft deleted user by ID
-        $user = User::onlyTrashed()->findOrFail($id);
-
-        // Restore the user
-        $user->restore();
-
-        // Redirect back to the deleted users list with a success message
-        return redirect()->route('AdminUserDeleted')->with('success', 'User restored successfully!');
-    }
-
-    /**
-     * Permanently delete the specified soft deleted resource.
-     */
-    public function forceDelete($id)
-    {
-        // Find the soft deleted user by ID
-        $user = User::onlyTrashed()->findOrFail($id);
-
-        // Permanently delete the user
-        $user->forceDelete();
-
-        // Redirect back to the deleted users list with a success message
-        return redirect()->route('AdminUserDeleted')->with('success', 'User permanently deleted successfully!');
-    }
 }
