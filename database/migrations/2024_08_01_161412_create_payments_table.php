@@ -21,6 +21,14 @@ return new class extends Migration {
             $table->enum('status', ['Pending', 'Completed', 'Failed']);
             $table->string('payer_name',255);
             $table->string('payer_card',255);
+            $table->string('billing_name', 255)->nullable();
+            $table->string('billing_email', 255)->nullable();
+            $table->string('billing_phone', 255)->nullable();
+            $table->string('billing_address', 255)->nullable();
+            $table->string('billing_city', 100)->nullable();
+            $table->string('billing_province', 100)->nullable();
+            $table->string('billing_country', 100)->nullable();
+            $table->string('billing_postal_code', 10)->nullable();
             $table->timestamps();
             $table->softDeletes();
         });

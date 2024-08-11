@@ -1,6 +1,5 @@
 import $ from 'jquery';
 
-// Initialize empty arrays
 const countries = [];
 const provinces = [];
 let gstRate = 0;
@@ -124,7 +123,6 @@ $countrySelects.each(function () {
     updateShippingCost(countryCode);
   });
 
-  // Trigger change event to populate states on page load
   $select.trigger('change');
 });
 
