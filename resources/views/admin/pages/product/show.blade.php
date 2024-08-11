@@ -35,12 +35,9 @@
                     </div>
 
 
-                    <div class="collapse">
-                        <input type="checkbox"/>
-                        <div class="collapse-title text-xl font-medium p-0">Click to show/hidden long description</div>
-                        <div class="collapse-content">
-                            <p class="text-gray-700">{{ $product->long_description }}</p>
-                        </div>
+                    <div class="mb-6">
+                        <h3 class="text-xl font-semibold mb-2">Long Description</h3>
+                        <p class="text-gray-700">{{ $product->long_description }}</p>
                     </div>
 
                     <div class="flex justify-between items-center">

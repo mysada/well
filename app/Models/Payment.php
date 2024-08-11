@@ -23,6 +23,14 @@ class Payment extends Model
         'status',
         'payer_name',
         'payer_card',
+        'billing_name',
+        'billing_email',
+        'billing_phone',
+        'billing_address',
+        'billing_city',
+        'billing_province',
+        'billing_country',
+        'billing_postal_code',
       ];
 
     // Define the relationship to the Order model

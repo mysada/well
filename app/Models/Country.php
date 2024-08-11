@@ -8,12 +8,11 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Country extends Model
 {
-
     use HasFactory;
 
     public function provinces(): HasMany
     {
-      return  $this->hasMany(Province::class);
+        return $this->hasMany(Province::class, 'country_code', 'code');
     }
 
 }

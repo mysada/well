@@ -40,7 +40,7 @@
             </thead>
             <tbody>
                 @foreach ($items as $product)
-                    <tr>
+                    <tr class="hover">
                         <td>{{ $product->id }}</td>
                         <td>
                             <div class="flex items-center gap-3">
@@ -73,7 +73,9 @@
                                       class="flex-1">
                                     @csrf
                                     @method('DELETE')
-                                    <button type="submit" class="btn join-item">Delete</button>
+                                    <button type="submit" onclick="return confirm('delete-form-1')"
+                                            class=" btn join-item">Delete
+                                    </button>
                                 </form>
                             </div>
                         </td>
