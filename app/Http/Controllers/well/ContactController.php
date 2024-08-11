@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Mail\ContactFormMail;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
+use App\Models\ContactQuery;
 
 class ContactController extends Controller
 {
@@ -45,16 +46,54 @@ class ContactController extends Controller
                 'string',
                 'max:500',
             ],
+            'g-recaptcha-response' => [
+                'required_if:env,production',
+                function ($attribute, $value, $fail) {
+                    if (app()->environment('production')) {
+                        $response = file_get_contents('https://www.google.com/recaptcha/api/siteverify?secret=' . env('RECAPTCHA_SECRET_KEY') . '&response=' . $value);
+                        $responseKeys = json_decode($response, true);
+
+                        if (!$responseKeys['success']) {
+                            $fail('The CAPTCHA verification failed.');
+                        }
+                    }
+                },
+            ],
+        ], [
+            'name.required' => 'Please enter your name.',
+            'name.string' => 'Name should only contain alphabetic characters and spaces.',
+            'name.max' => 'Name cannot exceed 255 characters.',
+            'name.regex' => 'Name can only contain letters and spaces.',
+
+            'email.required' => 'Please enter your email address.',
+            'email.email' => 'Please enter a valid email address.',
+            'email.max' => 'Email cannot exceed 255 characters.',
+
+            'phone.required' => 'Please enter your phone number.',
+            'phone.regex' => 'Phone number must be between 10 and 15 digits.',
+
+            'subject.required' => 'Please enter a subject.',
+            'subject.string' => 'Subject should only contain alphanumeric characters and spaces.',
+            'subject.max' => 'Subject cannot exceed 255 characters.',
+
+            'message.required' => 'Please enter your message.',
+            'message.string' => 'Message should only contain certain characters.',
+            'message.max' => 'Message cannot exceed 500 characters.',
+
+            'captcha.required' => 'Please complete the CAPTCHA.',
+            'security_question.required' => 'Please answer the security question.',
+            'security_question.in' => 'The answer to the security question is incorrect.',
         ]);
 
         $contactData = $request->all();
 
         // Save the query to the database
-        \App\Models\ContactQuery::create($contactData);
+        ContactQuery::create($contactData);
 
-        // Send email using Mailtrap
+        // Send email
         Mail::to(env('MAIL_FROM_ADDRESS'))->send(new ContactFormMail($contactData));
 
+        // Redirect back with success message
         return redirect()->route('contact.page')->with('success', 'Thank you for contacting us. You will hear back soon.');
     }
 }
