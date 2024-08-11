@@ -20,6 +20,7 @@ return new class extends Migration {
             $table->decimal('post_tax_amount', 10, 2)->nullable();
             $table->decimal('gst', 10, 2)->nullable();
             $table->decimal('pst', 10, 2)->nullable();
+            $table->decimal('shipping_rate', 10, 2)->nullable();
             $table->string('shipping_name', 255)->nullable();
             $table->string('shipping_email', 255)->nullable();
             $table->string('shipping_phone', 255)->nullable();
@@ -28,14 +29,6 @@ return new class extends Migration {
             $table->string('shipping_province', 100)->nullable();
             $table->string('shipping_country', 100)->nullable();
             $table->string('shipping_postal_code', 10)->nullable();
-            $table->string('billing_name', 255)->nullable();
-            $table->string('billing_email', 255)->nullable();
-            $table->string('billing_phone', 255)->nullable();
-            $table->string('billing_address', 255)->nullable();
-            $table->string('billing_city', 100)->nullable();
-            $table->string('billing_province', 100)->nullable();
-            $table->string('billing_country', 100)->nullable();
-            $table->string('billing_postal_code', 10)->nullable();
             $table->string('coupon_code', 20)->nullable();
             $table->date('delivery_date')->nullable();
             $table->enum(

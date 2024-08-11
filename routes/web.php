@@ -118,13 +118,16 @@ Route::middleware(['auth'])->group(function () {
 
 
 
-//
+
 Auth::routes();
 
 Route::group(['middleware' => 'auth'], function () {
     Route::get('/admin/queries', [ContactQueryController::class, 'index'])->name('admin.queries');
 });
 
+
+
+//aman -- admin user management routing
 
 Route::middleware(AdminAuthInterceptor::class)->prefix('admin')->group(function () {
     Route::resource('/user', AdminUserController::class)->names([
@@ -135,6 +138,7 @@ Route::middleware(AdminAuthInterceptor::class)->prefix('admin')->group(function 
       'update'  => 'AdminUserUpdate',
       'destroy' => 'AdminUserDestroy',
     ]);
+    //aman -- admin user management routing ends here
 
     Route::resource('/orders', AdminOrderController::class)->names([
       'index'   => 'AdminOrderList',
