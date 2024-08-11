@@ -16,7 +16,7 @@
                 <!-- Shipping Address -->
                 <input type="hidden" name="order-id" value="{{ old('order-id', $id) }}">
                 @php
-                $defaultOrder = App\Models\Order::find($user->last_order_id);
+                $defaultAddress = \App\Models\DefaultAddress::where('user_id', $user->id)->first();
                 @endphp
 
                 <div class="form-section">
@@ -24,7 +24,7 @@
                     <div class="error-container">
                         <input type="text" name="shipping-name" placeholder="Name"
                                class="form-control @error('shipping-name') is-invalid @enderror"
-                               value="{{ old('shipping-name', $defaultOrder->shipping_name ?? $user->name ?? '') }}" required>
+                               value="{{ old('shipping-name', $defaultAddress->shipping_name ?? $user->shipping_name ?? '') }}" required>
                         @error('shipping-name')
                         <div class="invalid-feedback">{{ $message }}</div>
                         @enderror
@@ -33,7 +33,7 @@
                     <div class="error-container">
                         <input type="text" name="shipping-address" placeholder="Address"
                                class="form-control @error('shipping-address') is-invalid @enderror"
-                               value="{{ old('shipping-address', $defaultOrder->shipping_address ?? $user->shipping_address ?? '') }}" required>
+                               value="{{ old('shipping-address', $defaultAddress->shipping_address ?? $user->shipping_address ?? '') }}" required>
                         @error('shipping-address')
                         <div class="invalid-feedback">{{ $message }}</div>
                         @enderror
@@ -42,7 +42,7 @@
                     <div class="error-container">
                         <input type="text" name="shipping-city" placeholder="City"
                                class="form-control @error('shipping-city') is-invalid @enderror"
-                               value="{{ old('shipping-city') }}" required>
+                               value="{{ old('shipping-city', $defaultAddress->shipping_city ?? $user->shipping_city ?? '') }}" required>
                         @error('shipping-city')
                         <div class="invalid-feedback">{{ $message }}</div>
                         @enderror
@@ -52,7 +52,7 @@
                         <select id="shipping-country" name="shipping-country" class="form-control @error('shipping-country') is-invalid @enderror" required>
                             <option value="">Select Country</option>
                             @foreach($countries as $country)
-                            <option value="{{ $country['code'] }}" {{ old('shipping-country') == $country['code'] ? 'selected' : '' }}>{{ $country['name'] }}</option>
+                            <option value="{{ $country['code'] }}" {{ old('shipping-country', $defaultAddress->shipping_country ?? $user->shipping_country ?? '') == $country['code'] ? 'selected' : '' }}>{{ $country['name'] }}</option>
                             @endforeach
                         </select>
                         @error('shipping-country')
@@ -72,7 +72,7 @@
                     <div class="error-container">
                         <input type="text" name="shipping-zip" placeholder="ZIP/Postal Code"
                                class="form-control @error('shipping-zip') is-invalid @enderror"
-                               value="{{ old('shipping-zip') }}" required>
+                               value="{{ old('shipping-zip', $defaultAddress->shipping_postal_code ?? $user->shipping_postal_code ?? '') }}" required>
                         @error('shipping-zip')
                         <div class="invalid-feedback">{{ $message }}</div>
                         @enderror
@@ -81,7 +81,7 @@
                     <div class="error-container">
                         <input type="email" name="shipping-email" placeholder="Email"
                                class="form-control @error('shipping-email') is-invalid @enderror"
-                               value="{{ old('shipping-email', $user->email ?? '') }}" required>
+                               value="{{ old('shipping-email', $defaultAddress->shipping_email ?? $user->email ?? '') }}" required>
                         @error('shipping-email')
                         <div class="invalid-feedback">{{ $message }}</div>
                         @enderror
@@ -90,7 +90,7 @@
                     <div class="error-container">
                         <input type="tel" name="shipping-phone" placeholder="Phone"
                                class="form-control @error('shipping-phone') is-invalid @enderror"
-                               value="{{ old('shipping-phone', $user->phone ?? '') }}" required>
+                               value="{{ old('shipping-phone', $defaultAddress->shipping_phone ?? $user->phone ?? '') }}" required>
                         @error('shipping-phone')
                         <div class="invalid-feedback">{{ $message }}</div>
                         @enderror
@@ -109,7 +109,7 @@
                     <div class="error-container">
                         <input type="text" name="billing-name" placeholder="Name"
                                class="form-control @error('billing-name') is-invalid @enderror"
-                               value="{{ old('billing-name', $user->name ?? '') }}" required>
+                               value="{{ old('billing-name', $defaultAddress->billing_name ?? $user->billing_name ?? '') }}" required>
                         @error('billing-name')
                         <div class="invalid-feedback">{{ $message }}</div>
                         @enderror
@@ -118,7 +118,7 @@
                     <div class="error-container">
                         <input type="text" name="billing-address" placeholder="Address"
                                class="form-control @error('billing-address') is-invalid @enderror"
-                               value="{{ old('billing-address', $user->billing_address ?? '') }}" required>
+                               value="{{ old('billing-address', $defaultAddress->billing_address ?? $user->billing_address ?? '') }}" required>
                         @error('billing-address')
                         <div class="invalid-feedback">{{ $message }}</div>
                         @enderror
@@ -127,7 +127,7 @@
                     <div class="error-container">
                         <input type="text" name="billing-city" placeholder="City"
                                class="form-control @error('billing-city') is-invalid @enderror"
-                               value="{{ old('billing-city') }}" required>
+                               value="{{ old('billing-city', $defaultAddress->billing_city ?? $user->billing_city ?? '') }}" required>
                         @error('billing-city')
                         <div class="invalid-feedback">{{ $message }}</div>
                         @enderror
@@ -137,7 +137,7 @@
                         <select id="billing-country" name="billing-country" class="form-control @error('billing-country') is-invalid @enderror" required>
                             <option value="">Select Country</option>
                             @foreach($countries as $country)
-                            <option value="{{ $country['code'] }}" {{ old('billing-country') == $country['code'] ? 'selected' : '' }}>{{ $country['name'] }}</option>
+                            <option value="{{ $country['code'] }}" {{ old('billing-country', $defaultAddress->billing_country ?? $user->billing_country ?? '') == $country['code'] ? 'selected' : '' }}>{{ $country['name'] }}</option>
                             @endforeach
                         </select>
                         @error('billing-country')
@@ -157,7 +157,7 @@
                     <div class="error-container">
                         <input type="text" name="billing-zip" placeholder="ZIP/Postal Code"
                                class="form-control @error('billing-zip') is-invalid @enderror"
-                               value="{{ old('billing-zip') }}" required>
+                               value="{{ old('billing-zip', $defaultAddress->billing_postal_code ?? $user->billing_postal_code ?? '') }}" required>
                         @error('billing-zip')
                         <div class="invalid-feedback">{{ $message }}</div>
                         @enderror
@@ -166,7 +166,7 @@
                     <div class="error-container">
                         <input type="email" name="billing-email" placeholder="Email"
                                class="form-control @error('billing-email') is-invalid @enderror"
-                               value="{{ old('billing-email', $user->email ?? '') }}" required>
+                               value="{{ old('billing-email', $defaultAddress->billing_email ?? $user->billing_email ?? '') }}" required>
                         @error('billing-email')
                         <div class="invalid-feedback">{{ $message }}</div>
                         @enderror
@@ -175,7 +175,7 @@
                     <div class="error-container">
                         <input type="tel" name="billing-phone" placeholder="Phone"
                                class="form-control @error('billing-phone') is-invalid @enderror"
-                               value="{{ old('billing-phone', $user->phone ?? '') }}" required>
+                               value="{{ old('billing-phone', $defaultAddress->billing_phone ?? $user->billing_phone ?? '') }}" required>
                         @error('billing-phone')
                         <div class="invalid-feedback">{{ $message }}</div>
                         @enderror

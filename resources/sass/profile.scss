@@ -13,7 +13,7 @@ h1, h2, h3, h4, h5 {
     margin: 0 auto;
     padding: 20px;
     background-color: #fff;
-    border-radius: unset!important;
+    border-radius: 5px; /* Added slight rounding for a cleaner look */
     position: relative;
 }
 
@@ -60,23 +60,23 @@ h1, h2, h3, h4, h5 {
 }
 
 .logout-btn-form .btn-primary {
-    background-color: #00AB7A;
+    background-color: #00A875;
     color: #fff;
     border: none;
-    border-radius: unset!important;
-    padding: 10px 20px;
+    border-radius: 5px;
+    padding: 10px 25px;
     font-size: 16px;
-    font-weight: 700;
-    transition: background-color 0.3s ease, transform 0.3s ease;
+    font-weight: 600;
+    transition: background-color 0.3s, transform 0.3s;
     text-decoration: none;
     display: inline-block;
     margin-top: 110px;
 }
 
 .logout-btn-form .btn-primary:hover {
-    background-color: #fff;
-    color: #00AB7A;
-    border: 1px solid #00AB7A;
+    background-color: #007e58;
+    color: #fff;
+    transform: scale(1.02);
 }
 
 .logout-btn-form .btn-primary:active {
@@ -86,38 +86,45 @@ h1, h2, h3, h4, h5 {
 }
 
 .profile-section {
-    border: 1px solid #eee;
-    border-radius: unset!important;
-    padding: 20px;
+    border: 1px solid #ddd; /* Softer border */
+    border-radius: 5px;
+    padding: 25px; /* Added more padding */
     margin-bottom: 30px;
     background-color: #f9f9f9;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05); /* Slight shadow for depth */
 }
 
 .profile-section h4 {
     margin-bottom: 20px;
+    background-color: #1a1a1a;
+    color: white;
+    padding: 10px;
+    border-radius: 5px;
 }
 
 .profile-section input,
 .profile-section select {
-    border-radius: unset!important;
-    border: 1px solid #eee;
-    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #ddd;
+    padding: 12px;
     margin-bottom: 15px;
-    width: calc(100% - 22px);
+    width: calc(100% - 24px);
 }
 
 .profile-section input:focus,
 .profile-section select:focus {
     border-color: #00AB7A;
+    outline: none;
 }
 
 .profile-sidebar {
-    border: 1px solid #eee;
-    border-radius: unset!important;
+    border: 1px solid #ddd;
+    border-radius: 5px;
     padding: 20px;
     margin-right: 20px;
     background-color: #f9f9f9;
     width: 250px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
 }
 
 .profile-sidebar h4 {
@@ -126,18 +133,18 @@ h1, h2, h3, h4, h5 {
 
 .profile-sidebar a {
     display: block;
-    padding: 10px 0;
+    padding: 10px 15px;
     color: #00AB7A;
-    font-size: 20px;
+    font-size: 18px;
     text-decoration: none;
-    transition: color 0.3s ease;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    border-radius: 5px;
 }
 
 .profile-sidebar a:hover {
+    background-color: #00A875;
     color: #fff;
-    text-decoration: none;
-    background-color: #1a1a1a;
-    padding: 10px;
+    padding-left: 20px;
 }
 
 .profile-main-content {
@@ -149,11 +156,12 @@ h1, h2, h3, h4, h5 {
 }
 
 .address-box {
-    border: 1px solid #eee;
-    border-radius: unset!important;
+    border: 1px solid #ddd;
+    border-radius: 5px;
     padding: 15px;
     margin-bottom: 15px;
     background-color: #fff;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
 }
 
 .order-item {
@@ -161,19 +169,20 @@ h1, h2, h3, h4, h5 {
     flex-direction: column;
     align-items: flex-start;
     border: 1px solid #e1e1e1;
-    padding: 20px;
+    padding: 25px; /* Increased padding */
     margin-bottom: 20px;
-    border-radius: unset!important;
+    border-radius: 5px;
     background-color: #fff;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
 }
 
 .review-list .review {
-    border: 1px solid #eee;
     padding: 15px;
     margin-bottom: 15px;
     background-color: #f9f9f9;
-    border-radius: unset!important;
-    border: 2px solid #00A875;
+    border-radius: 5px;
+    border: 1px solid #ddd;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
 }
 
 .review-list .review .review-image {
@@ -185,11 +194,86 @@ h1, h2, h3, h4, h5 {
 .pending-reviews {
     margin-top: 20px;
     padding: 15px;
-    border: 1px solid #eee;
-    border-radius: unset!important;
+    border: 1px solid #ddd;
+    border-radius: 5px;
     background-color: #fff;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
 }
 
 .pending-review-item {
     margin-bottom: 20px;
+}
+
+#review_button, #profile_button {
+    border-radius: 5px;
+    padding: 12px 20px;
+    background-color: #00A875;
+    color: white;
+    border: none;
+    transition: background-color 0.3s ease;
+}
+
+#review_button:hover, #profile_button:hover {
+    background-color: #007e58;
+}
+
+#review_heading, #profile_heading {
+    background-color: #1a1a1a;
+    color: white;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+#basic_info, #default_address_form {
+    padding: 15px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    margin-bottom: 15px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+.order-item {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    border: 1px solid #e1e1e1;
+    padding: 25px;
+    margin-bottom: 20px;
+    border-radius: 5px;
+    background-color: #fff;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.order-item ul {
+    margin-bottom: 20px; /* Space between the item list and buttons */
+}
+
+.order-item button {
+    border-radius: 5px;
+    padding: 10px 15px;
+    margin-right: 10px; /* Space between buttons */
+    background-color: #00A875;
+    color: white;
+    border: none;
+    transition: background-color 0.3s ease;
+}
+
+.order-item button:last-child {
+    margin-right: 0; /* Remove margin from the last button */
+}
+
+.order-item button:hover {
+    background-color: #007e58;
+}
+
+.order-item .btn-secondary {
+    background-color: #6c757d;
+}
+
+.order-item .btn-secondary:hover {
+    background-color: #5a6268;
+}
+
+.order-item .button-group {
+    display: flex;
+    flex-direction: row;
 }

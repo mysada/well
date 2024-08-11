@@ -119,8 +119,10 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/checkout/process', [CheckoutController::class, 'process'])->name('checkout.process');
     Route::post('/profile/set-default-address/{orderId}', [UserController::class, 'setDefaultAddress'])->name('user.setDefaultAddress');
     Route::put('/profile/update-address/{orderId}', [UserController::class, 'updateAddress'])->name('user.updateAddress');
-    Route::put('/profile/update-shipping-address', [UserController::class, 'updateShippingAddress'])->name('user.updateShippingAddress');
-    Route::put('/profile/update-billing-address', [UserController::class, 'updateBillingAddress'])->name('user.updateBillingAddress');
+    Route::put('/profile/update-default-address', [UserController::class, 'updateDefaultAddress'])->name('user.updateDefaultAddress');
+    Route::get('/profile/set-default-address/{orderId}', [UserController::class, 'setDefaultAddress'])->name('user.setDefaultAddress');
+    Route::post('/profile/set-default-address', [UserController::class, 'setDefaultAddress'])->name('user.setDefaultAddress');
+
 });
 
 

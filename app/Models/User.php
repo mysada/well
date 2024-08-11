@@ -57,4 +57,9 @@ class User extends Authenticatable
     {
         return $this->hasManyThrough(Payment::class, Order::class, 'user_id', 'order_id', 'id', 'id');
     }
+
+    public function defaultAddress()
+    {
+        return $this->hasOne(DefaultAddress::class);
+    }
 }

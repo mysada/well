@@ -32,8 +32,11 @@
 
         <div class="profile-main-content">
             <!-- Order History -->
-            <div id="order-history" class="profile-section" style="display:none;">
+            <div id="order-history" class="profile-section">
                 <h4>Order History</h4>
+                @if($orders->isEmpty())
+                <p>You haven't placed any orders yet.</p>
+                @else
                 @foreach ($orders as $order)
                 <div class="order-item">
                     <p><strong>Order ID:</strong> #{{ $order->id }}</p>
@@ -50,11 +53,14 @@
                     <button class="btn btn-primary" onclick="location.href='{{ route('order.details', $order->id) }}'">Order Details</button>
                 </div>
                 @endforeach
+                @endif
             </div>
 
             <!-- Saved Addresses -->
             <div id="saved-addresses" class="profile-section" style="display:none;">
                 <h4>Saved Addresses</h4>
+
+                <!-- Last Two Orders' Addresses -->
                 @foreach ($lastOrders as $index => $order)
                 @if ($order->payments->isNotEmpty())
                 @php $payment = $order->payments->first(); @endphp
@@ -67,6 +73,18 @@
                 </div>
                 @endif
                 @endforeach
+
+                <!-- Default Addresses -->
+                @if ($defaultAddress)
+                <div class="address-box">
+                    <h5>Default Billing Address</h5>
+                    <p>{{ $defaultAddress->billing_name }}<br>{{ $defaultAddress->billing_address }}, {{ $defaultAddress->billing_city }}, {{ $defaultAddress->billing_province }}, {{ $defaultAddress->billing_country }} - {{ $defaultAddress->billing_postal_code }}<br>{{ $defaultAddress->billing_email }}<br>{{ $defaultAddress->billing_phone }}</p>
+                    <h5>Default Shipping Address</h5>
+                    <p>{{ $defaultAddress->shipping_name }}<br>{{ $defaultAddress->shipping_address }}, {{ $defaultAddress->shipping_city }}, {{ $defaultAddress->shipping_province }}, {{ $defaultAddress->shipping_country }} - {{ $defaultAddress->shipping_postal_code }}<br>{{ $defaultAddress->shipping_email }}<br>{{ $defaultAddress->shipping_phone }}</p>
+                </div>
+                @else
+                <p>No default address set.</p>
+                @endif
             </div>
 
             <!-- Profile Settings -->
@@ -102,92 +120,77 @@
                     <button type="submit" class="btn btn-primary">Update Info</button>
                 </form>
 
-                <!-- Shipping Address Update Form -->
-                <h5>Update Shipping Address</h5>
-                <form method="POST" action="{{ route('user.updateShippingAddress') }}">
-                    @csrf
-                    @method('PUT')
-                    <div class="form-group">
-                        <label for="shipping_name">Name</label>
-                        <input type="text" name="shipping_name" id="shipping_name" class="form-control" value="{{ old('shipping_name', $user->shipping_name) }}" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="shipping_address">Address</label>
-                        <input type="text" name="shipping_address" id="shipping_address" class="form-control" value="{{ old('shipping_address', $user->shipping_address) }}" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="shipping_city">City</label>
-                        <input type="text" name="shipping_city" id="shipping_city" class="form-control" value="{{ old('shipping_city', $user->shipping_city) }}" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="shipping_province">Province</label>
-                        <input type="text" name="shipping_province" id="shipping_province" class="form-control" value="{{ old('shipping_province', $user->shipping_province) }}" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="shipping_country">Country</label>
-                        <input type="text" name="shipping_country" id="shipping_country" class="form-control" value="{{ old('shipping_country', $user->shipping_country) }}" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="shipping_postal_code">Postal Code</label>
-                        <input type="text" name="shipping_postal_code" id="shipping_postal_code" class="form-control" value="{{ old('shipping_postal_code', $user->shipping_postal_code) }}" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="shipping_email">Email</label>
-                        <input type="email" name="shipping_email" id="shipping_email" class="form-control" value="{{ old('shipping_email', $user->shipping_email) }}" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="shipping_phone">Phone</label>
-                        <input type="tel" name="shipping_phone" id="shipping_phone" class="form-control" value="{{ old('shipping_phone', $user->shipping_phone) }}" required>
-                    </div>
-                    <div class="form-group">
-                        <input type="checkbox" name="set_default_shipping" id="set_default_shipping">
-                        <label for="set_default_shipping">Set as Default Shipping Address</label>
-                    </div>
-                    <button type="submit" class="btn btn-primary">Update Shipping Address</button>
-                </form>
+                <!-- Update Default Address Form -->
+                <h5>Update Default Address</h5>
+                <form method="POST" action="{{ route('user.setDefaultAddress') }}">
 
-                <!-- Billing Address Update Form -->
-                <h5>Update Billing Address</h5>
-                <form method="POST" action="{{ route('user.updateBillingAddress') }}">
                     @csrf
-                    @method('PUT')
                     <div class="form-group">
-                        <label for="billing_name">Name</label>
-                        <input type="text" name="billing_name" id="billing_name" class="form-control" value="{{ old('billing_name', $user->billing_name) }}" required>
+                        <label for="shipping_name">Shipping Name</label>
+                        <input type="text" name="shipping_name" id="shipping_name" class="form-control" value="{{ old('shipping_name', $defaultAddress->shipping_name ?? $user->shipping_name) }}" required>
                     </div>
                     <div class="form-group">
-                        <label for="billing_address">Address</label>
-                        <input type="text" name="billing_address" id="billing_address" class="form-control" value="{{ old('billing_address', $user->billing_address) }}" required>
+                        <label for="shipping_address">Shipping Address</label>
+                        <input type="text" name="shipping_address" id="shipping_address" class="form-control" value="{{ old('shipping_address', $defaultAddress->shipping_address ?? $user->shipping_address) }}" required>
                     </div>
                     <div class="form-group">
-                        <label for="billing_city">City</label>
-                        <input type="text" name="billing_city" id="billing_city" class="form-control" value="{{ old('billing_city', $user->billing_city) }}" required>
+                        <label for="shipping_city">Shipping City</label>
+                        <input type="text" name="shipping_city" id="shipping_city" class="form-control" value="{{ old('shipping_city', $defaultAddress->shipping_city ?? $user->shipping_city) }}" required>
                     </div>
                     <div class="form-group">
-                        <label for="billing_province">Province</label>
-                        <input type="text" name="billing_province" id="billing_province" class="form-control" value="{{ old('billing_province', $user->billing_province) }}" required>
+                        <label for="shipping_province">Shipping Province</label>
+                        <input type="text" name="shipping_province" id="shipping_province" class="form-control" value="{{ old('shipping_province', $defaultAddress->shipping_province ?? $user->shipping_province) }}" required>
                     </div>
                     <div class="form-group">
-                        <label for="billing_country">Country</label>
-                        <input type="text" name="billing_country" id="billing_country" class="form-control" value="{{ old('billing_country', $user->billing_country) }}" required>
+                        <label for="shipping_country">Shipping Country</label>
+                        <input type="text" name="shipping_country" id="shipping_country" class="form-control" value="{{ old('shipping_country', $defaultAddress->shipping_country ?? $user->shipping_country) }}" required>
                     </div>
                     <div class="form-group">
-                        <label for="billing_postal_code">Postal Code</label>
-                        <input type="text" name="billing_postal_code" id="billing_postal_code" class="form-control" value="{{ old('billing_postal_code', $user->billing_postal_code) }}" required>
+                        <label for="shipping_postal_code">Shipping Postal Code</label>
+                        <input type="text" name="shipping_postal_code" id="shipping_postal_code" class="form-control" value="{{ old('shipping_postal_code', $defaultAddress->shipping_postal_code ?? $user->shipping_postal_code) }}" required>
                     </div>
                     <div class="form-group">
-                        <label for="billing_email">Email</label>
-                        <input type="email" name="billing_email" id="billing_email" class="form-control" value="{{ old('billing_email', $user->billing_email) }}" required>
+                        <label for="shipping_email">Shipping Email</label>
+                        <input type="email" name="shipping_email" id="shipping_email" class="form-control" value="{{ old('shipping_email', $defaultAddress->shipping_email ?? $user->shipping_email) }}" required>
                     </div>
                     <div class="form-group">
-                        <label for="billing_phone">Phone</label>
-                        <input type="tel" name="billing_phone" id="billing_phone" class="form-control" value="{{ old('billing_phone', $user->billing_phone) }}" required>
+                        <label for="shipping_phone">Shipping Phone</label>
+                        <input type="tel" name="shipping_phone" id="shipping_phone" class="form-control" value="{{ old('shipping_phone', $defaultAddress->shipping_phone ?? $user->shipping_phone) }}" required>
+                    </div>
+                    <hr>
+                    <div class="form-group">
+                        <label for="billing_name">Billing Name</label>
+                        <input type="text" name="billing_name" id="billing_name" class="form-control" value="{{ old('billing_name', $defaultAddress->billing_name ?? $user->billing_name) }}" required>
                     </div>
                     <div class="form-group">
-                        <input type="checkbox" name="set_default_billing" id="set_default_billing">
-                        <label for="set_default_billing">Set as Default Billing Address</label>
+                        <label for="billing_address">Billing Address</label>
+                        <input type="text" name="billing_address" id="billing_address" class="form-control" value="{{ old('billing_address', $defaultAddress->billing_address ?? $user->billing_address) }}" required>
                     </div>
-                    <button type="submit" class="btn btn-primary">Update Billing Address</button>
+                    <div class="form-group">
+                        <label for="billing_city">Billing City</label>
+                        <input type="text" name="billing_city" id="billing_city" class="form-control" value="{{ old('billing_city', $defaultAddress->billing_city ?? $user->billing_city) }}" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="billing_province">Billing Province</label>
+                        <input type="text" name="billing_province" id="billing_province" class="form-control" value="{{ old('billing_province', $defaultAddress->billing_province ?? $user->billing_province) }}" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="billing_country">Billing Country</label>
+                        <input type="text" name="billing_country" id="billing_country" class="form-control" value="{{ old('billing_country', $defaultAddress->billing_country ?? $user->billing_country) }}" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="billing_postal_code">Billing Postal Code</label>
+                        <input type="text" name="billing_postal_code" id="billing_postal_code" class="form-control" value="{{ old('billing_postal_code', $defaultAddress->billing_postal_code ?? $user->billing_postal_code) }}" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="billing_email">Billing Email</label>
+                        <input type="email" name="billing_email" id="billing_email" class="form-control" value="{{ old('billing_email', $defaultAddress->billing_email ?? $user->billing_email) }}" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="billing_phone">Billing Phone</label>
+                        <input type="tel" name="billing_phone" id="billing_phone" class="form-control" value="{{ old('billing_phone', $defaultAddress->billing_phone ?? $user->billing_phone) }}" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Update Default Address</button>
                 </form>
             </div>
 
@@ -195,6 +198,9 @@
             <div id="reviews" class="profile-section" style="display:none;">
                 <h4>Reviews</h4>
                 <div class="review-list">
+                    @if($user->reviews->isEmpty())
+                    <p>You haven't written any reviews yet.</p>
+                    @else
                     @foreach ($user->reviews as $review)
                     <div class="review mb-4">
                         <div class="review-header">
@@ -220,17 +226,21 @@
                             <p class="review-text">{{ $review->review_text }}</p>
                             @if($review->image)
                             <div class="review-image">
-                                <img src="{{ asset('storage/' . $review->image) }}" alt="Review Image" class="img-fluid">
+                                <img src="{{ asset('storage/' . $review->image) }}" alt="Review Image" class="img-fluid" style="max-width: 150px;">
                             </div>
                             @endif
                         </div>
                     </div>
                     @endforeach
+                    @endif
                 </div>
 
                 <!-- Pending Reviews -->
                 <div class="pending-reviews">
                     <h4>Pending Reviews</h4>
+                    @if($pendingReviews->isEmpty())
+                    <p>You have reviewed all your purchased products.</p>
+                    @else
                     @foreach ($pendingReviews as $order)
                     @foreach ($order->orderDetails as $detail)
                     <div class="pending-review-item">
@@ -242,19 +252,11 @@
                     </div>
                     @endforeach
                     @endforeach
+                    @endif
                 </div>
             </div>
         </div>
     </div>
 </div>
 
-<script>
-    document.querySelectorAll('.profile-link').forEach(link => {
-        link.addEventListener('click', function() {
-            document.querySelectorAll('.profile-section').forEach(section => section.style.display = 'none');
-            const sectionId = this.getAttribute('data-section');
-            document.getElementById(sectionId).style.display = 'block';
-        });
-    });
-</script>
 @endsection
