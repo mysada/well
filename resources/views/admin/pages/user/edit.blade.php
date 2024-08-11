@@ -104,3 +104,8 @@
                 <div class="text-red-600">{{ $message }}</div>
                 @enderror
             </div>
+
+            <!-- Submit Button -->
+            <div class="flex justify-end">
+                <button type="submit" class="btn btn-primary">Save Changes</button>
+            </div>
