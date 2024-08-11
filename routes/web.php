@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\admin\AdminCategoryController;
 use App\Http\Controllers\Admin\AdminHomeController;
+use App\Http\Controllers\admin\ContactQueryController;
 use App\Http\Controllers\admin\AdminOrderController;
 use App\Http\Controllers\admin\AdminPaymentController;
 use App\Http\Controllers\admin\AdminProductController;
@@ -117,9 +118,17 @@ Route::middleware(['auth'])->group(function () {
 
 
 
-//
+
 Auth::routes();
+
+Route::group(['middleware' => 'auth'], function () {
+    Route::get('/admin/queries', [ContactQueryController::class, 'index'])->name('admin.queries');
+});
+
+
+
 //aman -- admin user management routing
+
 Route::middleware(AdminAuthInterceptor::class)->prefix('admin')->group(function () {
     Route::resource('/user', AdminUserController::class)->names([
       'index'   => 'AdminUserList',

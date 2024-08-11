@@ -3,34 +3,20 @@
 namespace App\Http\Controllers\well;
 
 use App\Http\Controllers\Controller;
+use App\Mail\ContactFormMail;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
+use App\Models\ContactQuery;
 
-/**
- * Class ContactController
- * @package App\Http\Controllers\well
- *
- * This controller handles the submission of contact form data.
- */
 class ContactController extends Controller
 {
     /**
-     * MANISH KUMAR
      * Handle the submission of the contact form.
      *
      * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\RedirectResponse
      *
      * @throws \Illuminate\Validation\ValidationException
-     *
-     * Validates the incoming request data for the contact form, including:
-     * - name: required, string, max length of 255, only alphabetic characters and spaces allowed
-     * - email: required, valid email format, max length of 255, only certain characters allowed
-     * - phone: optional, valid format with 10-15 digits
-     * - subject: required, string, max length of 255, only alphanumeric characters and spaces allowed
-     * - message: required, string, max length of 500, only certain characters allowed
-     *
-     * After validation, processes the form submission and redirects back to the contact page
-     * with a success message.
      */
     public function submit(Request $request)
     {
@@ -45,28 +31,69 @@ class ContactController extends Controller
                 'required',
                 'email',
                 'max:255',
-                'regex:/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/',
             ],
             'phone' => [
-                'nullable',
+                'required',
                 'regex:/^[0-9]{10,15}$/',
             ],
             'subject' => [
                 'required',
                 'string',
                 'max:255',
-                'regex:/^[a-zA-Z0-9\s]*$/',
             ],
             'message' => [
                 'required',
                 'string',
                 'max:500',
-                'regex:/^[a-zA-Z0-9\s.,!?]*$/',
             ],
+            'g-recaptcha-response' => [
+                'required_if:env,production',
+                function ($attribute, $value, $fail) {
+                    if (app()->environment('production')) {
+                        $response = file_get_contents('https://www.google.com/recaptcha/api/siteverify?secret=' . env('RECAPTCHA_SECRET_KEY') . '&response=' . $value);
+                        $responseKeys = json_decode($response, true);
+
+                        if (!$responseKeys['success']) {
+                            $fail('The CAPTCHA verification failed.');
+                        }
+                    }
+                },
+            ],
+        ], [
+            'name.required' => 'Please enter your name.',
+            'name.string' => 'Name should only contain alphabetic characters and spaces.',
+            'name.max' => 'Name cannot exceed 255 characters.',
+            'name.regex' => 'Name can only contain letters and spaces.',
+
+            'email.required' => 'Please enter your email address.',
+            'email.email' => 'Please enter a valid email address.',
+            'email.max' => 'Email cannot exceed 255 characters.',
+
+            'phone.required' => 'Please enter your phone number.',
+            'phone.regex' => 'Phone number must be between 10 and 15 digits.',
+
+            'subject.required' => 'Please enter a subject.',
+            'subject.string' => 'Subject should only contain alphanumeric characters and spaces.',
+            'subject.max' => 'Subject cannot exceed 255 characters.',
+
+            'message.required' => 'Please enter your message.',
+            'message.string' => 'Message should only contain certain characters.',
+            'message.max' => 'Message cannot exceed 500 characters.',
+
+            'captcha.required' => 'Please complete the CAPTCHA.',
+            'security_question.required' => 'Please answer the security question.',
+            'security_question.in' => 'The answer to the security question is incorrect.',
         ]);
 
-        // Process the form submission
+        $contactData = $request->all();
 
-        return redirect()->route('contact.page')->with('success', 'Thank you for contacting us. You will heard back soon.');
+        // Save the query to the database
+        ContactQuery::create($contactData);
+
+        // Send email
+        Mail::to(env('MAIL_FROM_ADDRESS'))->send(new ContactFormMail($contactData));
+
+        // Redirect back with success message
+        return redirect()->route('contact.page')->with('success', 'Thank you for contacting us. You will hear back soon.');
     }
 }
