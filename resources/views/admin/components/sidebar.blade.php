@@ -12,6 +12,7 @@
             <li><a class="menu-item" href="{{route('AdminPaymentList')}}">Payments</a></li>
             <li><a class="menu-item" href="{{route('AdminCategoryList')}}">Categories</a></li>
             <li><a class="menu-item" href="{{route('AdminReviewList')}}">Reviews</a></li>
+            <li><a class="menu-item" href="{{route('admin.queries')}}">Queries</a></li>
         </ul>
     </div>
 
