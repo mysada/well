@@ -29,3 +29,19 @@
                 <div class="text-red-600">{{ $message }}</div>
                 @enderror
             </div>
+
+            <!-- Email -->
+            <div class="mb-4">
+                <label for="email" class="block text-sm font-medium">Email</label>
+                <input
+                    type="email"
+                    id="email"
+                    name="email"
+                    class="input input-bordered w-full"
+                    value="{{ old('email', $user->email) }}"
+                    required
+                >
+                @error('email')
+                <div class="text-red-600">{{ $message }}</div>
+                @enderror
+            </div>
