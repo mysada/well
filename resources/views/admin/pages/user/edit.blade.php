@@ -8,7 +8,7 @@
             <div class="alert alert-success">
                 {{ session('success') }}
             </div>
-    @endif
+        @endif
 
         <form action="{{ route('AdminUserUpdate', $user->id) }}" method="POST">
             @csrf
@@ -45,6 +45,7 @@
                 <div class="text-red-600">{{ $message }}</div>
                 @enderror
             </div>
+
             <!-- Phone -->
             <div class="mb-4">
                 <label for="phone" class="block text-sm font-medium">Phone</label>
@@ -109,3 +110,6 @@
             <div class="flex justify-end">
                 <button type="submit" class="btn btn-primary">Save Changes</button>
             </div>
+        </form>
+    </div>
+@endsection
