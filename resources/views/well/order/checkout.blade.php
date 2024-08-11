@@ -241,8 +241,8 @@
             <div class="tax-breakdown">
                 <p><strong>Subtotal:</strong> $<span id="subtotal">{{ $order['pre_tax_amount'] }}</span></p>
                 <p><strong>Quantity:</strong> <span id="quantity">{{ $order['quantity'] }}</span></p>
-                <p><strong>GST:</strong> $<span id="gst">0.00</span></p>
-                <p><strong>PST:</strong> $<span id="pst">0.00</span></p>
+                <p><strong>GST:</strong> $<span id="gst" name="gst">0.00</span></p>
+                <p><strong>PST:</strong> $<span id="pst" name="pst">0.00</span></p>
                 <p><strong>Shipping Rate:</strong> $<span id="shipping_rate"></span></p>
             </div>
             <div class="total-price"><strong>Total:</strong> $<span id="cart-total"></span></div>
