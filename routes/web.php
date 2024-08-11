@@ -139,10 +139,6 @@ Route::middleware(AdminAuthInterceptor::class)->prefix('admin')->group(function 
       'destroy' => 'AdminUserDestroy',
 
     ]);
-    Route::get('/user/deleted', [AdminUserController::class, 'deleted'])->name('AdminUserDeleted');
-    Route::patch('/user/{id}/restore', [AdminUserController::class, 'restore'])->name('AdminUserRestore');
-    Route::delete('/user/{id}/force-delete', [AdminUserController::class, 'forceDelete'])->name('AdminUserForceDelete');
-
 
     //aman -- admin user management routing ends here
 
