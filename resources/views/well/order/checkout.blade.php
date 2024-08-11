@@ -48,9 +48,9 @@
                         <div class="error-container">
                             <input id="shipping-state" name="shipping-state" placeholder="Province/State"
                                    value="{{ old('shipping-state') }}" class="form-control">
-                            <select id="ca-province" name="ca-province" class="form-control" style="display: none;">
+                            <select id="ca-province" name="shipping-state" class="form-control" style="display: none;">
                                 @foreach($provinces as $province)
-                                    <option value="{{ $province['short_name'] }}" {{ old('ca-province') === $province['short_name'] ? 'selected' : '' }}>
+                                    <option value="{{ $province['short_name'] }}" {{ old('shipping-state') === $province['short_name'] ? 'selected' : '' }}>
                                         {{ $province['name'] }}
                                     </option>
                                 @endforeach

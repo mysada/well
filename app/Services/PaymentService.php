@@ -32,7 +32,7 @@ class PaymentService
         $req              = $request->validated();
         $order            = Order::with('orderDetails')->find($req['order-id']);
         $countryCode      = $req['shipping-country'];
-        $shippingProvince = $req['shipping-state'] ?? $req['ca-province'];
+        $shippingProvince = $req['shipping-state'];
         $country          = Country::with('provinces')
                                    ->where('code', $countryCode)
                                    ->first();

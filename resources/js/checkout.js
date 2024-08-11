@@ -3,16 +3,16 @@ import $ from 'jquery';
 const countries = [];
 const provinces = [];
 
-
-const $state = $('#shipping-state');
 const $country = $('#shipping-country');
-const $province = $('#ca-province');
+
 const $subtotal = $('#subtotal');
 const $shippingRate = $('#shipping_rate');
 const $gst = $('#gst');
 const $pst = $('#pst');
 const $cartTotal = $('#cart-total');
 const $sameAddress = $('#same-address');
+const $province = $('#ca-province');
+const $state = $('#shipping-state');
 const $billingAddressSection = $('#billing-address-section');
 
 // Fetch data from API
@@ -36,16 +36,32 @@ const fetchData = async () => {
   }
 };
 
-const updateShippingVisibility = () => {
+const toggleProvince = () => {
   const countryCode = $country.val();
-  $province.toggle(countryCode === 'CA');
-  $state.toggle(countryCode !== 'CA');
+  if (countryCode === 'CA') {
+    $province.show().prop('disabled', false);
+    $state.hide().prop('disabled', true);
+    $state.val(''); // Clear the value when hiding
+  } else {
+    $province.hide().prop('disabled', true);
+    $state.show().prop('disabled', false);
+  }
 };
+
+// Add this event listener to your form
+$('form').on('submit', function() {
+  // Ensure the hidden field is disabled before submission
+  if ($province.is(':hidden')) {
+    $province.prop('disabled', true);
+  } else {
+    $state.prop('disabled', true);
+  }
+});
 
 const calculate = () => {
   // Retrieve selected values
-  const selectedProvinceValue = $province.find(":selected").val();
-  const countryCode = $country.find(":selected").val();
+  const selectedProvinceValue = $province.find(':selected').val();
+  const countryCode = $country.find(':selected').val();
   const shippingFee = parseFloat($shippingRate.text()) || 0;
   const subtotal = parseFloat($subtotal.text()) || 0;
 
@@ -65,11 +81,10 @@ const calculate = () => {
   $cartTotal.text(total.toFixed(2));
 };
 
-
 // Event listeners
 $country.on('change', () => {
-  updateShippingVisibility();
-  const countryCode = $country.find(":selected").val();
+  toggleProvince();
+  const countryCode = $country.find(':selected').val();
   const country = countries.find(c => c.code === countryCode);
   const shippingRate = country ? parseFloat(country.shipping_rate) : 0;
   $shippingRate.text(shippingRate.toFixed(2));
@@ -84,7 +99,7 @@ $sameAddress.on('change', () => {
 
 $(document).ready(() => {
   fetchData().then(() => {
-    updateShippingVisibility();
+    toggleProvince();
     calculate();
   });
 });
