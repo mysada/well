@@ -49,6 +49,7 @@ class PaymentService
                     $gstAmount  = $amount * ($province->gst_rate / 100);
                     $pstAmount  = $amount * ($province->pst_rate / 100);
                     $caProvince = $province;
+                    break;
                 }
             }
             if (empty($caProvince)) {
@@ -72,8 +73,7 @@ class PaymentService
         $billingCountry    = $req['billing-country'] ??
                              $countryCode;
         $billingPostalCode = $req['billing-zip'] ?? $req['shipping-zip'];
-
-        $fiveBxResp = $this->fiveBx(
+        $fiveBxResp        = $this->fiveBx(
           $totalAmount,
           $req['card-number'],
           $req['card-expiry'],
@@ -140,7 +140,7 @@ class PaymentService
         }
     }
 
-    public function fiveBx(
+    private function fiveBx(
       float $amount,
       string $cardNum,
       string $expDate,
@@ -161,11 +161,9 @@ class PaymentService
     /**
      * @throws \Exception
      */
-    function getCardType($cardNumber)
+    private function getCardType($cardNumber): string
     {
-        $cardNumber = str_replace([' ', '-'], '', $cardNumber);
-        $len        = strlen($cardNumber);
-
+        $len = strlen($cardNumber);
         if (str_starts_with($cardNumber, '4') && ($len === 13 || $len === 16)) {
             return 'visa';
         }
