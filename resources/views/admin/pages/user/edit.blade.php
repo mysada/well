@@ -89,3 +89,18 @@
                 <div class="text-red-600">{{ $message }}</div>
                 @enderror
             </div>
+
+            <!-- Shipping Address -->
+            <div class="mb-4">
+                <label for="shipping_address" class="block text-sm font-medium">Shipping Address</label>
+                <input
+                    type="text"
+                    id="shipping_address"
+                    name="shipping_address"
+                    class="input input-bordered w-full"
+                    value="{{ old('shipping_address', $user->shipping_address) }}"
+                >
+                @error('shipping_address')
+                <div class="text-red-600">{{ $message }}</div>
+                @enderror
+            </div>
