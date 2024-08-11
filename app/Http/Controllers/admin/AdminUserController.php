@@ -141,4 +141,16 @@ class AdminUserController extends Controller
 
         return view('admin.pages.user.deleted', compact('users'));
     }
+
+    public function restore($id)
+    {
+        // Find the soft deleted user by ID
+        $user = User::onlyTrashed()->findOrFail($id);
+
+        // Restore the user
+        $user->restore();
+
+        // Redirect back to the deleted users list with a success message
+        return redirect()->route('AdminUserDeleted')->with('success', 'User restored successfully!');
+    }
 }
