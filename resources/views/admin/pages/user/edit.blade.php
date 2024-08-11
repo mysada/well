@@ -59,3 +59,18 @@
                 <div class="text-red-600">{{ $message }}</div>
                 @enderror
             </div>
+
+            <!-- Address -->
+            <div class="mb-4">
+                <label for="address" class="block text-sm font-medium">Address</label>
+                <input
+                    type="text"
+                    id="address"
+                    name="address"
+                    class="input input-bordered w-full"
+                    value="{{ old('address', $user->address) }}"
+                >
+                @error('address')
+                <div class="text-red-600">{{ $message }}</div>
+                @enderror
+            </div>
