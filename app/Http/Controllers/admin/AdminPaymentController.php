@@ -3,32 +3,40 @@
 namespace App\Http\Controllers\admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Payment;
 use Illuminate\Http\Request;
 
 class AdminPaymentController extends Controller
 {
+
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
-    }
+        $search = $request->input('search', '');
+        $title  = 'Payment Management - List';
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
-    }
+        $payments = Payment::query()
+                           ->when($search, function ($query, $search) {
+                               $query->where(
+                                 'payer_name',
+                                 'like',
+                                 "%{$search}%"
+                               )
+                                     ->orWhere('method', 'like', "%{$search}%")
+                                     ->orWhere('status', 'like', "%{$search}%");
+                           })
+                           ->paginate(10);
 
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
-    {
-        //
+        return view(
+          'admin.pages.payment.index',
+          compact(
+            'payments',
+            'title',
+            'search'
+          )
+        );
     }
 
     /**
@@ -39,27 +47,4 @@ class AdminPaymentController extends Controller
         //
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(string $id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, string $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(string $id)
-    {
-        //
-    }
 }
