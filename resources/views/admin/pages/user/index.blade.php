@@ -138,42 +138,40 @@
 
         <!-- User Details Modal -->
         @foreach ($users as $user)
-            <div id="modal-{{ $user->id }}" class="fixed inset-0 flex items-center justify-center bg-gray-900 bg-opacity-50 z-50 hidden">
-                <div class="bg-white rounded-lg shadow-lg w-full max-w-lg mx-4 md:mx-0">
-                    <div class="p-6">
-                        <h3 class="text-xl font-semibold mb-4">User Details</h3>
-                        <div class="space-y-4">
-                            <div>
-                                <p class="font-semibold">Full Name:</p>
-                                <p>{{ $user->name }}</p>
-                            </div>
-                            <div>
-                                <p class="font-semibold">Email:</p>
-                                <p>{{ $user->email }}</p>
-                            </div>
-                            <div>
-                                <p class="font-semibold">Role:</p>
-                                <p>{{ $user->is_admin ? 'Admin' : 'Customer' }}</p>
-                            </div>
-                            <div>
-                                <p class="font-semibold">Phone:</p>
-                                <p>{{ $user->phone ?? 'Not provided' }}</p>
-                            </div>
-                            <div>
-                                <p class="font-semibold">Address:</p>
-                                <p>{{ $user->address ?? 'Not provided' }}</p>
-                            </div>
-                            <div>
-                                <p class="font-semibold">Billing Address:</p>
-                                <p>{{ $user->billing_address ?? 'Not provided' }}</p>
-                            </div>
-                            <div>
-                                <p class="font-semibold">Shipping Address:</p>
-                                <p>{{ $user->shipping_address ?? 'Not provided' }}</p>
-                            </div>
+            <div id="modal-{{ $user->id }}" class="modal">
+                <div class="modal-box w-11/12 max-w-3xl">
+                    <h3 class="font-bold text-2xl mb-4 text-center">User Details</h3>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        <div>
+                            <p class="font-semibold text-lg">Full Name:</p>
+                            <p class="text-gray-700">{{ $user->name }}</p>
+                        </div>
+                        <div>
+                            <p class="font-semibold text-lg">Email:</p>
+                            <p class="text-gray-700">{{ $user->email }}</p>
+                        </div>
+                        <div>
+                            <p class="font-semibold text-lg">Role:</p>
+                            <p class="text-gray-700">{{ $user->is_admin ? 'Admin' : 'Customer' }}</p>
+                        </div>
+                        <div>
+                            <p class="font-semibold text-lg">Phone:</p>
+                            <p class="text-gray-700">{{ $user->phone ?? 'User has not updated phone number' }}</p>
+                        </div>
+                        <div>
+                            <p class="font-semibold text-lg">Address:</p>
+                            <p class="text-gray-700">{{ $user->address ?? 'User has not updated address' }}</p>
+                        </div>
+                        <div>
+                            <p class="font-semibold text-lg">Billing Address:</p>
+                            <p class="text-gray-700">{{ $user->billing_address ?? 'User has not updated billing address' }}</p>
+                        </div>
+                        <div>
+                            <p class="font-semibold text-lg">Shipping Address:</p>
+                            <p class="text-gray-700">{{ $user->shipping_address ?? 'User has not updated shipping address' }}</p>
                         </div>
                     </div>
-                    <div class="p-4 flex justify-end border-t border-gray-200">
+                    <div class="modal-action mt-6">
                         <button class="btn btn-outline btn-primary" onclick="closeModal({{ $user->id }})">Close</button>
                     </div>
                 </div>
@@ -183,11 +181,11 @@
 
     <script>
         function openModal(userId) {
-            document.getElementById('modal-' + userId).classList.remove('hidden');
+            document.getElementById('modal-' + userId).classList.add('modal-open');
         }
 
         function closeModal(userId) {
-            document.getElementById('modal-' + userId).classList.add('hidden');
+            document.getElementById('modal-' + userId).classList.remove('modal-open');
         }
     </script>
 @endsection
