@@ -13,8 +13,9 @@
             <div class="flex-fill">
                 <form id="shipping-form" action="{{ route('checkout.process') }}" method="post" novalidate>
                     @csrf
-                    <!-- Shipping Address -->
                     <input type="hidden" name="order-id" value="{{ old('order-id', $id) }}">
+                    <!-- Shipping Address -->
+
                     <div class="form-section">
                         <h4>Shipping Address</h4>
                         <div class="error-container">
@@ -46,7 +47,7 @@
 
                         <div class="error-container">
                             <input id="shipping-state" name="shipping-state" placeholder="Province/State"
-                                   class="form-control">
+                                   value="{{ old('shipping-state') }}" class="form-control">
                             <select id="ca-province" name="ca-province" class="form-control" style="display: none;">
                                 @foreach($provinces as $province)
                                     <option value="{{ $province['short_name'] }}" {{ old('ca-province') === $province['short_name'] ? 'selected' : '' }}>
@@ -108,7 +109,11 @@
                     </div>
 
                     <!-- Billing Address -->
-                    <div id="billing-address-section" class="bill-form form-section">
+                    <div id="billing-address-section" class="bill-form form-section"
+                         @if(old('same-address'))
+                             style="display: none"
+                            @endif
+                    >
                         <h4>Billing Address</h4>
                         <div class="error-container">
                             <input type="text" name="billing-name" placeholder="Name"
@@ -138,6 +143,14 @@
                         </div>
 
                         <div class="error-container">
+                            <input id="billing-state" placeholder="Province/City" name="billing-state"
+                                   value="{{ old('billing-state') }}" class="form-control"/>
+                            @error('billing-state')
+                            <div class="invalid-feedback">{{ $message }}</div>
+                            @enderror
+                        </div>
+
+                        <div class="error-container">
                             <select id="billing-country" name="billing-country"
                                     class="form-control @error('billing-country') is-invalid @enderror">
                                 <option value="">Select Country</option>
@@ -146,13 +159,6 @@
                                 @endforeach
                             </select>
                             @error('billing-country')
-                            <div class="invalid-feedback">{{ $message }}</div>
-                            @enderror
-                        </div>
-
-                        <div class="error-container">
-                            <input id="billing-state" name="billing-state" class="form-control"/>
-                            @error('billing-state')
                             <div class="invalid-feedback">{{ $message }}</div>
                             @enderror
                         </div>

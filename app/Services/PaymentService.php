@@ -32,7 +32,7 @@ class PaymentService
         $req              = $request->validated();
         $order            = Order::with('orderDetails')->find($req['order-id']);
         $countryCode      = $req['shipping-country'];
-        $shippingProvince = $req['shipping-state'];
+        $shippingProvince = $req['shipping-state'] ?? $req['ca-province'];
         $country          = Country::with('provinces')
                                    ->where('code', $countryCode)
                                    ->first();
@@ -48,6 +48,8 @@ class PaymentService
                     $gstAmount = $amount * ($province->gst_rate / 100);
                     $pstAmount = $amount * ($province->pst_rate / 100);
                     break;
+                } else {
+                    throw new \Exception('Error Canada province');
                 }
             }
         }

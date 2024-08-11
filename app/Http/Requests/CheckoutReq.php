@@ -28,6 +28,7 @@ class CheckoutReq extends FormRequest
             'shipping-email'   => 'required|email',
             'shipping-phone'   => 'required|digits_between:10,15',
             'shipping-state'   => 'nullable|string',
+            'ca-province'   => 'nullable|string',
             'billing-name'     => 'nullable|string',
             'billing-address'  => 'nullable|string',
             'billing-city'     => 'nullable|string',
@@ -35,6 +36,7 @@ class CheckoutReq extends FormRequest
             'billing-zip'      => 'nullable|string',
             'billing-email'    => 'nullable|email',
             'billing-phone'    => 'nullable|digits_between:10,15',
+            'same-address' =>'nullable'
         ];
     }
 
