@@ -10,17 +10,42 @@ class AdminUserController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        // Retrieve users (modify as needed for pagination or other logic)
-        $users = User::paginate(10); // Example with pagination
+        $search = $request->input('search');
+        $role = $request->input('role');
+        $sort = $request->input('sort');
+        $perPage = $request->input('per_page', 10);
 
-        // Define the title
-        $title = 'User Management - List';
+        $query = User::query();
 
-        // Pass data to the view
-        return view('admin.pages.user.index', compact('users', 'title'));
+        if ($search) {
+            $query->where(function($query) use ($search) {
+                $query->where('name', 'like', "%{$search}%")
+                    ->orWhere('email', 'like', "%{$search}%");
+            });
+        }
+
+        if ($role) {
+            $query->where('is_admin', $role === 'admin');
+        }
+
+        if ($sort) {
+            $query->orderBy('name', $sort);
+        }
+
+        $users = $query->paginate($perPage);
+
+        return view('admin.pages.user.index', [
+            'users' => $users,
+            'search' => $search,
+            'role' => $role,
+            'sort' => $sort,
+            'per_page' => $perPage,
+        ]);
     }
+
+
 
     /**
      * Show the form for creating a new resource.
