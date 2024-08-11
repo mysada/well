@@ -133,4 +133,12 @@ class AdminUserController extends Controller
         // Redirect back to the user list page with a success message
         return redirect()->route('AdminUserList')->with('success', 'User deleted successfully!');
     }
+
+    public function deleted()
+    {
+        // Fetch all soft deleted users
+        $users = User::onlyTrashed()->paginate(10);
+
+        return view('admin.pages.user.deleted', compact('users'));
+    }
 }
