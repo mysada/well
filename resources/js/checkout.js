@@ -2,7 +2,6 @@ import $ from 'jquery';
 
 let countries = [], provinces = [];
 
-// Cache jQuery selectors
 const $shippingCountry = $('#shipping-country');
 const $caProvince = $('#ca-province');
 const $shippingState = $('#shipping-state');
