@@ -15,11 +15,10 @@ class CheckoutReq extends FormRequest
     {
         return [
             'order-id'         => 'required|exists:orders,id',
-            'card-number'      => 'required|digits:16',
+            'card-number'      => 'required|digits_between:13,16',
             'card-name'        => 'required|string',
             'card-expiry'      => 'required|size:4',
             'card-cvc'         => 'required|digits:3',
-            'card-type'        => 'required|in:visa,mastercard,amex',
             'shipping-name'    => 'required|string',
             'shipping-address' => 'required|string',
             'shipping-city'    => 'required|string',

@@ -43,14 +43,16 @@ class PaymentService
         $amount           = $order->orderDetails->sum('total_price');
 
         if ($countryCode === 'CA') {
+            $caProvince = null;
             foreach ($country->provinces as $province) {
                 if ($province->short_name === $shippingProvince) {
-                    $gstAmount = $amount * ($province->gst_rate / 100);
-                    $pstAmount = $amount * ($province->pst_rate / 100);
-                    break;
-                } else {
-                    throw new \Exception('Error Canada province');
+                    $gstAmount  = $amount * ($province->gst_rate / 100);
+                    $pstAmount  = $amount * ($province->pst_rate / 100);
+                    $caProvince = $province;
                 }
+            }
+            if (empty($caProvince)) {
+                throw new \Exception('Error Canada Province');
             }
         }
 
@@ -77,7 +79,7 @@ class PaymentService
           $req['card-expiry'],
           $req['card-cvc'],
           $req['order-id'],
-          $req['card-type']
+          $this->getCardType($req['card-number'])
         );
 
         if ($fiveBxResp->result_code === 'ok') {
@@ -154,6 +156,26 @@ class PaymentService
         $this->transaction->card_type($cardType);
 
         return $this->transaction->authorize_and_capture();
+    }
+
+    /**
+     * @throws \Exception
+     */
+    function getCardType($cardNumber)
+    {
+        $cardNumber = str_replace([' ', '-'], '', $cardNumber);
+        $len        = strlen($cardNumber);
+
+        if (str_starts_with($cardNumber, '4') && ($len === 13 || $len === 16)) {
+            return 'visa';
+        }
+        if (preg_match('/^5[1-5]/', $cardNumber) && $len === 16) {
+            return 'mastercard';
+        }
+        if (preg_match('/^3[4,7]/', $cardNumber) && $len === 15) {
+            return 'amex';
+        }
+        throw new \Exception('Unsupported credit card');
     }
 
 }

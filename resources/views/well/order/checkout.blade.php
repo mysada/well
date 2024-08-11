@@ -229,23 +229,6 @@
                             <div class="invalid-feedback">{{ $message }}</div>
                             @enderror
                         </div>
-
-                        <div class="error-container">
-                            <select name="card-type" class="form-control @error('card-type') is-invalid @enderror"
-                            >
-                                <option value="">Select Card Type</option>
-                                <option value="visa" {{ old('card-type') == 'visa' ? 'selected' : '' }}>Visa</option>
-                                <option value="mastercard" {{ old('card-type') == 'mastercard' ? 'selected' : '' }}>
-                                    MasterCard
-                                </option>
-                                <option value="amex" {{ old('card-type') == 'amex' ? 'selected' : '' }}>American
-                                    Express
-                                </option>
-                            </select>
-                            @error('card-type')
-                            <div class="invalid-feedback">{{ $message }}</div>
-                            @enderror
-                        </div>
                     </div>
 
                     <button type="submit" class="btn btn-primary btn-checkout-custom">Place Order</button>
