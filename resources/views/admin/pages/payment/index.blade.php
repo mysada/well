@@ -31,7 +31,6 @@
                     <th>Order ID</th>
                     <th>Method</th>
                     <th>Amount</th>
-                    <th>Discount</th>
                     <th>Status</th>
                     <th>Payer Name</th>
                     <th>Payer Card</th>
@@ -47,15 +46,12 @@
                         </td>
                         <td>{{ $payment->method }}</td>
                         <td>${{ number_format($payment->amount, 2) }}</td>
-                        <td>${{ number_format($payment->discount, 2) }}</td>
-
                         <td>
                             @php
                                 $statusClasses = [
-                                    'Pending'    => 'badge-default',
-                                    'Shipped'    => 'badge-neutral',
-                                    'Delivered'  => 'badge-primary',
-                                    'Cancelled'  => 'badge-secondary',
+                                    'Pending'    => 'badge-secondary',
+                                    'Completed'    => 'badge-primary',
+                                    'Failed'  => 'badge-default',
                                 ];
                                 $statusClass = $statusClasses[$payment->status] ?? 'badge-ghost';
                             @endphp

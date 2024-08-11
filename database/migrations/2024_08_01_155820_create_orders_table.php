@@ -33,7 +33,7 @@ return new class extends Migration {
             $table->date('delivery_date')->nullable();
             $table->enum(
                 'status',
-                ['Pending', 'CONFIRMED', 'Shipped', 'Delivered', 'Cancelled']
+                ['Pending', 'Confirmed', 'Shipped', 'Delivered', 'Cancelled']
             );
             $table->timestamps();
             $table->softDeletes();
