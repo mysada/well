@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers\admin;
+
 use App\Models\User;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
@@ -20,7 +21,7 @@ class AdminUserController extends Controller
         $query = User::query();
 
         if ($search) {
-            $query->where(function($query) use ($search) {
+            $query->where(function ($query) use ($search) {
                 $query->where('name', 'like', "%{$search}%")
                     ->orWhere('email', 'like', "%{$search}%");
             });
@@ -45,14 +46,12 @@ class AdminUserController extends Controller
         ]);
     }
 
-
-
     /**
      * Show the form for creating a new resource.
      */
     public function create()
     {
-        //
+        return view('admin.pages.user.create');
     }
 
     /**
@@ -60,15 +59,30 @@ class AdminUserController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // Validate the incoming request data
+        $validatedData = $request->validate([
+            'full_name' => 'required|string|max:255',
+            'email' => 'required|email|unique:users,email',
+            'phone' => 'nullable|string|max:15',
+            'address' => 'nullable|string|max:255',
+            'billing_address' => 'nullable|string|max:255',
+            'shipping_address' => 'nullable|string|max:255',
+        ]);
+
+        // Create a new user
+        $user = User::create($validatedData);
+
+        // Redirect to the user list page with a success message
+        return redirect()->route('AdminUserList')->with('success', 'User created successfully!');
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show($id)
     {
-        //
+        $user = User::findOrFail($id);
+        return view('admin.pages.user.show', compact('user'));
     }
 
     /**
@@ -79,7 +93,6 @@ class AdminUserController extends Controller
         $user = User::findOrFail($id);
         return view('admin.pages.user.edit', compact('user'));
     }
-
 
     /**
      * Update the specified resource in storage.
@@ -102,18 +115,22 @@ class AdminUserController extends Controller
         // Update the user's details
         $user->update($validatedData);
 
-        // Redirect back to the user edit page with a success message
-        return redirect()->route('AdminUserEdit', $user->id)->with('success', 'User updated successfully!');
+        // Redirect back to the user list page with a success message
+        return redirect()->route('AdminUserList')->with('success', 'User updated successfully!');
     }
-
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy($id)
     {
-        //
+        // Find the user by ID
+        $user = User::findOrFail($id);
+
+        // Delete the user
+        $user->delete();
+
+        // Redirect back to the user list page with a success message
+        return redirect()->route('AdminUserList')->with('success', 'User deleted successfully!');
     }
-
-
 }
