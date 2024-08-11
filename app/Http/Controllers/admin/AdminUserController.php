@@ -61,16 +61,22 @@ class AdminUserController extends Controller
     {
         // Validate the incoming request data
         $validatedData = $request->validate([
-            'full_name' => 'required|string|max:255',
+            'name' => 'required|string|max:255',
             'email' => 'required|email|unique:users,email',
-            'phone' => 'nullable|string|max:15',
+            'password' => 'required|string|min:8', // Ensure password is valid
+            'full_name' => 'nullable|string|max:255',
             'address' => 'nullable|string|max:255',
+            'phone' => 'nullable|string|max:15',
             'billing_address' => 'nullable|string|max:255',
             'shipping_address' => 'nullable|string|max:255',
+            'is_admin' => 'nullable|boolean',
         ]);
 
+        // Hash the password before storing
+        $validatedData['password'] = bcrypt($validatedData['password']);
+
         // Create a new user
-        $user = User::create($validatedData);
+        User::create($validatedData);
 
         // Redirect to the user list page with a success message
         return redirect()->route('AdminUserList')->with('success', 'User created successfully!');
@@ -99,20 +105,31 @@ class AdminUserController extends Controller
      */
     public function update(Request $request, $id)
     {
-        // Validate the incoming request data
-        $validatedData = $request->validate([
-            'full_name' => 'required|string|max:255',
-            'email' => 'required|email|unique:users,email,' . $id,
-            'phone' => 'nullable|string|max:15',
-            'address' => 'nullable|string|max:255',
-            'billing_address' => 'nullable|string|max:255',
-            'shipping_address' => 'nullable|string|max:255',
-        ]);
-
         // Find the user by ID
         $user = User::findOrFail($id);
 
-        // Update the user's details
+        // Validate the incoming request data
+        $validatedData = $request->validate([
+            'name' => 'required|string|max:255',
+            'email' => 'required|email|max:255|unique:users,email,' . $id,
+            'password' => 'nullable|string|min:8', // Optional password update
+            'full_name' => 'nullable|string|max:255',
+            'address' => 'nullable|string|max:255',
+            'phone' => 'nullable|string|max:15',
+            'billing_address' => 'nullable|string|max:255',
+            'shipping_address' => 'nullable|string|max:255',
+            'is_admin' => 'nullable|boolean',
+        ]);
+
+        // Update the password if provided
+        if ($request->filled('password')) {
+            $validatedData['password'] = bcrypt($request->input('password'));
+        } else {
+            // Remove password from the update data if not provided
+            unset($validatedData['password']);
+        }
+
+        // Update user data
         $user->update($validatedData);
 
         // Redirect back to the user list page with a success message
@@ -134,6 +151,9 @@ class AdminUserController extends Controller
         return redirect()->route('AdminUserList')->with('success', 'User deleted successfully!');
     }
 
+    /**
+     * Display a listing of soft deleted resources.
+     */
     public function deleted()
     {
         // Fetch all soft deleted users
@@ -142,6 +162,9 @@ class AdminUserController extends Controller
         return view('admin.pages.user.deleted', compact('users'));
     }
 
+    /**
+     * Restore the specified soft deleted resource.
+     */
     public function restore($id)
     {
         // Find the soft deleted user by ID
@@ -154,6 +177,9 @@ class AdminUserController extends Controller
         return redirect()->route('AdminUserDeleted')->with('success', 'User restored successfully!');
     }
 
+    /**
+     * Permanently delete the specified soft deleted resource.
+     */
     public function forceDelete($id)
     {
         // Find the soft deleted user by ID
