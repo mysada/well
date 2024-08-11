@@ -26,14 +26,14 @@ class Order extends Model
      * @var array
      */
     protected $fillable
-      = [
-        'user_id',
-        'pre_tax_amount',
-        'post_tax_amount',
-        'gst',
-        'pst',
-        'quantity',
-        'shipping_rate',
+        = [
+            'user_id',
+            'pre_tax_amount',
+            'post_tax_amount',
+            'gst',
+            'pst',
+            'quantity',
+            'shipping_rate',
         'shipping_name',
         'shipping_email',
         'shipping_phone',
@@ -42,9 +42,13 @@ class Order extends Model
         'shipping_province',
         'shipping_country',
         'shipping_postal_code',
-        'coupon_code',
-        'status',
-      ];
+            'coupon_code',
+            'status',
+            'delivery_date',
+        ];
+    protected $casts = [
+        'delivery_date' => 'date',
+    ];
 
     /**
      * Get the order details associated with the order.

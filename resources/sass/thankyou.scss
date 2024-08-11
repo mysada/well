@@ -1,137 +1,97 @@
 .thank-you-page {
-    .thank-you-message {
-        margin-top: 30px;
-        h1 {
-            color: #20c997; // Customize this color to match your theme
-            font-weight: bold;
-        }
-        p {
-            font-size: 18px;
-            color: #666;
-        }
-    }
-
-    .progress-tracker {
-        background-color: #f8f9fa;
+    .border-custom {
         border-radius: 10px;
+        border: unset !important;
+    }
+
+    .bg-custom {
+        background-color: #1a1a1a;
+        color: #fff;
+        padding: 10px 20px;
+        border-radius: 10px 10px 0 0;
+    }
+
+    .status-label {
+        font-weight: bold;
+        font-size: 1.2em;
+    }
+
+    .status-badge {
+        display: inline-block;
+        padding: 10px 20px;
+        font-size: 24px;
+        border-radius: 5px;
+        background-color: #00A875;
+        color: #fff;
+        margin-top: 10px;
+    }
+
+    .order-info p {
+        margin: 5px 0;
+    }
+
+    .order-status {
+        margin-top: 20px;
+        text-align: center;
+
+        .status-badge {
+            margin: 0 auto;
+        }
+    }
+
+    .card {
+        margin-bottom: 20px;
+        height: fit-content;
+    }
+
+    .card-title {
+        font-size: 1.5em;
+        font-weight: bold;
+    }
+
+    .card-body {
         padding: 20px;
+        border: 2px solid #00A875;
+    }
 
-        .tracker {
-            position: relative;
-            padding: 20px 0;
-            ul.progressbar {
-                display: flex;
-                justify-content: space-between;
-                list-style-type: none;
-                counter-reset: step;
-                padding: 0;
-                margin: 0;
+    .list-group-item {
+        display: flex;
+        justify-content: space-between;
+        padding: 10px 0;
+        border: none;
 
-                li {
-                    text-align: center;
-                    position: relative;
-                    flex: 1;
-                    color: #b0b0b0;
+        .item-image img {
+            max-width: 120px;
+            height: auto;
+            margin-right: 15px;
+        }
 
-                    &.completed {
-                        color: #20c997;
-                        font-weight: bold;
+        .item-details {
+            flex: 1;
+            padding-left: 15px;
 
-                        &::before,
-                        &::after {
-                            background-color: #20c997;
-                        }
-                    }
-
-                    &::before {
-                        counter-increment: step;
-                        content: counter(step);
-                        width: 30px;
-                        height: 30px;
-                        line-height: 30px;
-                        border: 2px solid #b0b0b0;
-                        display: block;
-                        text-align: center;
-                        margin: 0 auto 10px auto;
-                        border-radius: 50%;
-                        background-color: white;
-                    }
-
-                    &::after {
-                        content: '';
-                        position: absolute;
-                        width: 100%;
-                        height: 2px;
-                        background-color: #b0b0b0;
-                        top: 15px;
-                        left: -50%;
-                        z-index: -1;
-                    }
-
-                    &:first-child::after {
-                        content: none;
-                    }
-                }
-            }
-
-            .tracker-details {
-                text-align: right;
-                p {
-                    margin: 0;
-                    color: #666;
-                }
+            .item-price {
+                color: #00AB7A;
+                font-weight: bold;
             }
         }
     }
 
-    .order-details, .payment-details, .shipping-details {
-        background-color: white;
-        border-radius: 10px;
-        padding: 20px;
-
-        .card-title {
-            color: #20c997;
-            font-weight: bold;
-            margin-bottom: 15px;
-        }
-
-        ul.list-group {
-            list-style: none;
-            padding: 0;
-
-            li.list-group-item {
-                display: flex;
-                align-items: center;
-                margin-bottom: 15px;
-
-                img {
-                    max-width: 60px;
-                    margin-right: 15px;
-                    border-radius: 5px;
-                }
-
-                div {
-                    strong {
-                        display: block;
-                        color: #333;
-                        font-size: 16px;
-                    }
-
-                    span {
-                        color: #999;
-                        font-size: 14px;
-                    }
-                }
-            }
-        }
+    .row > .col-md-6 {
+        margin-bottom: 40px;
     }
 
-    .btn-checkout-custom {
-        background-color: #20c997;
-        border-color: #20c997;
+    .btn-custom {
+        background-color: #00AB7A;
+        border: none;
+        color: #fff;
+        font-size: 1.2em;
+        padding: 15px;
+        border-radius: unset !important;
+
         &:hover {
-            background-color: #1ea87c;
-            border-color: #1ea87c;
+            background-color: #00AB7A !important;
+            color: #fff !important;
         }
     }
 }

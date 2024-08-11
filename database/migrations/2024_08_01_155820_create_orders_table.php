@@ -30,9 +30,10 @@ return new class extends Migration {
             $table->string('shipping_country', 100)->nullable();
             $table->string('shipping_postal_code', 10)->nullable();
             $table->string('coupon_code', 20)->nullable();
+            $table->date('delivery_date')->nullable();
             $table->enum(
                 'status',
-                ['Pending', 'Shipped', 'Delivered', 'Cancelled']
+                ['Pending', 'CONFIRMED', 'Shipped', 'Delivered', 'Cancelled']
             );
             $table->timestamps();
             $table->softDeletes();
