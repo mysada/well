@@ -4,7 +4,7 @@
     <div class="container mx-auto">
         <div class="flex justify-between items-center mb-6">
             <div></div>
-            <a href="{{ route('AdminProductList') }}" class="btn btn-outline btn-primary">Back to Product List</a>
+            <a href="{{ route('AdminProductList') }}" class="btn  btn-primary">Back to Product List</a>
         </div>
 
         <div class="bg-base-100 shadow-xl rounded-lg overflow-hidden">
@@ -35,12 +35,9 @@
                     </div>
 
 
-                    <div class="collapse">
-                        <input type="checkbox"/>
-                        <div class="collapse-title text-xl font-medium p-0">Click to show/hidden long description</div>
-                        <div class="collapse-content">
-                            <p class="text-gray-700">{{ $product->long_description }}</p>
-                        </div>
+                    <div class="mb-6">
+                        <h3 class="text-xl font-semibold mb-2">Long Description</h3>
+                        <p class="text-gray-700">{{ $product->long_description }}</p>
                     </div>
 
                     <div class="flex justify-between items-center">
@@ -48,7 +45,7 @@
                             <p>Created: {{ $product->created_at->format('Y-m-d H:i') }}</p>
                             <p>Updated: {{ $product->updated_at->format('Y-m-d H:i') }}</p>
                         </div>
-                        <a href="{{ route('AdminProductEdit', $product->id) }}" class="btn btn-outline btn-primary">Edit Product</a>
+                        <a href="{{ route('AdminProductEdit', $product->id) }}" class="btn  btn-primary">Edit Product</a>
                     </div>
                 </div>
             </div>

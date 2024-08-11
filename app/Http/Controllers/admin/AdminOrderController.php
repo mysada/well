@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Order;
+use App\Models\Product;
 use Illuminate\Http\Request;
 
 class AdminOrderController extends Controller
@@ -10,9 +12,25 @@ class AdminOrderController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
+        $search = $request->input('search');
+
+        $items = Order::with('user')
+                      ->when($search, function ($query, $search) {
+                          return $query->whereHas('user', function ($query) use ($search) {
+                              $query->where('name', 'like', "%{$search}%");
+                          });
+                      })
+                      ->orderByDesc('id')
+                      ->paginate(20);
+
+        $title = 'Order Management - List';
+
+        return view(
+          'admin.pages.order.index',
+          compact('items', 'title', 'search')
+        );
     }
 
     /**

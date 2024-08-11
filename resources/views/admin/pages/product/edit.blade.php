@@ -4,7 +4,7 @@
     <div class="container mx-auto">
         <div class="flex justify-between">
             <div></div>
-            <a href="{{ route('AdminProductList') }}" class="btn btn-outline btn-primary mb-3">Back to Product List</a>
+            <a href="{{ route('AdminProductList') }}" class="btn  btn-primary mb-3">Back to Product List</a>
         </div>
         <form action="{{ route('AdminProductUpdate', $product->id) }}" method="POST" enctype="multipart/form-data">
             @csrf
@@ -119,7 +119,7 @@
                     <div class="text-red-500 text-sm mt-1">{{ $message }}</div>
                     @enderror
                 </div>
-                <button type="submit" class="btn btn-outline btn-primary w-full ">Update Product</button>
+                <button type="submit" class="btn  btn-primary w-full ">Update Product</button>
 
             </div>
 

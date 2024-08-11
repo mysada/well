@@ -12,13 +12,14 @@
     </head>
     <body class="h-screen">
         <div class="drawer lg:drawer-open">
-            <input id="my-drawer-2" type="checkbox" class="drawer-toggle" />
+            @include('admin.components.flash')
+            <input id="my-drawer-2" type="checkbox" class="drawer-toggle"/>
             <div class="drawer-content flex flex-col items-center justify-center">
                 <label for="my-drawer-2" class="btn btn-primary drawer-button lg:hidden">
                     Open drawer
                 </label>
                 @include('admin.components.header')
-                <main class="w-full p-4">
+                <main class="w-full p-4 flex-1">
                     @yield('content')
                 </main>
 
