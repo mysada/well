@@ -27,6 +27,15 @@ class CheckoutController extends Controller
         $countries = Country::all();
         $provinces = Province::where('country_code', 'CA')->get();
         $order     = Order::find($id);
+        if ($order['status'] !== 'Pending') {
+            return RouterTools::success(
+              'This order has been confirmed',
+              'thankyou',
+              [
+                'orderId' => $id,
+              ]
+            );
+        }
 
         return view(
           'well.order.checkout',
@@ -40,10 +49,21 @@ class CheckoutController extends Controller
         return CartItem::with('product')->where('user_id', Auth::id())->get();
     }
 
+    /**
+     * @throws \Exception
+     */
     public function process(CheckoutReq $request)
     {
+        $order = Order::find($request['order-id']);
+        if ($order['status'] !== 'Pending') {
+            return RouterTools::success(
+              'This order has been confirmed',
+              'thankyou',
+              ['orderId' => $order['id']]
+            );
+        }
         // Process payment and retrieve order details
-        $order = $this->paymentService->checkout($request);
+        $this->paymentService->checkout($request);
 
         // Redirect to the thank you page with order ID
         return RouterTools::success(
