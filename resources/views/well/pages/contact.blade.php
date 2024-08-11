@@ -14,13 +14,13 @@
             <div class="contact-info-box">
                 <div class="contact-icons">
                     <p>
-                        <i class="bi bi-envelope-fill"></i> Email:  <a href="mailto:well@personalcare.com">well@personalcare.com</a>
+                        <img src="{{ asset('images/about/email_icon.png') }}" alt="Email Icon" class="contact-icon"> Email: <a href="mailto:well@personalcare.com">well@personalcare.com</a>
                     </p>
                     <p>
-                        <i class="bi bi-telephone-fill"></i> Phone:  +1 204-400-1234
+                        <img src="{{ asset('images/about/phone_icon.png') }}" alt="Phone Icon" class="contact-icon"> Phone: +1 204-400-1234
                     </p>
                     <p>
-                        <i class="bi bi-globe"></i> Website:  <a href="http://www.wellcare.com" target="_blank">www.wellcare.com</a>
+                        <img src="{{ asset('images/about/www_icon.png') }}" alt="Website Icon" class="contact-icon"> Website: <a href="http://www.wellcare.com" target="_blank">www.wellcare.com</a>
                     </p>
                 </div>
                 <p class="social-icons">
@@ -74,6 +74,7 @@
                     <div class="invalid-feedback">{{ $message }}</div>
                     @enderror
                 </div>
+
                 <div class="text-right">
                     <button type="submit" class="btn-black">Send Now</button>
                 </div>

@@ -3,34 +3,19 @@
 namespace App\Http\Controllers\well;
 
 use App\Http\Controllers\Controller;
+use App\Mail\ContactFormMail;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 
-/**
- * Class ContactController
- * @package App\Http\Controllers\well
- *
- * This controller handles the submission of contact form data.
- */
 class ContactController extends Controller
 {
     /**
-     * MANISH KUMAR
      * Handle the submission of the contact form.
      *
      * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\RedirectResponse
      *
      * @throws \Illuminate\Validation\ValidationException
-     *
-     * Validates the incoming request data for the contact form, including:
-     * - name: required, string, max length of 255, only alphabetic characters and spaces allowed
-     * - email: required, valid email format, max length of 255, only certain characters allowed
-     * - phone: optional, valid format with 10-15 digits
-     * - subject: required, string, max length of 255, only alphanumeric characters and spaces allowed
-     * - message: required, string, max length of 500, only certain characters allowed
-     *
-     * After validation, processes the form submission and redirects back to the contact page
-     * with a success message.
      */
     public function submit(Request $request)
     {
@@ -45,28 +30,31 @@ class ContactController extends Controller
                 'required',
                 'email',
                 'max:255',
-                'regex:/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/',
             ],
             'phone' => [
-                'nullable',
+                'required',
                 'regex:/^[0-9]{10,15}$/',
             ],
             'subject' => [
                 'required',
                 'string',
                 'max:255',
-                'regex:/^[a-zA-Z0-9\s]*$/',
             ],
             'message' => [
                 'required',
                 'string',
                 'max:500',
-                'regex:/^[a-zA-Z0-9\s.,!?]*$/',
             ],
         ]);
 
-        // Process the form submission
+        $contactData = $request->all();
 
-        return redirect()->route('contact.page')->with('success', 'Thank you for contacting us. You will heard back soon.');
+        // Save the query to the database
+        \App\Models\ContactQuery::create($contactData);
+
+        // Send email using Mailtrap
+        Mail::to(env('MAIL_FROM_ADDRESS'))->send(new ContactFormMail($contactData));
+
+        return redirect()->route('contact.page')->with('success', 'Thank you for contacting us. You will hear back soon.');
     }
 }
