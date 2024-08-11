@@ -4,11 +4,11 @@ namespace App\Http\Controllers\admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Order;
-use App\Models\Product;
 use Illuminate\Http\Request;
 
 class AdminOrderController extends Controller
 {
+
     /**
      * Display a listing of the resource.
      */
@@ -18,9 +18,12 @@ class AdminOrderController extends Controller
 
         $items = Order::with('user')
                       ->when($search, function ($query, $search) {
-                          return $query->whereHas('user', function ($query) use ($search) {
-                              $query->where('name', 'like', "%{$search}%");
-                          });
+                          return $query->whereHas(
+                            'user',
+                            function ($query) use ($search) {
+                                $query->where('name', 'like', "%{$search}%");
+                            }
+                          );
                       })
                       ->orderByDesc('id')
                       ->paginate(20);
@@ -34,43 +37,17 @@ class AdminOrderController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
      * Display the specified resource.
      */
     public function show(string $id)
     {
-        //
-    }
+        $order = Order::with(
+          ['orderDetails.product', 'payments','transactions']
+        )->findOrFail($id);
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(string $id)
-    {
-        //
-    }
+        $title = "Order Details #$order->id";
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, string $id)
-    {
-        //
+        return view('admin.pages.order.show', compact('order', 'title'));
     }
 
     /**
@@ -80,4 +57,5 @@ class AdminOrderController extends Controller
     {
         //
     }
+
 }

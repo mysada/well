@@ -17,6 +17,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
  */
 class Order extends Model
 {
+
     use HasFactory;
 
     /**
@@ -56,6 +57,7 @@ class Order extends Model
         'delivery_date' => 'date',
     ];
 
+
     /**
      * Get the order details associated with the order.
      *
@@ -84,14 +86,19 @@ class Order extends Model
         return $this->hasMany(Payment::class);
     }
 
-
-    public function country()
+    public function country(): BelongsTo
     {
         return $this->belongsTo(Country::class, 'shipping_country', 'code');
     }
-  
+
     public function user(): BelongsTo
     {
-      return  $this->belongsTo(User::class);
+        return $this->belongsTo(User::class);
     }
+
+    public function transactions(): HasMany
+    {
+        return $this->hasMany(Transaction::class);
+    }
+
 }
