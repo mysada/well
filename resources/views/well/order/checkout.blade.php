@@ -15,12 +15,16 @@
                 @csrf
                 <!-- Shipping Address -->
                 <input type="hidden" name="order-id" value="{{ old('order-id', $id) }}">
+                @php
+                $defaultOrder = App\Models\Order::find($user->last_order_id);
+                @endphp
+
                 <div class="form-section">
                     <h4>Shipping Address</h4>
                     <div class="error-container">
                         <input type="text" name="shipping-name" placeholder="Name"
                                class="form-control @error('shipping-name') is-invalid @enderror"
-                               value="{{ old('shipping-name', $user->name ?? '') }}" required>
+                               value="{{ old('shipping-name', $defaultOrder->shipping_name ?? $user->name ?? '') }}" required>
                         @error('shipping-name')
                         <div class="invalid-feedback">{{ $message }}</div>
                         @enderror
@@ -29,7 +33,7 @@
                     <div class="error-container">
                         <input type="text" name="shipping-address" placeholder="Address"
                                class="form-control @error('shipping-address') is-invalid @enderror"
-                               value="{{ old('shipping-address', $user->shipping_address ?? '') }}" required>
+                               value="{{ old('shipping-address', $defaultOrder->shipping_address ?? $user->shipping_address ?? '') }}" required>
                         @error('shipping-address')
                         <div class="invalid-feedback">{{ $message }}</div>
                         @enderror

@@ -61,9 +61,9 @@ class Order extends Model
      *   OrderDetail models. It retrieves all the order details associated with
      *   a particular order.
      */
-    public function orderDetails(): HasMany
+    public function orderDetails()
     {
-        return $this->hasMany(OrderDetail::class);
+        return $this->hasMany(OrderDetail::class, 'order_id');
     }
 
     /**
@@ -94,5 +94,7 @@ class Order extends Model
     {
         return $this->hasMany(Transaction::class);
     }
+
+
 
 }
