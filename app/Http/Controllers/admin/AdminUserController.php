@@ -84,10 +84,28 @@ class AdminUserController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, $id)
     {
-        //
+        // Validate the incoming request data
+        $validatedData = $request->validate([
+            'full_name' => 'required|string|max:255',
+            'email' => 'required|email|unique:users,email,' . $id,
+            'phone' => 'nullable|string|max:15',
+            'address' => 'nullable|string|max:255',
+            'billing_address' => 'nullable|string|max:255',
+            'shipping_address' => 'nullable|string|max:255',
+        ]);
+
+        // Find the user by ID
+        $user = User::findOrFail($id);
+
+        // Update the user's details
+        $user->update($validatedData);
+
+        // Redirect back to the user edit page with a success message
+        return redirect()->route('AdminUserEdit', $user->id)->with('success', 'User updated successfully!');
     }
+
 
     /**
      * Remove the specified resource from storage.
