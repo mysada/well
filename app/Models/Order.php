@@ -80,6 +80,12 @@ class Order extends Model
         return $this->hasMany(Payment::class);
     }
 
+
+    public function country()
+    {
+        return $this->belongsTo(Country::class, 'shipping_country', 'code');
+    }
+  
     public function user(): BelongsTo
     {
       return  $this->belongsTo(User::class);
