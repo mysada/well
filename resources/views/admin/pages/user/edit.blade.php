@@ -45,3 +45,17 @@
                 <div class="text-red-600">{{ $message }}</div>
                 @enderror
             </div>
+            <!-- Phone -->
+            <div class="mb-4">
+                <label for="phone" class="block text-sm font-medium">Phone</label>
+                <input
+                    type="text"
+                    id="phone"
+                    name="phone"
+                    class="input input-bordered w-full"
+                    value="{{ old('phone', $user->phone) }}"
+                >
+                @error('phone')
+                <div class="text-red-600">{{ $message }}</div>
+                @enderror
+            </div>
