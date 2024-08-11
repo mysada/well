@@ -10,16 +10,31 @@ use App\Models\Review;
 
 class AdminReviewController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $reviews = Review::with('product', 'user')->paginate(10);
-        return view('admin.reviews.index', compact('reviews'));
+        $search = $request->input('search');
+
+        $title='Review Management - List';
+        $items = Review::with(['product', 'user'])
+                       ->when($search, function ($query, $search) {
+                           return $query->where('review_text', 'like', "%{$search}%")
+                                        ->orWhereHas('product', function ($query) use ($search) {
+                                            $query->where('name', 'like', "%{$search}%");
+                                        })
+                                        ->orWhereHas('user', function ($query) use ($search) {
+                                            $query->where('name', 'like', "%{$search}%");
+                                        });
+                       })
+                       ->orderByDesc('id')
+                       ->paginate(20);
+        return view('admin.pages.review.index', compact('items','title','search'));
     }
 
     public function edit($id)
     {
+        $title='Review Management - Edit';
         $review = Review::findOrFail($id);
-        return view('admin.reviews.edit', compact('review'));
+        return view('admin.pages.review.edit', compact('review','title'));
     }
 
     public function update(Request $request, $id)

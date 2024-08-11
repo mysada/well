@@ -1,146 +1,74 @@
 import $ from 'jquery';
 
-// Initialize empty arrays
-const countries = [];
-const provinces = [];
-let gstRate = 0;
-let pstRate = 0;
-const $countrySelects = $('#billing-country, #shipping-country');
-const $stateSelects = $('#billing-state, #shipping-state');
-const $sameAddressCheckbox = $('#same-address');
+let countries = [], provinces = [];
+
+const $shippingCountry = $('#shipping-country');
+const $caProvince = $('#ca-province');
+const $shippingState = $('#shipping-state');
+const $subtotal = $('#subtotal');
+const $shippingRate = $('#shipping_rate');
+const $gst = $('#gst');
+const $pst = $('#pst');
+const $cartTotal = $('#cart-total');
 const $billingAddressSection = $('#billing-address-section');
+const $sameAddress = $('#same-address');
+const $form = $('form');
 
-// Fetch data from API
 const fetchData = () => {
-  // Fetch countries
-  fetch('/api/countries')
-    .then(response => response.json())
-    .then(data => {
-      if (data.status === 'success') {
-        countries.push(...data.data);
-        console.log('Countries:', countries);
-        populateCountries();
-      } else {
-        console.error('Error fetching countries:', data.message);
-      }
-    })
-    .catch(error => console.error('Fetch error:', error));
-
-  // Fetch provinces
-  fetch('/api/provinces')
-    .then(response => response.json())
-    .then(data => {
-      if (data.status === 'success') {
-        provinces.push(...data.data);
-        console.log('Provinces:', provinces);
-        updateStateSelects(); // Ensure states are updated after provinces are fetched
-      } else {
-        console.error('Error fetching provinces:', data.message);
-      }
-    })
-    .catch(error => console.error('Fetch error:', error));
-};
-fetchData();
-
-// Populate country select boxes
-const populateCountries = () => {
-  $countrySelects.each(function () {
-    const $select = $(this);
-    $select.empty().append('<option value="">Select Country</option>');
-    countries.forEach(country => {
-      $select.append(new Option(country.name, country.code));
+  Promise.all([
+    $.getJSON('/api/countries'),
+    $.getJSON('/api/provinces'),
+  ])
+    .then(([countryData, provinceData]) => {
+      countries = countryData.status === 'success' ? countryData.data : [];
+      provinces = provinceData.status === 'success' ? provinceData.data : [];
     });
-
-    // Bind change event to update state/province selects
-    $select.change(() => {
-      const countryCode = $(this).val();
-      updateStateSelects(countryCode);
-      updateShippingCost(countryCode);
-    });
-  });
 };
 
-// Update states select based on country selection
-const updateStateSelects = (countryCode) => {
-  $stateSelects.each(function () {
-    const $stateSelect = $(this);
-    gstRate=0;
-    pstRate=0;
-    if (countryCode === 'CA') {
-      $stateSelect.show().empty().append('<option value="">Select Province</option>');
-      provinces
-        .filter(province => province.country_code === 'CA')
-        .forEach(province => {
-          $stateSelect.append(new Option(province.name, province.short_name));
-        });
-    } else {
-      $stateSelect.hide().empty();
-    }
-    updateShippingCost();
-  });
-};
-
-// Update shipping cost based on country selection
-const updateShippingCost = (countryCode) => {
-  const country = countries.find(c => c.code === countryCode);
-  const shippingRate = country ? parseFloat(country.shipping_rate) : 0;
-  $('#shipping_rate').text(shippingRate.toFixed(2));
-  calculate();
-};
-
-// Bind change event to update taxes based on province selection
-$('#shipping-state').change(function () {
-  const provinceCode = $(this).val();
-  updateTaxes(provinceCode);
-});
-// Update taxes based on province selection
-const updateTaxes = (provinceCode) => {
-  if ($('#shipping-country').val() === 'CA') {
-    const province = provinces.find(p => p.short_name === provinceCode);
-    gstRate = province ? parseFloat(province.gst_rate) : 0;
-    pstRate = province ? parseFloat(province.pst_rate) : 0;
-  }
-  calculate();
+const toggleProvince = () => {
+  const isCanada = $shippingCountry.val() === 'CA';
+  $caProvince.toggle(isCanada).prop('disabled', !isCanada);
+  $shippingState.toggle(!isCanada).prop('disabled', isCanada).val('');
 };
 
 const calculate = () => {
-  const subtotal = parseFloat($('#subtotal').text());
-  const shippingFee = parseFloat($('#shipping_rate').text());
-  const gst = (subtotal * gstRate / 100).toFixed(2);
-  const pst = (subtotal * pstRate / 100).toFixed(2);
-  const total = (subtotal + shippingFee + parseFloat(gst) + parseFloat(pst)).toFixed(2);
+  const countryCode = $shippingCountry.val();
+  const subtotal = parseFloat($subtotal.text()) || 0;
+  const shippingFee = parseFloat($shippingRate.text()) || 0;
+  let gst = 0, pst = 0;
 
-  $('#gst').text(gst);
-  $('#pst').text(pst);
-  $('#cart-total').text(total);
+  if (countryCode === 'CA') {
+    const province = provinces.find(p => p.short_name === $caProvince.val());
+    gst = subtotal * (parseFloat(province?.gst_rate) || 0) / 100;
+    pst = subtotal * (parseFloat(province?.pst_rate) || 0) / 100;
+  }
+
+  const total = subtotal + shippingFee + gst + pst;
+  $gst.text(gst.toFixed(2));
+  $pst.text(pst.toFixed(2));
+  $cartTotal.text(total.toFixed(2));
 };
 
-// Bind change event to country selects
-$countrySelects.each(function () {
-  const $select = $(this);
-  $select.change(() => {
-    const countryCode = $(this).val();
-    updateStateSelects(countryCode);
-    updateShippingCost(countryCode);
-  });
-
-  // Trigger change event to populate states on page load
-  $select.trigger('change');
+$shippingCountry.on('change', () => {
+  toggleProvince();
+  const country = countries.find(c => c.code === $shippingCountry.val());
+  $shippingRate.text((parseFloat(country?.shipping_rate) || 0).toFixed(2));
+  calculate();
 });
 
-// Toggle billing address section
-$sameAddressCheckbox.change(() => {
-  if ($sameAddressCheckbox.is(':checked')) {
-    $billingAddressSection.hide();
-    $('.billing-form input, .billing-form select').prop('disabled', true);
-  } else {
-    $billingAddressSection.show();
-    $('.billing-form input, .billing-form select').prop('disabled', false);
-  }
+$caProvince.on('change', calculate);
+
+$sameAddress.on('change', (e) => {
+  $billingAddressSection.toggle(!e.target.checked);
 });
 
-// Initial toggle state on page load
-if ($sameAddressCheckbox.is(':checked')) {
-  $billingAddressSection.hide();
-  $('.billing-form input, .billing-form select').prop('disabled', true);
-}
+$form.on('submit', () => {
+  $caProvince.prop('disabled', $caProvince.is(':hidden'));
+  $shippingState.prop('disabled', $shippingState.is(':hidden'));
+});
+
+$(async () => {
+  await fetchData();
+  toggleProvince();
+  calculate();
+});

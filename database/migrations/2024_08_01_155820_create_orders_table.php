@@ -14,24 +14,26 @@ return new class extends Migration {
         Schema::create('orders', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')
-                  ->constrained('users');
+                ->constrained('users');
             $table->integer('quantity')->nullable();
             $table->decimal('pre_tax_amount', 10, 2)->nullable();
             $table->decimal('post_tax_amount', 10, 2)->nullable();
             $table->decimal('gst', 10, 2)->nullable();
             $table->decimal('pst', 10, 2)->nullable();
-            $table->string('recipient_name', 255)->nullable();
-            $table->string('recipient_email', 255)->nullable();
-            $table->string('recipient_phone', 255)->nullable();
+            $table->decimal('shipping_rate', 10, 2)->nullable();
+            $table->string('shipping_name', 255)->nullable();
+            $table->string('shipping_email', 255)->nullable();
+            $table->string('shipping_phone', 255)->nullable();
             $table->string('shipping_address', 255)->nullable();
             $table->string('shipping_city', 100)->nullable();
             $table->string('shipping_province', 100)->nullable();
             $table->string('shipping_country', 100)->nullable();
-            $table->string('shipping_postal_code', 10)->nullable()->nullable();
-            $table->string('coupon_code', 20)->nullable()->nullable();
+            $table->string('shipping_postal_code', 10)->nullable();
+            $table->string('coupon_code', 20)->nullable();
+            $table->date('delivery_date')->nullable();
             $table->enum(
-              'status',
-              ['Pending', 'Shipped', 'Delivered', 'Cancelled']
+                'status',
+                ['Pending', 'Confirmed', 'Shipped', 'Delivered', 'Cancelled']
             );
             $table->timestamps();
             $table->softDeletes();

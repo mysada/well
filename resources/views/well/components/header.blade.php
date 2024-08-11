@@ -11,13 +11,16 @@
                     <a class="nav-link {{ request()->is('/') ? 'active' : '' }}" href="{{ route('home') }}">Home</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link {{ request()->is('products') ? 'active' : '' }}" href="{{ route('products.index') }}">Shop</a>
+                    <a class="nav-link {{ request()->is('products') ? 'active' : '' }}"
+                       href="{{ route('products.index') }}">Shop</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link {{ request()->is('about') ? 'active' : '' }}" href="{{ route('about') }}">About Us</a>
+                    <a class="nav-link {{ request()->is('about') ? 'active' : '' }}" href="{{ route('about') }}">About
+                        Us</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link {{ request()->is('contact') ? 'active' : '' }}" href="{{ route('contact.page') }}">Contact Us</a>
+                    <a class="nav-link {{ request()->is('contact') ? 'active' : '' }}"
+                       href="{{ route('contact.page') }}">Contact Us</a>
                 </li>
 
                 @guest
@@ -25,7 +28,8 @@
                         <a class="nav-link {{ request()->is('login') ? 'active' : '' }}" href="{{ route('login') }}">Login</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link {{ request()->is('register') ? 'active' : '' }}" href="{{ route('register') }}">Register</a>
+                        <a class="nav-link {{ request()->is('register') ? 'active' : '' }}"
+                           href="{{ route('register') }}">Register</a>
                     </li>
                 @else
                     <li class="nav-item dropdown">
@@ -34,10 +38,14 @@
                             {{ Auth::user()->name }}
                         </a>
                         <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <li><a class="dropdown-item" href="{{ url('/profile') }}">Profile</a></li>
+                            @if(Auth::user()->is_admin)
+                                <li><a class="dropdown-item" href="{{ route('admin.home') }}">Dashboard</a></li>
+                            @endif
+                            <li><a class="dropdown-item" href="{{route('user.profile')}}">Profile</a></li>
                             <li><a class="dropdown-item" href="{{ route('WishlistIndex') }}">Wishlist</a></li>
                             <li><a class="dropdown-item" href="{{ route('logout') }}"
-                                   onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Logout</a></li>
+                                   onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Logout</a>
+                            </li>
                             <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                                 @csrf
                             </form>

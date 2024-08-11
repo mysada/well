@@ -1,10 +1,10 @@
 @extends('admin.admin')
 
 @section('content')
-    <div class="container mx-auto p-4">
+    <div class="container mx-auto">
         <div class="flex justify-between">
-            <h1 class="text-4xl font-bold mb-4">Add New Product</h1>
-            <a href="{{ route('AdminProductList') }}" class="btn btn-primary mb-3">Back to Product List</a>
+            <div></div>
+            <a href="{{ route('AdminProductList') }}" class="btn  btn-primary mb-3">Back to Product List</a>
         </div>
         <form action="{{ route('AdminProductStore') }}" method="POST" enctype="multipart/form-data">
             @csrf
@@ -111,7 +111,7 @@
                     <div class="text-red-500 text-sm mt-1">{{ $message }}</div>
                     @enderror
                 </div>
-                <button type="submit" class="btn btn-primary w-full ">Add Product</button>
+                <button type="submit" class="btn  btn-primary w-full ">Add Product</button>
 
             </div>
 

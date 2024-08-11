@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers\admin;
-
+use App\Models\User;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
@@ -10,10 +10,42 @@ class AdminUserController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
+        $search = $request->input('search');
+        $role = $request->input('role');
+        $sort = $request->input('sort');
+        $perPage = $request->input('per_page', 10);
+
+        $query = User::query();
+
+        if ($search) {
+            $query->where(function($query) use ($search) {
+                $query->where('name', 'like', "%{$search}%")
+                    ->orWhere('email', 'like', "%{$search}%");
+            });
+        }
+
+        if ($role) {
+            $query->where('is_admin', $role === 'admin');
+        }
+
+        if ($sort) {
+            $query->orderBy('name', $sort);
+        }
+
+        $users = $query->paginate($perPage);
+
+        return view('admin.pages.user.index', [
+            'users' => $users,
+            'search' => $search,
+            'role' => $role,
+            'sort' => $sort,
+            'per_page' => $perPage,
+        ]);
     }
+
+
 
     /**
      * Show the form for creating a new resource.
@@ -42,10 +74,12 @@ class AdminUserController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit($id)
     {
-        //
+        $user = User::findOrFail($id);
+        return view('admin.pages.user.edit', compact('user'));
     }
+
 
     /**
      * Update the specified resource in storage.
@@ -62,4 +96,6 @@ class AdminUserController extends Controller
     {
         //
     }
+
+
 }

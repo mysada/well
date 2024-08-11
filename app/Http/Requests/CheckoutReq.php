@@ -6,53 +6,39 @@ use Illuminate\Foundation\Http\FormRequest;
 
 class CheckoutReq extends FormRequest
 {
-
-    /**
-     * Determine if the user is authorized to make this request.
-     */
     public function authorize(): bool
     {
         return true;
     }
 
-    /**
-     * Get the validation rules that apply to the request.
-     *
-     * @return array<string, \Illuminate\Contracts\Validation\ValidationRule|array<mixed>|string>
-     */
     public function rules(): array
     {
         return [
-          'order-id'         => 'required|exists:orders,id',
-          'card-number'      => 'required|digits:16',
-          'card-name'        => 'required|alpha',
-          'card-expiry'      => 'required|size:4',
-          'card-cvc'         => 'required|digits:3',
-          'card-type'        => 'required|in:visa,mastercard,amex',
-          'shipping-name'    => 'required|alpha',
-          'shipping-address' => 'required|string',
-          'shipping-city'    => 'required|alpha',
-          'shipping-country' => 'required|exists:countries,code',
-          'shipping-zip'     => 'required|string',
-          'shipping-email'   => 'required|email',
-          'shipping-phone'   => 'required|digits_between:10,15',
-          'shipping-state'   => 'nullable|string',
-          'billing-name'     => 'nullable|alpha',
-          'billing-address'  => 'nullable|string',
-          'billing-city'     => 'nullable|alpha',
-          'billing-country'  => 'nullable|exists:countries,code',
-          'billing-zip'      => 'nullable|string',
-          'billing-email'    => 'nullable|email',
-          'billing-phone'    => 'nullable|digits_between:10,15',
+            'order-id'         => 'required|exists:orders,id',
+            'card-number'      => 'required|digits_between:13,16',
+            'card-name'        => 'required|string',
+            'card-expiry'      => 'required|size:4',
+            'card-cvc'         => 'required|digits:3',
+            'shipping-name'    => 'required|string',
+            'shipping-address' => 'required|string',
+            'shipping-city'    => 'required|string',
+            'shipping-country' => 'required|exists:countries,code',
+            'shipping-zip'     => 'required|string',
+            'shipping-email'   => 'required|email',
+            'shipping-phone'   => 'required|digits_between:10,15',
+            'shipping-state'   => 'nullable|string',
+            'ca-province'   => 'nullable|string',
+            'billing-name'     => 'nullable|string',
+            'billing-address'  => 'nullable|string',
+            'billing-city'     => 'nullable|string',
+            'billing-country'  => 'nullable|exists:countries,code',
+            'billing-zip'      => 'nullable|string',
+            'billing-email'    => 'nullable|email',
+            'billing-phone'    => 'nullable|digits_between:10,15',
+            'same-address' =>'nullable'
         ];
     }
 
-
-    /**
-     * Get the custom validation messages.
-     *
-     * @return array<string, string>
-     */
     public function messages(): array
     {
         return [
@@ -67,7 +53,6 @@ class CheckoutReq extends FormRequest
             'card-cvc.regex'            => 'CVC must be exactly 3 digits.',
             'card-type.required'        => 'Please select a card type.',
             'card-type.in'              => 'Please select a valid card type.',
-
             // Shipping Information
             'shipping-name.required'    => 'Please enter a valid name.',
             'shipping-name.regex'       => 'Name must only contain letters and spaces.',
@@ -83,7 +68,6 @@ class CheckoutReq extends FormRequest
             'shipping-email.email'      => 'Please enter a valid email address.',
             'shipping-phone.required'   => 'Please enter a valid phone number.',
             'shipping-phone.regex'      => 'Phone number must be between 10 and 15 digits.',
-
             // Billing Information
             'billing-name.regex'        => 'Name must only contain letters and spaces.',
             'billing-address.regex'     => 'Address can include letters, numbers, spaces, commas, and dashes.',
