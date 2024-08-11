@@ -17,6 +17,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
  */
 class Order extends Model
 {
+
     use HasFactory;
 
     /**
@@ -25,32 +26,32 @@ class Order extends Model
      * @var array
      */
     protected $fillable
-        = [
-            'user_id',
-            'pre_tax_amount',
-            'post_tax_amount',
-            'gst',
-            'pst',
-            'quantity',
-            'shipping_name',
-            'shipping_email',
-            'shipping_phone',
-            'shipping_address',
-            'shipping_city',
-            'shipping_province',
-            'shipping_country',
-            'shipping_postal_code',
-            'billing_name',
-            'billing_email',
-            'billing_phone',
-            'billing_address',
-            'billing_city',
-            'billing_province',
-            'billing_country',
-            'billing_postal_code',
-            'coupon_code',
-            'status',
-        ];
+      = [
+        'user_id',
+        'pre_tax_amount',
+        'post_tax_amount',
+        'gst',
+        'pst',
+        'quantity',
+        'shipping_name',
+        'shipping_email',
+        'shipping_phone',
+        'shipping_address',
+        'shipping_city',
+        'shipping_province',
+        'shipping_country',
+        'shipping_postal_code',
+        'billing_name',
+        'billing_email',
+        'billing_phone',
+        'billing_address',
+        'billing_city',
+        'billing_province',
+        'billing_country',
+        'billing_postal_code',
+        'coupon_code',
+        'status',
+      ];
 
     /**
      * Get the order details associated with the order.
@@ -80,14 +81,19 @@ class Order extends Model
         return $this->hasMany(Payment::class);
     }
 
-
-    public function country()
+    public function country(): BelongsTo
     {
         return $this->belongsTo(Country::class, 'shipping_country', 'code');
     }
-  
+
     public function user(): BelongsTo
     {
-      return  $this->belongsTo(User::class);
+        return $this->belongsTo(User::class);
     }
+
+    public function transactions(): HasMany
+    {
+        return $this->hasMany(Transaction::class);
+    }
+
 }

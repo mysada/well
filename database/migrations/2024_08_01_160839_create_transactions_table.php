@@ -25,7 +25,8 @@ return new class extends Migration {
                   ->default('Pending');
             $table->text('response')->nullable();
 
-            $table->timestamps(); // 保留时间戳
+            $table->timestamps();
+            $table->softDeletes();
         });
     }
 
