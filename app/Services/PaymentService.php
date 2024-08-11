@@ -87,7 +87,7 @@ class PaymentService
                   'post_tax_amount'      => $totalAmount,
                   'gst'                  => $gstAmount,
                   'pst'                  => $pstAmount,
-                  'status'               => 'CONFIRMED',
+                  'status'               => 'Confirmed',
                   'shipping_rate'        => $shippingRate,
                   'shipping_name'        => $req['shipping-name'],
                   'shipping_email'       => $req['shipping-email'],

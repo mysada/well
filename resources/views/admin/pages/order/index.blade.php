@@ -30,8 +30,8 @@
                     <th>ID</th>
                     <th>User</th>
                     <th>Quantity</th>
-                    <th>Pre-Tax Amount</th>
-                    <th>Post-Tax Amount</th>
+                    <th>Pre-Tax</th>
+                    <th>Post-Tax</th>
                     <th>Status</th>
                     <th>Recipient</th>
                     <th>Order Time</th>
@@ -56,6 +56,7 @@
                                     'Pending'    => 'badge-default',
                                     'Shipped'    => 'badge-neutral',
                                     'Delivered'  => 'badge-primary',
+                                    'Confirmed'  => 'badge-primary',
                                     'Cancelled'  => 'badge-secondary'
                                 ];
                                 $statusClass = $statusClasses[$order->status] ?? 'badge-ghost';
@@ -65,7 +66,7 @@
                             </div>
                         </td>
                         <td>
-                            <p>{{ $order->recipient_name }}</p>
+                            <p>{{ $order->shipping_name }}</p>
                             <p class="opacity-75 text-sm">{{ $order->recipient_email }}</p>
                             <p class="opacity-75 text-sm">{{ $order->recipient_phone }}</p>
                         </td>

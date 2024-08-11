@@ -8,6 +8,7 @@ use App\Http\Requests\CheckoutReq;
 use App\Models\CartItem;
 use App\Models\Country;
 use App\Models\Order;
+use App\Models\Province;
 use App\Services\PaymentService;
 use Illuminate\Support\Facades\Auth;
 
@@ -24,12 +25,12 @@ class CheckoutController extends Controller
     public function showCheckout(int $id)
     {
         $countries = Country::all();
-        $user      = Auth::user();
+        $provinces = Province::where('country_code', 'CA')->get();
         $order     = Order::find($id);
 
         return view(
           'well.order.checkout',
-          compact('countries', 'order', 'user', 'id')
+          compact('countries', 'order', 'id', 'provinces')
         );
     }
 
@@ -46,9 +47,9 @@ class CheckoutController extends Controller
 
         // Redirect to the thank you page with order ID
         return RouterTools::success(
-            "Payment processed successfully.",
-            'thankyou',
-            ['orderId' => $order->id]
+          "Payment processed successfully.",
+          'thankyou',
+          ['orderId' => $order->id]
         );
     }
 
