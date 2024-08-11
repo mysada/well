@@ -153,4 +153,16 @@ class AdminUserController extends Controller
         // Redirect back to the deleted users list with a success message
         return redirect()->route('AdminUserDeleted')->with('success', 'User restored successfully!');
     }
+
+    public function forceDelete($id)
+    {
+        // Find the soft deleted user by ID
+        $user = User::onlyTrashed()->findOrFail($id);
+
+        // Permanently delete the user
+        $user->forceDelete();
+
+        // Redirect back to the deleted users list with a success message
+        return redirect()->route('AdminUserDeleted')->with('success', 'User permanently deleted successfully!');
+    }
 }
