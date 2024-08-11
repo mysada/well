@@ -49,7 +49,11 @@ class Order extends Model
             'billing_postal_code',
             'coupon_code',
             'status',
+            'delivery_date',
         ];
+    protected $casts = [
+        'delivery_date' => 'date',
+    ];
 
     /**
      * Get the order details associated with the order.

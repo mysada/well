@@ -10,6 +10,7 @@ use App\Models\Transaction;
 use Exception;
 use Illuminate\Support\Facades\DB;
 use Pacewdd\Bx\_5bx;
+use Carbon\Carbon;
 
 class PaymentService
 {
@@ -32,6 +33,20 @@ class PaymentService
         $req = $request->validated();
         $order = Order::with('orderDetails')->find($req['order-id']);
         $country = Country::where('code', $req['shipping-country'])->first();
+
+        // Calculate delivery date
+        $deliveryDays = 3; // Default minimum days
+        if ($country && $country->shipping_rate) {
+            $deliveryDays = 7;
+        }
+
+        $estimatedDeliveryDate = Carbon::now()->addDays($deliveryDays);
+
+        $order->delivery_date = $estimatedDeliveryDate;
+
+        $order->save();
+
+
         $gstAmount = 0;
         $pstAmount = 0;
         $amount = $order->orderDetails->sum('total_price'); // Calculate total amount from order details
@@ -78,7 +93,7 @@ class PaymentService
                     'post_tax_amount' => $totalAmount - ($gstAmount + $pstAmount),
                     'gst' => $gstAmount,
                     'pst' => $pstAmount,
-                    'status' => 'Shipped',
+                    'status' => 'CONFIRMED',
                     'shipping_name' => $req['shipping-name'],
                     'shipping_email' => $req['shipping-email'],
                     'shipping_phone' => $req['shipping-phone'],
