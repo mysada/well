@@ -2,23 +2,31 @@
 
 @section('content')
     <div class="container mx-auto">
+
+        <!-- Create User Button -->
+        <div class="flex justify-start mb-4">
+            <a href="{{ route('AdminUserCreate') }}" class="btn btn-primary">
+                Create User
+            </a>
+        </div>
+
         <!-- Search and Filters -->
         <form method="GET" action="{{ route('AdminUserList') }}" class="mb-4">
             <div class="flex flex-wrap justify-end -mx-2">
                 <!-- Search Input -->
-                <div class="w-full sm:w-1/2 md:w-1/3 lg:w-1/4 px-2 mb-4 sm:mb-0">
+                <div class="w-full sm:w-1/2 md:w-1/4 px-2 mb-4 sm:mb-0">
                     <input
                         type="text"
                         name="search"
-                        class="input input-bordered w-full px-4 py-2"
+                        class="input input-bordered w-full"
                         placeholder="Search..."
                         value="{{ request('search') }}"
                     >
                 </div>
 
                 <!-- Role Filter -->
-                <div class="w-full sm:w-1/2 md:w-1/3 lg:w-1/4 px-2 mb-4 sm:mb-0">
-                    <select name="role" class="input input-bordered w-full px-4 py-2">
+                <div class="w-full sm:w-1/2 md:w-1/4 px-2 mb-4 sm:mb-0">
+                    <select name="role" class="input input-bordered w-full">
                         <option value="">All Roles</option>
                         <option value="admin" {{ request('role') === 'admin' ? 'selected' : '' }}>Admin</option>
                         <option value="customer" {{ request('role') === 'customer' ? 'selected' : '' }}>Customer</option>
@@ -26,8 +34,8 @@
                 </div>
 
                 <!-- Name Sort Order Filter -->
-                <div class="w-full sm:w-1/2 md:w-1/3 lg:w-1/4 px-2 mb-4 sm:mb-0">
-                    <select name="sort" class="input input-bordered w-full px-4 py-2">
+                <div class="w-full sm:w-1/2 md:w-1/4 px-2 mb-4 sm:mb-0">
+                    <select name="sort" class="input input-bordered w-full">
                         <option value="">Sort by Name</option>
                         <option value="asc" {{ request('sort') === 'asc' ? 'selected' : '' }}>A to Z</option>
                         <option value="desc" {{ request('sort') === 'desc' ? 'selected' : '' }}>Z to A</option>
@@ -35,8 +43,8 @@
                 </div>
 
                 <!-- Items Per Page Selector -->
-                <div class="w-full sm:w-1/2 md:w-1/3 lg:w-1/4 px-2 mb-4 sm:mb-0">
-                    <select name="per_page" class="input input-bordered w-full px-4 py-2">
+                <div class="w-full sm:w-1/2 md:w-1/4 px-2 mb-4 sm:mb-0">
+                    <select name="per_page" class="input input-bordered w-full">
                         <option value="10" {{ request('per_page') == '10' ? 'selected' : '' }}>10 per page</option>
                         <option value="25" {{ request('per_page') == '25' ? 'selected' : '' }}>25 per page</option>
                         <option value="50" {{ request('per_page') == '50' ? 'selected' : '' }}>50 per page</option>
@@ -45,7 +53,7 @@
 
                 <!-- Apply Button -->
                 <div class="w-auto px-2">
-                    <button type="submit" class="btn btn-primary w-full sm:w-auto px-4 py-2">Apply Filters</button>
+                    <button type="submit" class="btn btn-primary">Apply Filters</button>
                 </div>
             </div>
         </form>
@@ -55,13 +63,13 @@
             <table class="table w-full">
                 <thead>
                 <tr>
-                    <th class="text-left">#</th>
-                    <th class="text-left">Name</th>
-                    <th class="text-left">Email</th>
-                    <th class="text-left">Role</th>
-                    <th class="text-left">Created At</th>
-                    <th class="text-left">Details</th>
-                    <th class="text-left">Actions</th>
+                    <th>#</th>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Role</th>
+                    <th>Created At</th>
+                    <th>Details</th>
+                    <th>Actions</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -76,21 +84,15 @@
                         <td>{{ $user->created_at->format('Y-m-d H:i') }}</td>
                         <td class="text-center">
                             <!-- Trigger Modal -->
-                            <button class="btn btn-secondary btn-sm" onclick="openModal({{ $user->id }})">
-                                View Details
-                            </button>
+                            <button class="btn btn-secondary btn-sm" onclick="openModal({{ $user->id }})">View Details</button>
                         </td>
                         <td class="text-center">
                             @if ($user->id !== auth()->id())
-                                <a href="{{ route('AdminUserEdit', $user->id) }}" class="btn btn-primary join-item flex-1">
-                                    Edit
-                                </a>
+                                <a href="{{ route('AdminUserEdit', $user->id) }}" class="btn btn-primary join-item">Edit</a>
                                 <form action="{{ route('AdminUserDestroy', $user->id) }}" method="POST" class="inline-block">
                                     @csrf
                                     @method('DELETE')
-                                    <button type="submit" class="btn join-item" onclick="return confirm('Are you sure?')">
-                                        Delete
-                                    </button>
+                                    <button type="submit" class="btn join-item" onclick="return confirm('Are you sure?')">Delete</button>
                                 </form>
                             @else
                                 <span class="text-muted">You</span>
