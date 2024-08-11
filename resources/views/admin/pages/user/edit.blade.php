@@ -74,3 +74,18 @@
                 <div class="text-red-600">{{ $message }}</div>
                 @enderror
             </div>
+
+            <!-- Billing Address -->
+            <div class="mb-4">
+                <label for="billing_address" class="block text-sm font-medium">Billing Address</label>
+                <input
+                    type="text"
+                    id="billing_address"
+                    name="billing_address"
+                    class="input input-bordered w-full"
+                    value="{{ old('billing_address', $user->billing_address) }}"
+                >
+                @error('billing_address')
+                <div class="text-red-600">{{ $message }}</div>
+                @enderror
+            </div>
