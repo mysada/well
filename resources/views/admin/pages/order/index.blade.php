@@ -42,7 +42,7 @@
                 @foreach ($items as $order)
                     <tr class="hover">
                         <td>
-                            <a href="{{ route('AdminOrderShow', $order->id) }}"> {{ $order->id }}</a>
+                            <a class="link-primary link" href="{{ route('AdminOrderShow', $order->id) }}"> {{ $order->id }}</a>
                         </td>
                         <td>
                                 {{ $order->user->name }}
