@@ -79,7 +79,7 @@
                         </select>
                     </div>
 
-                    <button type="submit" class="btn btn-primary w-full">Create User</button>
+                    <button type="submit" class="btn btn-primary w-half">Create User</button>
                 </form>
             </div>
         </div>
