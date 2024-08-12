@@ -73,7 +73,7 @@
                 </tr>
                 </thead>
                 <tbody>
-                @forelse ($users as $user)
+                @forelse ($items as $user)
                     <tr>
                         <td>{{ $user->id }}</td>
                         <td>{{ $user->name }}</td>
@@ -104,36 +104,12 @@
             </table>
         </div>
 
-        <!-- Pagination Links -->
-        <div class="mt-4 flex justify-center">
-            <div class="join">
-                <!-- Previous Page Button -->
-                @if ($users->onFirstPage())
-                    <button class="join-item btn btn-disabled">Previous</button>
-                @else
-                    <a href="{{ $users->previousPageUrl() }}&{{ http_build_query(request()->except('page')) }}" class="join-item btn">Previous</a>
-                @endif
+        @include('admin.components.pagination')
 
-                <!-- Page Number Buttons -->
-                @foreach ($users->getUrlRange(1, $users->lastPage()) as $page => $url)
-                    @if ($page == $users->currentPage())
-                        <button class="join-item btn btn-active btn-primary">{{ $page }}</button>
-                    @else
-                        <a href="{{ $url }}&{{ http_build_query(request()->except('page')) }}" class="join-item btn">{{ $page }}</a>
-                    @endif
-                @endforeach
 
-                <!-- Next Page Button -->
-                @if ($users->hasMorePages())
-                    <a href="{{ $users->nextPageUrl() }}&{{ http_build_query(request()->except('page')) }}" class="join-item btn">Next</a>
-                @else
-                    <button class="join-item btn btn-disabled">Next</button>
-                @endif
-            </div>
-        </div>
 
         <!-- User Details Modal -->
-        @foreach ($users as $user)
+        @foreach ($items as $user)
             <div id="modal-{{ $user->id }}" class="modal">
                 <div class="modal-box w-11/12 max-w-3xl">
                     <h3 class="font-bold text-2xl mb-4 text-center">User Details</h3>
