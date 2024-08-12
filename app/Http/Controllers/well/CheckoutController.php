@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\CheckoutReq;
 use App\Models\CartItem;
 use App\Models\Country;
+use App\Models\DefaultAddress;
 use App\Models\Order;
 use App\Models\Province;
 use App\Services\PaymentService;
@@ -36,10 +37,19 @@ class CheckoutController extends Controller
               ]
             );
         }
+        $user = Auth::user();
+        $defaultAddr = DefaultAddress::where('user_id', $user->id)->first();
 
         return view(
           'well.order.checkout',
-          compact('countries', 'order', 'id', 'provinces')
+          compact(
+            'countries',
+            'order',
+            'id',
+            'provinces',
+            'user',
+            'defaultAddr'
+          )
         );
     }
 
