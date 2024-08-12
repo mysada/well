@@ -5,6 +5,7 @@ namespace App\Http\Controllers\admin;
 use App\Http\Controllers\Controller;
 use App\Models\Product;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Storage;
 
 class AdminProductController extends Controller
@@ -29,6 +30,7 @@ class AdminProductController extends Controller
                         ->paginate(20);
 
         $title = 'Product Management - List';
+        Log::info('Manual log test');
 
         return view(
           'admin.pages.product.index',

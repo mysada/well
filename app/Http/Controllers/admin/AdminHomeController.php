@@ -21,7 +21,7 @@ class AdminHomeController extends Controller
     /**
      * Fetch logs from the log file.
      */
-    protected function getLogs()
+    protected function getLogs(): array
     {
         $logFile = storage_path('logs/laravel.log');
         $logs = [];

@@ -64,18 +64,27 @@
                 <tbody>
                 @foreach($logs as $log)
                     @php
-                        // Example: [2024-08-09 14:00:01] local.INFO: User logged in successfully {"user_id":1}
-                        preg_match('/\[(.*?)\].*?(\w+)\.(\w+): (.*?)(\{.*\})/', $log, $matches);
+                        // Adjusting the regex to match the log format and capture context correctly
+                        preg_match('/\[(.*?)\] (.*?)\.(\w+): (.*?) (\{.*\})?/', $log, $matches);
                         $time = $matches[1] ?? '';
                         $level = $matches[3] ?? '';
                         $message = $matches[4] ?? '';
-                        $context = $matches[5] ?? '';
+                        $contextJson = $matches[5] ?? '{}'; // Capture the JSON context
+                        $context = json_decode($contextJson, true); // Decode the JSON
                     @endphp
                     <tr>
                         <td>{{ $time }}</td>
                         <td>{{ $level }}</td>
                         <td>{{ $message }}</td>
-                        <td>{{ $context }}</td>
+                        <td>
+                            @if(!empty($context) && json_last_error() === JSON_ERROR_NONE)
+                                User ID: {{ $context['user_id'] ?? 'N/A' }},
+                                Name: {{ $context['name'] ?? 'N/A' }}
+
+                            @else
+                                N/A
+                            @endif
+                        </td>
                     </tr>
                 @endforeach
                 </tbody>
