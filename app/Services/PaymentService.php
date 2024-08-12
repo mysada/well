@@ -43,12 +43,17 @@ class PaymentService
         $amount           = $order->orderDetails->sum('total_price');
 
         if ($countryCode === 'CA') {
+            $caProvince = null;
             foreach ($country->provinces as $province) {
                 if ($province->short_name === $shippingProvince) {
-                    $gstAmount = $amount * ($province->gst_rate / 100);
-                    $pstAmount = $amount * ($province->pst_rate / 100);
+                    $gstAmount  = $amount * ($province->gst_rate / 100);
+                    $pstAmount  = $amount * ($province->pst_rate / 100);
+                    $caProvince = $province;
                     break;
                 }
+            }
+            if (empty($caProvince)) {
+                throw new \Exception('Error Canada Province');
             }
         }
 
@@ -68,14 +73,13 @@ class PaymentService
         $billingCountry    = $req['billing-country'] ??
                              $countryCode;
         $billingPostalCode = $req['billing-zip'] ?? $req['shipping-zip'];
-
-        $fiveBxResp = $this->fiveBx(
+        $fiveBxResp        = $this->fiveBx(
           $totalAmount,
           $req['card-number'],
           $req['card-expiry'],
           $req['card-cvc'],
           $req['order-id'],
-          $req['card-type']
+          $this->getCardType($req['card-number'])
         );
 
         if ($fiveBxResp->result_code === 'ok') {
@@ -87,7 +91,7 @@ class PaymentService
                   'post_tax_amount'      => $totalAmount,
                   'gst'                  => $gstAmount,
                   'pst'                  => $pstAmount,
-                  'status'               => 'CONFIRMED',
+                  'status'               => 'Confirmed',
                   'shipping_rate'        => $shippingRate,
                   'shipping_name'        => $req['shipping-name'],
                   'shipping_email'       => $req['shipping-email'],
@@ -136,7 +140,7 @@ class PaymentService
         }
     }
 
-    public function fiveBx(
+    private function fiveBx(
       float $amount,
       string $cardNum,
       string $expDate,
@@ -152,6 +156,24 @@ class PaymentService
         $this->transaction->card_type($cardType);
 
         return $this->transaction->authorize_and_capture();
+    }
+
+    /**
+     * @throws \Exception
+     */
+    private function getCardType($cardNumber): string
+    {
+        $len = strlen($cardNumber);
+        if (str_starts_with($cardNumber, '4') && ($len === 13 || $len === 16)) {
+            return 'visa';
+        }
+        if (preg_match('/^5[1-5]/', $cardNumber) && $len === 16) {
+            return 'mastercard';
+        }
+        if (preg_match('/^3[4,7]/', $cardNumber) && $len === 15) {
+            return 'amex';
+        }
+        throw new \Exception('Unsupported credit card');
     }
 
 }

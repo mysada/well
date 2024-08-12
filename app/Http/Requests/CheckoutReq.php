@@ -15,11 +15,10 @@ class CheckoutReq extends FormRequest
     {
         return [
             'order-id'         => 'required|exists:orders,id',
-            'card-number'      => 'required|digits:16',
+            'card-number'      => 'required|digits_between:13,16',
             'card-name'        => 'required|string',
             'card-expiry'      => 'required|size:4',
             'card-cvc'         => 'required|digits:3',
-            'card-type'        => 'required|in:visa,mastercard,amex',
             'shipping-name'    => 'required|string',
             'shipping-address' => 'required|string',
             'shipping-city'    => 'required|string',
@@ -28,6 +27,7 @@ class CheckoutReq extends FormRequest
             'shipping-email'   => 'required|email',
             'shipping-phone'   => 'required|digits_between:10,15',
             'shipping-state'   => 'nullable|string',
+            'ca-province'   => 'nullable|string',
             'billing-name'     => 'nullable|string',
             'billing-address'  => 'nullable|string',
             'billing-city'     => 'nullable|string',
@@ -35,6 +35,7 @@ class CheckoutReq extends FormRequest
             'billing-zip'      => 'nullable|string',
             'billing-email'    => 'nullable|email',
             'billing-phone'    => 'nullable|digits_between:10,15',
+            'same-address' =>'nullable'
         ];
     }
 

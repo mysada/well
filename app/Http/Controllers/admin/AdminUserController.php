@@ -74,10 +74,12 @@ class AdminUserController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit($id)
     {
-        //
+        $user = User::findOrFail($id);
+        return view('admin.pages.user.edit', compact('user'));
     }
+
 
     /**
      * Update the specified resource in storage.
