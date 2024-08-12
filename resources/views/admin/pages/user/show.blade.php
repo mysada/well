@@ -1,62 +1,52 @@
 @extends('admin.admin')
 
 @section('content')
-    <div class="container mx-auto">
+    <div class="container mx-auto max-w-4xl px-4 py-6">
 
         <!-- Back Button -->
-        <div class="flex justify-start mb-4">
+        <div class="flex justify-start mb-6">
             <a href="{{ route('AdminUserList') }}" class="btn btn-primary">
                 Back to List
             </a>
         </div>
 
         <!-- User Details Card -->
-        <div class="card bg-base-100 shadow-xl">
-            <div class="card-body">
-                <h2 class="card-title text-2xl font-bold mb-4">User Details</h2>
-                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                    <div>
-                        <p class="font-semibold text-lg">Full Name:</p>
+        <div class="bg-white shadow-lg rounded-lg overflow-hidden">
+            <div class="p-6">
+                <h2 class="text-3xl font-bold mb-6 text-gray-900">User Details</h2>
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                    <div class="bg-gray-50 p-4 rounded-lg shadow-sm">
+                        <p class="font-semibold text-lg text-gray-800">Full Name:</p>
                         <p class="text-gray-700">{{ $user->full_name }}</p>
                     </div>
-                    <div>
-                        <p class="font-semibold text-lg">Email:</p>
+                    <div class="bg-gray-50 p-4 rounded-lg shadow-sm">
+                        <p class="font-semibold text-lg text-gray-800">Email:</p>
                         <p class="text-gray-700">{{ $user->email }}</p>
                     </div>
-                    <div>
-                        <p class="font-semibold text-lg">Role:</p>
+                    <div class="bg-gray-50 p-4 rounded-lg shadow-sm">
+                        <p class="font-semibold text-lg text-gray-800">Role:</p>
                         <p class="text-gray-700">{{ $user->is_admin ? 'Admin' : 'Customer' }}</p>
                     </div>
-                    <div>
-                        <p class="font-semibold text-lg">Phone:</p>
+                    <div class="bg-gray-50 p-4 rounded-lg shadow-sm">
+                        <p class="font-semibold text-lg text-gray-800">Phone:</p>
                         <p class="text-gray-700">{{ $user->phone ?? 'Not provided' }}</p>
                     </div>
-                    <div>
-                        <p class="font-semibold text-lg">Address:</p>
+                    <div class="bg-gray-50 p-4 rounded-lg shadow-sm">
+                        <p class="font-semibold text-lg text-gray-800">Address:</p>
                         <p class="text-gray-700">{{ $user->address ?? 'Not provided' }}</p>
                     </div>
-                    <div>
-                        <p class="font-semibold text-lg">Billing Address:</p>
+                    <div class="bg-gray-50 p-4 rounded-lg shadow-sm">
+                        <p class="font-semibold text-lg text-gray-800">Billing Address:</p>
                         <p class="text-gray-700">{{ $user->billing_address ?? 'Not provided' }}</p>
                     </div>
-                    <div>
-                        <p class="font-semibold text-lg">Shipping Address:</p>
+                    <div class="bg-gray-50 p-4 rounded-lg shadow-sm">
+                        <p class="font-semibold text-lg text-gray-800">Shipping Address:</p>
                         <p class="text-gray-700">{{ $user->shipping_address ?? 'Not provided' }}</p>
                     </div>
-                    <div>
-                        <p class="font-semibold text-lg">Created At:</p>
+                    <div class="bg-gray-50 p-4 rounded-lg shadow-sm">
+                        <p class="font-semibold text-lg text-gray-800">Created At:</p>
                         <p class="text-gray-700">{{ $user->created_at->format('Y-m-d H:i') }}</p>
                     </div>
-                </div>
-
-                <!-- Actions -->
-                <div class="card-actions mt-6 flex justify-start space-x-4">
-                    <a href="{{ route('AdminUserEdit', $user->id) }}" class="btn btn-primary">Edit</a>
-                    <form action="{{ route('AdminUserDestroy', $user->id) }}" method="POST" onsubmit="return confirm('Are you sure?')">
-                        @csrf
-                        @method('DELETE')
-                        <button type="submit" class="btn btn-error">Delete</button>
-                    </form>
                 </div>
             </div>
         </div>
