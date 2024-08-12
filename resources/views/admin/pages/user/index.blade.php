@@ -92,10 +92,10 @@
                                     <!-- Edit Button -->
                                     <a href="{{ route('AdminUserEdit', $user->id) }}" class="btn btn-primary join-item">Edit</a>
                                     <!-- Delete Button -->
-                                    <form action="{{ route('AdminUserDestroy', $user->id) }}" method="POST" class="flex-1">
+                                    <form id="delete-form-{{ $user->id }}" action="{{ route('AdminUserDestroy', $user->id) }}" method="POST" class="flex-1">
                                         @csrf
                                         @method('DELETE')
-                                        <button type="submit" onclick="return confirm('Are you sure you want to delete this user?')" class="btn btn-danger join-item">Delete</button>
+                                        <button type="button" onclick="confirmDeletion({{ $user->id }}, '{{ $user->name }}')" class="btn btn-danger join-item">Delete</button>
                                     </form>
                                 @else
                                     <!-- Not Applicable Button -->

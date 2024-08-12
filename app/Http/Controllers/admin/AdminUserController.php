@@ -38,6 +38,17 @@ class AdminUserController extends Controller
         $users = $query->paginate($perPage);
         $title = "User Management - List";
 
+        // Fetch addresses for users
+        foreach ($users as $user) {
+            // Get the latest order for the user
+            $latestOrder = $user->orders()->latest()->first();
+            $user->shipping_address = $latestOrder ? $latestOrder->shipping_address : null;
+
+            // Get the payment related to the latest order
+            $latestPayment = $latestOrder ? $latestOrder->payments()->latest()->first() : null;
+            $user->billing_address = $latestPayment ? $latestPayment->billing_address : null;
+        }
+
         return view('admin.pages.user.index', [
             'users' => $users,
             'search' => $search,

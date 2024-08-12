@@ -68,4 +68,11 @@ class User extends Authenticatable
     {
         return $this->hasOne(DefaultAddress::class);
     }
+
+    //defined by --AMAN to get shipping address on admin side for user management
+    public function orders()
+    {
+        return $this->hasMany(Order::class);
+    }
+    //defined by --AMAN
 }
