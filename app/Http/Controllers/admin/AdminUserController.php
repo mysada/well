@@ -144,11 +144,10 @@ class AdminUserController extends Controller
      */
     public function destroy($id)
     {
-        // Find the user by ID
-        $user = User::findOrFail($id);
+        $user = User::withTrashed()->findOrFail($id);
 
-        // Delete the user
-        $user->delete();
+        // Permanently delete the user
+        $user->forceDelete();
 
         // Redirect back to the user list page with a success message
         return redirect()->route('AdminUserList')->with('success', 'User deleted successfully!');
