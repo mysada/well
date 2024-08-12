@@ -171,8 +171,10 @@ Route::middleware(AdminAuthInterceptor::class)->prefix('admin')->group(function 
       'update'  => 'AdminReviewUpdate',
       'destroy' => 'AdminReviewDestroy',
     ]);
-    Route::get('/reviews/export', [AdminReviewController::class, 'export'])->name('AdminReviewExport');
+    Route::get('/admin/reviews/export', [AdminReviewController::class, 'export'])->name('AdminReviewExport');
     Route::post('/reviews/flag/{id}', [AdminReviewController::class, 'flag'])->name('AdminReviewFlag');
+    Route::get('/products-by-category/{categoryId}', [ProductController::class, 'getProductsByCategory']);
+    Route::patch('/reviews/status/{id}', [AdminReviewController::class, 'updateStatus'])->name('AdminReviewUpdateStatus');
 
     Route::resource('/payments', AdminPaymentController::class)->names([
       'index'   => 'AdminPaymentList',

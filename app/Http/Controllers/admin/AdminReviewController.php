@@ -16,6 +16,7 @@ class AdminReviewController extends Controller
         $category_id = $request->input('category_id');
         $product_id = $request->input('product_id');
         $rating = $request->input('rating');
+        $status = $request->input('status'); // Filter for status
         $start_date = $request->input('start_date');
         $end_date = $request->input('end_date');
 
@@ -41,8 +42,13 @@ class AdminReviewController extends Controller
             ->when($rating, function ($query, $rating) {
                 return $query->where('rating', $rating);
             })
+            ->when($status, function ($query, $status) {
+                return $query->where('status', $status);
+            })
             ->when($start_date && $end_date, function ($query) use ($start_date, $end_date) {
-                return $query->whereBetween('created_at', [$start_date, $end_date]);
+                $startDate = \Carbon\Carbon::createFromFormat('Y-m-d', $start_date)->startOfDay();
+                $endDate = \Carbon\Carbon::createFromFormat('Y-m-d', $end_date)->endOfDay();
+                return $query->whereBetween('created_at', [$startDate, $endDate]);
             })
             ->orderByDesc('id')
             ->paginate(20);
@@ -54,42 +60,22 @@ class AdminReviewController extends Controller
             return $query->where('category_id', $category_id);
         })->get();
 
-        return view('admin.pages.review.index', compact('items', 'title', 'search', 'category_id', 'product_id', 'rating', 'start_date', 'end_date', 'averageRating', 'totalReviews', 'categories', 'products'));
+        return view('admin.pages.review.index', compact('items', 'title', 'search', 'category_id', 'product_id', 'rating', 'status', 'start_date', 'end_date', 'averageRating', 'totalReviews', 'categories', 'products'));
+    }
+
+    public function updateStatus(Request $request, $id)
+    {
+        $review = Review::findOrFail($id);
+        $review->update(['status' => $request->status]);
+
+        return redirect()->route('AdminReviewList')->with('success', 'Review status updated successfully.');
     }
 
     public function flag($id)
     {
         $review = Review::findOrFail($id);
-        $review->update(['flagged' => true]);
+        $review->update(['status' => 'flagged']); // Update status to flagged
 
         return redirect()->route('AdminReviewList')->with('success', 'Review flagged successfully.');
-    }
-
-    public function export()
-    {
-        $reviews = Review::with(['product.category', 'user'])->get();
-
-        // export reviews as CSV
-        $csvFileName = 'reviews_export.csv';
-        $handle = fopen($csvFileName, 'w+');
-        fputcsv($handle, ['ID', 'Category', 'Product', 'User', 'Rating', 'Review Text', 'Image', 'Flagged', 'Created At']);
-
-        foreach ($reviews as $review) {
-            fputcsv($handle, [
-                $review->id,
-                $review->product->category->name,
-                $review->product->name,
-                $review->user->name,
-                $review->rating,
-                $review->review_text,
-                $review->image,
-                $review->flagged ? 'Yes' : 'No',
-                $review->created_at,
-            ]);
-        }
-
-        fclose($handle);
-
-        return response()->download($csvFileName);
     }
 }

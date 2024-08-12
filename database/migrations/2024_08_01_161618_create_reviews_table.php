@@ -14,15 +14,15 @@ return new class extends Migration {
         Schema::create('reviews', function (Blueprint $table) {
             $table->id();
             $table->foreignId('product_id')
-                ->constrained('products')
-                ->index();
+                  ->constrained('products');
             $table->foreignId('user_id')
-                ->constrained('users')
-                ->index();
+                  ->constrained('users');
             $table->integer('rating');
             $table->text('review_text')->nullable();
+            // Add indexes to the foreign key columns
+            $table->index('product_id');
             $table->string('image')->nullable();
-            $table->boolean('flagged')->default(false);
+            $table->enum('status', ['active', 'flagged', 'pending'])->default('active');
             $table->timestamps();
             $table->softDeletes();
         });

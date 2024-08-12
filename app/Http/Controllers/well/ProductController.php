@@ -91,7 +91,23 @@ class ProductController extends Controller
                 ->exists();
         }
 
-        return view('well.product.product_reviews', compact('product', 'relatedProducts', 'wishlist'));
+        $reviews = $product->id->reviews()->where('status', '!=', 'flagged')->get();
+
+        return view('well.product.product_reviews', compact('product', 'relatedProducts', 'wishlist', 'reviews'));
+    }
+
+    /**
+     * Fetch products based on selected category.
+     */
+    public function getProductsByCategory($categoryId)
+    {
+        if ($categoryId) {
+            $products = Product::where('category_id', $categoryId)->get();
+        } else {
+            $products = Product::all();
+        }
+
+        return response()->json($products);
     }
 
 

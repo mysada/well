@@ -17,7 +17,7 @@ class Review extends Model
         'rating',
         'review_text',
         'image',
-        'flagged',
+        'status',
     ];
 
     public function user(): BelongsTo
