@@ -14,7 +14,8 @@
         <div class="bg-white shadow-lg rounded-lg overflow-hidden">
             <div class="p-6">
                 <h2 class="text-3xl font-bold mb-6 text-gray-900">User Details</h2>
-                <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                <div class="grid grid-cols-1 sm:grid-cols-3 gap-6">
+                    <!-- First Row -->
                     <div class="bg-gray-50 p-4 rounded-lg shadow-sm">
                         <p class="font-semibold text-lg text-gray-800">Full Name:</p>
                         <p class="text-gray-700">{{ $user->name }}</p>
@@ -27,22 +28,22 @@
                         <p class="font-semibold text-lg text-gray-800">Role:</p>
                         <p class="text-gray-700">{{ $user->is_admin ? 'Admin' : 'Customer' }}</p>
                     </div>
+
+                    <!-- Second Row -->
                     <div class="bg-gray-50 p-4 rounded-lg shadow-sm">
                         <p class="font-semibold text-lg text-gray-800">Phone:</p>
                         <p class="text-gray-700">{{ $user->phone ?? 'Not provided' }}</p>
                     </div>
                     <div class="bg-gray-50 p-4 rounded-lg shadow-sm">
-                        <p class="font-semibold text-lg text-gray-800">Address:</p>
-                        <p class="text-gray-700">{{ $user->address ?? 'Not provided' }}</p>
-                    </div>
-                    <div class="bg-gray-50 p-4 rounded-lg shadow-sm">
                         <p class="font-semibold text-lg text-gray-800">Billing Address:</p>
-                        <p class="text-gray-700">{{ $user->billing_address ?? 'Not provided' }}</p>
+                        <p class="text-gray-700">{{ $billingAddress }}</p>
                     </div>
                     <div class="bg-gray-50 p-4 rounded-lg shadow-sm">
                         <p class="font-semibold text-lg text-gray-800">Shipping Address:</p>
-                        <p class="text-gray-700">{{ $user->shipping_address ?? 'Not provided' }}</p>
+                        <p class="text-gray-700">{{ $shippingAddress }}</p>
                     </div>
+
+                    <!-- Last Row -->
                     <div class="bg-gray-50 p-4 rounded-lg shadow-sm">
                         <p class="font-semibold text-lg text-gray-800">Created At:</p>
                         <p class="text-gray-700">{{ $user->created_at->format('Y-m-d H:i') }}</p>
