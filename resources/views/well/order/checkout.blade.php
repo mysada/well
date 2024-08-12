@@ -45,10 +45,12 @@
 
                         <div class="error-container">
                             <input id="shipping-state" name="shipping-state" placeholder="Province/State"
-                                   value="{{ old('shipping-state', $defaultAddr->shipping_province ?? '') }}" class="form-control">
+                                   value="{{ old('shipping-state', $defaultAddr->shipping_province ?? '') }}"
+                                   class="form-control">
                             <select id="ca-province" name="shipping-state" class="form-control" style="display: none;">
                                 @foreach($provinces as $province)
-                                    <option value="{{ $province['short_name'] }}" {{ old('shipping-state', $defaultAddr->shipping_province ?? '') === $province['short_name'] ? 'selected' : '' }}>
+                                    <option value="{{ $province['short_name'] }}"
+                                            {{ old('shipping-state', $defaultAddr->shipping_province ?? '') === $province['short_name'] ? 'selected' : '' }}>
                                         {{ $province['name'] }}
                                     </option>
                                 @endforeach
@@ -63,7 +65,10 @@
                                     class="form-control @error('shipping-country') is-invalid @enderror">
                                 <option value="">Select Country</option>
                                 @foreach($countries as $country)
-                                    <option value="{{ $country['code'] }}" {{ old('shipping-country', $defaultAddr->shipping_country ?? '') == $country['code'] ? 'selected' : '' }}>{{ $country['name'] }}</option>
+                                    <option value="{{ $country['code'] }}"
+                                            {{ old('shipping-country', $defaultAddr->shipping_country ?? '') == $country['code'] ? 'selected' : '' }}>
+                                        {{ $country['name'] }}
+                                    </option>
                                 @endforeach
                             </select>
                             @error('shipping-country')
@@ -142,7 +147,8 @@
 
                         <div class="error-container">
                             <input id="billing-state" placeholder="Province/City" name="billing-state"
-                                   value="{{ old('billing-state', $defaultAddr->billing_province ?? '') }}" class="form-control"/>
+                                   value="{{ old('billing-state', $defaultAddr->billing_province ?? '') }}"
+                                   class="form-control"/>
                             @error('billing-state')
                             <div class="invalid-feedback">{{ $message }}</div>
                             @enderror
