@@ -211,6 +211,7 @@
                         <div class="invalid-feedback">{{ $message }}</div>
                         @enderror
                     </div>
+                </div>
       }
     </style>
     <section class="py-5">
