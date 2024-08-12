@@ -51,7 +51,9 @@
                         </form>
 
                     </div>
+                <a href="{{ route('product.reviews', $product->id) }}" class="btn btn-primary mt-3" id="see_reviews">See Reviews</a>
                 </div>
+
             </div>
         </div>
     </section>
