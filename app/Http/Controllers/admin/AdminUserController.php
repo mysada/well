@@ -53,7 +53,8 @@ class AdminUserController extends Controller
      */
     public function create()
     {
-        return view('admin.pages.user.create');
+        $title = "User Management - Create";
+        return view('admin.pages.user.create', compact('title'));
     }
 
     /**
