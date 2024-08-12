@@ -146,7 +146,9 @@ Route::middleware(AdminAuthInterceptor::class)->prefix('admin')->group(function 
       'edit'    => 'AdminUserEdit',
       'update'  => 'AdminUserUpdate',
       'destroy' => 'AdminUserDestroy',
+
     ]);
+
     //aman -- admin user management routing ends here
 
     Route::resource('/orders', AdminOrderController::class)->names([
