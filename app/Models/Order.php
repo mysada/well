@@ -96,7 +96,4 @@ class Order extends Model
     }
 
 
-
-
-
 }

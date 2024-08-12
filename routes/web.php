@@ -1,13 +1,13 @@
 <?php
 
-use App\Http\Controllers\admin\AdminCategoryController;
+use App\Http\Controllers\Admin\AdminCategoryController;
 use App\Http\Controllers\Admin\AdminHomeController;
-use App\Http\Controllers\admin\ContactQueryController;
-use App\Http\Controllers\admin\AdminOrderController;
-use App\Http\Controllers\admin\AdminPaymentController;
-use App\Http\Controllers\admin\AdminProductController;
-use App\Http\Controllers\admin\AdminReviewController;
-use App\Http\Controllers\admin\AdminUserController;
+use App\Http\Controllers\Admin\ContactQueryController;
+use App\Http\Controllers\Admin\AdminOrderController;
+use App\Http\Controllers\Admin\AdminPaymentController;
+use App\Http\Controllers\Admin\AdminProductController;
+use App\Http\Controllers\Admin\AdminReviewController;
+use App\Http\Controllers\Admin\AdminUserController;
 use App\Http\Controllers\well\AboutController;
 use App\Http\Controllers\well\CartItemController;
 use App\Http\Controllers\well\CancellationRefundsController;
@@ -64,7 +64,6 @@ Route::get('/products/{id}', [ProductController::class, 'show'])->name(
 //Reviews ROutes -MANISH
 Route::get('/products/{id}/reviews', [ProductController::class, 'showReviews'])->name('product.reviews');
 Route::post('/products/{id}/reviews', [ReviewController::class, 'store'])->name('reviews.store1');
-Route::get('/products/{id}/reviews', [ReviewController::class, 'show'])->name('product.show');
 
 
 // Routes for cart item actions, accessible only to logged-in users
