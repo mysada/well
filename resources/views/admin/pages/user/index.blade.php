@@ -1,7 +1,7 @@
 @extends('admin.admin')
 
 @section('content')
-    <div class="container mx-auto">
+    <div class="container mx-auto flex flex-col gap-4">
 
         <!-- Create User Button -->
         <form method="GET" action="{{ route('AdminUserList') }}" class="flex gap-2 items-center">
@@ -69,26 +69,25 @@
                         <th>Email</th>
                         <th>Role</th>
                         <th>Created At</th>
-                        <th>Details</th>
                         <th>Actions</th>
                     </tr>
                 </thead>
                 <tbody>
                     @forelse ($items as $user)
                         <tr>
-                            <td>{{ $user->id }}</td>
-                            <td>{{ $user->name }}</td>
+                            <td>
+                                {{ $user->id }}
+                            </td>
+                            <td>
+                                <button class="link link-primary" onclick="openModal({{ $user->id }})">
+                                    {{ $user->name }}
+                                </button>
+                            </td>
                             <td class="whitespace-nowrap">
                                 <span class="truncate block w-32" title="{{ $user->email }}">{{ $user->email }}</span>
                             </td>
                             <td>{{ $user->is_admin ? 'Admin' : 'Customer' }}</td>
                             <td>{{ $user->created_at->format('Y-m-d H:i') }}</td>
-                            <td class="text-center">
-                                <!-- Trigger Modal -->
-                                <button class="btn btn-secondary btn-sm" onclick="openModal({{ $user->id }})">View
-                                    Details
-                                </button>
-                            </td>
                             <td class="text-center">
                                 <a href="{{ route('AdminUserEdit', $user->id) }}"
                                    class="btn btn-primary join-item">Edit</a>

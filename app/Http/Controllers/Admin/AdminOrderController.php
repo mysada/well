@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Helpers\RouterTools;
 use App\Http\Controllers\Controller;
 use App\Models\Order;
 use Illuminate\Http\Request;
@@ -15,24 +16,24 @@ class AdminOrderController extends Controller
     public function index(Request $request)
     {
         $search = $request->input('search');
-
-        $items = Order::with('user')
-                      ->when($search, function ($query, $search) {
-                          return $query->whereHas(
-                            'user',
-                            function ($query) use ($search) {
-                                $query->where('name', 'like', "%{$search}%");
-                            }
-                          );
-                      })
-                      ->orderByDesc('id')
-                      ->paginate(20);
+        $status = ['Pending', 'Confirmed', 'Shipped', 'Delivered', 'Cancelled'];
+        $items  = Order::with('user')
+                       ->when($search, function ($query, $search) {
+                           return $query->whereHas(
+                             'user',
+                             function ($query) use ($search) {
+                                 $query->where('name', 'like', "%{$search}%");
+                             }
+                           );
+                       })
+                       ->orderByDesc('id')
+                       ->paginate(20);
 
         $title = 'Order Management - List';
 
         return view(
           'admin.pages.order.index',
-          compact('items', 'title', 'search')
+          compact('items', 'title', 'search', 'status')
         );
     }
 
@@ -42,7 +43,7 @@ class AdminOrderController extends Controller
     public function show(string $id)
     {
         $order = Order::with(
-          ['orderDetails.product', 'payments','transactions']
+          ['orderDetails.product', 'payments', 'transactions']
         )->findOrFail($id);
 
         $title = "Order Details #$order->id";
@@ -50,12 +51,15 @@ class AdminOrderController extends Controller
         return view('admin.pages.order.show', compact('order', 'title'));
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(string $id)
+    public function update(Request $request, $orderId)
     {
-        //
-    }
+        $order = Order::findOrFail($orderId);
+        $validatedData = $request->validate([
+          'status' => 'required|string|in:Pending,Confirmed,Shipped,Delivered,Cancelled',
+        ]);
 
+        $order->status = $validatedData['status'];
+        $order->save();
+        return RouterTools::successBack('Order status updated successfully');
+    }
 }
