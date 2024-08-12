@@ -103,10 +103,21 @@ class AdminUserController extends Controller
     {
         // Retrieve the user by ID
         $user = User::findOrFail($id);
-$title = "User Management - Details";
-        // Pass the user data to the view
-        return view('admin.pages.user.show', compact('user', 'title'));
+
+        // Fetch the latest shipping address from the Order model
+        $latestOrder = $user->orders()->latest()->first();
+        $shippingAddress = $latestOrder ? $latestOrder->shipping_address : 'Not provided';
+
+        // Fetch the latest billing address from the Payment model
+        $latestPayment = $user->payments()->latest()->first();
+        $billingAddress = $latestPayment ? $latestPayment->billing_address : 'Not provided';
+
+        $title = "User Management - Details";
+
+        // Pass the user data, addresses, and title to the view
+        return view('admin.pages.user.show', compact('user', 'title', 'shippingAddress', 'billingAddress'));
     }
+
 
 
     /**
