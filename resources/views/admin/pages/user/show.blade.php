@@ -17,7 +17,7 @@
                 <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
                     <div class="bg-gray-50 p-4 rounded-lg shadow-sm">
                         <p class="font-semibold text-lg text-gray-800">Full Name:</p>
-                        <p class="text-gray-700">{{ $user->full_name }}</p>
+                        <p class="text-gray-700">{{ $user->name }}</p>
                     </div>
                     <div class="bg-gray-50 p-4 rounded-lg shadow-sm">
                         <p class="font-semibold text-lg text-gray-800">Email:</p>
