@@ -90,9 +90,13 @@ class AdminUserController extends Controller
      */
     public function show($id)
     {
+        // Retrieve the user by ID
         $user = User::findOrFail($id);
+
+        // Pass the user data to the view
         return view('admin.pages.user.show', compact('user'));
     }
+
 
     /**
      * Show the form for editing the specified resource.
