@@ -82,8 +82,8 @@
         </div>
 
         <!-- Buttons Section -->
-        <div class="d-flex justify-content-between mt-4">
-            <a href="{{ route('user.profile') }}" class="btn btn-custom btn-lg">Go Back (Profile)</a>
+        <div class="buttons-section mt-4">
+            <a href="{{ route('user.profile') }}" class="btn btn-custom btn-lg">Go Back</a>
             <a href="{{ route('order.reorder', $order->id) }}" class="btn btn-custom btn-lg">Reorder</a>
         </div>
     </div>

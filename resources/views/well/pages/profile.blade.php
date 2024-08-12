@@ -49,8 +49,12 @@
                         <li>{{ $detail->product->name }}</li>
                         @endforeach
                     </ul>
-                    <button class="btn btn-secondary" onclick="location.href='{{ route('order.reorder', $order->id) }}'">Reorder</button>
-                    <button class="btn btn-primary" onclick="location.href='{{ route('order.details', $order->id) }}'">Order Details</button>
+                    <div class="buttons-section mt-4">
+                        <button onclick="location.href='{{ route('order.reorder', $order->id) }}'">Reorder</button>
+                        <button id="order_detail" onclick="location.href='{{ route('order.details', $order->id) }}'">Order Deatils</button>
+                    </div>
+
+
                 </div>
                 @endforeach
                 @endif
@@ -77,10 +81,12 @@
                 <!-- Default Addresses -->
                 @if ($defaultAddress)
                 <div class="address-box">
-                    <h5>Default Billing Address</h5>
-                    <p>{{ $defaultAddress->billing_name }}<br>{{ $defaultAddress->billing_address }}, {{ $defaultAddress->billing_city }}, {{ $defaultAddress->billing_province }}, {{ $defaultAddress->billing_country }} - {{ $defaultAddress->billing_postal_code }}<br>{{ $defaultAddress->billing_email }}<br>{{ $defaultAddress->billing_phone }}</p>
-                    <h5>Default Shipping Address</h5>
+                    <h4>Default Address</h4>
+                    <h6>Default Shipping Address</h6>
                     <p>{{ $defaultAddress->shipping_name }}<br>{{ $defaultAddress->shipping_address }}, {{ $defaultAddress->shipping_city }}, {{ $defaultAddress->shipping_province }}, {{ $defaultAddress->shipping_country }} - {{ $defaultAddress->shipping_postal_code }}<br>{{ $defaultAddress->shipping_email }}<br>{{ $defaultAddress->shipping_phone }}</p>
+                    <h6>Default Billing Address</h6>
+                    <p>{{ $defaultAddress->billing_name }}<br>{{ $defaultAddress->billing_address }}, {{ $defaultAddress->billing_city }}, {{ $defaultAddress->billing_province }}, {{ $defaultAddress->billing_country }} - {{ $defaultAddress->billing_postal_code }}<br>{{ $defaultAddress->billing_email }}<br>{{ $defaultAddress->billing_phone }}</p>
+
                 </div>
                 @else
                 <p>No default address set.</p>
@@ -97,7 +103,7 @@
                 @endif
 
                 <!-- Basic Info Update Form -->
-                <h5>Update Basic Info</h5>
+                <h5 id="update_head">Update Basic Info</h5>
                 <form method="POST" action="{{ route('user.update') }}">
                     @csrf
                     @method('PUT')
@@ -117,11 +123,13 @@
                         <label for="phone">Phone</label>
                         <input type="tel" name="phone" id="phone" class="form-control" value="{{ old('phone', $user->phone) }}" required>
                     </div>
-                    <button type="submit" class="btn btn-primary">Update Info</button>
+                    <div id="update_buttons">
+                        <button type="submit" id="update_button" class="btn btn-primary">Update Info</button>
+                    </div>
                 </form>
 
                 <!-- Update Default Address Form -->
-                <h5>Update Default Address</h5>
+                <h5 id="update_head">Update Default Address</h5>
                 <form method="POST" action="{{ route('user.setDefaultAddress') }}">
 
                     @csrf
@@ -190,7 +198,8 @@
                         <label for="billing_phone">Billing Phone</label>
                         <input type="tel" name="billing_phone" id="billing_phone" class="form-control" value="{{ old('billing_phone', $defaultAddress->billing_phone ?? $user->billing_phone) }}" required>
                     </div>
-                    <button type="submit" class="btn btn-primary">Update Default Address</button>
+
+                    <button type="submit" id="update_button" class="btn btn-primary">Update Default Address</button>
                 </form>
             </div>
 
@@ -248,7 +257,7 @@
                         <img src="{{ asset($detail->product->image_url) }}" alt="Product Image" class="img-fluid" width="100px">
                         <p><strong>Order Date:</strong> {{ $order->created_at->format('Y-m-d') }}</p>
                         <p><strong>Price:</strong> ${{ number_format($detail->price, 2) }}</p>
-                        <a href="{{ route('reviews.store1', $detail->product->id) }}" class="btn btn-primary">Write a Review</a>
+                        <a href="{{ route('reviews.store1', $detail->product->id) }}" id="update_button" class="btn btn-primary">Write a Review</a>
                     </div>
                     @endforeach
                     @endforeach
