@@ -5,7 +5,7 @@
                 <img src="/images/logo/header_logo.png" alt="Brand Logo" style="height: 40px;">
             </a>
         </div>
-        <ul class="text-lg">
+        <ul class="text-lg" style="font-size:15px">
             <li><a class="menu-item" href="{{route('AdminProductList')}}">Products</a></li>
             <li><a class="menu-item" href="{{route("AdminUserList")}}">Users</a></li>
             <li><a class="menu-item" href="{{route('AdminOrderList')}}">Orders</a></li>
