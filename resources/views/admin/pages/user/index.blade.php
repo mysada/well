@@ -89,10 +89,10 @@
                         <td class="text-center">
                             @if ($user->id !== auth()->id())
                                 <a href="{{ route('AdminUserEdit', $user->id) }}" class="btn btn-primary join-item">Edit</a>
-                                <form action="{{ route('AdminUserDestroy', $user->id) }}" method="POST" class="inline-block">
+                                <button type="button" onclick="confirmDeletion({{ $user->id }}, '{{ $user->name }}')" class="btn join-item">Delete</button>
+                                <form id="delete-form-{{ $user->id }}" action="{{ route('AdminUserDestroy', $user->id) }}" method="POST" class="hidden">
                                     @csrf
                                     @method('DELETE')
-                                    <button type="submit" class="btn join-item" onclick="return confirm('Are you sure?')">Delete</button>
                                 </form>
                             @else
                                 <span class="text-muted">You</span>
@@ -177,6 +177,18 @@
                 </div>
             </div>
         @endforeach
+
+        <!-- Delete Confirmation Modal -->
+        <div id="delete-confirmation-modal" class="modal">
+            <div class="modal-box">
+                <h3 class="font-bold text-2xl mb-4 text-center">Confirm Deletion</h3>
+                <p id="delete-confirmation-message" class="text-center mb-4">Are you sure you want to delete this user? This action cannot be undone.</p>
+                <div class="modal-action flex justify-center">
+                    <button id="confirm-delete-button" class="btn btn-primary">Delete</button>
+                    <button class="btn btn-outline" onclick="closeDeleteModal()">Cancel</button>
+                </div>
+            </div>
+        </div>
     </div>
 
     <script>
@@ -187,5 +199,26 @@
         function closeModal(userId) {
             document.getElementById('modal-' + userId).classList.remove('modal-open');
         }
+
+        let userIdToDelete = null;
+        let userNameToDelete = '';
+
+        function confirmDeletion(userId, userName) {
+            userIdToDelete = userId;
+            userNameToDelete = userName;
+            document.getElementById('delete-confirmation-message').innerHTML = `Are you sure you want to delete <strong class="italic">${userName}</strong>? This action cannot be undone.`;
+            document.getElementById('delete-confirmation-modal').classList.add('modal-open');
+        }
+
+        function closeDeleteModal() {
+            document.getElementById('delete-confirmation-modal').classList.remove('modal-open');
+        }
+
+        document.getElementById('confirm-delete-button').addEventListener('click', function() {
+            if (userIdToDelete !== null) {
+                document.getElementById('delete-form-' + userIdToDelete).submit();
+            }
+            closeDeleteModal();
+        });
     </script>
 @endsection
