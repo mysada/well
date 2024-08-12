@@ -52,7 +52,6 @@
         <div class="overflow-x-auto w-full">
             <h2 class="text-4xl font-bold">Recent Logs</h2>
             <table class="table w-full">
-                <!-- head -->
                 <thead>
                 <tr>
                     <th>Time</th>
@@ -64,8 +63,8 @@
                 <tbody>
                 @foreach($logs as $log)
                     @php
-                        // Adjusting the regex to match the log format and capture context correctly
-                        preg_match('/\[(.*?)\] (.*?)\.(\w+): (.*?) (\{.*\})?/', $log, $matches);
+                        preg_match('/\[(.*?)\] (.*?)\.(\w+): (.*?) (\{.*\})/', $log, $matches);
+
                         $time = $matches[1] ?? '';
                         $level = $matches[3] ?? '';
                         $message = $matches[4] ?? '';
@@ -80,7 +79,6 @@
                             @if(!empty($context) && json_last_error() === JSON_ERROR_NONE)
                                 User ID: {{ $context['user_id'] ?? 'N/A' }},
                                 Name: {{ $context['name'] ?? 'N/A' }}
-
                             @else
                                 N/A
                             @endif
@@ -90,5 +88,6 @@
                 </tbody>
             </table>
         </div>
+
     </div>
 @endsection
