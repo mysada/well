@@ -143,10 +143,10 @@ Route::middleware(AdminAuthInterceptor::class)->prefix('admin')->group(function 
       'index'   => 'AdminUserList',
       'create'  => 'AdminUserCreate',
       'store'   => 'AdminUserStore',
+      'show'    => 'AdminUserShow',
       'edit'    => 'AdminUserEdit',
       'update'  => 'AdminUserUpdate',
       'destroy' => 'AdminUserDestroy',
-
     ]);
 
     //aman -- admin user management routing ends here
