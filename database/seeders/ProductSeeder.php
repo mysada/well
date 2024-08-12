@@ -117,7 +117,7 @@ class ProductSeeder extends Seeder
         $haircare = [
             [
                 'name' => 'Shampoo',
-                'description' => 'Our Shampoo is formulated to cleanse and nourish your hair, leaving it soft, shiny, and manageable. It contains natural ingredients that gently remove dirt and oil without stripping your hair of its natural moisture. Suitable for all hair types, this shampoo helps to maintain a healthy scalp and beautiful hair.',
+                'description' => 'Our Shampoo is formulated to cleanse and nourish your hair, leaving it soft, shiny, and manageable.',
                 'long_description' => 'Our Shampoo is not just a cleansing product; it is a comprehensive hair care solution designed to nourish and protect your hair. Enriched with a blend of natural ingredients, it works to remove impurities while ensuring that the hair retains its natural oils, which are essential for a healthy scalp and lustrous hair. This shampoo provides a luxurious lather that cleanses deeply, yet gently, making it suitable for daily use. It is formulated to strengthen the hair shaft, reduce breakage, and prevent split ends, resulting in hair that is stronger, more resilient, and full of life. Additionally, the shampoo is infused with essential vitamins and minerals that support hair growth and improve texture. Its invigorating scent provides a refreshing experience, turning your hair washing routine into a moment of relaxation and self-care. Over time, you’ll notice your hair becoming softer, shinier, and easier to manage, with a noticeable reduction in frizz and tangles. Whether you have straight, curly, thick, or fine hair, this shampoo is tailored to meet the needs of all hair types, making it a versatile addition to your hair care regimen.',
                 'price' => 12.99,
                 'stock' => 120,
@@ -319,7 +319,7 @@ class ProductSeeder extends Seeder
         $health_supplements = [
             [
                 'name' => 'Multivitamins',
-                'description' => 'Our Multivitamins provide a comprehensive blend of essential vitamins and minerals to support your overall health and wellbeing.',
+                'description' => 'Our Multivitamins provide a comprehensive blend of essential vitamins and minerals to support your overall health.',
                 'long_description' => 'Our Multivitamins are a comprehensive dietary supplement designed to support your overall health and wellbeing. Each tablet contains a carefully balanced blend of essential vitamins and minerals that are vital for maintaining good health. These multivitamins are formulated to meet the nutritional needs of adults, providing key nutrients that may be missing from your diet. They help to boost your immune system, improve energy levels, and support the health of your skin, hair, and nails. Regular intake of these multivitamins can help to fill nutritional gaps, ensuring that your body gets the nutrients it needs to function at its best. The formula is designed to be easily absorbed by the body, making it an effective way to maintain your health and vitality. Whether you have a busy lifestyle, a restrictive diet, or just want to ensure you\'re getting the nutrients you need, our Multivitamins are a convenient and effective solution. They are free from artificial colors, flavors, and preservatives, making them a safe and healthy choice for daily supplementation. Take them daily to support your health and wellbeing and enjoy the peace of mind that comes with knowing you\'re giving your body the nutrients it needs to thrive.',
                 'price' => 29.99,
                 'stock' => 200,
@@ -333,7 +333,7 @@ class ProductSeeder extends Seeder
             ],
             [
                 'name' => 'Omega-3 Fish Oil',
-                'description' => 'Our Omega-3 Fish Oil is rich in essential fatty acids that support heart health, brain function, and overall wellbeing.',
+                'description' => 'Our Omega-3 Fish Oil is rich in essential fatty acids that support heart health and brain function.',
                 'long_description' => 'Our Omega-3 Fish Oil is a high-quality dietary supplement that provides essential fatty acids that are vital for maintaining your overall health. These fatty acids, particularly EPA and DHA, are known to support heart health by helping to reduce inflammation, lower triglyceride levels, and maintain healthy blood pressure. Omega-3s are also crucial for brain function, as they contribute to cognitive health and may help to reduce the risk of cognitive decline as you age. Our fish oil is sourced from high-quality fish and undergoes a rigorous purification process to remove any impurities, including heavy metals and toxins, ensuring that you receive a pure and potent product. The capsules are easy to swallow and have a neutral taste, making them convenient for daily use. Regular intake of Omega-3 Fish Oil can also support joint health, reduce inflammation, and improve skin health, making it a comprehensive supplement for overall wellbeing. Whether you\'re looking to support your heart, brain, or overall health, our Omega-3 Fish Oil is an essential addition to your daily routine. Take it daily to enjoy the numerous health benefits of this powerful supplement.',
                 'price' => 22.50,
                 'stock' => 150,
@@ -347,7 +347,7 @@ class ProductSeeder extends Seeder
             ],
             [
                 'name' => 'Probiotics',
-                'description' => 'Our Probiotics contain a blend of beneficial bacteria that support your digestive health and improve your gut flora.',
+                'description' => 'Our Probiotics contain a blend of beneficial bacteria that support your digestive health.',
                 'long_description' => 'Our Probiotics are a powerful dietary supplement designed to support your digestive health by promoting a healthy balance of good bacteria in your gut. This blend of beneficial bacteria helps to improve your gut flora, which is essential for proper digestion, nutrient absorption, and overall health. By maintaining a healthy balance of gut bacteria, probiotics can help to reduce the risk of digestive issues such as bloating, gas, and constipation. They also support your immune system, as a significant portion of your immune function is located in the gut. Regular intake of probiotics can help to enhance your body\'s natural defenses and improve your overall wellbeing. Our probiotics are formulated to survive the harsh conditions of the stomach, ensuring that they reach the intestines where they are most effective. They are free from artificial colors, flavors, and preservatives, making them a safe and healthy choice for daily supplementation. Whether you have a sensitive digestive system or just want to maintain your gut health, our Probiotics are a convenient and effective solution. Take them daily to support a healthy digestive system and enjoy the benefits of a balanced gut microbiome.',
                 'price' => 19.99,
                 'stock' => 180,
@@ -361,7 +361,7 @@ class ProductSeeder extends Seeder
             ],
             [
                 'name' => 'Vitamin D3',
-                'description' => 'Vitamin D3 supports bone health, immunity, and mood. Essential for maintaining healthy bones. Daily use recommended.',
+                'description' => 'Vitamin D3 supports bone health, immunity, and mood. Essential for maintaining healthy bones.',
                 'long_description' => 'Our Vitamin D3 supplements are a crucial part of any health regimen, providing the essential nutrient that supports bone health and immune function. Vitamin D3 is necessary for the absorption of calcium, which is vital for maintaining strong and healthy bones. Without sufficient vitamin D3, your body cannot effectively absorb calcium, leading to weakened bones and an increased risk of fractures. In addition to its role in bone health, vitamin D3 also plays a key role in supporting your immune system, helping to protect you from infections and illnesses. Our Vitamin D3 supplements are formulated to be easily absorbed by the body, ensuring that you get the maximum benefit from each dose. They are free from artificial colors, flavors, and preservatives, making them a safe and healthy choice for daily supplementation. Whether you have limited sun exposure, a restrictive diet, or just want to ensure you\'re getting enough vitamin D3, our supplements are a convenient and effective solution. Take them daily to support your overall health and wellbeing and enjoy the peace of mind that comes with knowing you\'re giving your body the nutrients it needs to thrive.',
                 'price' => 15.00,
                 'stock' => 200,
@@ -448,7 +448,7 @@ class ProductSeeder extends Seeder
             ],
             [
                 'name' => 'Body Scrub',
-                'description' => 'Our Body Scrub is an exfoliating formula that removes dead skin cells and leaves your skin feeling smooth.',
+                'description' => 'Our Body Scrub is an exfoliating formula that removes dead skin cells and leaves your skin smooth.',
                 'long_description' => 'Our Body Scrub is a luxurious exfoliating product that provides a spa-like experience in the comfort of your own home. This scrub is formulated with natural exfoliants, such as sugar or salt, that gently buff away dead skin cells, revealing a smoother, more radiant complexion. The rich, creamy formula is also infused with nourishing oils and butters that moisturize and soften your skin, leaving it feeling silky smooth and hydrated. This scrub is suitable for all skin types, from dry to sensitive, and can be used once or twice a week to maintain healthy, glowing skin. The exfoliating action of the scrub helps to improve circulation, reduce the appearance of cellulite, and promote the regeneration of new skin cells. The invigorating scent of the scrub also provides a refreshing and uplifting experience, making it a perfect addition to your self-care routine. Whether you use it in the shower or as part of a luxurious bath, our Body Scrub will leave your skin feeling soft, smooth, and rejuvenated.',
                 'price' => 22.00,
                 'stock' => 140,
@@ -504,7 +504,7 @@ class ProductSeeder extends Seeder
             ],
             [
                 'name' => 'After-Sun Lotion',
-                'description' => 'Our After-Sun Lotion is a cooling and soothing formula that helps to relieve sunburn and hydrate your skin.',
+                'description' => 'Our After-Sun Lotion is a cooling and soothing formula that helps to hydrate your skin.',
                 'long_description' => 'Our After-Sun Lotion is a must-have skincare product for anyone who spends time in the sun. This cooling and soothing formula is designed to relieve sunburn and hydrate your skin after sun exposure, helping to reduce redness and inflammation. The lotion is infused with natural ingredients, such as aloe vera and chamomile, that calm and soothe the skin, leaving it feeling refreshed and comfortable. This after-sun lotion is suitable for all skin types, including sensitive skin, and can be used daily to maintain healthy, hydrated skin. The lightweight formula absorbs quickly, without leaving a greasy residue, making it ideal for use after a day at the beach or pool. Whether you\'re dealing with sunburn or just want to keep your skin healthy and hydrated, our After-Sun Lotion is an essential part of any skincare regimen. It is also free from parabens, sulfates, and artificial fragrances, making it a safe and gentle choice for your skin. Treat your skin to the care it deserves with our After-Sun Lotion and enjoy soft, smooth, and beautiful skin every day.',
                 'price' => 25.00,
                 'stock' => 130,
@@ -563,7 +563,7 @@ class ProductSeeder extends Seeder
             ],
             [
                 'name' => 'Tea Tree Oil',
-                'description' => 'Our Tea Tree Oil is a powerful antiseptic essential oil that promotes healthy skin and hair. It is perfect for aromatherapy.',
+                'description' => 'Our Tea Tree Oil is a powerful antiseptic essential oil that promotes healthy skin and hair.',
                 'long_description' => 'Our Tea Tree Oil is a potent essential oil that offers a wide range of benefits for both the mind and body. The powerful antiseptic and antimicrobial properties of tea tree oil make it an excellent choice for promoting healthy skin and hair. Whether you\'re dealing with acne, dandruff, or other skin conditions, our Tea Tree Oil can help to purify and cleanse your skin and scalp, leaving them feeling fresh and revitalized. In addition to its skincare benefits, tea tree oil is also a valuable aromatherapy ingredient that can be used to purify the air and promote a sense of wellbeing. The invigorating scent of tea tree oil is known to have a positive effect on the mind, helping to reduce stress and improve focus. Our Tea Tree Oil is 100% pure and natural, ensuring that you receive the highest quality product with every use. Whether you use it in a diffuser, add it to your bath, or apply it directly to your skin, our Tea Tree Oil is a versatile and valuable addition to your wellness routine. Experience the cleansing and healing power of tea tree with our Tea Tree Oil and enjoy a sense of health and wellbeing every day.',
                 'price' => 25.00,
                 'stock' => 120,
@@ -577,7 +577,7 @@ class ProductSeeder extends Seeder
             ],
             [
                 'name' => 'Frankincense Oil',
-                'description' => 'Our Frankincense Oil is a rejuvenating essential oil that promotes healthy and youthful skin. It is perfect for aromatherapy.',
+                'description' => 'Our Frankincense Oil is a rejuvenating essential oil that promotes healthy and youthful skin.',
                 'long_description' => 'Our Frankincense Oil is a luxurious essential oil that offers powerful benefits for both the mind and body. The rejuvenating properties of frankincense make it an excellent choice for promoting healthy and youthful skin. Whether you\'re dealing with wrinkles, fine lines, or other signs of aging, our Frankincense Oil can help to reduce their appearance and improve the overall texture and tone of your skin. In addition to its skincare benefits, frankincense oil is also a valuable aromatherapy ingredient that can be used to promote a sense of calm and wellbeing. The soothing scent of frankincense is known to have a positive effect on the mind, helping to reduce stress and improve focus. Our Frankincense Oil is 100% pure and natural, ensuring that you receive the highest quality product with every use. Whether you use it in a diffuser, add it to your bath, or apply it directly to your skin, our Frankincense Oil is a versatile and valuable addition to your wellness routine. Experience the rejuvenating and healing power of frankincense with our Frankincense Oil and enjoy a sense of health and wellbeing every day.',
                 'price' => 30.00,
                 'stock' => 110,
