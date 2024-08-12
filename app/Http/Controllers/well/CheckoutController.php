@@ -36,10 +36,10 @@ class CheckoutController extends Controller
               ]
             );
         }
-
+        $user= Auth::user();
         return view(
           'well.order.checkout',
-          compact('countries', 'order', 'id', 'provinces')
+          compact('countries', 'order', 'id', 'provinces','user')
         );
     }
 

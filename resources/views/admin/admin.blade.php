@@ -5,7 +5,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <!-- CSRF Token -->
         <meta name="csrf-token" content="{{ csrf_token() }}">
-        <title>{{ config('app.name', 'Laravel') . ' - ' . ($title ?? '') }}</title>
+        <title>{{($title ?? '')  . ' Dashboard - ' . config('app.name', 'Laravel') }}</title>
         <!-- Vite -->
         @vite(['resources/admin/style/app.css', 'resources/admin/js/admin.js'])
 
