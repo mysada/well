@@ -34,8 +34,11 @@ class OrderController extends Controller
     public function details($orderId)
     {
         $order = Order::with('orderDetails.product')->findOrFail($orderId);
+        //dd($order->toArray());
+
         return view('well.order.order_detail', compact('order'));
     }
+
 
 
 }

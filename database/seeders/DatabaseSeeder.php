@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\DefaultAddress;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -25,6 +26,7 @@ class DatabaseSeeder extends Seeder
           CountriesSeeder::class,
           ProvincesSeeder::class,
           ConfigsSeeder::class,
+          DefaultAddressSeeder::class,
         ]);
     }
 

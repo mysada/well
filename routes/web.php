@@ -1,13 +1,13 @@
 <?php
 
-use App\Http\Controllers\admin\AdminCategoryController;
+use App\Http\Controllers\Admin\AdminCategoryController;
 use App\Http\Controllers\Admin\AdminHomeController;
-use App\Http\Controllers\admin\ContactQueryController;
-use App\Http\Controllers\admin\AdminOrderController;
-use App\Http\Controllers\admin\AdminPaymentController;
-use App\Http\Controllers\admin\AdminProductController;
-use App\Http\Controllers\admin\AdminReviewController;
-use App\Http\Controllers\admin\AdminUserController;
+use App\Http\Controllers\Admin\ContactQueryController;
+use App\Http\Controllers\Admin\AdminOrderController;
+use App\Http\Controllers\Admin\AdminPaymentController;
+use App\Http\Controllers\Admin\AdminProductController;
+use App\Http\Controllers\Admin\AdminReviewController;
+use App\Http\Controllers\Admin\AdminUserController;
 use App\Http\Controllers\well\AboutController;
 use App\Http\Controllers\well\CartItemController;
 use App\Http\Controllers\well\CancellationRefundsController;
