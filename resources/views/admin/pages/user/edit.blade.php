@@ -62,7 +62,7 @@
                         </select>
                     </div>
 
-                    <button type="submit" class="btn btn-primary w-full">Update User</button>
+                    <button type="submit" class="btn btn-primary w-half">Update User</button>
                 </form>
             </div>
         </div>
