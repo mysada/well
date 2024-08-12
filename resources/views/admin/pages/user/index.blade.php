@@ -87,12 +87,16 @@
                             <a href="{{ route('AdminUserShow', $user->id) }}" class="btn btn-secondary btn-sm">View Details</a>
                         </td>
                         <td class="text-center">
-                            <a href="{{ route('AdminUserEdit', $user->id) }}" class="btn btn-primary join-item">Edit</a>
-                            <button type="button" onclick="confirmDeletion({{ $user->id }}, '{{ $user->name }}')" class="btn join-item">Delete</button>
-                            <form id="delete-form-{{ $user->id }}" action="{{ route('AdminUserDestroy', $user->id) }}" method="POST" class="hidden">
-                                @csrf
-                                @method('DELETE')
-                            </form>
+                            @if($user->id != 1)
+                                <a href="{{ route('AdminUserEdit', $user->id) }}" class="btn btn-primary join-item">Edit</a>
+                                <button type="button" onclick="confirmDeletion({{ $user->id }}, '{{ $user->name }}')" class="btn join-item">Delete</button>
+                                <form id="delete-form-{{ $user->id }}" action="{{ route('AdminUserDestroy', $user->id) }}" method="POST" class="hidden">
+                                    @csrf
+                                    @method('DELETE')
+                                </form>
+                            @else
+                                <span class="text-gray-500">Not applicable for super admin</span>
+                            @endif
                         </td>
                     </tr>
                 @empty
