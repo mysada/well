@@ -91,8 +91,6 @@ class ProductController extends Controller
                 ->exists();
         }
 
-        $reviews = $product->id->reviews()->where('status', '!=', 'flagged')->get();
-
         return view('well.product.product_reviews', compact('product', 'relatedProducts', 'wishlist', 'reviews'));
     }
 

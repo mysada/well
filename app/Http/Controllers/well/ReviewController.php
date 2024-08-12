@@ -29,7 +29,6 @@ class ReviewController extends Controller
             ->where('product_id', $id)
             ->exists();
 
-        $reviews = $product->reviews()->where('status', '!=', 'flagged')->get();
         return view('well.product.product_reviews', compact('product', 'hasPurchased', 'wishlist', 'reviews'));
     }
 

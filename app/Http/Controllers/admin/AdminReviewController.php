@@ -5,6 +5,7 @@ namespace App\Http\Controllers\admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Review;
+use App\Models\FlaggedReview;
 use App\Models\Product;
 use App\Models\Category;
 
@@ -74,8 +75,21 @@ class AdminReviewController extends Controller
     public function flag($id)
     {
         $review = Review::findOrFail($id);
-        $review->update(['status' => 'flagged']); // Update status to flagged
 
-        return redirect()->route('AdminReviewList')->with('success', 'Review flagged successfully.');
+        // Move the review to the flagged_reviews table
+        FlaggedReview::create([
+            'product_id' => $review->product_id,
+            'user_id' => $review->user_id,
+            'rating' => $review->rating,
+            'review_text' => $review->review_text,
+            'image' => $review->image,
+            'created_at' => $review->created_at,
+            'updated_at' => $review->updated_at,
+        ]);
+
+        // Delete the review from the reviews table
+        $review->delete();
+
+        return redirect()->route('AdminReviewList')->with('success', 'Review flagged and moved to flagged reviews.');
     }
 }
