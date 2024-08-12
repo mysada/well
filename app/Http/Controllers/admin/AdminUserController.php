@@ -92,9 +92,9 @@ class AdminUserController extends Controller
     {
         // Retrieve the user by ID
         $user = User::findOrFail($id);
-
+$title = "User Management - Details";
         // Pass the user data to the view
-        return view('admin.pages.user.show', compact('user'));
+        return view('admin.pages.user.show', compact('user', 'title'));
     }
 
 
