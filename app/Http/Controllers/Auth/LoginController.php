@@ -43,11 +43,13 @@ class LoginController extends Controller
         // Flash message for successful login
         session()->flash('success', 'Login successful! Welcome back.');
 
-        // Log the user login
-        Log::info('User logged in', [
+        $role = $user->isAdmin() ? 'Admin' : 'User';
+
+        Log::info("{$role} logged in", [
             'user_id' => $user->id,
             'name' => $user->name,
-        ]);    }
+        ]);
+    }
 
     protected function loggedOut($request)
     {
