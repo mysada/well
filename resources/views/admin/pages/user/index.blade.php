@@ -87,16 +87,12 @@
                             <button class="btn btn-secondary btn-sm" onclick="openModal({{ $user->id }})">View Details</button>
                         </td>
                         <td class="text-center">
-                            @if ($user->id !== auth()->id())
-                                <a href="{{ route('AdminUserEdit', $user->id) }}" class="btn btn-primary join-item">Edit</a>
-                                <button type="button" onclick="confirmDeletion({{ $user->id }}, '{{ $user->name }}')" class="btn join-item">Delete</button>
-                                <form id="delete-form-{{ $user->id }}" action="{{ route('AdminUserDestroy', $user->id) }}" method="POST" class="hidden">
-                                    @csrf
-                                    @method('DELETE')
-                                </form>
-                            @else
-                                <span class="text-muted">You</span>
-                            @endif
+                            <a href="{{ route('AdminUserEdit', $user->id) }}" class="btn btn-primary join-item">Edit</a>
+                            <button type="button" onclick="confirmDeletion({{ $user->id }}, '{{ $user->name }}')" class="btn join-item">Delete</button>
+                            <form id="delete-form-{{ $user->id }}" action="{{ route('AdminUserDestroy', $user->id) }}" method="POST" class="hidden">
+                                @csrf
+                                @method('DELETE')
+                            </form>
                         </td>
                     </tr>
                 @empty
