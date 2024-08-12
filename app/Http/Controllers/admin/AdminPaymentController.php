@@ -26,7 +26,7 @@ class AdminPaymentController extends Controller
                                )
                                      ->orWhere('method', 'like', "%{$search}%")
                                      ->orWhere('status', 'like', "%{$search}%");
-                           })
+                           })->orderByDesc('id')
                            ->paginate(10);
 
         return view(
