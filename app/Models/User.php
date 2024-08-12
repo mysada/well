@@ -49,4 +49,17 @@ class User extends Authenticatable
     {
         return $this->hasMany(Review::class);
     }
+
+    /**
+     * Get the payments associated with the user.
+     */
+    public function payments()
+    {
+        return $this->hasManyThrough(Payment::class, Order::class, 'user_id', 'order_id', 'id', 'id');
+    }
+
+    public function defaultAddress()
+    {
+        return $this->hasOne(DefaultAddress::class);
+    }
 }

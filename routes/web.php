@@ -64,7 +64,7 @@ Route::get('/products/{id}', [ProductController::class, 'show'])->name(
 //Reviews ROutes -MANISH
 Route::get('/products/{id}/reviews', [ProductController::class, 'showReviews'])->name('product.reviews');
 Route::post('/products/{id}/reviews', [ReviewController::class, 'store'])->name('reviews.store1');
-Route::get('/products/{id}/reviews', [ReviewController::class, 'show'])->name('product.reviews');
+Route::get('/products/{id}/reviews', [ReviewController::class, 'show'])->name('product.show');
 
 
 // Routes for cart item actions, accessible only to logged-in users
@@ -87,6 +87,9 @@ Route::get('/thank-you/{orderId}', [ThankYouController::class, 'show'])->name('t
     Route::post('/orders/store', [OrderController::class, 'store'])->name(
       'OrderStore'
     );
+
+    Route::get('/order/details/{orderId}', [OrderController::class, 'details'])->name('order.details');
+
 
     /**
      * Wishlist route
@@ -114,6 +117,12 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/reorder/{orderId}', [UserController::class, 'reorder'])->name('order.reorder');
     Route::get('/checkout/{id}', [CheckoutController::class, 'showCheckout'])->name('checkout.show');
     Route::post('/checkout/process', [CheckoutController::class, 'process'])->name('checkout.process');
+    Route::post('/profile/set-default-address/{orderId}', [UserController::class, 'setDefaultAddress'])->name('user.setDefaultAddress');
+    Route::put('/profile/update-address/{orderId}', [UserController::class, 'updateAddress'])->name('user.updateAddress');
+    Route::put('/profile/update-default-address', [UserController::class, 'updateDefaultAddress'])->name('user.updateDefaultAddress');
+    Route::get('/profile/set-default-address/{orderId}', [UserController::class, 'setDefaultAddress'])->name('user.setDefaultAddress');
+    Route::post('/profile/set-default-address', [UserController::class, 'setDefaultAddress'])->name('user.setDefaultAddress');
+
 });
 
 

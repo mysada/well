@@ -8,29 +8,98 @@ use Illuminate\Support\Facades\Auth;
 use App\Models\CartItem;
 use App\Models\Order;
 use App\Models\User;
+use App\Models\Review;
+use App\Models\Product;
+use App\Models\DefaultAddress;
 
 class UserController extends Controller
 {
     public function index()
     {
         $user = Auth::user();
-        $orders = Order::where('user_id', Auth::id())->with('orderDetails.product')->get();
+        $orders = Order::where('user_id', Auth::id())
+            ->with('orderDetails.product')
+            ->get();
+
+        // Get last two confirmed orders and include billing information from the payments table
+        $lastOrders = Order::where('user_id', Auth::id())
+            ->where('status', 'CONFIRMED')
+            ->orderBy('created_at', 'desc')
+            ->take(2)
+            ->with(['payments' => function($query) {
+                $query->where('status', 'Completed');
+            }])
+            ->get();
+
+        // Get reviews written by the user
+        $reviews = Review::where('user_id', Auth::id())->with('product')->get();
+
+
+        // Get pending reviews
+        $pendingReviews = Order::where('user_id', Auth::id())
+            ->where('status', 'CONFIRMED')
+            ->whereDoesntHave('orderDetails.product.reviews', function ($query) {
+                $query->where('user_id', Auth::id());
+            })
+            ->with('orderDetails.product')
+            ->get();
+
+        // Get default address
+        $defaultAddress = DefaultAddress::where('user_id', Auth::id())->first();
+
         $title = 'Profile';
 
         $nameParts = explode(' ', $user->full_name, 2);
         $firstName = $nameParts[0] ?? '';
         $lastName = $nameParts[1] ?? '';
 
-        return view('well.pages.profile', compact('user', 'orders', 'title', 'firstName', 'lastName'));
+        return view('well.pages.profile', compact('user', 'orders', 'lastOrders', 'reviews', 'pendingReviews', 'defaultAddress', 'title', 'firstName', 'lastName'));
     }
 
-    public function logout(Request $request)
+    public function setDefaultAddress(Request $request)
     {
-        Auth::logout();
-        $request->session()->invalidate();
-        $request->session()->regenerateToken();
+        $request->validate([
+            'shipping_name' => 'required|regex:/^[a-zA-Z\s]+$/|max:255',
+            'shipping_address' => 'required|regex:/^[a-zA-Z0-9\s,.-]+$/|max:255',
+            'shipping_city' => 'required|regex:/^[a-zA-Z\s]+$/|max:255',
+            'shipping_province' => 'required|regex:/^[a-zA-Z\s]+$/|max:255',
+            'shipping_country' => 'required|regex:/^[a-zA-Z\s]+$/|max:255',
+            'shipping_postal_code' => 'required|regex:/^[a-zA-Z0-9\s-]+$/|max:255',
+            'shipping_email' => 'required|email|max:255',
+            'shipping_phone' => 'required|regex:/^(\+?[0-9\s\-\(\)]*)$/|max:25|min:9',
+            'billing_name' => 'required|regex:/^[a-zA-Z\s]+$/|max:255',
+            'billing_address' => 'required|regex:/^[a-zA-Z0-9\s,.-]+$/|max:255',
+            'billing_city' => 'required|regex:/^[a-zA-Z\s]+$/|max:255',
+            'billing_province' => 'required|regex:/^[a-zA-Z\s]+$/|max:255',
+            'billing_country' => 'required|regex:/^[a-zA-Z\s]+$/|max:255',
+            'billing_postal_code' => 'required|regex:/^[a-zA-Z0-9\s-]+$/|max:255',
+            'billing_email' => 'required|email|max:255',
+            'billing_phone' => 'required|regex:/^(\+?[0-9\s\-\(\)]*)$/|max:25|min:9',
+        ]);
 
-        return redirect()->route('home');
+        $defaultAddress = DefaultAddress::updateOrCreate(
+            ['user_id' => Auth::id()],
+            [
+                'shipping_name' => $request->shipping_name,
+                'shipping_address' => $request->shipping_address,
+                'shipping_city' => $request->shipping_city,
+                'shipping_province' => $request->shipping_province,
+                'shipping_country' => $request->shipping_country,
+                'shipping_postal_code' => $request->shipping_postal_code,
+                'shipping_email' => $request->shipping_email,
+                'shipping_phone' => $request->shipping_phone,
+                'billing_name' => $request->billing_name,
+                'billing_address' => $request->billing_address,
+                'billing_city' => $request->billing_city,
+                'billing_province' => $request->billing_province,
+                'billing_country' => $request->billing_country,
+                'billing_postal_code' => $request->billing_postal_code,
+                'billing_email' => $request->billing_email,
+                'billing_phone' => $request->billing_phone,
+            ]
+        );
+
+        return back()->with('success', 'Default address set successfully.');
     }
 
     public function update(Request $request)
@@ -40,8 +109,6 @@ class UserController extends Controller
             'last_name' => 'required|regex:/^[a-zA-Z\s]+$/|max:255',
             'email' => 'required|email|max:255|unique:users,email,' . Auth::id(),
             'phone' => 'required|regex:/^(\+?[0-9\s\-\(\)]*)$/|max:25|min:9',
-            'billing_address' => 'required|string|max:255',
-            'shipping_address' => 'required|string|max:255',
         ]);
 
         try {
@@ -49,8 +116,6 @@ class UserController extends Controller
             $user->full_name = $request->input('first_name') . ' ' . $request->input('last_name');
             $user->email = $request->input('email');
             $user->phone = $request->input('phone');
-            $user->billing_address = $request->input('billing_address');
-            $user->shipping_address = $request->input('shipping_address');
             $user->save();
 
             return back()->with('success', 'Profile updated successfully.');
@@ -61,30 +126,38 @@ class UserController extends Controller
 
     public function reorder($orderId)
     {
-        $order = Order::with('orderDetails')->findOrFail($orderId);
-        $userId = Auth::id();
+        // Find the order by ID and ensure it belongs to the authenticated user
+        $order = Order::where('id', $orderId)
+            ->where('user_id', Auth::id())
+            ->with('orderDetails.product')
+            ->first();
 
-        // Iterate through order details and add products to the cart
+        if (!$order) {
+            return back()->with('error', 'Order not found or you do not have permission to reorder this.');
+        }
+
+        // Loop through the order details and add each product to the cart
         foreach ($order->orderDetails as $detail) {
-            $cartItem = CartItem::where('user_id', $userId)
+            // Check if the product already exists in the cart
+            $cartItem = CartItem::where('user_id', Auth::id())
                 ->where('product_id', $detail->product_id)
                 ->first();
 
             if ($cartItem) {
-                // If the item already exists in the cart, update the quantity
+                // Update the quantity if the product is already in the cart
                 $cartItem->quantity += $detail->quantity;
                 $cartItem->save();
             } else {
-                // Otherwise, create a new cart item
+                // Add the product to the cart
                 CartItem::create([
-                    'user_id' => $userId,
+                    'user_id' => Auth::id(),
                     'product_id' => $detail->product_id,
-                    'quantity' => $detail->quantity
+                    'quantity' => $detail->quantity,
                 ]);
             }
         }
 
-        // Redirect to the cart page with a success message
-        return redirect()->route('CartIndex')->with('success', 'Products added to cart successfully.');
+        return redirect()->route('CartIndex')->with('success', 'Items from the previous order have been added to your cart.');
+
     }
 }

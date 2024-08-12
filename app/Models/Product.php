@@ -33,4 +33,9 @@ class Product extends Model
         return $this->hasMany(Review::class);
     }
 
+    public function orderDetails()
+    {
+        return $this->hasMany(OrderDetail::class, 'product_id');
+    }
+
 }
