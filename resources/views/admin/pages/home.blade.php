@@ -3,6 +3,7 @@
 
 @section('content')
     <div class="flex flex-col gap-4">
+        <h2 class="text-4xl font-bold" style="margin-top: 50px; margin-bottom: 20px">Statics</h2>
         <div class="stats shadow w-full">
             <div class="stat">
                 <div class="stat-figure text-primary">
@@ -50,7 +51,7 @@
             </div>
         </div>
         <div class="overflow-x-auto w-full">
-            <h2 class="text-4xl font-bold">Recent Logs</h2>
+            <h2 class="text-4xl font-bold" style="margin-top: 50px; margin-bottom: 20px">Recent Logs</h2>
             <table class="table w-full">
                 <!-- head -->
                 <thead>
