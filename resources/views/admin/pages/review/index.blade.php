@@ -42,9 +42,22 @@
                     <tr class="hover">
                         <td>{{ $review->id }}</td>
                         <td>
-                            <a href="{{ route('AdminProductShow', $review->product->id) }}">
-                                {{ $review->product->name }}
-                            </a>
+                            <div class="flex items-center gap-3">
+                                <div class="avatar">
+                                    <div class="mask mask-squircle h-12 w-12">
+                                        <a href="{{ route('AdminProductShow', $review->product->id) }}">
+                                            <img
+                                                    src="{{ asset($review->product->image_url) }}"
+                                                    alt="img"/>
+                                        </a>
+                                    </div>
+                                </div>
+                                <div>
+                                    <a href="{{ route('AdminProductShow', $review->product->id) }}">{{ $review->product->name }}</a>
+                                    <p class="opacity-75 text-sm">{{$review->product->category->name}}</p>
+                                </div>
+                            </div>
+
                         </td>
                         <td>
                             {{ $review->user->name }}
