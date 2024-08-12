@@ -1,4 +1,4 @@
-<div class="drawer-side">
+<div class="drawer-side" style="margin-right: 50px">
     <div class="menu text-base-content min-h-full w-40 p-4 gap-8">
         <div class="top-0 z-20 flex items-center gap-2 px-4 py-2">
             <a href="{{route('admin.home')}}">
