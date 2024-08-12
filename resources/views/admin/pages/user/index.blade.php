@@ -69,12 +69,12 @@
                     <th>Role</th>
                     <th>Created At</th>
                     <th>Details</th>
-                    <th>Actions</th>
+                    <th class="px-0">Actions</th>
                 </tr>
                 </thead>
                 <tbody>
                 @forelse ($users as $user)
-                    <tr>
+                    <tr class="hover">
                         <td>{{ $user->id }}</td>
                         <td>{{ $user->name }}</td>
                         <td class="whitespace-nowrap">
@@ -86,17 +86,22 @@
                             <!-- Link to User Details Page -->
                             <a href="{{ route('AdminUserShow', $user->id) }}" class="btn btn-secondary btn-sm">View Details</a>
                         </td>
-                        <td class="text-center">
-                            @if($user->id != 1)
-                                <a href="{{ route('AdminUserEdit', $user->id) }}" class="btn btn-primary join-item">Edit</a>
-                                <button type="button" onclick="confirmDeletion({{ $user->id }}, '{{ $user->name }}')" class="btn join-item">Delete</button>
-                                <form id="delete-form-{{ $user->id }}" action="{{ route('AdminUserDestroy', $user->id) }}" method="POST" class="hidden">
-                                    @csrf
-                                    @method('DELETE')
-                                </form>
-                            @else
-                                <span class="text-gray-500">Not applicable for super admin</span>
-                            @endif
+                        <td class="px-0">
+                            <div class="join flex w-full">
+                                @if($user->id != 1)
+                                    <!-- Edit Button -->
+                                    <a href="{{ route('AdminUserEdit', $user->id) }}" class="btn btn-primary join-item">Edit</a>
+                                    <!-- Delete Button -->
+                                    <form action="{{ route('AdminUserDestroy', $user->id) }}" method="POST" class="flex-1">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit" onclick="return confirm('Are you sure you want to delete this user?')" class="btn btn-danger join-item">Delete</button>
+                                    </form>
+                                @else
+                                    <!-- Not Applicable Button -->
+                                    <span class="btn btn-disabled">N/A for Admin</span>
+                                @endif
+                            </div>
                         </td>
                     </tr>
                 @empty
