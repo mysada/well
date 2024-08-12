@@ -95,27 +95,3 @@
         }
     }
 }
-.buttons-section {
-    display: flex;
-    justify-content: center;
-    gap: 10px;
-}
-
-.btn-custom {
-    padding: 14px;
-    border-radius: 0;
-    background-color: #00A875;
-    color: white;
-    font-weight: bold;
-    transition: background-color 0.3s ease, transform 0.3s ease;
-}
-
-.btn-custom:hover {
-    background-color: #00A875;
-    transform: scale(1.05);
-}
-
-.btn-custom:active {
-    background-color: #00A875;
-    transform: scale(0.95);
-}

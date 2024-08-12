@@ -31,5 +31,11 @@ class OrderController extends Controller
             'checkout.show', [$orderId]
         );
     }
+    public function details($orderId)
+    {
+        $order = Order::with('orderDetails.product')->findOrFail($orderId);
+        return view('well.order.order_detail', compact('order'));
+    }
+
 
 }
