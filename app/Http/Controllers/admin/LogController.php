@@ -7,22 +7,15 @@ use Illuminate\Http\Request;
 
 class LogController extends Controller
 {
-    /**
-     * Display the login/logout logs.
-     *
-     * @return \Illuminate\View\View
-     */
     public function index()
     {
+        // Fetch the logs from the log file
         $logs = $this->getLogs();
-        return view('admin.logs.index', ['logs' => $logs]); // Assuming you want to put the view in the admin folder
+
+        // Return the view with the logs data
+        return view('admin.home', ['logs' => $logs]);
     }
 
-    /**
-     * Fetch the logs from the Laravel log file.
-     *
-     * @return array
-     */
     protected function getLogs()
     {
         $logFile = storage_path('logs/laravel.log');
