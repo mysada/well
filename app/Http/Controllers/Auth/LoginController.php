@@ -56,12 +56,13 @@ class LoginController extends Controller
         // Get the user ID and name before logging out
         $userId = Auth::id();
         $userName = Auth::user() ? Auth::user()->name : 'Unknown';
+        $role = Auth::user() && Auth::user()->isAdmin() ? 'Admin' : 'User'; // Check if the user is an admin
 
         // Flash message for successful logout
         session()->flash('success', 'Logout successful! See you again soon.');
 
-        // Log the user logout with user ID and name
-        \Log::info('User logged out', [
+        // Log the user logout with user ID, name, and role
+        \Log::info("{$role} logged out", [
             'user_id' => $userId,
             'name' => $userName,
         ]);
