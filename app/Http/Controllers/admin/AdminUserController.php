@@ -36,6 +36,7 @@ class AdminUserController extends Controller
         }
 
         $users = $query->paginate($perPage);
+        $title = "User Management - List";
 
         return view('admin.pages.user.index', [
             'users' => $users,
@@ -43,6 +44,7 @@ class AdminUserController extends Controller
             'role' => $role,
             'sort' => $sort,
             'per_page' => $perPage,
+            'title' => $title
         ]);
     }
 
@@ -97,7 +99,8 @@ class AdminUserController extends Controller
     public function edit($id)
     {
         $user = User::findOrFail($id);
-        return view('admin.pages.user.edit', compact('user'));
+        $title = "User Management - Edit";
+        return view('admin.pages.user.edit', compact('user', 'title'));
     }
 
     /**
