@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Admin;
+namespace App\Http\Controllers\Temp;
 
 use App\Http\Controllers\Controller;
 use App\Models\Category;
@@ -51,7 +51,7 @@ class AdminCategoryController extends Controller
             // Redirect to the category list with a success message
             return redirect()->route('AdminCategoryList')->with('success', 'Category created successfully.');
         } else {
-            
+
             return redirect()->back()->withErrors(['image' => 'Image upload failed.']);
         }
     }
