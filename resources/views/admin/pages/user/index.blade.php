@@ -83,8 +83,8 @@
                         <td>{{ $user->is_admin ? 'Admin' : 'Customer' }}</td>
                         <td>{{ $user->created_at->format('Y-m-d H:i') }}</td>
                         <td class="text-center">
-                            <!-- Trigger Modal -->
-                            <button class="btn btn-secondary btn-sm" onclick="openModal({{ $user->id }})">View Details</button>
+                            <!-- Link to User Details Page -->
+                            <a href="{{ route('AdminUserShow', $user->id) }}" class="btn btn-secondary btn-sm">View Details</a>
                         </td>
                         <td class="text-center">
                             <a href="{{ route('AdminUserEdit', $user->id) }}" class="btn btn-primary join-item">Edit</a>
@@ -132,48 +132,6 @@
             </div>
         </div>
 
-        <!-- User Details Modal -->
-        @foreach ($users as $user)
-            <div id="modal-{{ $user->id }}" class="modal">
-                <div class="modal-box w-11/12 max-w-3xl">
-                    <h3 class="font-bold text-2xl mb-4 text-center">User Details</h3>
-                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                        <div>
-                            <p class="font-semibold text-lg">Full Name:</p>
-                            <p class="text-gray-700">{{ $user->name }}</p>
-                        </div>
-                        <div>
-                            <p class="font-semibold text-lg">Email:</p>
-                            <p class="text-gray-700">{{ $user->email }}</p>
-                        </div>
-                        <div>
-                            <p class="font-semibold text-lg">Role:</p>
-                            <p class="text-gray-700">{{ $user->is_admin ? 'Admin' : 'Customer' }}</p>
-                        </div>
-                        <div>
-                            <p class="font-semibold text-lg">Phone:</p>
-                            <p class="text-gray-700">{{ $user->phone ?? 'User has not updated phone number' }}</p>
-                        </div>
-                        <div>
-                            <p class="font-semibold text-lg">Address:</p>
-                            <p class="text-gray-700">{{ $user->address ?? 'User has not updated address' }}</p>
-                        </div>
-                        <div>
-                            <p class="font-semibold text-lg">Billing Address:</p>
-                            <p class="text-gray-700">{{ $user->billing_address ?? 'User has not updated billing address' }}</p>
-                        </div>
-                        <div>
-                            <p class="font-semibold text-lg">Shipping Address:</p>
-                            <p class="text-gray-700">{{ $user->shipping_address ?? 'User has not updated shipping address' }}</p>
-                        </div>
-                    </div>
-                    <div class="modal-action mt-6">
-                        <button class="btn btn-outline btn-primary" onclick="closeModal({{ $user->id }})">Close</button>
-                    </div>
-                </div>
-            </div>
-        @endforeach
-
         <!-- Delete Confirmation Modal -->
         <div id="delete-confirmation-modal" class="modal">
             <div class="modal-box">
@@ -188,14 +146,6 @@
     </div>
 
     <script>
-        function openModal(userId) {
-            document.getElementById('modal-' + userId).classList.add('modal-open');
-        }
-
-        function closeModal(userId) {
-            document.getElementById('modal-' + userId).classList.remove('modal-open');
-        }
-
         let userIdToDelete = null;
         let userNameToDelete = '';
 
