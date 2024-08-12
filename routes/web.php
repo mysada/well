@@ -188,9 +188,12 @@ Route::middleware(AdminAuthInterceptor::class)->prefix('admin')->group(function 
       'destroy' => 'AdminCategoryDestroy',
     ]);
 
-    Route::resource('/', AdminHomeController::class)->names([
-      'index' => 'admin.home',
-    ]);
+    Route::get('/', [AdminHomeController::class, 'index'])->name('admin.home');
+
+//    Route::resource('/', AdminHomeController::class)->names([
+//      'index' => 'admin.home',
+//    ]);
+
 });
 
 

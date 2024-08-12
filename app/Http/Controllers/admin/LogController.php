@@ -2,18 +2,20 @@
 
 namespace App\Http\Controllers\admin;
 
+use Illuminate\Support\Facades\Log;
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
 
 class LogController extends Controller
 {
     public function index()
     {
-        // Fetch the logs from the log file
+        // Fetch the logs
         $logs = $this->getLogs();
 
-        // Return the view with the logs data
-        return view('admin.home', ['logs' => $logs]);
+        dd($logs);
+
+        // Pass the logs to the view
+        return view('admin.pages.home', compact('logs'));
     }
 
     protected function getLogs()
