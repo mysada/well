@@ -14,7 +14,7 @@ class AdminCategoryController extends Controller
      */
     public function index()
     {
-        $title = 'Category List';
+        $title = 'Category Management - List';
         $categories = Category::all();
         return view('admin.pages.category.index', compact('categories','title'));
     }

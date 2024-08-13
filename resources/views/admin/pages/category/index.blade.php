@@ -6,7 +6,7 @@
             <div class="text-3xl font-bold"></div>
             <a href="{{ route('AdminCategoryCreate') }}" class="btn btn-primary">Add New Category</a>
         </div>
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mt-6">
             @foreach($categories as $category)
                 <div class="card w-full bg-base-100 shadow-xl">
                     <figure>
