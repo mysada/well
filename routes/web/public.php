@@ -31,9 +31,9 @@ Route::post('/contact', [ContactController::class, 'submit'])->name('contact.sub
 
 // Product pages
 Route::get('/products', [ProductController::class, 'index'])->name('products.index');
-Route::get('/products/{id}', [ProductController::class, 'show'])->name('products.show');
 Route::get('/products/{id}/reviews', [ProductController::class, 'showReviews'])->name('product.reviews');
+Route::get('/products/{id}', [ProductController::class, 'show'])->name('products.show');
 Route::get('/products-by-category/{categoryId}', [ProductController::class, 'getProductsByCategory']);
+Route::post('/products/{id}/reviews', [ReviewController::class, 'store'])->name('reviews.store');
 
 // Product reviews (public viewing)
-Route::get('/products/{id}/reviews', [ReviewController::class, 'show'])->name('product.show');
