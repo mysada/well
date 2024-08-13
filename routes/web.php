@@ -77,36 +77,36 @@ Route::middleware('auth')->group(function () {
     ]);
 
 //thankyou route - MAnish
-
 Route::get('/thank-you/{orderId}', [ThankYouController::class, 'show'])->name('thankyou');
 
 
-    /**
-     * order routes
-     */
-    Route::post('/orders/store', [OrderController::class, 'store'])->name(
-      'OrderStore'
-    );
+/**
+ * order routes
+ */
+Route::post('/orders/store', [OrderController::class, 'store'])->name(
+  'OrderStore'
+);
 
-    Route::get('/order/details/{orderId}', [OrderController::class, 'details'])->name('order.details');
+Route::get('/order/details/{orderId}', [OrderController::class, 'details'])->name('order.details');
 
 
-    /**
-     * Wishlist route
-     */
-    Route::resource('/wishlists', WishlistController::class)->names([
-      'index'   => 'WishlistIndex', //page: wishlist
-      'store'   => 'WishlistStore', //processor: add product into wishlist
-      'destroy' => 'WishlistDestroy', //processor: delete product
-    ]);
-    Route::post('/add2cart', [WishlistController::class, 'addToCart'])->name(
-      'WishlistAddToCart'
-    );
+/**
+ * Wishlist route
+ */
+Route::resource('/wishlists', WishlistController::class)->names([
+  'index'   => 'WishlistIndex', //page: wishlist
+  'store'   => 'WishlistStore', //processor: add product into wishlist
+  'destroy' => 'WishlistDestroy', //processor: delete product
+]);
 
-    Route::resource('user', UserController::class)
-         ->names([
-           'index' => 'Profile', //page: profile with orders
-         ]);
+Route::post('/add2cart', [WishlistController::class, 'addToCart'])->name(
+  'WishlistAddToCart'
+);
+
+Route::resource('user', UserController::class)
+     ->names([
+       'index' => 'Profile', //page: profile with orders
+     ]);
 });
 
 // profile routes updated by Aman, revised by Manish
@@ -129,18 +129,6 @@ Route::middleware(['auth'])->group(function () {
 
 
 Auth::routes();
-//QUERY CRUD -MANISH
-Route::group(['middleware' => 'auth'], function () {
-    Route::get('/admin/queries', [ContactQueryController::class, 'index'])->name('admin.queries');
-    Route::get('/admin/queries/{id}', [ContactQueryController::class, 'show'])->name('admin.queries.show');
-    Route::patch('/admin/queries/{id}/status', [ContactQueryController::class, 'updateStatus'])->name('admin.queries.updateStatus');
-    Route::delete('/admin/queries/{id}', [ContactQueryController::class, 'destroy'])->name('admin.queries.destroy');
-    Route::get('/admin/queries/{id}/edit', [ContactQueryController::class, 'edit'])->name('admin.queries.edit');
-    Route::put('/admin/queries/{id}', [ContactQueryController::class, 'update'])->name('admin.queries.update');
-    Route::post('/admin/queries/{id}/follow-up', [ContactQueryController::class, 'saveFollowUpNotes'])->name('admin.queries.saveFollowUpNotes');
-});
-
-
 
 //aman -- admin user management routing
 
@@ -161,6 +149,16 @@ Route::middleware(AdminAuthInterceptor::class)->prefix('admin')->group(function 
       'destroy' => 'AdminOrderDestroy',
     ]);
 
+    //QUERY CRUD -MANISH
+    Route::get('/admin/queries', [ContactQueryController::class, 'index'])->name('admin.queries');
+    Route::get('/admin/queries/{id}', [ContactQueryController::class, 'show'])->name('admin.queries.show');
+    Route::patch('/admin/queries/{id}/status', [ContactQueryController::class, 'updateStatus'])->name('admin.queries.updateStatus');
+    Route::delete('/admin/queries/{id}', [ContactQueryController::class, 'destroy'])->name('admin.queries.destroy');
+    Route::get('/admin/queries/{id}/edit', [ContactQueryController::class, 'edit'])->name('admin.queries.edit');
+    Route::put('/admin/queries/{id}', [ContactQueryController::class, 'update'])->name('admin.queries.update');
+    Route::post('/admin/queries/{id}/follow-up', [ContactQueryController::class, 'saveFollowUpNotes'])->name('admin.queries.saveFollowUpNotes');
+
+
     Route::resource('/products', AdminProductController::class)->names([
       'index'   => 'AdminProductList',
       'create'  => 'AdminProductCreate',
@@ -177,6 +175,8 @@ Route::middleware(AdminAuthInterceptor::class)->prefix('admin')->group(function 
       'update'  => 'AdminReviewUpdate',
       'destroy' => 'AdminReviewDestroy',
     ]);
+
+    //REVIEWS ROUTES - MANISH
     Route::get('/admin/reviews/export', [AdminReviewController::class, 'export'])->name('AdminReviewExport');
     Route::post('/reviews/flag/{id}', [AdminReviewController::class, 'flag'])->name('AdminReviewFlag');
     Route::get('/products-by-category/{categoryId}', [ProductController::class, 'getProductsByCategory']);
