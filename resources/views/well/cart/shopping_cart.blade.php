@@ -7,7 +7,7 @@
             <h2 class="cart-title">Shopping Cart</h2>
 
             @if($cartItems->isEmpty())
-                <p>Your cart is empty.</p>
+            <p>Your cart is empty. Start adding items to your cart to see them here!</p>
             @else
                 <div class="cart-layout">
                     <div class="cart-items">
@@ -41,7 +41,7 @@
                                             <td class="item-total">${{ number_format($cartItem->product->price * $cartItem->quantity, 2) }}</td>
                                             <td>
                                                 <div class="actions">
-                                                    <form action="{{ route('CartItemDestroy', $cartItem->id) }}" method="POST" class="d-inline">
+                                                    <form action="{{ route('CartItemDestroy', $cartItem->id) }}" method="POST" class="d-inline" >
                                                         @csrf
                                                         @method('DELETE')
                                                         <button type="submit" class="btn btn-link text-danger p-0">Remove</button>
@@ -64,7 +64,6 @@
                         <p>Items: <span id="item-count">{{ $cartItems->sum('quantity') }}</span></p>
                         <p>Subtotal: $<span id="subtotal">{{ number_format($cartItems->sum(fn($item) => $item->product ? $item->product->price * $item->quantity : 0), 2) }}</span></p>
                         <p class="total">Total: $<span id="cart-total">{{ number_format($cartItems->sum(fn($item) => $item->product ? $item->product->price * $item->quantity : 0), 2) }}</span></p>
-{{--                        <p>Your taxes and shipping charges will be calculate at checkout..</p>--}}
                         <form action="{{ route('OrderStore') }}" method="POST">
                             @csrf
                             <button type="submit" class="btn btn-primary btn-block">Go to Checkout</button>
