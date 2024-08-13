@@ -36,8 +36,8 @@
         </div>
 
         <!-- Top Seller Section -->
-        <div class="bg-white shadow-lg rounded-lg overflow-hidden p-6 mt-8">
-            <h2 class="text-2xl font-bold mb-6">Top Seller</h2>
+        <h2 class="text-4xl font-bold mb-6">Top Seller</h2>
+        <div class="bg-white shadow-lg rounded-lg overflow-hidden p-6">
             <table class="w-full">
                 <thead>
                     <tr>
