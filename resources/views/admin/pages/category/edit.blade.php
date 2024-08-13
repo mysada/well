@@ -12,7 +12,7 @@
                 <div class="md:flex">
                     <div class="w-1/3 flex justify-center items-center">
                         <figure>
-                            <img class="w-full h-full object-cover" src="{{ asset($category->image . '.jpg') }}" alt="{{ $category->name }}" >
+                            <img class="w-full h-full object-cover" src="{{ asset($category->image) }}" alt="{{ $category->name }}" >
                         </figure>
                     </div>
                     <div class="w-2/3 p-6">
