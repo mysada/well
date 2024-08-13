@@ -1,20 +1,14 @@
 <?php
 
+use App\Http\Controllers\Admin\AdminCategoryController;
+use App\Http\Controllers\Admin\AdminHomeController;
+use App\Http\Controllers\Admin\AdminOrderController;
+use App\Http\Controllers\Admin\AdminPaymentController;
+use App\Http\Controllers\Admin\AdminProductController;
+use App\Http\Controllers\Admin\AdminReviewController;
+use App\Http\Controllers\Admin\AdminUserController;
+use App\Http\Controllers\Admin\ContactQueryController;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\admin\AdminCategoryController;
-use App\Http\Controllers\admin\AdminHomeController;
-use App\Http\Controllers\admin\AdminOrderController;
-use App\Http\Controllers\admin\AdminPaymentController;
-use App\Http\Controllers\admin\AdminProductController;
-use App\Http\Controllers\admin\AdminReviewController;
-use App\Http\Controllers\admin\AdminUserController;
-use App\Http\Controllers\admin\ContactQueryController;
-
-// Admin home
-Route::get('/', [AdminHomeController::class, 'index'])->name('admin.home');
-
-// Contact queries
-Route::get('queries', [ContactQueryController::class, 'index'])->name('admin.queries');
 
 // User management
 Route::resource('user', AdminUserController::class)->except(['show'])->names([
@@ -27,8 +21,11 @@ Route::resource('user', AdminUserController::class)->except(['show'])->names([
 ]);
 
 // Order management
-Route::resource('orders', AdminOrderController::class)->only(['index', 'show', 'destroy'])->names([
+Route::resource('orders', AdminOrderController::class)->only(
+  ['index', 'show', 'destroy','update']
+)->names([
   'index'   => 'AdminOrderList',
+  'update'  => 'AdminOrderUpdate',
   'show'    => 'AdminOrderShow',
   'destroy' => 'AdminOrderDestroy',
 ]);
@@ -45,28 +42,49 @@ Route::resource('products', AdminProductController::class)->names([
 ]);
 
 // Review management
-Route::controller(AdminReviewController::class)->group(function () {
-    Route::get('reviews', 'index')->name('AdminReviewList');
-    Route::get('reviews/{review}/edit', 'edit')->name('AdminReviewEdit');
-    Route::put('reviews/{review}', 'update')->name('AdminReviewUpdate');
-    Route::delete('reviews/{review}', 'destroy')->name('AdminReviewDestroy');
-    Route::get('reviews/export', 'export')->name('AdminReviewExport');
-    Route::post('reviews/flag/{id}', 'flag')->name('AdminReviewFlag');
-    Route::patch('reviews/status/{id}', 'updateStatus')->name('AdminReviewUpdateStatus');
-});
+Route::resource('reviews', AdminReviewController::class)->except(
+  ['create', 'store', 'show']
+)->names([
+  'index'   => 'AdminReviewList',
+  'edit'    => 'AdminReviewEdit',
+  'update'  => 'AdminReviewUpdate',
+  'destroy' => 'AdminReviewDestroy',
+]);
+Route::get('reviews/export', [AdminReviewController::class, 'export'])->name(
+  'AdminReviewExport'
+);
+Route::post('reviews/flag/{id}', [AdminReviewController::class, 'flag'])->name(
+  'AdminReviewFlag'
+);
+Route::patch(
+  'reviews/status/{id}',
+  [AdminReviewController::class, 'updateStatus']
+)->name('AdminReviewUpdateStatus');
 
 // Payment management
-Route::resource('payments', AdminPaymentController::class)->only(['index', 'show'])->names([
+Route::resource('payments', AdminPaymentController::class)->only(
+  ['index', 'show']
+)->names([
   'index' => 'AdminPaymentList',
   'show'  => 'AdminPaymentShow',
 ]);
 
 // Category management
-Route::resource('categories', AdminCategoryController::class)->except(['show'])->names([
-  'index'   => 'AdminCategoryList',
-  'create'  => 'AdminCategoryCreate',
-  'store'   => 'AdminCategoryStore',
-  'edit'    => 'AdminCategoryEdit',
-  'update'  => 'AdminCategoryUpdate',
-  'destroy' => 'AdminCategoryDestroy',
-]);
+Route::resource('categories', AdminCategoryController::class)
+     ->except(['show'])
+     ->names([
+       'index'   => 'AdminCategoryList',
+       'create'  => 'AdminCategoryCreate',
+       'store'   => 'AdminCategoryStore',
+       'edit'    => 'AdminCategoryEdit',
+       'update'  => 'AdminCategoryUpdate',
+       'destroy' => 'AdminCategoryDestroy',
+     ]);
+
+// Admin home
+Route::get('/', [AdminHomeController::class, 'index'])->name('admin.home');
+
+// Contact queries
+Route::get('queries', [ContactQueryController::class, 'index'])->name(
+  'admin.queries'
+);

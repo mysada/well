@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Middleware\AdminAuthInterceptor;
 use Illuminate\Support\Facades\Route;
 
 // Public routes
@@ -11,7 +12,7 @@ Route::middleware('auth')->group(function () {
 });
 
 // Admin routes
-Route::middleware('admin')->prefix('admin')->group(function () {
+Route::middleware(AdminAuthInterceptor::class)->prefix('admin')->group(function () {
     require __DIR__.'/web/admin.php';
 });
 

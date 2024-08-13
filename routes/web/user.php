@@ -10,52 +10,40 @@ use App\Http\Controllers\well\CheckoutController;
 use App\Http\Controllers\well\ReviewController;
 
 // Cart operations
-Route::resource('cart_items', CartItemController::class)->except(
-  ['create', 'edit', 'show']
-)->names([
-  'index'   => 'CartIndex',
-  'store'   => 'CartItemStore',
-  'update'  => 'CartItemUpdate',
+Route::resource('cart_items', CartItemController::class)->except(['create', 'edit', 'show'])->names([
+  'index' => 'CartIndex',
+  'store' => 'CartItemStore',
+  'update' => 'CartItemUpdate',
   'destroy' => 'CartItemDestroy',
 ]);
 
-// Wishlist operations
-Route::controller(WishlistController::class)->group(function () {
-    Route::get('wishlists', 'index')->name('WishlistIndex');
-    Route::post('wishlists', 'store')->name('WishlistStore');
-    Route::delete('wishlists/{id}', 'destroy')->name('WishlistDestroy');
-    Route::post('wishlist/cart', 'addToCart')->name('WishlistAddToCart');
-});
-
 // Order operations
-Route::controller(OrderController::class)->group(function () {
-    Route::post('orders/store', 'store')->name('OrderStore');
-    Route::get('order/details/{orderId}', 'details')->name('order.details');
-});
+Route::post('orders/store', [OrderController::class, 'store'])->name('OrderStore');
+Route::get('order/details/{orderId}', [OrderController::class, 'details'])->name('order.details');
+Route::get('thank-you/{orderId}', [ThankYouController::class, 'show'])->name('thankyou');
 
-// Wishlist additional operations
+// Wishlist operations
+Route::resource('wishlists', WishlistController::class)->except(['create', 'edit', 'show', 'update'])->names([
+  'index' => 'WishlistIndex',
+  'store' => 'WishlistStore',
+  'destroy' => 'WishlistDestroy',
+]);
+Route::post('add2cart', [WishlistController::class, 'addToCart'])->name('WishlistAddToCart');
 
 // User profile and address management
-Route::controller(UserController::class)->group(function () {
-    Route::get('profile', 'index')->name('user.profile');
-    Route::post('profile/logout', 'logout')->name('user.logout');
-    Route::put('profile/update', 'update')->name('user.update');
-    Route::post('profile/set-default-address/{orderId}', 'setDefaultAddress')->name('user.setDefaultAddress');
-    Route::put('profile/update-address/{orderId}', 'updateAddress')->name('user.updateAddress');
-    Route::put('profile/update-default-address', 'updateDefaultAddress')->name('user.updateDefaultAddress');
-    Route::get('profile/reorder/{orderId}', 'reorder')->name('order.reorder');
-});
+Route::get('profile', [UserController::class, 'index'])->name('user.profile');
+Route::post('profile/logout', [UserController::class, 'logout'])->name('user.logout');
+Route::put('profile/update', [UserController::class, 'update'])->name('user.update');
+Route::post('/profile/set-default-address', [UserController::class, 'setDefaultAddress'])->name('user.setDefaultAddress');
+Route::put('profile/update-address/{orderId}', [UserController::class, 'updateAddress'])->name('user.updateAddress');
+Route::put('profile/update-default-address', [UserController::class, 'updateDefaultAddress'])->name('user.updateDefaultAddress');
 
 // Checkout process
-Route::controller(CheckoutController::class)->group(function () {
-    Route::get('checkout/{id}', 'showCheckout')->name('checkout.show');
-    Route::post('checkout/process', 'process')->name('checkout.process');
-});
+Route::get('checkout/{id}', [CheckoutController::class, 'showCheckout'])->name('checkout.show');
+Route::post('checkout/process', [CheckoutController::class, 'process'])->name('checkout.process');
 
 // Reorder
+Route::get('reorder/{orderId}', [UserController::class, 'reorder'])->name('order.reorder');
 
-// Product reviews
+// Product reviews (authenticated users can post)
 Route::post('products/{id}/reviews', [ReviewController::class, 'store'])->name('reviews.store');
-
-// Thank you page
-Route::get('thank-you/{orderId}', [ThankYouController::class, 'show'])->name('thankyou');
