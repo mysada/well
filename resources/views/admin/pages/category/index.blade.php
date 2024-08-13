@@ -6,11 +6,11 @@
             <div class="text-3xl font-bold"></div>
             <a href="{{ route('AdminCategoryCreate') }}" class="btn btn-primary">Add New Category</a>
         </div>
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mt-6">
             @foreach($categories as $category)
                 <div class="card w-full bg-base-100 shadow-xl">
                     <figure>
-                        <img src="{{ asset($category->image . '.jpg') }}" alt="{{ $category->name }}" class="w-full h-48 object-cover">
+                        <img src="{{ asset($category->image) }}" alt="{{ $category->name }}" class="w-full h-48 object-cover">
                     </figure>
                     <div class="card-body">
                         <h2 class="card-title">{{ $category->name }}</h2>
