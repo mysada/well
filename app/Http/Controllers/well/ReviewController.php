@@ -12,25 +12,25 @@ use App\Models\Review;
 
 class ReviewController extends Controller
 {
-    public function show($id)
-    {
-        $product = Product::with('reviews')->findOrFail($id);
-
-        // Check if the user has purchased the product with status 'CONFIRMED'
-        $hasPurchased = DB::table('order_details')
-            ->join('orders', 'order_details.order_id', '=', 'orders.id')
-            ->where('orders.user_id', auth()->id())
-            ->where('order_details.product_id', $id)
-            ->where('orders.status', 'CONFIRMED')
-            ->exists();
-
-        // Check if the product is in the user's wishlist
-        $wishlist = Wishlist::where('user_id', auth()->id())
-            ->where('product_id', $id)
-            ->exists();
-
-        return view('well.product.product_reviews', compact('product', 'hasPurchased', 'wishlist', 'reviews'));
-    }
+//    public function show($id)
+//    {
+//        $product = Product::with('reviews')->findOrFail($id);
+//
+//        // Check if the user has purchased the product with status 'CONFIRMED'
+//        $hasPurchased = DB::table('order_details')
+//            ->join('orders', 'order_details.order_id', '=', 'orders.id')
+//            ->where('orders.user_id', auth()->id())
+//            ->where('order_details.product_id', $id)
+//            ->where('orders.status', 'CONFIRMED')
+//            ->exists();
+//
+//        // Check if the product is in the user's wishlist
+//        $wishlist = Wishlist::where('user_id', auth()->id())
+//            ->where('product_id', $id)
+//            ->exists();
+//
+//        return view('well.product.product_reviews', compact('product', 'hasPurchased', 'wishlist'));
+//    }
 
     public function store(Request $request)
     {
