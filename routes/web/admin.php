@@ -81,8 +81,10 @@ Route::resource('categories', AdminCategoryController::class)
        'destroy' => 'AdminCategoryDestroy',
      ]);
 
+// Admin home
+Route::get('/', [AdminHomeController::class, 'index'])->name('admin.home');
 
-//QUERIES CRUD - MANISH
+//QUERY CRUD -MANISH
 Route::group(['middleware' => 'auth'], function () {
     Route::get('/admin/queries', [ContactQueryController::class, 'index'])->name('admin.queries');
     Route::get('/admin/queries/{id}', [ContactQueryController::class, 'show'])->name('admin.queries.show');
@@ -92,11 +94,5 @@ Route::group(['middleware' => 'auth'], function () {
     Route::put('/admin/queries/{id}', [ContactQueryController::class, 'update'])->name('admin.queries.update');
     Route::post('/admin/queries/{id}/follow-up', [ContactQueryController::class, 'saveFollowUpNotes'])->name('admin.queries.saveFollowUpNotes');
 });
-
-// Admin home
-Route::get('/', [AdminHomeController::class, 'index'])->name('admin.home');
-
-
-
 
 
