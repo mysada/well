@@ -1,30 +1,39 @@
 @extends('admin.admin')
 @vite('resources/admin/js/admin.js')
+
 @section('content')
 <div class="container mx-auto p-4">
     <!-- Review Statistics -->
     <div class="stats shadow mb-6 grid grid-cols-1 md:grid-cols-2 gap-4">
-        <div class="stat bg-base-100 p-4 rounded-lg">
-            <div class="stat-title text-lg font-semibold">Average Rating</div>
-            <div class="stat-value text-3xl">{{ number_format($averageRating, 2) }}</div>
+        <div class="stat bg-blue-100 p-4 rounded-lg flex items-center">
+            <div class="stat-icon text-blue-600 text-3xl mr-4">
+                <i class="fas fa-star"></i>
+            </div>
+            <div>
+                <div class="stat-title text-lg font-semibold">Average Rating</div>
+                <div class="stat-value text-3xl">{{ number_format($averageRating, 2) }}</div>
+            </div>
         </div>
-        <div class="stat bg-base-100 p-4 rounded-lg">
-            <div class="stat-title text-lg font-semibold">Total Reviews</div>
-            <div class="stat-value text-3xl">{{ $totalReviews }}</div>
+        <div class="stat bg-green-100 p-4 rounded-lg flex items-center">
+            <div class="stat-icon text-green-600 text-3xl mr-4">
+                <i class="fas fa-comment-dots"></i>
+            </div>
+            <div>
+                <div class="stat-title text-lg font-semibold">Total Reviews</div>
+                <div class="stat-value text-3xl">{{ $totalReviews }}</div>
+            </div>
         </div>
     </div>
 
     <!-- Search and Filters -->
-    <div class="flex flex-wrap justify-between mb-6 gap-4">
-        <div class="opacity-75 w-full">
-            @if($search)
-            <span class="badge badge-primary badge-outline">Search</span>
-            <span>{{ $search }} found {{ count($items) }} result(s)</span>
-            @endif
-        </div>
-        <form action="" method="GET" class="flex grid-cols-1 gap-4 w-full">
-            <div class="flex flex-wrap gap-4 w-full md:w-1/2">
+    <div class="bg-white p-4 rounded-lg shadow mb-6">
+        <form action="" method="GET" class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div class="w-full">
+                <label for="search" class="block text-sm font-medium text-gray-700">Search</label>
                 <input type="text" name="search" value="{{ old('search', $search) }}" placeholder="Search by product, user, review text..." class="input input-bordered w-full">
+            </div>
+            <div class="w-full">
+                <label for="category" class="block text-sm font-medium text-gray-700">Category</label>
                 <select name="category_id" id="category" class="select select-bordered w-full">
                     <option value="">All Categories</option>
                     @foreach($categories as $category)
@@ -33,6 +42,9 @@
                     </option>
                     @endforeach
                 </select>
+            </div>
+            <div class="w-full">
+                <label for="product" class="block text-sm font-medium text-gray-700">Product</label>
                 <select name="product_id" id="product" class="select select-bordered w-full">
                     <option value="">All Products</option>
                     @foreach($products as $product)
@@ -42,8 +54,8 @@
                     @endforeach
                 </select>
             </div>
-
-            <div class="flex flex-wrap gap-4 w-full md:w-1/2">
+            <div class="w-full">
+                <label for="rating" class="block text-sm font-medium text-gray-700">Rating</label>
                 <select name="rating" class="select select-bordered w-full">
                     <option value="">All Ratings</option>
                     @for($i = 1; $i <= 5; $i++)
@@ -52,18 +64,29 @@
                     </option>
                     @endfor
                 </select>
+            </div>
+            <div class="w-full">
+                <label for="status" class="block text-sm font-medium text-gray-700">Status</label>
                 <select name="status" class="select select-bordered w-full" id="status-dropdown">
                     <option value="" class="bg-white">All Statuses</option>
                     <option value="active" {{ old('status', $status) == 'active' ? 'selected' : '' }} class="bg-green-500 text-white">Active</option>
                     <option value="flagged" {{ old('status', $status) == 'flagged' ? 'selected' : '' }} class="bg-red-500 text-white">Flagged</option>
                     <option value="pending" {{ old('status', $status) == 'pending' ? 'selected' : '' }} class="bg-yellow-500 text-white">Pending</option>
                 </select>
+            </div>
+            <div class="w-full">
+                <label for="start_date" class="block text-sm font-medium text-gray-700">Start Date</label>
                 <input type="date" name="start_date" value="{{ old('start_date', $start_date) }}" class="input input-bordered w-full">
+            </div>
+            <div class="w-full">
+                <label for="end_date" class="block text-sm font-medium text-gray-700">End Date</label>
                 <input type="date" name="end_date" value="{{ old('end_date', $end_date) }}" class="input input-bordered w-full">
-                <button type="submit" class="btn btn-primary w-full md:w-auto">Filter</button>
+            </div>
+            <div class="flex gap-4">
+                <button type="submit" class="btn btn-primary">Filter</button>
+                <a href="{{ route('AdminReviewList') }}" class="btn btn-secondary">Reset Filters</a>
             </div>
         </form>
-        <a href="{{ route('AdminReviewList') }}" class="btn btn-secondary w-full md:w-auto">Reset Filters</a>
     </div>
 
     <!-- Review List -->
@@ -85,7 +108,7 @@
             </thead>
             <tbody>
             @foreach ($items as $review)
-            <tr class="hover">
+            <tr class="hover:bg-gray-100">
                 <td>{{ $review->id }}</td>
                 <td>{{ $review->product->category->name }}</td>
                 <td>
@@ -111,10 +134,10 @@
                     <form action="{{ route('AdminReviewUpdateStatus', $review->id) }}" method="POST">
                         @csrf
                         @method('PATCH')
-                        <select name="status" class="select select-bordered" onchange="this.form.submit()">
-                            <option value="active" {{ $review->status == 'active' ? 'selected' : '' }} class="bg-green-500 text-white">Active</option>
-                            <option value="flagged" {{ $review->status == 'flagged' ? 'selected' : '' }} class="bg-red-500 text-white">Flagged</option>
-                            <option value="pending" {{ $review->status == 'pending' ? 'selected' : '' }} class="bg-yellow-500 text-white">Pending</option>
+                        <select name="status" class="select select-bordered" onchange="if(confirm('Do you really want to change the status of this review?')) { this.form.submit(); } else { this.value = '{{ $review->status }}'; }">
+                            <option value="active" {{ $review->status == 'active' ? 'selected' : '' }} >Active</option>
+                            <option value="flagged" {{ $review->status == 'flagged' ? 'selected' : '' }} >Flagged</option>
+                            <option value="pending" {{ $review->status == 'pending' ? 'selected' : '' }} >Pending</option>
                         </select>
                     </form>
                 </td>
