@@ -12,18 +12,9 @@
 
                     <!-- Name Input -->
                     <div class="form-group">
-                        <label for="name" class="block text-sm font-medium mb-1">Name</label>
+                        <label for="name" class="block text-sm font-medium mb-1">Full Name</label>
                         <input type="text" name="name" id="name" class="input input-bordered w-full" value="{{ old('name') }}" required>
                         @error('name')
-                        <span class="text-red-500 text-sm">{{ $message }}</span>
-                        @enderror
-                    </div>
-
-                    <!-- Full Name Input -->
-                    <div class="form-group">
-                        <label for="full_name" class="block text-sm font-medium mb-1">Full Name</label>
-                        <input type="text" name="full_name" id="full_name" class="input input-bordered w-full" value="{{ old('full_name') }}">
-                        @error('full_name')
                         <span class="text-red-500 text-sm">{{ $message }}</span>
                         @enderror
                     </div>
@@ -52,10 +43,10 @@
                         <input type="text" name="phone" id="phone" class="input input-bordered w-full" value="{{ old('phone') }}">
                     </div>
 
-                    <!-- Address Input -->
+                    <!-- Billing Phone Input -->
                     <div class="form-group">
-                        <label for="address" class="block text-sm font-medium mb-1">Address</label>
-                        <input type="text" name="address" id="address" class="input input-bordered w-full" value="{{ old('address') }}">
+                        <label for="billing_phone" class="block text-sm font-medium mb-1">Billing Phone</label>
+                        <input type="text" name="billing_phone" id="billing_phone" class="input input-bordered w-full" value="{{ old('billing_phone') }}">
                     </div>
 
                     <!-- Billing Address Input -->
