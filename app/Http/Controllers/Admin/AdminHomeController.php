@@ -23,7 +23,7 @@ class AdminHomeController extends Controller
 
     private function getLogs()
     {
-        return EventLog::orderBy('created_at', 'desc')->get(); // Fetch logs in descending order of creation
+        return EventLog::orderBy('created_at', 'desc')->limit(7)->get();
     }
 
     /**
