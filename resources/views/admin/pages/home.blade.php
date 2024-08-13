@@ -35,55 +35,63 @@
             </div>
         </div>
 
-        <!-- Top Seller Section -->
-        <h2 class="text-4xl font-bold mb-6">Top Seller</h2>
-        <div class="bg-white shadow-md rounded-lg overflow-hidden p-6 border border-gray-200">
+<!-- Top Seller Section -->
+<h2 class="text-2xl font-bold mb-4">Top Seller</h2>
+<div class="bg-white shadow-md rounded-lg overflow-hidden p-6 border border-gray-200">
 
-            <table class="w-full">
-                <thead>
-                    <tr>
-                        <th class="text-left text-gray-600">ID</th>
-                        <th class="text-left text-gray-600">Name</th>
-                        <th class="text-left text-gray-600">Popularity</th>
-                        <th class="text-left text-gray-600">Sales</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr class="border-b">
-                        <td class="py-4">01</td>
-                        <td class="py-4">Home Decor Range</td>
-                        <td class="py-4">
-                            <progress class="progress progress-primary w-56" value="80" max="100"></progress>
-                        </td>
-                        <td class="py-4 text-primary">453</td>
-                    </tr>
-                    <tr class="border-b">
-                        <td class="py-4">02</td>
-                        <td class="py-4">Disney Princess Pink Bag 18'</td>
-                        <td class="py-4">
-                            <progress class="progress progress-secondary w-56" value="65" max="100"></progress>
-                        </td>
-                        <td class="py-4 text-secondary">290</td>
-                    </tr>
-                    <tr class="border-b">
-                        <td class="py-4">03</td>
-                        <td class="py-4">Bathroom Essentials</td>
-                        <td class="py-4">
-                            <progress class="progress progress-accent w-56" value="50" max="100"></progress>
-                        </td>
-                        <td class="py-4 text-accent">186</td>
-                    </tr>
-                    <tr>
-                        <td class="py-4">04</td>
-                        <td class="py-4">Apple Smartwatches</td>
-                        <td class="py-4">
-                            <progress class="progress progress-warning w-56" value="30" max="100"></progress>
-                        </td>
-                        <td class="py-4 text-warning">110</td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
+    <table class="w-full">
+        <thead>
+            <tr>
+                <th class="text-left text-gray-600">ID</th>
+                <th class="text-left text-gray-600">Name</th>
+                <th class="text-left text-gray-600">Popularity</th>
+                <th class="text-left text-gray-600">Sales</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr class="border-b">
+                <td class="py-4">01</td>
+                <td class="py-4">Home Decor Range</td>
+                <td class="py-4">
+                    <div class="relative w-56 bg-gray-200 rounded-full h-4">
+                        <div class="bg-primary h-4 rounded-full" style="width: 80%;"></div>
+                    </div>
+                </td>
+                <td class="py-4 text-primary">453</td>
+            </tr>
+            <tr class="border-b">
+                <td class="py-4">02</td>
+                <td class="py-4">Disney Princess Pink Bag 18'</td>
+                <td class="py-4">
+                    <div class="relative w-56 bg-gray-200 rounded-full h-4">
+                        <div class="bg-secondary h-4 rounded-full" style="width: 65%;"></div>
+                    </div>
+                </td>
+                <td class="py-4 text-secondary">290</td>
+            </tr>
+            <tr class="border-b">
+                <td class="py-4">03</td>
+                <td class="py-4">Bathroom Essentials</td>
+                <td class="py-4">
+                    <div class="relative w-56 bg-gray-200 rounded-full h-2">
+                        <div class="bg-accent h-2 rounded-full" style="width: 50%;"></div>
+                    </div>
+                </td>
+                <td class="py-4 text-accent">186</td>
+            </tr>
+            <tr>
+                <td class="py-4">04</td>
+                <td class="py-4">Apple Smartwatches</td>
+                <td class="py-4">
+                    <div class="relative w-56 bg-gray-100 rounded-full h-2">
+                        <div class="bg-warning h-2 rounded-full" style="width: 30%;"></div>
+                    </div>
+                </td>
+                <td class="py-4 text-warning">110</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
 
         <!-- Recent Logs Section -->
         <div class="overflow-x-auto w-full mt-8">
