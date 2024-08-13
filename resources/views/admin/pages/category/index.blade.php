@@ -2,9 +2,11 @@
 
 @section('content')
 <div class="container mx-auto p-4">
-    <h1 class="text-3xl font-bold mb-4">Category List</h1>
-    <a href="{{ route('AdminCategoryCreate') }}" class="btn  btn-primary mb-4">Add New Category</a>
-    <table class="table w-full">
+    <div class="flex justify-between">
+        <div class="text-3xl font-bold mb-4"></div>
+        <a href="{{ route('AdminCategoryCreate') }}" class="btn  btn-primary mb-4">Add New Category</a>
+    </div>
+  <table class="table w-full">
         <thead>
             <tr>
                 <th>ID</th>
