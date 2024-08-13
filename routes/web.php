@@ -129,9 +129,15 @@ Route::middleware(['auth'])->group(function () {
 
 
 Auth::routes();
-
+//QUERY CRUD -MANISH
 Route::group(['middleware' => 'auth'], function () {
     Route::get('/admin/queries', [ContactQueryController::class, 'index'])->name('admin.queries');
+    Route::get('/admin/queries/{id}', [ContactQueryController::class, 'show'])->name('admin.queries.show');
+    Route::patch('/admin/queries/{id}/status', [ContactQueryController::class, 'updateStatus'])->name('admin.queries.updateStatus');
+    Route::delete('/admin/queries/{id}', [ContactQueryController::class, 'destroy'])->name('admin.queries.destroy');
+    Route::get('/admin/queries/{id}/edit', [ContactQueryController::class, 'edit'])->name('admin.queries.edit');
+    Route::put('/admin/queries/{id}', [ContactQueryController::class, 'update'])->name('admin.queries.update');
+    Route::post('/admin/queries/{id}/follow-up', [ContactQueryController::class, 'saveFollowUpNotes'])->name('admin.queries.saveFollowUpNotes');
 });
 
 
