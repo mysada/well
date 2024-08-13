@@ -13,15 +13,26 @@
                 <thead>
                 <tr>
                     <th>Event</th>
-                    <th>Url</th>
-                    <th>MEthod</th>
-                    <th>Ip address</th>
-                    <th>User agent</th>
-                    <th>User Id</th>
+                    <th>URL</th>
+                    <th>Method</th>
+                    <th>IP Address</th>
+                    <th>User Agent</th>
+                    <th>User ID</th>
+                    <th>Timestamp</th>
                 </tr>
                 </thead>
                 <tbody>
-
+                @foreach($logs as $log)
+                    <tr>
+                        <td>{{ $log->event }}</td>
+                        <td>{{ $log->url }}</td>
+                        <td>{{ $log->method }}</td>
+                        <td>{{ $log->ip_address }}</td>
+                        <td>{{ $log->user_agent }}</td>
+                        <td>{{ $log->user_id ?? 'N/A' }}</td>
+                        <td>{{ $log->created_at->format('Y-m-d H:i:s') }}</td>
+                    </tr>
+                @endforeach
                 </tbody>
             </table>
         </div>

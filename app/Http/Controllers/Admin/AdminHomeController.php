@@ -20,6 +20,11 @@ class AdminHomeController extends Controller
         return view('admin.pages.home', compact('title', 'logs'));
     }
 
+    private function getLogs()
+    {
+        return EventLog::orderBy('created_at', 'desc')->get(); // Fetch logs in descending order of creation
+    }
+
     /**
      * Show the form for creating a new resource.
      */
