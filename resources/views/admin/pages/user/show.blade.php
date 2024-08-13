@@ -33,7 +33,13 @@
                     <div class="bg-gray-50 p-4 rounded-lg shadow-sm">
                         <p class="font-semibold text-lg text-gray-800">Phone:</p>
                         <p class="text-gray-700">
-                            {{ $user->phone ?? ($billingPhone ?? 'Not provided') }}
+                            {{ $user->phone ?? 'Not provided' }}
+                        </p>
+                    </div>
+                    <div class="bg-gray-50 p-4 rounded-lg shadow-sm">
+                        <p class="font-semibold text-lg text-gray-800">Billing Phone:</p>
+                        <p class="text-gray-700">
+                            {{ $billingPhone ?? 'Not provided' }}
                         </p>
                     </div>
                     <div class="bg-gray-50 p-4 rounded-lg shadow-sm">
