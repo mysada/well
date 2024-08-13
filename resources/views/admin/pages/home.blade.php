@@ -37,7 +37,8 @@
 
         <!-- Top Seller Section -->
         <h2 class="text-4xl font-bold mb-6">Top Seller</h2>
-        <div class="bg-white shadow-lg rounded-lg overflow-hidden p-6">
+        <div class="bg-white shadow-md rounded-lg overflow-hidden p-6 border border-gray-200">
+
             <table class="w-full">
                 <thead>
                     <tr>
