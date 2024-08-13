@@ -1,3 +1,4 @@
+
 @extends('admin.admin')
 @section('title', 'Dashboard')
 
@@ -36,65 +37,49 @@
         </div>
 
         <!-- Top Seller Section -->
-        <div class="overflow-x-auto w-full">
-            <h2 class="text-2xl font-bold mb-4 text-gray-800">Top Seller</h2>
-            <table class="w-full bg-white shadow-md rounded-lg">
-                <thead class="bg-gray-100 text-gray-600">
+        <div class="overflow-x-auto w-full mt-8">
+            <h2 class="text-4xl font-bold" style="margin-bottom: 20px">Top Seller</h2>
+            <table class="table w-full">
+                <thead>
                     <tr>
-                        <th class="p-4 text-left text-sm font-semibold">ID</th>
-                        <th class="p-4 text-left text-sm font-semibold">Name</th>
-                        <th class="p-4 text-left text-sm font-semibold">Popularity</th>
-                        <th class="p-4 text-left text-sm font-semibold">Sales</th>
+                        <th>ID</th>
+                        <th>Name</th>
+                        <th>Popularity</th>
+                        <th>Sales</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr class="border-b hover:bg-gray-50">
-                        <td class="p-4 text-sm text-gray-600">01</td>
-                        <td class="p-4 text-sm text-gray-800">Home Decor Range</td>
-                        <td class="p-4 text-sm">
-                            <div class="relative pt-1">
-                                <div class="overflow-hidden h-2 mb-4 text-xs flex rounded bg-gray-200">
-                                    <div style="width:80%" class="shadow-none flex flex-col text-center whitespace-nowrap text-white justify-center bg-blue-500"></div>
-                                </div>
-                            </div>
+                    <tr>
+                        <td>01</td>
+                        <td>Home Decor Range</td>
+                        <td>
+                            <progress class="progress progress-primary w-56" value="80" max="100"></progress>
                         </td>
-                        <td class="p-4 text-sm text-blue-500">453</td>
+                        <td class="text-primary">453</td>
                     </tr>
-                    <tr class="border-b hover:bg-gray-50">
-                        <td class="p-4 text-sm text-gray-600">02</td>
-                        <td class="p-4 text-sm text-gray-800">Disney Princess Pink Bag 18'</td>
-                        <td class="p-4 text-sm">
-                            <div class="relative pt-1">
-                                <div class="overflow-hidden h-2 mb-4 text-xs flex rounded bg-gray-200">
-                                    <div style="width:65%" class="shadow-none flex flex-col text-center whitespace-nowrap text-white justify-center bg-green-500"></div>
-                                </div>
-                            </div>
+                    <tr>
+                        <td>02</td>
+                        <td>Disney Princess Pink Bag 18'</td>
+                        <td>
+                            <progress class="progress progress-secondary w-56" value="65" max="100"></progress>
                         </td>
-                        <td class="p-4 text-sm text-green-500">290</td>
+                        <td class="text-secondary">290</td>
                     </tr>
-                    <tr class="border-b hover:bg-gray-50">
-                        <td class="p-4 text-sm text-gray-600">03</td>
-                        <td class="p-4 text-sm text-gray-800">Bathroom Essentials</td>
-                        <td class="p-4 text-sm">
-                            <div class="relative pt-1">
-                                <div class="overflow-hidden h-2 mb-4 text-xs flex rounded bg-gray-200">
-                                    <div style="width:50%" class="shadow-none flex flex-col text-center whitespace-nowrap text-white justify-center bg-purple-500"></div>
-                                </div>
-                            </div>
+                    <tr>
+                        <td>03</td>
+                        <td>Bathroom Essentials</td>
+                        <td>
+                            <progress class="progress progress-accent w-56" value="50" max="100"></progress>
                         </td>
-                        <td class="p-4 text-sm text-purple-500">186</td>
+                        <td class="text-accent">186</td>
                     </tr>
-                    <tr class="hover:bg-gray-50">
-                        <td class="p-4 text-sm text-gray-600">04</td>
-                        <td class="p-4 text-sm text-gray-800">Apple Smartwatches</td>
-                        <td class="p-4 text-sm">
-                            <div class="relative pt-1">
-                                <div class="overflow-hidden h-2 mb-4 text-xs flex rounded bg-gray-200">
-                                    <div style="width:30%" class="shadow-none flex flex-col text-center whitespace-nowrap text-white justify-center bg-orange-500"></div>
-                                </div>
-                            </div>
+                    <tr>
+                        <td>04</td>
+                        <td>Apple Smartwatches</td>
+                        <td>
+                            <progress class="progress progress-warning w-56" value="30" max="100"></progress>
                         </td>
-                        <td class="p-4 text-sm text-orange-500">110</td>
+                        <td class="text-warning">110</td>
                     </tr>
                 </tbody>
             </table>
@@ -258,3 +243,4 @@
         </div>
     </div>
 @endsection
+
