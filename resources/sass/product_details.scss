@@ -136,84 +136,50 @@
 }
 
 .qty-input {
-    color: #000;
-    background: #fff;
+    margin-top: 10px;
     display: flex;
     align-items: center;
-    overflow: hidden;
-    border-radius: unset!important;
-
-}
-
-.qty-input .product-qty,
-.qty-input .qty-count {
-    background: transparent;
-    color: inherit;
-    font-weight: bold;
-    font-size: inherit;
+    justify-content: center;
+    background-color: #f9f9f9; /* Light background for contrast */
+    border-radius: 5px;
+    padding: 5px;
     border: none;
-    display: inline-block;
-    min-width: 0;
-    height: 2.5rem;
-    line-height: 1;
 }
 
-.qty-input .product-qty {
-    width: 50px;
-    min-width: 0;
-    display: inline-block;
+.qty-input input.product-qty {
+    width: 50px; /* Adjust as needed */
     text-align: center;
-    appearance: textfield;
+    border: none; /* Remove border */
+    background: transparent;
+    font-size: 16px;
+    font-weight: 600;
+    color: #333; /* Darker text color */
+    outline: none; /* Remove outline on focus */
 }
 
-.qty-input .product-qty::-webkit-outer-spin-button,
-.qty-input .product-qty::-webkit-inner-spin-button {
-    appearance: none;
-    margin: 0;
-}
-
-.qty-input .qty-count {
-    padding: 0;
+.qty-count {
+    background-color: #e0e0e0; /* Light grey background */
+    color: #333; /* Darker text color */
+    border: none; /* Remove border */
+    border-radius: 50%; /* Make buttons circular */
+    width: 30px;
+    height: 30px;
+    font-size: 18px;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     cursor: pointer;
-    width: 2.5rem;
-    font-size: 1.25em;
-    text-indent: -100px;
-    overflow: hidden;
-    position: relative;
+    transition: background-color 0.3s ease, color 0.3s ease;
 }
 
-.qty-input .qty-count::before,
-.qty-input .qty-count::after {
-    content: "";
-    height: 2px;
-    width: 10px;
-    position: absolute;
-    display: block;
-    background: #000;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    margin: auto;
+.qty-count:hover {
+    background-color: #20c997; /* Your preferred color on hover */
+    color: #fff; /* White text on hover */
 }
-.qty-input .qty-count--minus {
-    border-right: 1px solid #e2e2e2;
-}
-.qty-input .qty-count--add {
-    border-left: 1px solid #e2e2e2;
-}
-.qty-input .qty-count--add::after {
-    transform: rotate(90deg);
-}
-.qty-input .qty-count:disabled {
-    color: #ccc;
-    background: #f2f2f2;
-    cursor: not-allowed;
-    border-color: transparent;
-}
-.qty-input .qty-count:disabled::before,
-.qty-input .qty-count:disabled::after {
-    background: #ccc;
+
+.qty-count:active {
+    background-color: #17a589; /* Slightly darker when clicked */
 }
 
 .related-products {
