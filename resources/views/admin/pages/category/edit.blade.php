@@ -7,12 +7,12 @@
             <a href="{{ route('AdminCategoryList') }}" class="btn btn-primary">Back to Category List</a>
         </div>
 
-        <div class="w-full flex justify-center">
-            <div class="bg-base-100 max-w-screen-lg shadow-xl rounded-lg overflow-hidden">
+        <div class="w-full flex justify-center mt-12">
+            <div class="bg-base-100 max-w-screen-lg shadow-lg rounded-lg overflow-hidden min-w-[560px]">
                 <div class="md:flex">
                     <div class="w-1/3 flex justify-center items-center">
                         <figure>
-                            <img class="w-full h-full object-cover" src="{{ asset($category->image . '.jpg') }}" alt="{{ $category->name }}" >
+                            <img class="w-full h-full object-cover" src="{{ asset($category->image) }}" alt="{{ $category->name }}" >
                         </figure>
                     </div>
                     <div class="w-2/3 p-6">
