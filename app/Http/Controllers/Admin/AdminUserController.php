@@ -2,9 +2,12 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Models\Order;
+use App\Models\Payment;
 use App\Models\User;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 
 class AdminUserController extends Controller
 {
@@ -40,14 +43,12 @@ class AdminUserController extends Controller
 
         // Fetch addresses for users
         foreach ($users as $user) {
-            // Get the latest order for the user
             $latestOrder = $user->orders()->latest()->first();
-            $user->shipping_address = $latestOrder ? $latestOrder->shipping_address : null;
+            $user->shipping_address = $latestOrder ? $latestOrder->shipping_address : 'Not provided';
 
-            // Get the payment related to the latest order
-            $latestPayment = $latestOrder ? $latestOrder->payments()->latest()->first() : null;
-            $user->billing_address = $latestPayment ? $latestPayment->billing_address : null;
-            $user->billing_phone = $latestPayment ? $latestPayment->billing_phone : null;
+            $latestPayment = $latestOrder ? $latestOrder->payment : null;
+            $user->billing_address = $latestPayment ? $latestPayment->billing_address : 'Not provided';
+            $user->billing_phone = $latestPayment ? $latestPayment->billing_phone : 'Not provided';
         }
 
         return view('admin.pages.user.index', [
@@ -69,6 +70,7 @@ class AdminUserController extends Controller
         return view('admin.pages.user.create', compact('title'));
     }
 
+
     /**
      * Store a newly created resource in storage.
      */
@@ -78,80 +80,61 @@ class AdminUserController extends Controller
         $validatedData = $request->validate([
             'name' => 'required|string|max:255',
             'email' => 'required|email|unique:users,email',
-            'password' => 'required|string|min:8', // Ensure password is valid
-            'full_name' => 'nullable|string|max:255',
-            'phone' => 'nullable|string|max:15',
-            'billing_address' => 'nullable|string|max:255',
-            'shipping_address' => 'nullable|string|max:255',
-            'is_admin' => 'nullable|boolean',
+            'password' => 'required|string|min:8',
+            'role' => 'required|string|max:255', // Assuming 'role' is a string field
+            'phone' => 'nullable|string|max:15', // Add phone field validation
         ]);
 
         // Hash the password before storing
-        $validatedData['password'] = bcrypt($validatedData['password']);
+        $validatedData['password'] = Hash::make($validatedData['password']);
         $validatedData['full_name'] = $validatedData['name']; // Automatically set full_name to match name
 
         // Create a new user
-        $user = User::create($validatedData);
-
-        // Create a new order with the provided addresses
-        $user->orders()->create([
-            'shipping_address' => $request->input('shipping_address'),
-        ]);
-
-        // Optionally, create a new payment record for the user
-        // $user->payments()->create([
-        //     'billing_address' => $request->input('billing_address'),
-        //     'billing_phone' => $request->input('phone'),
-        // ]);
+        User::create($validatedData);
 
         // Redirect to the user list page with a success message
         return redirect()->route('AdminUserList')->with('success', 'User created successfully!');
     }
+
+
 
     /**
      * Display the specified resource.
      */
     public function show($id)
     {
-        // Retrieve the user by ID
         $user = User::findOrFail($id);
+
+        // Fetch the latest billing phone and address from the Payment model
+        $latestPayment = $user->payments()->latest()->first();
+        $billingPhone = $latestPayment ? $latestPayment->billing_phone : 'Not provided';
+        $billingAddress = $latestPayment ? $latestPayment->billing_address : 'Not provided';
 
         // Fetch the latest shipping address from the Order model
         $latestOrder = $user->orders()->latest()->first();
         $shippingAddress = $latestOrder ? $latestOrder->shipping_address : 'Not provided';
 
-        // Fetch the latest billing address and billing phone from the Payment model
-        $latestPayment = $latestOrder ? $latestOrder->payments()->latest()->first() : null;
-        $billingAddress = $latestPayment ? $latestPayment->billing_address : 'Not provided';
-        $billingPhone = $latestPayment ? $latestPayment->billing_phone : 'Not provided';
-
-        $title = "User Management - Details";
-
-        // Pass the user data, addresses, billing phone, and title to the view
-        return view('admin.pages.user.show', compact('user', 'title', 'shippingAddress', 'billingAddress', 'billingPhone'));
+        return view('admin.pages.user.show', compact('user', 'billingPhone', 'billingAddress', 'shippingAddress'));
     }
-
 
     /**
      * Show the form for editing the specified resource.
      */
     public function edit($id)
     {
-        // Retrieve the user by ID
         $user = User::findOrFail($id);
 
         // Fetch the latest shipping address from the Order model
         $latestOrder = $user->orders()->latest()->first();
         $shippingAddress = $latestOrder ? $latestOrder->shipping_address : 'Not provided';
 
-        // Fetch the latest payment and associated billing address and phone from the Payment model
-        $latestPayment = $latestOrder ? $latestOrder->payments()->latest()->first() : null;
+        // Fetch the latest billing address and phone from the Payment model
+        $latestPayment = $latestOrder ? $latestOrder->payment : null;
         $billingAddress = $latestPayment ? $latestPayment->billing_address : 'Not provided';
         $billingPhone = $latestPayment ? $latestPayment->billing_phone : 'Not provided';
 
         $title = "User Management - Edit";
 
-        // Pass the user data, addresses, billing phone, and title to the view
         return view('admin.pages.user.edit', compact('user', 'title', 'shippingAddress', 'billingAddress', 'billingPhone'));
     }
 
@@ -165,8 +148,9 @@ class AdminUserController extends Controller
             'name' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:users,email,' . $id,
             'phone' => 'nullable|string|max:15',
-            'billing_address' => 'nullable|string|max:255',
-            'shipping_address' => 'nullable|string|max:255',
+            'shipping_address' => 'nullable|string',
+            'billing_address' => 'nullable|string',
+            'billing_phone' => 'nullable|string',
         ]);
 
         // Fetch the user by ID
@@ -175,35 +159,26 @@ class AdminUserController extends Controller
         // Update the user's basic information
         $user->update([
             'name' => $request->input('name'),
-            'full_name' => $request->input('name'), // Automatically set full_name to match name
+            'full_name' => $request->input('name'), // Ensure full_name is updated
             'email' => $request->input('email'),
             'phone' => $request->input('phone'),
         ]);
 
-        // Handle shipping address update
-        if ($request->has('shipping_address')) {
-            $latestOrder = $user->orders()->latest()->first();
-            if ($latestOrder) {
-                $latestOrder->update(['shipping_address' => $request->input('shipping_address')]);
-            }
+        // Update the shipping address if available
+        $latestOrder = $user->orders()->latest()->first();
+        if ($latestOrder) {
+            $latestOrder->update([
+                'shipping_address' => $request->input('shipping_address'),
+            ]);
         }
 
-        // Handle billing address update
-        if ($request->has('billing_address')) {
-            $latestOrder = $user->orders()->latest()->first();
-            $latestPayment = $latestOrder ? $latestOrder->payments()->latest()->first() : null;
-            if ($latestPayment) {
-                $latestPayment->update(['billing_address' => $request->input('billing_address')]);
-            }
-        }
-
-        // Handle billing phone update
-        if ($request->has('phone')) {
-            $latestOrder = $user->orders()->latest()->first();
-            $latestPayment = $latestOrder ? $latestOrder->payments()->latest()->first() : null;
-            if ($latestPayment) {
-                $latestPayment->update(['billing_phone' => $request->input('phone')]);
-            }
+        // Update the billing address and phone if available
+        $latestPayment = $latestOrder ? $latestOrder->payment : null;
+        if ($latestPayment) {
+            $latestPayment->update([
+                'billing_address' => $request->input('billing_address'),
+                'billing_phone' => $request->input('billing_phone'),
+            ]);
         }
 
         // Redirect back to the user list page with a success message
@@ -215,10 +190,10 @@ class AdminUserController extends Controller
      */
     public function destroy($id)
     {
-        $user = User::withTrashed()->findOrFail($id);
+        $user = User::findOrFail($id);
 
-        // Permanently delete the user
-        $user->forceDelete();
+        // Soft delete the user
+        $user->delete();
 
         // Redirect back to the user list page with a success message
         return redirect()->route('AdminUserList')->with('success', 'User deleted successfully!');
