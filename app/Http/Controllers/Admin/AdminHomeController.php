@@ -12,8 +12,31 @@ class AdminHomeController extends Controller
      */
     public function index()
     {
-        $title='Dashboard';
-        return view('admin.pages.home',compact('title'));
+        $title = 'Dashboard';
+        $logs = $this->getLogs();
+
+        return view('admin.pages.home', compact('title', 'logs'));
+    }
+
+    /**
+     * Fetch logs from the log file.
+     */
+    protected function getLogs(): array
+    {
+        $logFile = storage_path('logs/laravel.log');
+        $logs = [];
+
+        if (file_exists($logFile)) {
+            $logs = file($logFile, FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);
+            $logs = array_filter($logs, function ($log) {
+                return strpos($log, 'User logged in') !== false ||
+                    strpos($log, 'User logged out') !== false ||
+                    strpos($log, 'Admin logged in') !== false ||
+                    strpos($log, 'Admin logged out') !== false;
+            });
+        }
+
+        return $logs;
     }
 
     /**
@@ -53,7 +76,7 @@ class AdminHomeController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+
     }
 
     /**
