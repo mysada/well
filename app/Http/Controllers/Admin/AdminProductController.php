@@ -68,7 +68,7 @@ class AdminProductController extends Controller
 
         $imagePath = null;
         if ($request->hasFile('image')) {
-            $imagePath = $request->file('image')->store('public/images');
+            $imagePath = $request->file('image')->store('images');
         }
 
         Product::create([
@@ -135,13 +135,8 @@ class AdminProductController extends Controller
                 Storage::delete($product->image_url);
             }
 
-            // Store the new image
-            $imagePath          = $request->file('image')->store(
-              'public/images/'
-            );
-            $product->image_url = Storage::url(
-              $imagePath
-            ); // Save the new image URL
+            $imagePath= $request->file('image')->store('images/products');
+            $product->image_url = $imagePath;
         }
 
         // Update other product fields
