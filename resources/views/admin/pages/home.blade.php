@@ -1,12 +1,11 @@
-
 @extends('admin.admin')
 @section('title', 'Dashboard')
 
 @section('content')
     <div class="flex flex-col gap-4">
         <!-- Statics Section -->
-        <h2 class="text-4xl font-bold" style="margin-top: 40px; margin-bottom: 20px">Statics</h2>
-        <div class="stats shadow w-full">
+        <h2 class="text-4xl font-bold mb-6" style="margin-top: 40px; margin-bottom: 20px">Statics</h2>
+        <div class="stats shadow w-full mb-8">
             <div class="stat">
                 <div class="stat-figure text-primary">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" class="inline-block h-8 w-8 stroke-current">
@@ -37,49 +36,49 @@
         </div>
 
         <!-- Top Seller Section -->
-        <div class="overflow-x-auto w-full mt-8">
-            <h2 class="text-4xl font-bold" style="margin-bottom: 20px">Top Seller</h2>
-            <table class="table w-full">
+        <div class="bg-white shadow-lg rounded-lg overflow-hidden p-6 mt-8">
+            <h2 class="text-2xl font-bold mb-6">Top Seller</h2>
+            <table class="w-full">
                 <thead>
                     <tr>
-                        <th>ID</th>
-                        <th>Name</th>
-                        <th>Popularity</th>
-                        <th>Sales</th>
+                        <th class="text-left text-gray-600">ID</th>
+                        <th class="text-left text-gray-600">Name</th>
+                        <th class="text-left text-gray-600">Popularity</th>
+                        <th class="text-left text-gray-600">Sales</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td>01</td>
-                        <td>Home Decor Range</td>
-                        <td>
+                    <tr class="border-b">
+                        <td class="py-4">01</td>
+                        <td class="py-4">Home Decor Range</td>
+                        <td class="py-4">
                             <progress class="progress progress-primary w-56" value="80" max="100"></progress>
                         </td>
-                        <td class="text-primary">453</td>
+                        <td class="py-4 text-primary">453</td>
                     </tr>
-                    <tr>
-                        <td>02</td>
-                        <td>Disney Princess Pink Bag 18'</td>
-                        <td>
+                    <tr class="border-b">
+                        <td class="py-4">02</td>
+                        <td class="py-4">Disney Princess Pink Bag 18'</td>
+                        <td class="py-4">
                             <progress class="progress progress-secondary w-56" value="65" max="100"></progress>
                         </td>
-                        <td class="text-secondary">290</td>
+                        <td class="py-4 text-secondary">290</td>
                     </tr>
-                    <tr>
-                        <td>03</td>
-                        <td>Bathroom Essentials</td>
-                        <td>
+                    <tr class="border-b">
+                        <td class="py-4">03</td>
+                        <td class="py-4">Bathroom Essentials</td>
+                        <td class="py-4">
                             <progress class="progress progress-accent w-56" value="50" max="100"></progress>
                         </td>
-                        <td class="text-accent">186</td>
+                        <td class="py-4 text-accent">186</td>
                     </tr>
                     <tr>
-                        <td>04</td>
-                        <td>Apple Smartwatches</td>
-                        <td>
+                        <td class="py-4">04</td>
+                        <td class="py-4">Apple Smartwatches</td>
+                        <td class="py-4">
                             <progress class="progress progress-warning w-56" value="30" max="100"></progress>
                         </td>
-                        <td class="text-warning">110</td>
+                        <td class="py-4 text-warning">110</td>
                     </tr>
                 </tbody>
             </table>
@@ -87,7 +86,7 @@
 
         <!-- Recent Logs Section -->
         <div class="overflow-x-auto w-full mt-8">
-            <h2 class="text-4xl font-bold" style="margin-bottom: 20px">Recent Logs</h2>
+            <h2 class="text-4xl font-bold mb-4">Recent Logs</h2>
             <table class="table w-full">
                 <thead>
                     <tr>
@@ -243,4 +242,3 @@
         </div>
     </div>
 @endsection
-
