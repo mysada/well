@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\admin;
+namespace App\Http\Controllers\Admin;
 
 use App\Models\User;
 use App\Http\Controllers\Controller;
@@ -39,7 +39,7 @@ class AdminUserController extends Controller
         $title = "User Management - List";
 
         return view('admin.pages.user.index', [
-            'users' => $users,
+            'items' => $users,
             'search' => $search,
             'role' => $role,
             'sort' => $sort,

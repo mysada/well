@@ -1,14 +1,14 @@
 @extends('layouts.app')
 @vite('resources/sass/thankyou.scss')
 @section('content')
-<div class="thank-you-page"> <!-- Keep the same class for the outer div -->
+<div class="thank-you-page">
     <div class="container">
         <!-- Order Details Section -->
         <div class="order-details card border-custom mb-4">
             <div class="card-body text-center">
                 <div class="thank-you-message">
-                    <h1>Order Details</h1> <!-- Updated the message here -->
-                    <p>Here are the details of your order.</p> <!-- Updated message -->
+                    <h1>Order Details</h1>
+                    <p>Here are the details of your order.</p>
                 </div>
 
                 <div class="order-status mt-4">
@@ -35,7 +35,7 @@
                     <p><strong>Amount Paid:</strong> ${{ number_format($payment->amount, 2) }}</p>
                     <p><strong>GST:</strong> ${{ number_format($order->gst, 2) }}</p>
                     <p><strong>PST:</strong> ${{ number_format($order->pst, 2) }}</p>
-                    <p><strong>Shipping Cost:</strong> ${{ number_format($order->shipping_rate, 2) }}</p> <!-- Updated line -->
+                    <p><strong>Shipping Cost:</strong> ${{ number_format($order->shipping_rate, 2) }}</p>
                     <p><strong>Before Tax Price:</strong> ${{ number_format($order->pre_tax_amount, 2) }}</p>
                     <p><strong>After Tax Price:</strong> ${{ number_format($order->post_tax_amount, 2) }}</p>
                     <p><strong>Payment Status:</strong> {{ $payment->status }}</p>
@@ -71,9 +71,9 @@
                             <img src="/{{ $item->product->image_url }}" alt="{{ $item->product->name }}" class="img-fluid">
                         </div>
                         <div class="item-details">
-                            <strong>{{ $item->product->name }} : </strong>
+                            <strong>{{ $item->product->name }} :</strong>
                             <span>{{ $item->quantity }} X </span>
-                            <span class="item-price">${{ number_format($item->price, 2) }}</span>
+                            <span class="item-price">${{ number_format($item->total_price, 2) }}</span>
                         </div>
                     </li>
                     @endforeach

@@ -1,15 +1,15 @@
 <?php
 
-
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Review extends Model
 {
-    use HasFactory;
+    use HasFactory, SoftDeletes; // Add SoftDeletes trait
 
     protected $fillable = [
         'product_id',
@@ -17,6 +17,7 @@ class Review extends Model
         'rating',
         'review_text',
         'image',
+        'status',
     ];
 
     public function user(): BelongsTo

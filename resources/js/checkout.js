@@ -22,8 +22,11 @@ const fetchData = () => {
     .then(([countryData, provinceData]) => {
       countries = countryData.status === 'success' ? countryData.data : [];
       provinces = provinceData.status === 'success' ? provinceData.data : [];
+      toggleProvince();
+      calculate();
     });
 };
+fetchData();
 
 const toggleProvince = () => {
   const isCanada = $shippingCountry.val() === 'CA';
@@ -32,12 +35,15 @@ const toggleProvince = () => {
 };
 
 const calculate = () => {
+  calculateShipping();
   const countryCode = $shippingCountry.val();
   const subtotal = parseFloat($subtotal.text()) || 0;
   const shippingFee = parseFloat($shippingRate.text()) || 0;
   let gst = 0, pst = 0;
 
   if (countryCode === 'CA') {
+    console.log($caProvince.val());
+    console.log(provinces);
     const province = provinces.find(p => p.short_name === $caProvince.val());
     gst = subtotal * (parseFloat(province?.gst_rate) || 0) / 100;
     pst = subtotal * (parseFloat(province?.pst_rate) || 0) / 100;
@@ -49,10 +55,14 @@ const calculate = () => {
   $cartTotal.text(total.toFixed(2));
 };
 
-$shippingCountry.on('change', () => {
-  toggleProvince();
+const calculateShipping = () => {
   const country = countries.find(c => c.code === $shippingCountry.val());
   $shippingRate.text((parseFloat(country?.shipping_rate) || 0).toFixed(2));
+};
+
+$shippingCountry.on('change', () => {
+  toggleProvince();
+  calculateShipping();
   calculate();
 });
 
@@ -67,8 +77,3 @@ $form.on('submit', () => {
   $shippingState.prop('disabled', $shippingState.is(':hidden'));
 });
 
-$(async () => {
-  await fetchData();
-  toggleProvince();
-  calculate();
-});

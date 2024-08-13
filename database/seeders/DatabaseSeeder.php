@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\DefaultAddress;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -17,6 +18,7 @@ class DatabaseSeeder extends Seeder
         $this->call([
           UserSeeder::class,
           CategorySeeder::class,
+          ContactQueriesSeeder::class,
           ProductSeeder::class,
           OrderSeeder::class,
           CartItemsSeeder::class,
@@ -25,6 +27,7 @@ class DatabaseSeeder extends Seeder
           CountriesSeeder::class,
           ProvincesSeeder::class,
           ConfigsSeeder::class,
+          DefaultAddressSeeder::class,
         ]);
     }
 
