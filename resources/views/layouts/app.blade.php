@@ -18,11 +18,12 @@
 </head>
 <body>
     <div id="app">
-        @include('well.components.flash')
         @include('well.components.header')
 
         <main class="py-4">
+            @include('well.components.flash')
             @yield('content')
+
         </main>
 
         @include('well.components.footer')

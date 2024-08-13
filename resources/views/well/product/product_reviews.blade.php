@@ -112,7 +112,7 @@
         <div id="write-review" class="row mt-5">
             <div class="col-md-12">
                 <h4>Write a Review</h4>
-                <form action="{{ route('reviews.store1', ['id' => $product->id]) }}" class="review-form" method="POST" enctype="multipart/form-data">
+                <form action="{{ route('reviews.store', ['id' => $product->id]) }}" class="review-form" method="POST" enctype="multipart/form-data">
                     @csrf
                     <input type="hidden" name="product_id" value="{{ $product->id }}">
 
@@ -138,11 +138,6 @@
 
                     <button type="submit" class="btn btn-primary">Submit Review</button>
                 </form>
-                @if(session('success'))
-                <div class="alert alert-success mt-3">
-                    {{ session('success') }}
-                </div>
-                @endif
             </div>
         </div>
         @endif

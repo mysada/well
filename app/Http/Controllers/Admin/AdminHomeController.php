@@ -4,6 +4,9 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\File;
+use App\Models\EventLog;
+
 
 class AdminHomeController extends Controller
 {
@@ -12,8 +15,15 @@ class AdminHomeController extends Controller
      */
     public function index()
     {
-        $title='Dashboard';
-        return view('admin.pages.home',compact('title'));
+        $title = 'Dashboard';
+        $logs = $this->getLogs();
+
+        return view('admin.pages.home', compact('title', 'logs'));
+    }
+
+    private function getLogs()
+    {
+        return EventLog::orderBy('created_at', 'desc')->limit(7)->get();
     }
 
     /**
@@ -53,7 +63,7 @@ class AdminHomeController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+
     }
 
     /**

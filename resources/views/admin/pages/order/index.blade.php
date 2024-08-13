@@ -42,7 +42,7 @@
                 @foreach ($items as $order)
                     <tr class="hover">
                         <td>
-                            <a href="{{ route('AdminOrderShow', $order->id) }}"> {{ $order->id }}</a>
+                            <a class="link-primary link" href="{{ route('AdminOrderShow', $order->id) }}"> {{ $order->id }}</a>
                         </td>
                         <td>
                                 {{ $order->user->name }}
@@ -61,9 +61,20 @@
                                 ];
                                 $statusClass = $statusClasses[$order->status] ?? 'badge-ghost';
                             @endphp
-                            <div class="badge {{ $statusClass }}">
-                                {{ $order->status }}
-                            </div>
+                            <form action="{{ route('AdminOrderUpdate', ['order' => $order->id]) }}" method="POST" class="flex items-center">
+                                @csrf
+                                @method('PUT')
+                                <div class="flex-1 ">
+                                    <select class=" h-8 badge {{ $statusClass }}" name="status" onchange="this.form.submit()" >
+                                        @foreach ($status as $statusOption)
+                                            <option class="" value="{{ $statusOption }}" {{ $order->status === $statusOption ? 'selected' : '' }}>
+                                                {{ $statusOption }}
+                                            </option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                            </form>
+
                         </td>
                         <td>
                             <p>{{ $order->shipping_name }}</p>
@@ -74,18 +85,10 @@
                             {{$order->created_at}}
                         </td>
                         <td class="px-0">
-                            <div class="join flex w-full">
+                            <div class="flex w-full">
                                 <a href="{{ route('AdminOrderShow', $order->id) }}"
-                                   class="btn btn-primary join-item flex-1">Details
+                                   class="btn btn-primary flex-1">View
                                 </a>
-                                <form action="{{ route('AdminOrderDestroy', $order->id) }}" method="POST"
-                                      class="flex-1">
-                                    @csrf
-                                    @method('DELETE')
-                                    <button type="submit" onclick="return confirm('Are you sure you want to delete this order?')"
-                                            class="btn join-item">Delete
-                                    </button>
-                                </form>
                             </div>
                         </td>
                     </tr>

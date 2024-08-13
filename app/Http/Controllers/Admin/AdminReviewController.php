@@ -4,60 +4,92 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-
 use App\Models\Review;
-
+use App\Models\FlaggedReview;
+use App\Models\Product;
+use App\Models\Category;
 
 class AdminReviewController extends Controller
 {
     public function index(Request $request)
     {
         $search = $request->input('search');
+        $category_id = $request->input('category_id');
+        $product_id = $request->input('product_id');
+        $rating = $request->input('rating');
+        $status = $request->input('status'); // Filter for status
+        $start_date = $request->input('start_date');
+        $end_date = $request->input('end_date');
 
-        $title='Review Management - List';
-        $items = Review::with(['product', 'user'])
-                       ->when($search, function ($query, $search) {
-                           return $query->where('review_text', 'like', "%{$search}%")
-                                        ->orWhereHas('product', function ($query) use ($search) {
-                                            $query->where('name', 'like', "%{$search}%");
-                                        })
-                                        ->orWhereHas('user', function ($query) use ($search) {
-                                            $query->where('name', 'like', "%{$search}%");
-                                        });
-                       })
-                       ->orderByDesc('id')
-                       ->paginate(20);
-        return view('admin.pages.review.index', compact('items','title','search'));
+        $title = 'Review Management - List';
+        $items = Review::with(['product.category', 'user'])
+            ->when($search, function ($query, $search) {
+                return $query->where('review_text', 'like', "%{$search}%")
+                    ->orWhereHas('product', function ($query) use ($search) {
+                        $query->where('name', 'like', "%{$search}%");
+                    })
+                    ->orWhereHas('user', function ($query) use ($search) {
+                        $query->where('name', 'like', "%{$search}%");
+                    });
+            })
+            ->when($category_id, function ($query, $category_id) {
+                return $query->whereHas('product.category', function ($query) use ($category_id) {
+                    $query->where('id', $category_id);
+                });
+            })
+            ->when($product_id, function ($query, $product_id) {
+                return $query->where('product_id', $product_id);
+            })
+            ->when($rating, function ($query, $rating) {
+                return $query->where('rating', $rating);
+            })
+            ->when($status, function ($query, $status) {
+                return $query->where('status', $status);
+            })
+            ->when($start_date && $end_date, function ($query) use ($start_date, $end_date) {
+                $startDate = \Carbon\Carbon::createFromFormat('Y-m-d', $start_date)->startOfDay();
+                $endDate = \Carbon\Carbon::createFromFormat('Y-m-d', $end_date)->endOfDay();
+                return $query->whereBetween('created_at', [$startDate, $endDate]);
+            })
+            ->orderByDesc('id')
+            ->paginate(20);
+
+        $averageRating = Review::avg('rating');
+        $totalReviews = Review::count();
+        $categories = Category::all();
+        $products = Product::when($category_id, function ($query, $category_id) {
+            return $query->where('category_id', $category_id);
+        })->get();
+
+        return view('admin.pages.review.index', compact('items', 'title', 'search', 'category_id', 'product_id', 'rating', 'status', 'start_date', 'end_date', 'averageRating', 'totalReviews', 'categories', 'products'));
     }
 
-    public function edit($id)
+    public function updateStatus(Request $request, $id)
     {
-        $title='Review Management - Edit';
         $review = Review::findOrFail($id);
-        return view('admin.pages.review.edit', compact('review','title'));
+        $review->update(['status' => $request->status]);
+
+        return redirect()->route('AdminReviewList')->with('success', 'Review status updated successfully.');
     }
 
-    public function update(Request $request, $id)
+    public function flag($id)
     {
-        $request->validate([
-            'rating' => 'required|integer|min:1|max:5',
-            'content' => 'required|string|max:1000'
+        $review = Review::findOrFail($id);
+
+        // Move the review to the flagged_reviews table
+        FlaggedReview::create([
+            'product_id' => $review->product_id,
+            'user_id' => $review->user_id,
+            'rating' => $review->rating,
+            'review_text' => $review->review_text,
+            'image' => $review->image,
+            'created_at' => $review->created_at,
+            'updated_at' => $review->updated_at,
         ]);
 
-        $review = Review::findOrFail($id);
-        $review->update([
-            'rating' => $request->rating,
-            'content' => $request->content
-        ]);
-
-        return redirect()->route('AdminReviewList')->with('success', 'Review updated successfully.');
-    }
-
-    public function destroy($id)
-    {
-        $review = Review::findOrFail($id);
+        // Delete the review from the reviews table
         $review->delete();
 
-        return redirect()->route('AdminReviewList')->with('success', 'Review deleted successfully.');
+        return redirect()->route('AdminReviewList')->with('success', 'Review flagged and moved to flagged reviews.');
     }
 }

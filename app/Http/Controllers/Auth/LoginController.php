@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Log;
 
 class LoginController extends Controller
 {
@@ -29,17 +31,41 @@ class LoginController extends Controller
      * @return void
      */
 
-    protected function authenticated()
+    protected function authenticated($request, $user)
     {
         // Flash message for successful login
         session()->flash('success', 'Login successful! Welcome back.');
+
+//        $role = $user->isAdmin() ? 'Admin' : 'User';
+
+//        Log::info("{$role} logged in", [
+//            'user_id' => $user->id,
+//            'name' => $user->name,
+//        ]);
     }
 
-    protected function loggedOut()
+    protected function loggedOut($request)
     {
+        // Retrieve user information before logging out
+//        $user = Auth::user();
+//        $userId = $user ? $user->id : 'Unknown';
+//        $userName = $user ? $user->name : 'Unknown';
+//        $role = $user && $user->isAdmin() ? 'Admin' : 'User';
+
+        // Perform the logout operation
+        Auth::logout();
+
         // Flash message for successful logout
         session()->flash('success', 'Logout successful! See you again soon.');
+
+        // Log the user logout with user ID, name, and role
+//        \Log::info("{$role} logged out", [
+//            'user_id' => $userId,
+//            'name' => $userName,
+//        ]);
+
         return redirect('/');
+
     }
 
     public function showLoginForm()

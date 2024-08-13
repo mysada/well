@@ -3,6 +3,13 @@
 @section('title', $title)
 
 @section('content')
+    <div class="container mx-auto flex flex-col gap-4">
+
+        <!-- Create User Button -->
+        <form method="GET" action="{{ route('AdminUserList') }}" class="flex gap-2 items-center">
+            <!-- Search Input -->
+
+@section('content')
     <div class="container mx-auto p-6">
         <div class="flex justify-between mb-4">
             <h1 class="text-2xl font-semibold">{{ $title }}</h1>
@@ -64,6 +71,50 @@
                         </td>
                     </tr>
                 @endforeach
+                    <tr>
+                        <th>#</th>
+                        <th>Name</th>
+                        <th>Email</th>
+                        <th>Role</th>
+                        <th>Created At</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @forelse ($items as $user)
+                        <tr>
+                            <td>
+                                {{ $user->id }}
+                            </td>
+                            <td>
+                                <button class="link link-primary" onclick="openModal({{ $user->id }})">
+                                    {{ $user->name }}
+                                </button>
+                            </td>
+                            <td class="whitespace-nowrap">
+                                <span class="truncate block w-32" title="{{ $user->email }}">{{ $user->email }}</span>
+                            </td>
+                            <td>{{ $user->is_admin ? 'Admin' : 'Customer' }}</td>
+                            <td>{{ $user->created_at->format('Y-m-d H:i') }}</td>
+                            <td class="text-center">
+                                <a href="{{ route('AdminUserEdit', $user->id) }}"
+                                   class="btn btn-primary join-item">Edit</a>
+                                <button type="button" onclick="confirmDeletion({{ $user->id }}, '{{ $user->name }}')"
+                                        class="btn join-item">Delete
+                                </button>
+                                <form id="delete-form-{{ $user->id }}"
+                                      action="{{ route('AdminUserDestroy', $user->id) }}" method="POST" class="hidden">
+                                    @csrf
+                                    @method('DELETE')
+                                </form>
+                            </td>
+                        </tr>
+                    @empty
+                        <tr>
+                            <td colspan="7" class="text-center">No users found</td>
+                        </tr>
+                    @endforelse
+
                 </tbody>
             </table>
         </div>

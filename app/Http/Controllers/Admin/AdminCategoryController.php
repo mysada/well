@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Category;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class AdminCategoryController extends Controller
 {
@@ -13,8 +14,9 @@ class AdminCategoryController extends Controller
      */
     public function index()
     {
+        $title = 'Category Management - List';
         $categories = Category::all();
-        return view('admin.pages.category.index', compact('categories'));
+        return view('admin.pages.category.index', compact('categories','title'));
     }
 
     /**
@@ -40,12 +42,12 @@ class AdminCategoryController extends Controller
         // Handle the image upload
         if ($request->hasFile('image')) {
             // Store the uploaded image in a specific directory
-            $imagePath = $request->file('image')->store('images/home', 'public');
+            $imagePath = $request->file('image')->store('images/home');
 
             // Create the new category
             Category::create([
                 'name' => $request->name,
-                'image_path' => $imagePath,  // Save the path to the image
+                'image' => $imagePath,  // Save the path to the image
             ]);
 
             // Redirect to the category list with a success message
@@ -96,12 +98,12 @@ class AdminCategoryController extends Controller
 
         if ($request->hasFile('image')) {
             // Delete the old image if it exists
-            if ($category->image_path) {
-                Storage::delete('public/' . $category->image_path);
+            if ($category->image) {
+                Storage::delete('public/' . $category->image);
             }
 
             // Save the new image and update the image path
-            $category->image_path = $request->file('image')->store('images/admin', 'public');
+            $category->image = $request->file('image')->store('images/home');
         }
 
         $category->save();

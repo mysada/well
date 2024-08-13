@@ -31,7 +31,7 @@
                     <div class="input-group">
                         <input type="text" name="search" class="form-control search-bar" placeholder="Search products..." value="{{ request('search') }}">
                         <div class="input-group-append">
-                            <button type="submit" class="btn btn-custom">Search</button>
+                            <button type="submit" id="search_button" class="btn btn-custom">Search</button>
                         </div>
                     </div>
                 </form>

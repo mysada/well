@@ -9,7 +9,7 @@ return new class extends Migration
     /**
      * Run the migrations.
      */
-    public function up()
+    public function up(): void
     {
         Schema::create('contact_queries', function (Blueprint $table) {
             $table->id();
@@ -18,16 +18,16 @@ return new class extends Migration
             $table->string('phone')->nullable();
             $table->string('subject');
             $table->text('message');
+            $table->enum('status', ['new', 'in_progress', 'resolved'])->default('new');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
-
-
 
     /**
      * Reverse the migrations.
      */
-    public function down()
+    public function down(): void
     {
         Schema::dropIfExists('contact_queries');
     }

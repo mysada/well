@@ -1,5 +1,6 @@
 .section-title {
     margin-bottom: 2rem;
+
     h2 {
         font-size: 2rem;
         font-weight: 600;
@@ -22,7 +23,6 @@
                 margin-bottom: 1.5rem;
                 font-weight: 500;
                 color: #555;
-
 
                 .contact-icon {
                     width: 35px;
@@ -99,6 +99,11 @@
             &:hover {
                 background-color: #333;
             }
+        }
+
+
+        @media (max-width: 768px) {
+            margin-top: 2rem;
         }
     }
 }

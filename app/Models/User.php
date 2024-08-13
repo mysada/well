@@ -75,4 +75,9 @@ class User extends Authenticatable
         return $this->hasMany(Order::class);
     }
     //defined by --AMAN
+    public function isAdmin()
+    {
+        return $this->is_admin === 1; // Check if the is_admin field is set to 1
+    }
+
 }
