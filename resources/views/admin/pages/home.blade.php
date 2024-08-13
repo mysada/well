@@ -37,40 +37,64 @@
 
         <!-- Top Seller Section -->
         <div class="overflow-x-auto w-full">
-            <h2 class="text-4xl font-bold mb-4">Top Seller</h2>
-            <table class="w-full table-auto border-collapse border border-gray-300">
-                <thead>
-                    <tr class="bg-gray-200 text-left">
-                        <th class="border border-gray-300 p-2">ID</th>
-                        <th class="border border-gray-300 p-2">Name</th>
-                        <th class="border border-gray-300 p-2">Popularity</th>
-                        <th class="border border-gray-300 p-2">Sales</th>
+            <h2 class="text-2xl font-bold mb-4 text-gray-800">Top Seller</h2>
+            <table class="w-full bg-white shadow-md rounded-lg">
+                <thead class="bg-gray-100 text-gray-600">
+                    <tr>
+                        <th class="p-4 text-left text-sm font-semibold">ID</th>
+                        <th class="p-4 text-left text-sm font-semibold">Name</th>
+                        <th class="p-4 text-left text-sm font-semibold">Popularity</th>
+                        <th class="p-4 text-left text-sm font-semibold">Sales</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td class="border border-gray-300 p-2">01</td>
-                        <td class="border border-gray-300 p-2">Home Decor Range</td>
-                        <td class="border border-gray-300 p-2">80%</td>
-                        <td class="border border-gray-300 p-2 text-blue-500">453</td>
+                    <tr class="border-b hover:bg-gray-50">
+                        <td class="p-4 text-sm text-gray-600">01</td>
+                        <td class="p-4 text-sm text-gray-800">Home Decor Range</td>
+                        <td class="p-4 text-sm">
+                            <div class="relative pt-1">
+                                <div class="overflow-hidden h-2 mb-4 text-xs flex rounded bg-gray-200">
+                                    <div style="width:80%" class="shadow-none flex flex-col text-center whitespace-nowrap text-white justify-center bg-blue-500"></div>
+                                </div>
+                            </div>
+                        </td>
+                        <td class="p-4 text-sm text-blue-500">453</td>
                     </tr>
-                    <tr>
-                        <td class="border border-gray-300 p-2">02</td>
-                        <td class="border border-gray-300 p-2">Disney Princess Pink Bag 18'</td>
-                        <td class="border border-gray-300 p-2">65%</td>
-                        <td class="border border-gray-300 p-2 text-green-500">290</td>
+                    <tr class="border-b hover:bg-gray-50">
+                        <td class="p-4 text-sm text-gray-600">02</td>
+                        <td class="p-4 text-sm text-gray-800">Disney Princess Pink Bag 18'</td>
+                        <td class="p-4 text-sm">
+                            <div class="relative pt-1">
+                                <div class="overflow-hidden h-2 mb-4 text-xs flex rounded bg-gray-200">
+                                    <div style="width:65%" class="shadow-none flex flex-col text-center whitespace-nowrap text-white justify-center bg-green-500"></div>
+                                </div>
+                            </div>
+                        </td>
+                        <td class="p-4 text-sm text-green-500">290</td>
                     </tr>
-                    <tr>
-                        <td class="border border-gray-300 p-2">03</td>
-                        <td class="border border-gray-300 p-2">Bathroom Essentials</td>
-                        <td class="border border-gray-300 p-2">50%</td>
-                        <td class="border border-gray-300 p-2 text-purple-500">186</td>
+                    <tr class="border-b hover:bg-gray-50">
+                        <td class="p-4 text-sm text-gray-600">03</td>
+                        <td class="p-4 text-sm text-gray-800">Bathroom Essentials</td>
+                        <td class="p-4 text-sm">
+                            <div class="relative pt-1">
+                                <div class="overflow-hidden h-2 mb-4 text-xs flex rounded bg-gray-200">
+                                    <div style="width:50%" class="shadow-none flex flex-col text-center whitespace-nowrap text-white justify-center bg-purple-500"></div>
+                                </div>
+                            </div>
+                        </td>
+                        <td class="p-4 text-sm text-purple-500">186</td>
                     </tr>
-                    <tr>
-                        <td class="border border-gray-300 p-2">04</td>
-                        <td class="border border-gray-300 p-2">Apple Smartwatches</td>
-                        <td class="border border-gray-300 p-2">30%</td>
-                        <td class="border border-gray-300 p-2 text-orange-500">110</td>
+                    <tr class="hover:bg-gray-50">
+                        <td class="p-4 text-sm text-gray-600">04</td>
+                        <td class="p-4 text-sm text-gray-800">Apple Smartwatches</td>
+                        <td class="p-4 text-sm">
+                            <div class="relative pt-1">
+                                <div class="overflow-hidden h-2 mb-4 text-xs flex rounded bg-gray-200">
+                                    <div style="width:30%" class="shadow-none flex flex-col text-center whitespace-nowrap text-white justify-center bg-orange-500"></div>
+                                </div>
+                            </div>
+                        </td>
+                        <td class="p-4 text-sm text-orange-500">110</td>
                     </tr>
                 </tbody>
             </table>
