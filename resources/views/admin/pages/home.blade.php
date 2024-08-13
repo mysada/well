@@ -53,31 +53,31 @@
                 <td class="py-4">01</td>
                 <td class="py-4">Home Decor Range</td>
                 <td class="py-4">
-                    <div class="relative w-56 bg-gray-200 rounded-full h-4">
-                        <div class="bg-primary h-4 rounded-full" style="width: 80%;"></div>
+                    <div class="relative w-56 bg-gray-100 rounded-full h-2">
+                        <div class="bg-primary h-2 rounded-full" style="width: 80%;"></div>
                     </div>
                 </td>
-                <td class="py-4 text-primary">453</td>
+                <td class="py-4 text-primary font-medium">453</td>
             </tr>
             <tr class="border-b">
                 <td class="py-4">02</td>
                 <td class="py-4">Disney Princess Pink Bag 18'</td>
                 <td class="py-4">
-                    <div class="relative w-56 bg-gray-200 rounded-full h-4">
-                        <div class="bg-secondary h-4 rounded-full" style="width: 65%;"></div>
+                    <div class="relative w-56 bg-gray-100 rounded-full h-2">
+                        <div class="bg-secondary h-2 rounded-full" style="width: 65%;"></div>
                     </div>
                 </td>
-                <td class="py-4 text-secondary">290</td>
+                <td class="py-4 text-secondary font-medium">290</td>
             </tr>
             <tr class="border-b">
                 <td class="py-4">03</td>
                 <td class="py-4">Bathroom Essentials</td>
                 <td class="py-4">
-                    <div class="relative w-56 bg-gray-200 rounded-full h-2">
+                    <div class="relative w-56 bg-gray-100 rounded-full h-2">
                         <div class="bg-accent h-2 rounded-full" style="width: 50%;"></div>
                     </div>
                 </td>
-                <td class="py-4 text-accent">186</td>
+                <td class="py-4 text-accen font-medium">186</td>
             </tr>
             <tr>
                 <td class="py-4">04</td>
@@ -87,7 +87,7 @@
                         <div class="bg-warning h-2 rounded-full" style="width: 30%;"></div>
                     </div>
                 </td>
-                <td class="py-4 text-warning">110</td>
+                <td class="py-4 text-warning font-medium">110</td>
             </tr>
         </tbody>
     </table>
