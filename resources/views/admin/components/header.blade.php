@@ -2,7 +2,7 @@
   bg-base-100 text-base-content sticky top-0 z-30 flex h-16
   w-full justify-center bg-opacity-90 backdrop-blur px-2
   transition-shadow duration-100 [transform:translate3d(0,0,0)]
-  " style="background-color: #f1f1f1">
+  ">
     <div class="navbar w-full">
         <h1 class="flex-1 text-2xl">
             {{$title??'Transfer the title'}}
