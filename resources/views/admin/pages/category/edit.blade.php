@@ -7,7 +7,7 @@
             <a href="{{ route('AdminCategoryList') }}" class="btn btn-primary">Back to Category List</a>
         </div>
 
-        <div class="w-full flex justify-center">
+        <div class="w-full flex justify-center mt-12">
             <div class="bg-base-100 max-w-screen-lg shadow-lg rounded-lg overflow-hidden min-w-[560px]">
                 <div class="md:flex">
                     <div class="w-1/3 flex justify-center items-center">
