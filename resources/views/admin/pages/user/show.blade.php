@@ -1,62 +1,31 @@
 @extends('admin.admin')
 
+@section('title', "User Details - {$user->name}")
+
 @section('content')
-    <div class="container mx-auto max-w-4xl px-4 py-6">
+    <div class="container mx-auto p-6">
+        <h1 class="text-2xl font-semibold">User Details</h1>
 
-        <!-- Back Button -->
-        <div class="flex justify-start mb-6">
-            <a href="{{ route('AdminUserList') }}" class="btn btn-primary">
-                Back to List
-            </a>
-        </div>
-
-        <!-- User Details Card -->
-        <div class="bg-white shadow-lg rounded-lg overflow-hidden">
-            <div class="p-6">
-                <h2 class="text-3xl font-bold mb-6 text-gray-900">User Details</h2>
-                <div class="grid grid-cols-1 sm:grid-cols-3 gap-6">
-                    <!-- First Row -->
-                    <div class="bg-gray-50 p-4 rounded-lg shadow-sm">
-                        <p class="font-semibold text-lg text-gray-800">Full Name:</p>
-                        <p class="text-gray-700">{{ $user->name }}</p>
-                    </div>
-                    <div class="bg-gray-50 p-4 rounded-lg shadow-sm">
-                        <p class="font-semibold text-lg text-gray-800">Email:</p>
-                        <p class="text-gray-700">{{ $user->email }}</p>
-                    </div>
-                    <div class="bg-gray-50 p-4 rounded-lg shadow-sm">
-                        <p class="font-semibold text-lg text-gray-800">Role:</p>
-                        <p class="text-gray-700">{{ $user->is_admin ? 'Admin' : 'Customer' }}</p>
-                    </div>
-
-                    <!-- Second Row -->
-                    <div class="bg-gray-50 p-4 rounded-lg shadow-sm">
-                        <p class="font-semibold text-lg text-gray-800">Phone:</p>
-                        <p class="text-gray-700">
-                            {{ $user->phone ?? 'Not provided' }}
-                        </p>
-                    </div>
-                    <div class="bg-gray-50 p-4 rounded-lg shadow-sm">
-                        <p class="font-semibold text-lg text-gray-800">Billing Phone:</p>
-                        <p class="text-gray-700">
-                            {{ $billingPhone ?? 'Not provided' }}
-                        </p>
-                    </div>
-                    <div class="bg-gray-50 p-4 rounded-lg shadow-sm">
-                        <p class="font-semibold text-lg text-gray-800">Billing Address:</p>
-                        <p class="text-gray-700">{{ $billingAddress }}</p>
-                    </div>
-                    <div class="bg-gray-50 p-4 rounded-lg shadow-sm">
-                        <p class="font-semibold text-lg text-gray-800">Shipping Address:</p>
-                        <p class="text-gray-700">{{ $shippingAddress }}</p>
-                    </div>
-
-                    <!-- Last Row -->
-                    <div class="bg-gray-50 p-4 rounded-lg shadow-sm col-span-3">
-                        <p class="font-semibold text-lg text-gray-800">Created At:</p>
-                        <p class="text-gray-700">{{ $user->created_at->format('Y-m-d H:i') }}</p>
-                    </div>
+        <div class="card mt-6 p-6 bg-white shadow-md">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div>
+                    <h2 class="text-lg font-medium">Basic Information</h2>
+                    <p><strong>Name:</strong> {{ $user->name }}</p>
+                    <p><strong>Email:</strong> {{ $user->email }}</p>
+                    <p><strong>Role:</strong> {{ $user->is_admin ? 'Admin' : 'User' }}</p>
+                    <p><strong>Phone:</strong> {{ $user->phone }}</p>
                 </div>
+                <div>
+                    <h2 class="text-lg font-medium">Addresses</h2>
+                    <p><strong>Shipping Address:</strong> {{ $shippingAddress }}</p>
+                    <p><strong>Billing Address:</strong> {{ $billingAddress }}</p>
+                    <p><strong>Billing Phone:</strong> {{ $billingPhone }}</p>
+                </div>
+            </div>
+
+            <div class="mt-6">
+                <a href="{{ route('AdminUserEdit', $user->id) }}" class="btn btn-warning">Edit User</a>
+                <a href="{{ route('AdminUserList') }}" class="btn btn-secondary">Back to List</a>
             </div>
         </div>
     </div>
