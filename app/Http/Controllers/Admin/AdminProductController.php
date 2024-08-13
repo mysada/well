@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Product;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Storage;
 
 class AdminProductController extends Controller
@@ -29,6 +30,7 @@ class AdminProductController extends Controller
                         ->paginate(20);
 
         $title = 'Product Management - List';
+        Log::info('Manual log test');
 
         return view(
           'admin.pages.product.index',
@@ -66,7 +68,7 @@ class AdminProductController extends Controller
 
         $imagePath = null;
         if ($request->hasFile('image')) {
-            $imagePath = $request->file('image')->store('public/images');
+            $imagePath = $request->file('image')->store('images');
         }
 
         Product::create([
@@ -133,13 +135,8 @@ class AdminProductController extends Controller
                 Storage::delete($product->image_url);
             }
 
-            // Store the new image
-            $imagePath          = $request->file('image')->store(
-              'public/images/'
-            );
-            $product->image_url = Storage::url(
-              $imagePath
-            ); // Save the new image URL
+            $imagePath= $request->file('image')->store('images/products');
+            $product->image_url = $imagePath;
         }
 
         // Update other product fields
