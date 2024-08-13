@@ -46,7 +46,7 @@ class AdminCategoryController extends Controller
             // Create the new category
             Category::create([
                 'name' => $request->name,
-                'image_path' => $imagePath,  // Save the path to the image
+                'image' => $imagePath,  // Save the path to the image
             ]);
 
             // Redirect to the category list with a success message
