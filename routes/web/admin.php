@@ -42,24 +42,14 @@ Route::resource('products', AdminProductController::class)->names([
 ]);
 
 // Review management
-Route::resource('reviews', AdminReviewController::class)->except(
-  ['create', 'store', 'show']
-)->names([
+Route::resource('reviews', AdminReviewController::class)->except(['create', 'store', 'show'])->names([
   'index'   => 'AdminReviewList',
   'edit'    => 'AdminReviewEdit',
   'update'  => 'AdminReviewUpdate',
   'destroy' => 'AdminReviewDestroy',
 ]);
-Route::get('reviews/export', [AdminReviewController::class, 'export'])->name(
-  'AdminReviewExport'
-);
-Route::post('reviews/flag/{id}', [AdminReviewController::class, 'flag'])->name(
-  'AdminReviewFlag'
-);
-Route::patch(
-  'reviews/status/{id}',
-  [AdminReviewController::class, 'updateStatus']
-)->name('AdminReviewUpdateStatus');
+
+Route::patch('reviews/status/{id}', [AdminReviewController::class, 'updateStatus'])->name('AdminReviewUpdateStatus');
 
 // Payment management
 Route::resource('payments', AdminPaymentController::class)->only(

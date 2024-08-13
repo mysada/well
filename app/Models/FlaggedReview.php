@@ -15,6 +15,8 @@ class FlaggedReview extends Model
         'rating',
         'review_text',
         'image',
+        'created_at',
+        'updated_at',
     ];
 
     public function product()

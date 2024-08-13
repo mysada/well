@@ -17,21 +17,28 @@ class AdminReviewController extends Controller
         $category_id = $request->input('category_id');
         $product_id = $request->input('product_id');
         $rating = $request->input('rating');
-        $status = $request->input('status'); // Filter for status
+        $status = $request->input('status');
         $start_date = $request->input('start_date');
         $end_date = $request->input('end_date');
 
         $title = 'Review Management - List';
-        $items = Review::with(['product.category', 'user'])
-            ->when($search, function ($query, $search) {
-                return $query->where('review_text', 'like', "%{$search}%")
-                    ->orWhereHas('product', function ($query) use ($search) {
-                        $query->where('name', 'like', "%{$search}%");
-                    })
-                    ->orWhereHas('user', function ($query) use ($search) {
-                        $query->where('name', 'like', "%{$search}%");
-                    });
-            })
+
+        // Determine whether to query from reviews or flagged_reviews table
+        if ($status == 'flagged') {
+            $items = FlaggedReview::with(['product.category', 'user']);
+        } else {
+            $items = Review::with(['product.category', 'user']);
+        }
+
+        $items = $items->when($search, function ($query, $search) {
+            return $query->where('review_text', 'like', "%{$search}%")
+                ->orWhereHas('product', function ($query) use ($search) {
+                    $query->where('name', 'like', "%{$search}%");
+                })
+                ->orWhereHas('user', function ($query) use ($search) {
+                    $query->where('name', 'like', "%{$search}%");
+                });
+        })
             ->when($category_id, function ($query, $category_id) {
                 return $query->whereHas('product.category', function ($query) use ($category_id) {
                     $query->where('id', $category_id);
@@ -43,7 +50,7 @@ class AdminReviewController extends Controller
             ->when($rating, function ($query, $rating) {
                 return $query->where('rating', $rating);
             })
-            ->when($status, function ($query, $status) {
+            ->when($status && $status != 'flagged', function ($query, $status) {
                 return $query->where('status', $status);
             })
             ->when($start_date && $end_date, function ($query) use ($start_date, $end_date) {
@@ -64,32 +71,56 @@ class AdminReviewController extends Controller
         return view('admin.pages.review.index', compact('items', 'title', 'search', 'category_id', 'product_id', 'rating', 'status', 'start_date', 'end_date', 'averageRating', 'totalReviews', 'categories', 'products'));
     }
 
+
+
     public function updateStatus(Request $request, $id)
     {
-        $review = Review::findOrFail($id);
-        $review->update(['status' => $request->status]);
+        if ($request->status == 'flagged') {
+            $review = Review::findOrFail($id);
 
-        return redirect()->route('AdminReviewList')->with('success', 'Review status updated successfully.');
+            // Move the review to the flagged_reviews table with status set to "flagged"
+            FlaggedReview::create([
+                'product_id' => $review->product_id,
+                'user_id' => $review->user_id,
+                'rating' => $review->rating,
+                'review_text' => $review->review_text,
+                'image' => $review->image,
+                'created_at' => $review->created_at,
+                'updated_at' => $review->updated_at,
+                'status' => 'flagged',  // Ensure the status is set to flagged
+            ]);
+
+            // Delete the review from the reviews table (soft delete)
+            $review->delete();
+
+            return redirect()->route('AdminReviewList')->with('success', 'Review flagged and moved to flagged reviews.');
+        } elseif ($request->status == 'active') {
+            $flaggedReview = FlaggedReview::findOrFail($id);
+
+            // Restore the review back to the reviews table
+            Review::create([
+                'product_id' => $flaggedReview->product_id,
+                'user_id' => $flaggedReview->user_id,
+                'rating' => $flaggedReview->rating,
+                'review_text' => $flaggedReview->review_text,
+                'image' => $flaggedReview->image,
+                'created_at' => $flaggedReview->created_at,
+                'updated_at' => $flaggedReview->updated_at,
+                'status' => 'active',  // Set the status to active
+            ]);
+
+            // Delete the review from the flagged_reviews table
+            $flaggedReview->delete();
+
+            return redirect()->route('AdminReviewList')->with('success', 'Review restored to active status.');
+        } else {
+            // For other status changes
+            $review = Review::findOrFail($id);
+            $review->update(['status' => $request->status]);
+
+            return redirect()->route('AdminReviewList')->with('success', 'Review status updated successfully.');
+        }
     }
 
-    public function flag($id)
-    {
-        $review = Review::findOrFail($id);
 
-        // Move the review to the flagged_reviews table
-        FlaggedReview::create([
-            'product_id' => $review->product_id,
-            'user_id' => $review->user_id,
-            'rating' => $review->rating,
-            'review_text' => $review->review_text,
-            'image' => $review->image,
-            'created_at' => $review->created_at,
-            'updated_at' => $review->updated_at,
-        ]);
-
-        // Delete the review from the reviews table
-        $review->delete();
-
-        return redirect()->route('AdminReviewList')->with('success', 'Review flagged and moved to flagged reviews.');
-    }
 }
