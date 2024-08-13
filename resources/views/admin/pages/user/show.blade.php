@@ -32,7 +32,9 @@
                     <!-- Second Row -->
                     <div class="bg-gray-50 p-4 rounded-lg shadow-sm">
                         <p class="font-semibold text-lg text-gray-800">Phone:</p>
-                        <p class="text-gray-700">{{ $user->phone ?? 'Not provided' }}</p>
+                        <p class="text-gray-700">
+                            {{ $user->phone ?? ($billingPhone ?? 'Not provided') }}
+                        </p>
                     </div>
                     <div class="bg-gray-50 p-4 rounded-lg shadow-sm">
                         <p class="font-semibold text-lg text-gray-800">Billing Address:</p>
@@ -44,7 +46,7 @@
                     </div>
 
                     <!-- Last Row -->
-                    <div class="bg-gray-50 p-4 rounded-lg shadow-sm">
+                    <div class="bg-gray-50 p-4 rounded-lg shadow-sm col-span-3">
                         <p class="font-semibold text-lg text-gray-800">Created At:</p>
                         <p class="text-gray-700">{{ $user->created_at->format('Y-m-d H:i') }}</p>
                     </div>
