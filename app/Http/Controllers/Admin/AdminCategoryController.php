@@ -97,12 +97,12 @@ class AdminCategoryController extends Controller
 
         if ($request->hasFile('image')) {
             // Delete the old image if it exists
-            if ($category->image_path) {
+            if ($category->image) {
                 Storage::delete('public/' . $category->image);
             }
 
             // Save the new image and update the image path
-            $category->image_path = $request->file('image')->store('images/admin', 'public');
+            $category->image = $request->file('image')->store('images/home');
         }
 
         $category->save();
