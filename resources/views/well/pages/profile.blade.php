@@ -257,7 +257,7 @@
                         <img src="{{ asset($detail->product->image_url) }}" alt="Product Image" class="img-fluid" width="100px">
                         <p><strong>Order Date:</strong> {{ $order->created_at->format('Y-m-d') }}</p>
                         <p><strong>Price:</strong> ${{ number_format($detail->price, 2) }}</p>
-                        <a href="{{ route('reviews.store1', $detail->product->id) }}" id="update_button" class="btn btn-primary">Write a Review</a>
+                        <a href="{{ route('reviews.store', $detail->product->id) }}" id="update_button" class="btn btn-primary">Write a Review</a>
                     </div>
                     @endforeach
                     @endforeach
