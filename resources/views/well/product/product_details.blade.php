@@ -8,7 +8,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-12 mb-3">
-                    <a href="{{ url('/products') }}">Shop</a> / <span>{{ $product->name }}</span>
+                    <a href="{{ url('/products') }}" class="shop-link">Shop</a> / <span>{{ $product->name }}</span>
                 </div>
                 <div class="col-md-12 mb-3">
                     <h2 class="product-title">Product Details</h2>
@@ -87,28 +87,29 @@
             <div class="row">
                 @foreach($relatedProducts as $relatedProduct)
                     <div class="col-md-3">
-                        <div class="card shadow-sm">
-                            <img src="{{ asset($relatedProduct->image_url) }}" class="card-img-top"
-                                 alt="{{ $relatedProduct->name }}">
-                            <div class="card-body">
-                                <h6 class="category">{{ $relatedProduct->category->name }}</h6>
-                                <h5 class="card-title">{{ $relatedProduct->name }}</h5>
-                                <div class="d-flex justify-content-between align-items-center">
-                                    <p class="card-text">$ {{ number_format($relatedProduct->price, 2) }}</p>
-                                    <form action="{{ route('CartItemStore') }}" method="POST" style="display: inline; padding-top: 30px">
-                                        @csrf
-                                        <input type="hidden" name="product_id" value="{{ $relatedProduct->id }}">
-                                        <input type="hidden" name="quantity" value="1">
-                                        <button type="submit" style="background-color: #00AA79; border: none; border-radius: 50%; width: 40px; height: 40px;  display: flex; align-items: center; justify-content: center;">
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="white" class="bi bi-plus" viewBox="0 0 16 16">
-                                                <path d="M8 8v5a.5.5 0 0 0 1 0V8h5a.5.5 0 0 0 0-1H9V2a.5.5 0 0 0-1 0v5H2a.5.5 0 0 0 0 1h5z"/>
-                                            </svg>
-                                        </button>
-                                    </form>
-
+                        <a href="{{ route('products.show', $relatedProduct->id) }}" style="text-decoration: none; color: inherit;">
+                            <div class="card shadow-sm">
+                                <img src="{{ asset($relatedProduct->image_url) }}" class="card-img-top"
+                                     alt="{{ $relatedProduct->name }}">
+                                <div class="card-body">
+                                    <h6 class="category">{{ $relatedProduct->category->name }}</h6>
+                                    <h5 class="card-title">{{ $relatedProduct->name }}</h5>
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <p class="card-text">$ {{ number_format($relatedProduct->price, 2) }}</p>
+                                        <form action="{{ route('CartItemStore') }}" method="POST" style="display: inline; padding-top: 30px">
+                                            @csrf
+                                            <input type="hidden" name="product_id" value="{{ $relatedProduct->id }}">
+                                            <input type="hidden" name="quantity" value="1">
+                                            <button type="submit" style="background-color: #00AA79; border: none; border-radius: 50%; width: 40px; height: 40px;  display: flex; align-items: center; justify-content: center;">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="white" class="bi bi-plus" viewBox="0 0 16 16">
+                                                    <path d="M8 8v5a.5.5 0 0 0 1 0V8h5a.5.5 0 0 0 0-1H9V2a.5.5 0 0 0-1 0v5H2a.5.5 0 0 0 0 1h5z"/>
+                                                </svg>
+                                            </button>
+                                        </form>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
+                        </a>
                     </div>
                 @endforeach
             </div>
@@ -117,4 +118,5 @@
             </div>
         </div>
     </section>
+
 @endsection
