@@ -10,7 +10,7 @@
             @foreach($categories as $category)
                 <div class="card w-full bg-base-100 shadow-xl">
                     <figure>
-                        <img src="{{ asset($category->image . '.jpg') }}" alt="{{ $category->name }}" class="w-full h-48 object-cover">
+                        <img src="{{ asset($category->image) }}" alt="{{ $category->name }}" class="w-full h-48 object-cover">
                     </figure>
                     <div class="card-body">
                         <h2 class="card-title">{{ $category->name }}</h2>

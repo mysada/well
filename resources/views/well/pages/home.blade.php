@@ -3,7 +3,7 @@
     @vite('resources/sass/home.scss')
 
 
-    <!-- Category Section -->
+    <!-- Hero Section -->
     @if ($randomHeroSection)
         <section class="hero-section">
             <img src="{{ asset($randomHeroSection['image']) }}" alt="Hero Image">
@@ -27,7 +27,7 @@
                 @foreach($categories as $category)
                     <div class="col-md-4">
                         <div class="card category-card"
-                             style="background-image: url('{{ asset($category->image) }}.jpg');">
+                             style="background-image: url('{{ asset($category->image) }}');">
                             <h1 class="category-card-title">{{ $category->name }}</h1>
                             <div class="card-body">
                                 <a href="{{ route('products.index', ['category_id' => $category->id]) }}"
