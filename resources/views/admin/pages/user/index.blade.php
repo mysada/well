@@ -2,62 +2,55 @@
 
 @section('content')
     <div class="container mx-auto">
-
-        <!-- Create User Button -->
-        <form method="GET" action="{{ route('AdminUserList') }}" class="flex gap-2 items-center">
-            <!-- Search Input -->
-            <div class="flex-1">
-                <input
-                    type="text"
-                    name="search"
-                    class="input input-bordered w-full"
-                    placeholder="Search..."
-                    value="{{ request('search') }}"
-                >
-            </div>
-
-            <!-- Role Filter -->
-            <div class="flex-1">
-                <select name="role" class="select">
-                    <option value="">All Roles</option>
-                    <option value="admin" {{ request('role') === 'admin' ? 'selected' : '' }}>Admin</option>
-                    <option value="customer" {{ request('role') === 'customer' ? 'selected' : '' }}>Customer</option>
-                </select>
-            </div>
-
-            <!-- Name Sort Order Filter -->
-            <div class="flex-1">
-                <select name="sort" class="select">
-                    <option value="">Sort by Name</option>
-                    <option value="asc" {{ request('sort') === 'asc' ? 'selected' : '' }}>A to Z</option>
-                    <option value="desc" {{ request('sort') === 'desc' ? 'selected' : '' }}>Z to A</option>
-                </select>
-            </div>
-
-            <!-- Items Per Page Selector -->
-            <div class="flex-1">
-                <select name="per_page" class="select">
-                    <option value="10" {{ request('per_page') == '10' ? 'selected' : '' }}>10 per page</option>
-                    <option value="25" {{ request('per_page') == '25' ? 'selected' : '' }}>25 per page</option>
-                    <option value="50" {{ request('per_page') == '50' ? 'selected' : '' }}>50 per page</option>
-                </select>
-            </div>
-
-            <div class="join">
-                <div class="w-auto">
-                    <button type="submit" class="btn btn-secondary join-item">Apply Filters</button>
+        <!-- Header with Filters and Actions -->
+        <div class="flex justify-between mb-6">
+            <!-- Search and Filters Form -->
+            <form method="GET" action="{{ route('AdminUserList') }}" class="flex gap-2 items-center">
+                <!-- Search Input -->
+                <div class="flex-1">
+                    <input
+                        type="text"
+                        name="search"
+                        class="input input-bordered w-full"
+                        placeholder="Search..."
+                        value="{{ request('search') }}"
+                    >
                 </div>
-            </div>
 
-            <div class="flex">
-                <a href="{{ route('AdminUserCreate') }}" class="btn btn-primary">
-                    Create User
-                </a>
-            </div>
-        </form>
+                <!-- Role Filter -->
+                <div class="flex-1">
+                    <select name="role" class="select">
+                        <option value="">All Roles</option>
+                        <option value="admin" {{ request('role') === 'admin' ? 'selected' : '' }}>Admin</option>
+                        <option value="customer" {{ request('role') === 'customer' ? 'selected' : '' }}>Customer</option>
+                    </select>
+                </div>
+
+                <!-- Name Sort Order Filter -->
+                <div class="flex-1">
+                    <select name="sort" class="select">
+                        <option value="">Sort by Name</option>
+                        <option value="asc" {{ request('sort') === 'asc' ? 'selected' : '' }}>A to Z</option>
+                        <option value="desc" {{ request('sort') === 'desc' ? 'selected' : '' }}>Z to A</option>
+                    </select>
+                </div>
+
+                <!-- Items Per Page Selector -->
+                <div class="flex-1">
+                    <select name="per_page" class="select">
+                        <option value="10" {{ request('per_page') == '10' ? 'selected' : '' }}>10 per page</option>
+                        <option value="25" {{ request('per_page') == '25' ? 'selected' : '' }}>25 per page</option>
+                        <option value="50" {{ request('per_page') == '50' ? 'selected' : '' }}>50 per page</option>
+                    </select>
+                </div>
+
+                <button type="submit" class="btn btn-secondary join-item">Apply Filters</button>
+                <a href="{{ route('AdminUserCreate') }}" class="btn btn-primary">Create User</a>
+            </form>
+        </div>
 
         <!-- User Table -->
-        <div class="overflow-x-auto mt-6">
+        <div class="overflow-x-auto">
             <table class="table w-full">
                 <thead>
                 <tr>
@@ -72,7 +65,7 @@
                 </thead>
                 <tbody>
                 @forelse ($items as $user)
-                    <tr>
+                    <tr class="hover">
                         <td>{{ $user->id }}</td>
                         <td>{{ $user->name }}</td>
                         <td class="whitespace-nowrap">
