@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\File;
+
 
 class AdminHomeController extends Controller
 {
@@ -16,27 +18,6 @@ class AdminHomeController extends Controller
         $logs = $this->getLogs();
 
         return view('admin.pages.home', compact('title', 'logs'));
-    }
-
-    /**
-     * Fetch logs from the log file.
-     */
-    protected function getLogs(): array
-    {
-        $logFile = storage_path('logs/laravel.log');
-        $logs = [];
-
-        if (file_exists($logFile)) {
-            $logs = file($logFile, FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);
-            $logs = array_filter($logs, function ($log) {
-                return strpos($log, 'User logged in') !== false ||
-                    strpos($log, 'User logged out') !== false ||
-                    strpos($log, 'Admin logged in') !== false ||
-                    strpos($log, 'Admin logged out') !== false;
-            });
-        }
-
-        return $logs;
     }
 
     /**
