@@ -1,100 +1,64 @@
 @extends('admin.admin')
 
+@section('title', $title)
+
 @section('content')
-    <div class="container mx-auto px-4 py-6 max-w-3xl">
-        <div class="relative">
-            <div class="bg-gray-100 p-6 rounded-lg shadow-md">
-                <h1 class="text-2xl font-bold mb-6 text-center">Edit User</h1>
+    <div class="container mx-auto p-6">
+        <h1 class="text-2xl font-semibold">{{ $title }}</h1>
 
-                <form method="POST" action="{{ route('AdminUserUpdate', $user->id) }}" class="space-y-4">
-                    @csrf
-                    @method('PUT')
+        <form action="{{ route('AdminUserUpdate', $user->id) }}" method="POST" class="mt-6">
+            @csrf
+            @method('PUT')
 
-                    <div class="form-group">
-                        <label for="name" class="block text-sm font-medium mb-1">Name</label>
-                        <input
-                            type="text"
-                            name="name"
-                            id="name"
-                            class="input input-bordered w-full"
-                            value="{{ old('name', $user->name) }}"
-                            required
-                        >
-                        @error('name')
-                        <span class="text-red-500 text-sm">{{ $message }}</span>
-                        @enderror
-                    </div>
-
-                    <div class="form-group">
-                        <label for="email" class="block text-sm font-medium mb-1">Email</label>
-                        <input
-                            type="email"
-                            name="email"
-                            id="email"
-                            class="input input-bordered w-full"
-                            value="{{ old('email', $user->email) }}"
-                            required
-                        >
-                        @error('email')
-                        <span class="text-red-500 text-sm">{{ $message }}</span>
-                        @enderror
-                    </div>
-
-                    <div class="form-group">
-                        <label for="phone" class="block text-sm font-medium mb-1">Phone</label>
-                        <input
-                            type="text"
-                            name="phone"
-                            id="phone"
-                            class="input input-bordered w-full"
-                            value="{{ old('phone', $user->phone) }}"
-                        >
-                    </div>
-
-                    <div class="form-group">
-                        <label for="billing_phone" class="block text-sm font-medium mb-1">Billing Phone</label>
-                        <input
-                            type="text"
-                            name="billing_phone"
-                            id="billing_phone"
-                            class="input input-bordered w-full"
-                            value="{{ old('billing_phone', $billingPhone) }}"
-                        >
-                    </div>
-
-                    <div class="form-group">
-                        <label for="billing_address" class="block text-sm font-medium mb-1">Billing Address</label>
-                        <input
-                            type="text"
-                            name="billing_address"
-                            id="billing_address"
-                            class="input input-bordered w-full"
-                            value="{{ old('billing_address', $billingAddress) }}"
-                        >
-                    </div>
-
-                    <div class="form-group">
-                        <label for="shipping_address" class="block text-sm font-medium mb-1">Shipping Address</label>
-                        <input
-                            type="text"
-                            name="shipping_address"
-                            id="shipping_address"
-                            class="input input-bordered w-full"
-                            value="{{ old('shipping_address', $shippingAddress) }}"
-                        >
-                    </div>
-
-                    <div class="form-group">
-                        <label for="is_admin" class="block text-sm font-medium mb-1">Role</label>
-                        <select name="is_admin" id="is_admin" class="input input-bordered w-full" disabled>
-                            <option value="0" {{ old('is_admin', $user->is_admin) == 0 ? 'selected' : '' }}>Customer</option>
-                            <option value="1" {{ old('is_admin', $user->is_admin) == 1 ? 'selected' : '' }}>Admin</option>
-                        </select>
-                    </div>
-
-                    <button type="submit" class="btn btn-primary w-full">Update User</button>
-                </form>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div>
+                    <label for="name" class="block text-sm font-medium">Name</label>
+                    <input type="text" name="name" id="name" value="{{ old('name', $user->name) }}" class="input input-bordered w-full @error('name') input-error @enderror" />
+                    @error('name')
+                    <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
+                    @enderror
+                </div>
+                <div>
+                    <label for="email" class="block text-sm font-medium">Email</label>
+                    <input type="email" name="email" id="email" value="{{ old('email', $user->email) }}" class="input input-bordered w-full @error('email') input-error @enderror" />
+                    @error('email')
+                    <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
+                    @enderror
+                </div>
+                <div>
+                    <label for="phone" class="block text-sm font-medium">Phone</label>
+                    <input type="text" name="phone" id="phone" value="{{ old('phone', $user->phone) }}" class="input input-bordered w-full @error('phone') input-error @enderror" />
+                    @error('phone')
+                    <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
+                    @enderror
+                </div>
+                <div>
+                    <label for="shipping_address" class="block text-sm font-medium">Shipping Address</label>
+                    <input type="text" name="shipping_address" id="shipping_address" value="{{ old('shipping_address', $shippingAddress) }}" class="input input-bordered w-full @error('shipping_address') input-error @enderror" />
+                    @error('shipping_address')
+                    <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
+                    @enderror
+                </div>
+                <div>
+                    <label for="billing_address" class="block text-sm font-medium">Billing Address</label>
+                    <input type="text" name="billing_address" id="billing_address" value="{{ old('billing_address', $billingAddress) }}" class="input input-bordered w-full @error('billing_address') input-error @enderror" />
+                    @error('billing_address')
+                    <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
+                    @enderror
+                </div>
+                <div>
+                    <label for="billing_phone" class="block text-sm font-medium">Billing Phone</label>
+                    <input type="text" name="billing_phone" id="billing_phone" value="{{ old('billing_phone', $billingPhone) }}" class="input input-bordered w-full @error('billing_phone') input-error @enderror" />
+                    @error('billing_phone')
+                    <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
+                    @enderror
+                </div>
             </div>
-        </div>
+
+            <div class="mt-6">
+                <button type="submit" class="btn btn-primary">Update User</button>
+                <a href="{{ route('AdminUserList') }}" class="btn btn-secondary">Back to List</a>
+            </div>
+        </form>
     </div>
 @endsection
