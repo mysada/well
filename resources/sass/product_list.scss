@@ -232,30 +232,23 @@ h2 {
         border-color: #00AB7A;
     }
 
-    .btn-custom {
+    #search_button {
         border-radius: unset!important;
-        // background-color: #00AB7A;
-        color: #00AB7A;
+        background-color: #00AB7A;
+        color: #fff;
         font-size: 16px;
         font-weight: 700;
-        padding:10px;
-        // border: 1px solid #eee;
-        margin-left: 5px;
+        padding:15px;
+        margin-left: 10px;
         transition: background-color 0.3s, color 0.3s;
-
-        &:hover {
-            // background-color: #008F64;
-            // border-color: #008F64;
-            color: #333;
-        }
     }
 
     .search-bar {
-        height: 50px;
-        border-radius: 5px 0 0 5px;
-        border: 1px solid #eee;
+        border-radius: unset;
+        border: 2px solid #00A875;
         font-size: 1rem;
-        padding: 0 15px;
+        padding:15px;
+        margin-bottom: 20px;
     }
 }
 
