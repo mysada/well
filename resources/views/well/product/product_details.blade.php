@@ -8,7 +8,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-12 mb-3">
-                    <a href="{{ url('/products') }}">Shop</a> / <span>{{ $product->name }}</span>
+                    <a href="{{ url('/products') }}" class="shop-link">Shop</a> / <span>{{ $product->name }}</span>
                 </div>
                 <div class="col-md-12 mb-3">
                     <h2 class="product-title">Product Details</h2>

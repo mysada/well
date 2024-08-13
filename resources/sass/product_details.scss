@@ -309,3 +309,30 @@
 #stock{
     font-weight: bold;
 }
+
+.shop-link {
+    color: #20c997; /* Preferred color */
+    font-size: 18px;
+    font-weight: 600;
+    text-decoration: none;
+    padding: 0 5px;
+    border-bottom: 2px solid transparent; /* Subtle underline effect */
+    transition: border-color 0.3s ease, color 0.3s ease;
+}
+
+.shop-link:hover {
+    color: #17a589; /* Slightly darker color on hover */
+    border-bottom: 2px solid #20c997; /* Underline appears on hover */
+}
+
+.shop-link:active {
+    color: #148f77; /* Darker color when clicked */
+}
+
+.shop-link span {
+    margin-left: 10px;
+    font-weight: 400; /* Slightly lighter for the product name */
+    color: #555; /* Neutral color for the product name */
+}
+
+
