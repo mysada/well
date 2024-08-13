@@ -75,7 +75,7 @@ Route::middleware('auth')->group(function () {
       'destroy' => 'CartItemDestroy',
     ]);
 
-//thankyou route - MAnish
+//thankyou route - Manish
 
 Route::get('/thank-you/{orderId}', [ThankYouController::class, 'show'])->name('thankyou');
 
