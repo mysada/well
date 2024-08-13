@@ -36,7 +36,7 @@
         </div>
 
 <!-- Top Seller Section -->
-<h2 class="text-2xl font-bold mb-4">Top Seller</h2>
+<h2 class="text-4xl font-bold mb-4">Top Seller</h2>
 <div class="bg-white shadow-md rounded-lg overflow-hidden p-6 border border-gray-200">
 
     <table class="w-full">
