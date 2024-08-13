@@ -36,41 +36,41 @@
         </div>
 
         <!-- Top Seller Section -->
-        <div class="overflow-x-auto w-full mt-8">
-            <h2 class="text-4xl font-bold" style="margin-bottom: 20px">Top Seller</h2>
-            <table class="w-full">
+        <div class="overflow-x-auto w-full">
+            <h2 class="text-4xl font-bold mb-4">Top Seller</h2>
+            <table class="w-full table-auto border-collapse border border-gray-300">
                 <thead>
-                    <tr>
-                        <th>ID</th>
-                        <th>Name</th>
-                        <th>Popularity</th>
-                        <th>Sales</th>
+                    <tr class="bg-gray-200 text-left">
+                        <th class="border border-gray-300 p-2">ID</th>
+                        <th class="border border-gray-300 p-2">Name</th>
+                        <th class="border border-gray-300 p-2">Popularity</th>
+                        <th class="border border-gray-300 p-2">Sales</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr>
-                        <td>01</td>
-                        <td>Home Decor Range</td>
-                        <td>80%</td>
-                        <td>453</td>
+                        <td class="border border-gray-300 p-2">01</td>
+                        <td class="border border-gray-300 p-2">Home Decor Range</td>
+                        <td class="border border-gray-300 p-2">80%</td>
+                        <td class="border border-gray-300 p-2 text-blue-500">453</td>
                     </tr>
                     <tr>
-                        <td>02</td>
-                        <td>Disney Princess Pink Bag 18'</td>
-                        <td>65%</td>
-                        <td>290</td>
+                        <td class="border border-gray-300 p-2">02</td>
+                        <td class="border border-gray-300 p-2">Disney Princess Pink Bag 18'</td>
+                        <td class="border border-gray-300 p-2">65%</td>
+                        <td class="border border-gray-300 p-2 text-green-500">290</td>
                     </tr>
                     <tr>
-                        <td>03</td>
-                        <td>Bathroom Essentials</td>
-                        <td>50%</td>
-                        <td>186</td>
+                        <td class="border border-gray-300 p-2">03</td>
+                        <td class="border border-gray-300 p-2">Bathroom Essentials</td>
+                        <td class="border border-gray-300 p-2">50%</td>
+                        <td class="border border-gray-300 p-2 text-purple-500">186</td>
                     </tr>
                     <tr>
-                        <td>04</td>
-                        <td>Apple Smartwatches</td>
-                        <td>30%</td>
-                        <td>110</td>
+                        <td class="border border-gray-300 p-2">04</td>
+                        <td class="border border-gray-300 p-2">Apple Smartwatches</td>
+                        <td class="border border-gray-300 p-2">30%</td>
+                        <td class="border border-gray-300 p-2 text-orange-500">110</td>
                     </tr>
                 </tbody>
             </table>
