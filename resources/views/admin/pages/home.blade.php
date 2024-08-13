@@ -116,46 +116,34 @@
             </div>
         </div>
 
-        <div>
+        <div class="overflow-x-auto w-full">
             <h2 class="text-4xl font-bold">Recent Logs</h2>
-            <div class="overflow-x-auto w-full">
-                <table class="table w-full">
-                    <thead>
-                        <tr>
-                            <th>Time</th>
-                            <th>Level</th>
-                            <th>Message</th>
-                            <th>Context</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @foreach($logs as $log)
-                            @php
-                                preg_match('/\[(.*?)\] (.*?)\.(\w+): (.*?) (\{.*\})/', $log, $matches);
-
-                                $time = $matches[1] ?? '';
-                                $level = $matches[3] ?? '';
-                                $message = $matches[4] ?? '';
-                                $contextJson = $matches[5] ?? '{}'; // Capture the JSON context
-                                $context = json_decode($contextJson, true); // Decode the JSON
-                            @endphp
-                            <tr>
-                                <td>{{ $time }}</td>
-                                <td>{{ $level }}</td>
-                                <td>{{ $message }}</td>
-                                <td>
-                                    @if(!empty($context) && json_last_error() === JSON_ERROR_NONE)
-                                        User ID: {{ $context['user_id'] ?? 'N/A' }},
-                                        Name: {{ $context['name'] ?? 'N/A' }}
-                                    @else
-                                        N/A
-                                    @endif
-                                </td>
-                            </tr>
-                        @endforeach
-                    </tbody>
-                </table>
-            </div>
+            <table class="table w-full">
+                <thead>
+                <tr>
+                    <th>Event</th>
+                    <th>Url</th>
+                    <th>Method</th>
+                    <th>Ip Address</th>
+                    <th>User Agent</th>
+                    <th>User Id</th>
+                    <th>Created At</th>
+                </tr>
+                </thead>
+                <tbody>
+                @foreach($logs as $log)
+                    <tr>
+                        <td>{{ $log->event }}</td>
+                        <td>{{ $log->url }}</td>
+                        <td>{{ $log->method }}</td>
+                        <td>{{ $log->ip_address }}</td>
+                        <td>{{ $log->user_agent }}</td>
+                        <td>{{ $log->user_id ?? 'N/A' }}</td>
+                        <td>{{ $log->created_at->format('Y-m-d H:i:s') }}</td>
+                    </tr>
+                @endforeach
+                </tbody>
+            </table>
         </div>
 
     </div>
