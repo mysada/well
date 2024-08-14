@@ -18,7 +18,7 @@
                     </form>
                 </label>
                 @if($search)
-                    <a href="{{ route('AdminProductList') }}" class="btn join-item">Get All</a>
+                    <a href="{{ route('AdminProductList') }}" class="btn btn-neutral join-item">Get All</a>
                 @endif
                 <a href="{{ route('AdminProductCreate') }}" class="btn  btn-primary join-item">Add New Product</a>
             </div>

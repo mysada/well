@@ -18,7 +18,7 @@
                     </form>
                 </label>
                 @if($search)
-                    <a href="{{ route('AdminOrderList') }}" class="btn join-item">Get All</a>
+                    <a href="{{ route('AdminOrderList') }}" class="btn btn-neutral join-item">Get All</a>
                 @endif
             </div>
         </div>
@@ -42,10 +42,11 @@
                 @foreach ($items as $order)
                     <tr class="hover">
                         <td>
-                            <a class="link-primary link" href="{{ route('AdminOrderShow', $order->id) }}"> {{ $order->id }}</a>
+                            <a class="link-primary link"
+                               href="{{ route('AdminOrderShow', $order->id) }}"> {{ $order->id }}</a>
                         </td>
                         <td>
-                                {{ $order->user->name }}
+                            {{ $order->user->name }}
                         </td>
                         <td>{{ $order->quantity }}</td>
                         <td>${{ number_format($order->pre_tax_amount, 2) }}</td>
@@ -61,13 +62,16 @@
                                 ];
                                 $statusClass = $statusClasses[$order->status] ?? 'badge-ghost';
                             @endphp
-                            <form action="{{ route('AdminOrderUpdate', ['order' => $order->id]) }}" method="POST" class="flex items-center">
+                            <form action="{{ route('AdminOrderUpdate', ['order' => $order->id]) }}" method="POST"
+                                  class="flex items-center">
                                 @csrf
                                 @method('PUT')
                                 <div class="flex-1 ">
-                                    <select class=" h-8 badge {{ $statusClass }}" name="status" onchange="this.form.submit()" >
+                                    <select class=" h-8 badge {{ $statusClass }}" name="status"
+                                            onchange="this.form.submit()">
                                         @foreach ($status as $statusOption)
-                                            <option class="" value="{{ $statusOption }}" {{ $order->status === $statusOption ? 'selected' : '' }}>
+                                            <option class=""
+                                                    value="{{ $statusOption }}" {{ $order->status === $statusOption ? 'selected' : '' }}>
                                                 {{ $statusOption }}
                                             </option>
                                         @endforeach

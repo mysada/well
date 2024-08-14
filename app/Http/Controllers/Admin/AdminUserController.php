@@ -2,25 +2,22 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Models\Order;
-use App\Models\Payment;
-use App\Models\User;
 use App\Http\Controllers\Controller;
 use App\Models\DefaultAddress;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 
-
 class AdminUserController extends Controller
 {
+
     /**
      * Display a listing of the resource.
      */
     public function index(Request $request)
     {
-        $search = $request->input('search');
-        $role = $request->input('role');
-        $sort = $request->input('sort');
+        $search  = $request->input('search');
+        $role    = $request->input('role');
         $perPage = $request->input('per_page', 10);
 
         $query = User::query();
@@ -28,7 +25,7 @@ class AdminUserController extends Controller
         if ($search) {
             $query->where(function ($query) use ($search) {
                 $query->where('name', 'like', "%{$search}%")
-                    ->orWhere('email', 'like', "%{$search}%");
+                      ->orWhere('email', 'like', "%{$search}%");
             });
         }
 
@@ -36,30 +33,30 @@ class AdminUserController extends Controller
             $query->where('is_admin', $role === 'admin');
         }
 
-        if ($sort) {
-            $query->orderBy('name', $sort);
-        }
-
+        $query->orderByDesc('id');
         $users = $query->paginate($perPage);
         $title = "User Management - List";
 
         // Fetch addresses for users
         foreach ($users as $user) {
-            $latestOrder = $user->orders()->latest()->first();
-            $user->shipping_address = $latestOrder ? $latestOrder->shipping_address : 'Not provided';
+            $latestOrder            = $user->orders()->latest()->first();
+            $user->shipping_address = $latestOrder
+              ? $latestOrder->shipping_address : 'Not provided';
 
-            $latestPayment = $latestOrder ? $latestOrder->payment : null;
-            $user->billing_address = $latestPayment ? $latestPayment->billing_address : 'Not provided';
-            $user->billing_phone = $latestPayment ? $latestPayment->billing_phone : 'Not provided';
+            $latestPayment         = $latestOrder ? $latestOrder->payment
+              : null;
+            $user->billing_address = $latestPayment
+              ? $latestPayment->billing_address : 'Not provided';
+            $user->billing_phone   = $latestPayment
+              ? $latestPayment->billing_phone : 'Not provided';
         }
 
         return view('admin.pages.user.index', [
-            'items' => $users,
-            'search' => $search,
-            'role' => $role,
-            'sort' => $sort,
-            'per_page' => $perPage,
-            'title' => $title
+          'items'    => $users,
+          'search'   => $search,
+          'role'     => $role,
+          'per_page' => $perPage,
+          'title'    => $title,
         ]);
     }
 
@@ -69,9 +66,9 @@ class AdminUserController extends Controller
     public function create()
     {
         $title = "User Management - Create";
+
         return view('admin.pages.user.create', compact('title'));
     }
-
 
     /**
      * Store a newly created resource in storage.
@@ -131,8 +128,6 @@ class AdminUserController extends Controller
 // STORE method ends here
 
 
-
-
     /**
      * Display the specified resource.
      */
@@ -144,32 +139,66 @@ class AdminUserController extends Controller
         $defaultAddress = $user->defaultAddress;
 
         // Extract the relevant address fields
-        $billingName = $defaultAddress ? $defaultAddress->billing_name : 'Not provided';
-        $billingAddress = $defaultAddress ? $defaultAddress->billing_address : 'Not provided';
-        $billingCity = $defaultAddress ? $defaultAddress->billing_city : 'Not provided';
-        $billingProvince = $defaultAddress ? $defaultAddress->billing_province : 'Not provided';
-        $billingCountry = $defaultAddress ? $defaultAddress->billing_country : 'Not provided';
-        $billingPostalCode = $defaultAddress ? $defaultAddress->billing_postal_code : 'Not provided';
-        $billingEmail = $defaultAddress ? $defaultAddress->billing_email : 'Not provided';
-        $billingPhone = $defaultAddress ? $defaultAddress->billing_phone : 'Not provided';
+        $billingName       = $defaultAddress ? $defaultAddress->billing_name
+          : 'Not provided';
+        $billingAddress    = $defaultAddress ? $defaultAddress->billing_address
+          : 'Not provided';
+        $billingCity       = $defaultAddress ? $defaultAddress->billing_city
+          : 'Not provided';
+        $billingProvince   = $defaultAddress ? $defaultAddress->billing_province
+          : 'Not provided';
+        $billingCountry    = $defaultAddress ? $defaultAddress->billing_country
+          : 'Not provided';
+        $billingPostalCode = $defaultAddress
+          ? $defaultAddress->billing_postal_code : 'Not provided';
+        $billingEmail      = $defaultAddress ? $defaultAddress->billing_email
+          : 'Not provided';
+        $billingPhone      = $defaultAddress ? $defaultAddress->billing_phone
+          : 'Not provided';
 
-        $shippingName = $defaultAddress ? $defaultAddress->shipping_name : 'Not provided';
-        $shippingAddress = $defaultAddress ? $defaultAddress->shipping_address : 'Not provided';
-        $shippingCity = $defaultAddress ? $defaultAddress->shipping_city : 'Not provided';
-        $shippingProvince = $defaultAddress ? $defaultAddress->shipping_province : 'Not provided';
-        $shippingCountry = $defaultAddress ? $defaultAddress->shipping_country : 'Not provided';
-        $shippingPostalCode = $defaultAddress ? $defaultAddress->shipping_postal_code : 'Not provided';
-        $shippingEmail = $defaultAddress ? $defaultAddress->shipping_email : 'Not provided';
-        $shippingPhone = $defaultAddress ? $defaultAddress->shipping_phone : 'Not provided';
+        $shippingName       = $defaultAddress ? $defaultAddress->shipping_name
+          : 'Not provided';
+        $shippingAddress    = $defaultAddress
+          ? $defaultAddress->shipping_address : 'Not provided';
+        $shippingCity       = $defaultAddress ? $defaultAddress->shipping_city
+          : 'Not provided';
+        $shippingProvince   = $defaultAddress
+          ? $defaultAddress->shipping_province : 'Not provided';
+        $shippingCountry    = $defaultAddress
+          ? $defaultAddress->shipping_country : 'Not provided';
+        $shippingPostalCode = $defaultAddress
+          ? $defaultAddress->shipping_postal_code : 'Not provided';
+        $shippingEmail      = $defaultAddress ? $defaultAddress->shipping_email
+          : 'Not provided';
+        $shippingPhone      = $defaultAddress ? $defaultAddress->shipping_phone
+          : 'Not provided';
 
-        return view('admin.pages.user.show', compact(
-            'user', 'billingName', 'billingAddress', 'billingCity', 'billingProvince', 'billingCountry',
-            'billingPostalCode', 'billingEmail', 'billingPhone', 'shippingName', 'shippingAddress',
-            'shippingCity', 'shippingProvince', 'shippingCountry', 'shippingPostalCode', 'shippingEmail',
+        $title = "User Details - $user->name ";
+
+        return view(
+          'admin.pages.user.show',
+          compact(
+            'title',
+            'user',
+            'billingName',
+            'billingAddress',
+            'billingCity',
+            'billingProvince',
+            'billingCountry',
+            'billingPostalCode',
+            'billingEmail',
+            'billingPhone',
+            'shippingName',
+            'shippingAddress',
+            'shippingCity',
+            'shippingProvince',
+            'shippingCountry',
+            'shippingPostalCode',
+            'shippingEmail',
             'shippingPhone'
-        ));
+          )
+        );
     }
-
 
     /**
      * Show the form for editing the specified resource.
@@ -183,32 +212,61 @@ class AdminUserController extends Controller
         $defaultAddress = DefaultAddress::where('user_id', $id)->first();
 
         // Default address data
-        $shippingAddress = $defaultAddress ? $defaultAddress->shipping_address : 'Not provided';
-        $shippingCity = $defaultAddress ? $defaultAddress->shipping_city : 'Not provided';
-        $shippingProvince = $defaultAddress ? $defaultAddress->shipping_province : 'Not provided';
-        $shippingCountry = $defaultAddress ? $defaultAddress->shipping_country : 'Not provided';
-        $shippingPostalCode = $defaultAddress ? $defaultAddress->shipping_postal_code : 'Not provided';
-        $shippingEmail = $defaultAddress ? $defaultAddress->shipping_email : 'Not provided';
-        $shippingPhone = $defaultAddress ? $defaultAddress->shipping_phone : 'Not provided';
+        $shippingAddress    = $defaultAddress
+          ? $defaultAddress->shipping_address : 'Not provided';
+        $shippingCity       = $defaultAddress ? $defaultAddress->shipping_city
+          : 'Not provided';
+        $shippingProvince   = $defaultAddress
+          ? $defaultAddress->shipping_province : 'Not provided';
+        $shippingCountry    = $defaultAddress
+          ? $defaultAddress->shipping_country : 'Not provided';
+        $shippingPostalCode = $defaultAddress
+          ? $defaultAddress->shipping_postal_code : 'Not provided';
+        $shippingEmail      = $defaultAddress ? $defaultAddress->shipping_email
+          : 'Not provided';
+        $shippingPhone      = $defaultAddress ? $defaultAddress->shipping_phone
+          : 'Not provided';
 
-        $billingAddress = $defaultAddress ? $defaultAddress->billing_address : 'Not provided';
-        $billingCity = $defaultAddress ? $defaultAddress->billing_city : 'Not provided';
-        $billingProvince = $defaultAddress ? $defaultAddress->billing_province : 'Not provided';
-        $billingCountry = $defaultAddress ? $defaultAddress->billing_country : 'Not provided';
-        $billingPostalCode = $defaultAddress ? $defaultAddress->billing_postal_code : 'Not provided';
-        $billingEmail = $defaultAddress ? $defaultAddress->billing_email : 'Not provided';
-        $billingPhone = $defaultAddress ? $defaultAddress->billing_phone : 'Not provided';
+        $billingAddress    = $defaultAddress ? $defaultAddress->billing_address
+          : 'Not provided';
+        $billingCity       = $defaultAddress ? $defaultAddress->billing_city
+          : 'Not provided';
+        $billingProvince   = $defaultAddress ? $defaultAddress->billing_province
+          : 'Not provided';
+        $billingCountry    = $defaultAddress ? $defaultAddress->billing_country
+          : 'Not provided';
+        $billingPostalCode = $defaultAddress
+          ? $defaultAddress->billing_postal_code : 'Not provided';
+        $billingEmail      = $defaultAddress ? $defaultAddress->billing_email
+          : 'Not provided';
+        $billingPhone      = $defaultAddress ? $defaultAddress->billing_phone
+          : 'Not provided';
 
         $title = "User Management - Edit";
 
-        return view('admin.pages.user.edit', compact(
-            'user', 'title',
-            'shippingAddress', 'shippingCity', 'shippingProvince', 'shippingCountry', 'shippingPostalCode', 'shippingEmail', 'shippingPhone',
-            'billingAddress', 'billingCity', 'billingProvince', 'billingCountry', 'billingPostalCode', 'billingEmail', 'billingPhone'
-        ));
+        return view(
+          'admin.pages.user.edit',
+          compact(
+            'title',
+            'user',
+            'title',
+            'shippingAddress',
+            'shippingCity',
+            'shippingProvince',
+            'shippingCountry',
+            'shippingPostalCode',
+            'shippingEmail',
+            'shippingPhone',
+            'billingAddress',
+            'billingCity',
+            'billingProvince',
+            'billingCountry',
+            'billingPostalCode',
+            'billingEmail',
+            'billingPhone'
+          )
+        );
     }
-
-
 
     /**
      * Update the specified resource in storage.
@@ -381,15 +439,7 @@ class AdminUserController extends Controller
     }
 
 //
-
-
-
-
-
-
-    /**
-     * Remove the specified resource from storage.
-     */
+  
     public function destroy($id)
     {
         $user = User::findOrFail($id);
@@ -398,6 +448,10 @@ class AdminUserController extends Controller
         $user->delete();
 
         // Redirect back to the user list page with a success message
-        return redirect()->route('AdminUserList')->with('success', 'User deleted successfully!');
+        return redirect()->route('AdminUserList')->with(
+          'success',
+          'User deleted successfully!'
+        );
     }
+
 }
