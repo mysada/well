@@ -12,8 +12,8 @@
         </div>
 
         <!-- Right side: Register Form (60%) -->
-        <div class="col-md-7">
-            <div class="card">
+        <div class="col-md-7 ms-auto d-flex flex-column align-items-end justify-content-center">
+            <div class="card w-75">
                 <div class="card-header text-center"><strong>{{ __('Register') }}</strong></div>
 
                 <div class="card-body">
@@ -66,7 +66,7 @@
                     </form>
                 </div>
             </div>
-            <div class="mt-3 text-center">
+            <div class="mt-3 text-center w-75">
                 <p><a href="{{ route('login') }}" id="login-link">Already have an account? Login here</a></p>
             </div>
         </div>
