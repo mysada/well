@@ -111,11 +111,9 @@
         @if($hasPurchased)
         <div id="write-review" class="row mt-5">
             <div class="col-md-12">
-                <h4>Write a Review</h4>
-
                 <!-- Display validation errors -->
                 @if ($errors->any())
-                <div class="alert alert-warning">
+                <div id="review_form_warning" class="alert-danger">
                     <ul>
                         @foreach ($errors->all() as $error)
                         <li>{{ $error }}</li>
@@ -123,7 +121,7 @@
                     </ul>
                 </div>
                 @endif
-
+                <h4>Write a Review</h4>
                 <form action="{{ route('reviews.store', ['id' => $product->id]) }}" class="review-form" method="POST" enctype="multipart/form-data">
                     @csrf
                     <input type="hidden" name="product_id" value="{{ $product->id }}">
