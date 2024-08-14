@@ -147,9 +147,12 @@ class AdminUserController extends Controller
         $shippingPhone      = $defaultAddress ? $defaultAddress->shipping_phone
           : 'Not provided';
 
+        $title = "User Details - $user->name ";
+
         return view(
           'admin.pages.user.show',
           compact(
+            'title',
             'user',
             'billingName',
             'billingAddress',
@@ -218,6 +221,7 @@ class AdminUserController extends Controller
         return view(
           'admin.pages.user.edit',
           compact(
+            'title',
             'user',
             'title',
             'shippingAddress',
