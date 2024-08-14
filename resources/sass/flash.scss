@@ -1,14 +1,14 @@
 .alert {
     padding: 15px;
-    margin-bottom: 20px;
-    border-radius: unset!important;
+    border-radius: unset !important;
     width: 100%;
     max-width: 500px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin: 0 auto 20px auto;
+    position: fixed; /* Change to fixed to prevent pushing content down */
+    top: 20px;       /* Position it towards the top of the viewport */
+    left: 50%;       /* Center horizontally */
+    transform: translateX(-50%); /* Center the alert box */
     text-align: center;
+    z-index: 1000;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 

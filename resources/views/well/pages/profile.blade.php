@@ -102,6 +102,15 @@
                 </div>
                 @endif
 
+                @if ($errors->any())
+                <div id="validation-errors" class="alert alert-danger">
+                    <ul>
+                        @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+                @endif
                 <!-- Basic Info Update Form -->
                 <h5 id="update_head">Update Basic Info</h5>
                 <form method="POST" action="{{ route('user.update') }}">
