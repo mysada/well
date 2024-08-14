@@ -20,9 +20,9 @@
                                     d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path>
                         </svg>
                     </div>
-                    <div class="stat-title">Total Likes</div>
-                    <div class="stat-value text-primary">25.6K</div>
-                    <div class="stat-desc">21% more than last month</div>
+                    <div class="stat-title">Total Revenue</div>
+                    <div class="stat-value text-primary">${{$stats['totalRevenue']}}</div>
+                    <div class="stat-desc">Average Revenue: ${{$stats['averageRevenue']}}</div>
                 </div>
 
                 <div class="stat">
@@ -39,9 +39,13 @@
                                     d="M13 10V3L4 14h7v7l9-11h-7z"></path>
                         </svg>
                     </div>
-                    <div class="stat-title">Page Views</div>
-                    <div class="stat-value text-secondary">2.6M</div>
-                    <div class="stat-desc">21% more than last month</div>
+                    <div class="stat-title">Total Orders</div>
+                    <div class="stat-value text-secondary">{{$stats['totalOrders']}}</div>
+                    <div class="stat-desc flex justify-between">
+                        <div class="">Pending:{{$stats['totalOrdersPending']}}</div>
+                        <div class="">Delivered:{{$stats['totalOrdersDelivered']}}</div>
+                    </div>
+
                 </div>
 
                 <div class="stat">
@@ -120,28 +124,28 @@
             <h2 class="text-4xl font-bold">Recent Logs</h2>
             <table class="table w-full">
                 <thead>
-                <tr>
-                    <th>Event</th>
-                    <th>Url</th>
-                    <th>Method</th>
-                    <th>Ip Address</th>
-                    <th>User Agent</th>
-                    <th>User Id</th>
-                    <th>Created At</th>
-                </tr>
+                    <tr>
+                        <th>Event</th>
+                        <th>Url</th>
+                        <th>Method</th>
+                        <th>Ip Address</th>
+                        <th>User Agent</th>
+                        <th>User Id</th>
+                        <th>Created At</th>
+                    </tr>
                 </thead>
                 <tbody>
-                @foreach($logs as $log)
-                    <tr>
-                        <td>{{ $log->event }}</td>
-                        <td>{{ $log->url }}</td>
-                        <td>{{ $log->method }}</td>
-                        <td>{{ $log->ip_address }}</td>
-                        <td>{{ $log->user_agent }}</td>
-                        <td>{{ $log->user_id ?? 'N/A' }}</td>
-                        <td>{{ $log->created_at->format('Y-m-d H:i:s') }}</td>
-                    </tr>
-                @endforeach
+                    @foreach($logs as $log)
+                        <tr>
+                            <td>{{ $log->event }}</td>
+                            <td>{{ $log->url }}</td>
+                            <td>{{ $log->method }}</td>
+                            <td>{{ $log->ip_address }}</td>
+                            <td>{{ $log->user_agent }}</td>
+                            <td>{{ $log->user_id ?? 'N/A' }}</td>
+                            <td>{{ $log->created_at->format('Y-m-d H:i:s') }}</td>
+                        </tr>
+                    @endforeach
                 </tbody>
             </table>
         </div>

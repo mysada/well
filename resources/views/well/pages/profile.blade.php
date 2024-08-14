@@ -15,10 +15,10 @@
             <h2>Welcome, {{ $firstName }} {{ $lastName }}!</h2>
             <p>Thank you for being a valued customer. Here you can view your order history, update your addresses, and manage your profile settings.</p>
         </div>
-        <form action="{{ route('user.logout') }}" method="POST" class="logout-btn-form">
-            @csrf
-            <button type="submit" class="btn btn-primary">Logout</button>
-        </form>
+<!--        <form action="{{ route('user.logout') }}" method="POST" class="logout-btn-form">-->
+<!--            @csrf-->
+<!--            <button type="submit" class="btn btn-primary">Logout</button>-->
+<!--        </form>-->
     </div>
 
     <div class="d-flex profile-content">

@@ -58,16 +58,6 @@
             @enderror
         </div>
 
-        <div class="form-control w-full">
-            <label for="follow_up_notes" class="label">
-                <span class="label-text">Follow-Up Notes</span>
-            </label>
-            <textarea name="follow_up_notes" class="textarea textarea-bordered">{{ old('follow_up_notes', $query->follow_up_notes) }}</textarea>
-            @error('follow_up_notes')
-            <div class="text-error mt-2">{{ $message }}</div>
-            @enderror
-        </div>
-
         <button type="submit" class="btn btn-primary mt-4">Update Query</button>
     </form>
 </div>

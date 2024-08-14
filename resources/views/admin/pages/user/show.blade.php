@@ -1,59 +1,63 @@
 @extends('admin.admin')
 
+@section('title', "User Details - {$user->name}")
+
 @section('content')
-    <div class="container mx-auto">
+    <div class="container mx-auto p-6">
+        <h1 class="text-2xl font-semibold">User Details</h1>
 
-        <!-- Back Button -->
-        <div class="flex justify-start mb-4">
-            <a href="{{ route('AdminUserList') }}" class="btn btn-primary">
-                Back to List
-            </a>
-        </div>
+        <div class="card mt-6 p-6 bg-white shadow-md">
+            <!-- Basic Information Section -->
+            <div class="mb-6">
+                <div class="bg-black text-white p-4 t-lg">
+                <h2 class="text-lg font-medium">Basic Information</h2>
+                </div>
+                <div class="p-4 bg-white rounded-b-lg shadow-sm">
+                    <p><strong>Name:</strong> {{ $user->name }}</p>
+                    <p><strong>Email:</strong> {{ $user->email }}</p>
+                    <p><strong>Role:</strong> {{ $user->is_admin ? 'Admin' : 'User' }}</p>
+                    <p><strong>Phone:</strong> {{ $user->phone }}</p>
+                </div>
+            </div>
 
-        <!-- User Details -->
-        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <!-- Default Address Section -->
             <div>
-                <p class="font-semibold text-lg">Full Name:</p>
-                <p class="text-gray-700">{{ $user->full_name }}</p>
-            </div>
-            <div>
-                <p class="font-semibold text-lg">Email:</p>
-                <p class="text-gray-700">{{ $user->email }}</p>
-            </div>
-            <div>
-                <p class="font-semibold text-lg">Role:</p>
-                <p class="text-gray-700">{{ $user->is_admin ? 'Admin' : 'Customer' }}</p>
-            </div>
-            <div>
-                <p class="font-semibold text-lg">Phone:</p>
-                <p class="text-gray-700">{{ $user->phone ?? 'User has not updated phone number' }}</p>
-            </div>
-            <div>
-                <p class="font-semibold text-lg">Address:</p>
-                <p class="text-gray-700">{{ $user->address ?? 'User has not updated address' }}</p>
-            </div>
-            <div>
-                <p class="font-semibold text-lg">Billing Address:</p>
-                <p class="text-gray-700">{{ $user->billing_address ?? 'User has not updated billing address' }}</p>
-            </div>
-            <div>
-                <p class="font-semibold text-lg">Shipping Address:</p>
-                <p class="text-gray-700">{{ $user->shipping_address ?? 'User has not updated shipping address' }}</p>
-            </div>
-            <div>
-                <p class="font-semibold text-lg">Created At:</p>
-                <p class="text-gray-700">{{ $user->created_at->format('Y-m-d H:i') }}</p>
-            </div>
-        </div>
+                <div class="bg-black text-white p-4 t-lg">
+                    <h2 class="text-lg font-medium">Default Address</h2>
+                </div>
+                <div class="p-4 bg-white rounded-b-lg shadow-sm">
+                    <div class="flex flex-col md:flex-row gap-6">
+                        <!-- Shipping Details -->
+                        <div class="flex-1">
+                            <h3 class="text-lg font-medium mb-2">Shipping Details</h3>
+                            <p><strong>Address:</strong> {{ $shippingAddress ?? 'Not provided' }}</p>
+                            <p><strong>City:</strong> {{ $shippingCity ?? 'Not provided' }}</p>
+                            <p><strong>Province:</strong> {{ $shippingProvince ?? 'Not provided' }}</p>
+                            <p><strong>Country:</strong> {{ $shippingCountry ?? 'Not provided' }}</p>
+                            <p><strong>Postal Code:</strong> {{ $shippingPostalCode ?? 'Not provided' }}</p>
+                            <p><strong>Email:</strong> {{ $shippingEmail ?? 'Not provided' }}</p>
+                            <p><strong>Phone:</strong> {{ $shippingPhone ?? 'Not provided' }}</p>
+                        </div>
 
-        <!-- Actions -->
-        <div class="mt-6 flex">
-            <a href="{{ route('AdminUserEdit', $user->id) }}" class="btn btn-primary mr-4">Edit</a>
-            <form action="{{ route('AdminUserDestroy', $user->id) }}" method="POST" onsubmit="return confirm('Are you sure?')">
-                @csrf
-                @method('DELETE')
-                <button type="submit" class="btn btn-danger">Delete</button>
-            </form>
+                        <!-- Billing Details -->
+                        <div class="flex-1">
+                            <h3 class="text-lg font-medium mb-2">Billing Details</h3>
+                            <p><strong>Address:</strong> {{ $billingAddress ?? 'Not provided' }}</p>
+                            <p><strong>City:</strong> {{ $billingCity ?? 'Not provided' }}</p>
+                            <p><strong>Province:</strong> {{ $billingProvince ?? 'Not provided' }}</p>
+                            <p><strong>Country:</strong> {{ $billingCountry ?? 'Not provided' }}</p>
+                            <p><strong>Postal Code:</strong> {{ $billingPostalCode ?? 'Not provided' }}</p>
+                            <p><strong>Email:</strong> {{ $billingEmail ?? 'Not provided' }}</p>
+                            <p><strong>Phone:</strong> {{ $billingPhone ?? 'Not provided' }}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="mt-6">
+                <a href="{{ route('AdminUserEdit', $user->id) }}" class="btn btn-warning">Edit User</a>
+                <a href="{{ route('AdminUserList') }}" class="btn btn-secondary">Back to List</a>
+            </div>
         </div>
     </div>
 @endsection

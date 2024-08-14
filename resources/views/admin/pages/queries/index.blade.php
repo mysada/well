@@ -40,12 +40,13 @@
                 <td>{{ $query->name }}</td>
                 <td>{{ $query->email }}</td>
                 <td>{{ $query->phone }}</td>
-                <td>{{ Str::limit($query->message, 50) }}</td>
+                <td>{{ $query->subject }}</td>
+                <td>{{ $query->message }}</td>
                 <td>{{ $query->created_at->format('F d, Y h:i A') }}</td>
                 <td>
-                        <span class="badge badge-{{ $query->status == 'resolved' ? 'success' : ($query->status == 'in_progress' ? 'warning' : 'primary') }}">
-                            {{ ucfirst($query->status) }}
-                        </span>
+                    <span class="badge badge-{{ $query->status == 'resolved' ? 'success' : ($query->status == 'in_progress' ? 'warning' : 'primary') }}">
+                        {{ ucfirst($query->status) }}
+                    </span>
                 </td>
                 <td>
                     <div class="flex gap-2">
