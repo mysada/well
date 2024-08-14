@@ -13,14 +13,12 @@ h2 {
 }
 
 .category-heading {
-    font-size: 1.25rem;
+    font-size: 36px;
     font-weight: bold;
-    background-color: #00AB7A;
-    color: #fff;
+    color: #333;
     padding: 10px;
     border-radius: unset!important;
     margin-bottom: 15px;
-    text-align: center;
 }
 
 .category-list a {
@@ -28,9 +26,9 @@ h2 {
     align-items: center;
     padding: 10px 15px;
     margin-bottom: 10px;
-    font-size: 18px;
-    font-weight: 500;
-    color: #333;
+    font-size: 17px;
+    font-weight: 400;
+    color: #666;
     text-decoration: none;
     border: 2px solid transparent;
     border-radius: unset!important;
@@ -49,9 +47,10 @@ h2 {
 
 .category-list a:hover,
 .category-list .active-category {
-    border-color: #00AB7A;
-    background-color: #00AB7A;
+    // border-color: #00AB7A;
+    background-color: #333;
     color: #fff;
+    // color: #00AB7A;
     text-decoration: none;
 }
 

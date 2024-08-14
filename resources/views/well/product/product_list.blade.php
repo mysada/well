@@ -11,7 +11,7 @@
     <div class="container">
         <div class="row">
             <div class="col-md-3">
-                <div class="category-heading">Filter by Category</div>
+                <div class="category-heading">Category</div>
                 <div class="category-list">
                     @foreach ($categories as $category)
                     <a href="{{ route('products.index', ['category_id' => $category->id]) }}"
