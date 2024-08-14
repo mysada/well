@@ -73,7 +73,7 @@
                 </div>
                 <!-- Message Field -->
                 <div class="form-group">
-                    <textarea class="form-control @error('message') is-invalid @enderror" name="message" rows="4" placeholder="Message">{{ old('message') }}</textarea>
+                    <textarea class="form-control @error('message') is-invalid @enderror" name="message" rows="2" placeholder="Message">{{ old('message') }}</textarea>
                     @error('message')
                     <div class="invalid-feedback">{{ $message }}</div>
                     @enderror
