@@ -6,9 +6,11 @@ use App\Http\Controllers\Controller;
 use App\Models\Category;
 use App\Models\EventLog;
 use App\Models\Order;
+use App\Models\OrderDetail;
 use App\Models\Product;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class AdminHomeController extends Controller
 {
@@ -23,7 +25,7 @@ class AdminHomeController extends Controller
 
         $totalOrders    = Order::count();
         $totalRevenue   = Order::sum('pre_tax_amount');
-        $averageRevenue = Order::average('pre_tax_amount');
+        $averageRevenue = number_format(Order::average('pre_tax_amount'),2);
 
         $totalOrdersDelivered = Order::where('status', 'Delivered')->count();
         $totalOrdersPending   = Order::where('status', 'Pending')->count();
@@ -32,6 +34,15 @@ class AdminHomeController extends Controller
 
         $totalProduct = Product::count();
         $totalCat     = Category::count();
+
+        $topSeller = OrderDetail::join('orders as o', 'o.id', '=', 'order_details.order_id')
+                              ->join('products as p', 'p.id', '=', 'order_details.product_id')
+                              ->select('p.name', DB::raw('SUM(order_details.quantity) as quantity'))
+                              ->whereIn('o.status', ['Confirmed', 'Delivered'])
+                              ->groupBy('p.name')
+                              ->orderByDesc('quantity')
+                              ->limit(4)
+                              ->get();
 
         $stats = [
           'totalOrders'          => $totalOrders,
@@ -43,6 +54,7 @@ class AdminHomeController extends Controller
           'latestUser'           => $latestUser->name,
           'totalProduct'        => $totalProduct,
           'totalCat'            => $totalCat,
+          'topSeller'            => $topSeller,
         ];
 
         return view('admin.pages.home', compact('title', 'logs', 'stats'));
