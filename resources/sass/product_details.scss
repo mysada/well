@@ -57,12 +57,17 @@
 }
 
 #see_reviews{
-    padding: 15px;
-    background-color: #00A875;
-    color: #fff9ea;
-    font-size: 20px;
+    padding: 0.6rem 2.2rem;
+    border: 1px solid #00AB7A!important;
+    color: #00AB7A;
+    font-size: 17px;
     border-radius: unset;
     border: none;
+}
+
+#see_reviews:hover {
+    color: #008E65;
+    border: 1px solid #008E65 !important;
 }
 
 .product-title h1{

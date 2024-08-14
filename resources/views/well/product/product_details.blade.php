@@ -21,9 +21,9 @@
                     <p class="product-description">{{ $product->description }}</p>
                     <p class="product-price text-danger">$ {{ number_format($product->price, 2) }}</p>
                     <div>
-                        <a href="{{ route('product.reviews', $product->id) }}" class="btn btn-primary mt-3" id="see_reviews">See Reviews</a>
+                        <a href="{{ route('product.reviews', $product->id) }}" class="btn mt-3" id="see_reviews">See Reviews</a>
                     </div>
-                    <label for="quantity" class="mr-2 custom-margin">Quantity</label>
+                    <label for="quantity" class="mr-2 custom-margin" style="color: #666">Quantity</label>
                     <div class="d-flex align-items-center mb-4">
                         <div id="quantity" class="qty-input">
                             <button class="qty-count qty-count--minus" data-action="minus" type="button">-</button>
