@@ -66,7 +66,9 @@
                     </form>
                 </div>
             </div>
-
+            <div class="mt-3 text-center">
+                <p><a href="{{ route('login') }}" id="login-link">Already have an account? Login here</a></p>
+            </div>
         </div>
     </div>
 </div>
