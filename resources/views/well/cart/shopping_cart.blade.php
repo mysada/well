@@ -7,7 +7,7 @@
             <h2 class="cart-title">Shopping Cart</h2>
 
             @if($cartItems->isEmpty())
-            <p>Your cart is empty. Start adding items to your cart to see them here!</p>
+                <p>Your cart is empty. Start adding items to your cart to see them here!</p>
             @else
                 <div class="cart-layout">
                     <div class="cart-items">
@@ -41,7 +41,7 @@
                                             <td class="item-total">${{ number_format($cartItem->product->price * $cartItem->quantity, 2) }}</td>
                                             <td>
                                                 <div class="actions">
-                                                    <form action="{{ route('CartItemDestroy', $cartItem->id) }}" method="POST" class="d-inline" >
+                                                    <form id="remove-item-{{ $cartItem->id }}" action="{{ route('CartItemDestroy', $cartItem->id) }}" method="POST" class="d-inline remove-item-form">
                                                         @csrf
                                                         @method('DELETE')
                                                         <button type="submit" class="btn btn-link text-danger p-0">Remove</button>
@@ -73,4 +73,5 @@
             @endif
         </div>
     </section>
+
 @endsection
