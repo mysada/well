@@ -11,7 +11,7 @@ use App\Models\Category;
 
 class AdminReviewController extends Controller
 {
-    public function index(Request $request)
+   public function index(Request $request)
     {
         $search = $request->input('search');
         $category_id = $request->input('category_id');
@@ -73,6 +73,7 @@ class AdminReviewController extends Controller
 
 
 
+
     public function updateStatus(Request $request, $id)
     {
         if ($request->status == 'flagged') {
@@ -121,6 +122,7 @@ class AdminReviewController extends Controller
             return redirect()->route('AdminReviewList')->with('success', 'Review status updated successfully.');
         }
     }
+
 
 
 }

@@ -16,4 +16,3 @@ Route::middleware(AdminAuthInterceptor::class)->prefix('admin')->group(function 
 });
 
 Auth::routes();
-
