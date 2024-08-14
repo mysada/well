@@ -15,10 +15,6 @@
             <h2>Welcome, {{ $firstName }} {{ $lastName }}!</h2>
             <p>Thank you for being a valued customer. Here you can view your order history, update your addresses, and manage your profile settings.</p>
         </div>
-<!--        <form action="{{ route('user.logout') }}" method="POST" class="logout-btn-form">-->
-<!--            @csrf-->
-<!--            <button type="submit" class="btn btn-primary">Logout</button>-->
-<!--        </form>-->
     </div>
 
     <div class="d-flex profile-content">
@@ -51,10 +47,8 @@
                     </ul>
                     <div class="buttons-section mt-4">
                         <button onclick="location.href='{{ route('order.reorder', $order->id) }}'">Reorder</button>
-                        <button id="order_detail" onclick="location.href='{{ route('order.details', $order->id) }}'">Order Deatils</button>
+                        <button id="order_detail" onclick="location.href='{{ route('order.details', $order->id) }}'">Order Details</button>
                     </div>
-
-
                 </div>
                 @endforeach
                 @endif
@@ -86,7 +80,6 @@
                     <p>{{ $defaultAddress->shipping_name }}<br>{{ $defaultAddress->shipping_address }}, {{ $defaultAddress->shipping_city }}, {{ $defaultAddress->shipping_province }}, {{ $defaultAddress->shipping_country }} - {{ $defaultAddress->shipping_postal_code }}<br>{{ $defaultAddress->shipping_email }}<br>{{ $defaultAddress->shipping_phone }}</p>
                     <h6>Default Billing Address</h6>
                     <p>{{ $defaultAddress->billing_name }}<br>{{ $defaultAddress->billing_address }}, {{ $defaultAddress->billing_city }}, {{ $defaultAddress->billing_province }}, {{ $defaultAddress->billing_country }} - {{ $defaultAddress->billing_postal_code }}<br>{{ $defaultAddress->billing_email }}<br>{{ $defaultAddress->billing_phone }}</p>
-
                 </div>
                 @else
                 <p>No default address set.</p>
@@ -102,15 +95,6 @@
                 </div>
                 @endif
 
-                @if ($errors->any())
-                <div id="validation-errors" class="alert alert-danger">
-                    <ul>
-                        @foreach ($errors->all() as $error)
-                        <li>{{ $error }}</li>
-                        @endforeach
-                    </ul>
-                </div>
-                @endif
                 <!-- Basic Info Update Form -->
                 <h5 id="update_head">Update Basic Info</h5>
                 <form method="POST" action="{{ route('user.update') }}">
@@ -118,19 +102,31 @@
                     @method('PUT')
                     <div class="form-group">
                         <label for="first_name">First Name</label>
-                        <input type="text" name="first_name" id="first_name" class="form-control" value="{{ old('first_name', $firstName) }}" required>
+                        <input type="text" name="first_name" id="first_name" class="form-control @error('first_name') is-invalid @enderror" value="{{ old('first_name', $firstName) }}" required>
+                        @error('first_name')
+                        <div class="invalid-feedback">{{ $message }}</div>
+                        @enderror
                     </div>
                     <div class="form-group">
                         <label for="last_name">Last Name</label>
-                        <input type="text" name="last_name" id="last_name" class="form-control" value="{{ old('last_name', $lastName) }}" required>
+                        <input type="text" name="last_name" id="last_name" class="form-control @error('last_name') is-invalid @enderror" value="{{ old('last_name', $lastName) }}" required>
+                        @error('last_name')
+                        <div class="invalid-feedback">{{ $message }}</div>
+                        @enderror
                     </div>
                     <div class="form-group">
                         <label for="email">Email</label>
-                        <input type="email" name="email" id="email" class="form-control" value="{{ old('email', $user->email) }}" required>
+                        <input type="email" name="email" id="email" class="form-control @error('email') is-invalid @enderror" value="{{ old('email', $user->email) }}" required>
+                        @error('email')
+                        <div class="invalid-feedback">{{ $message }}</div>
+                        @enderror
                     </div>
                     <div class="form-group">
                         <label for="phone">Phone</label>
-                        <input type="tel" name="phone" id="phone" class="form-control" value="{{ old('phone', $user->phone) }}" required>
+                        <input type="tel" name="phone" id="phone" class="form-control @error('phone') is-invalid @enderror" value="{{ old('phone', $user->phone) }}" required>
+                        @error('phone')
+                        <div class="invalid-feedback">{{ $message }}</div>
+                        @enderror
                     </div>
                     <div id="update_buttons">
                         <button type="submit" id="update_button" class="btn btn-primary">Update Info</button>
@@ -140,72 +136,119 @@
                 <!-- Update Default Address Form -->
                 <h5 id="update_head">Update Default Address</h5>
                 <form method="POST" action="{{ route('user.setDefaultAddress') }}">
-
                     @csrf
                     <div class="form-group">
                         <label for="shipping_name">Shipping Name</label>
-                        <input type="text" name="shipping_name" id="shipping_name" class="form-control" value="{{ old('shipping_name', $defaultAddress->shipping_name ?? $user->shipping_name) }}" required>
+                        <input type="text" name="shipping_name" id="shipping_name" class="form-control @error('shipping_name') is-invalid @enderror" value="{{ old('shipping_name', $defaultAddress->shipping_name ?? $user->shipping_name) }}" required>
+                        @error('shipping_name')
+                        <div class="invalid-feedback">{{ $message }}</div>
+                        @enderror
                     </div>
                     <div class="form-group">
                         <label for="shipping_address">Shipping Address</label>
-                        <input type="text" name="shipping_address" id="shipping_address" class="form-control" value="{{ old('shipping_address', $defaultAddress->shipping_address ?? $user->shipping_address) }}" required>
+                        <input type="text" name="shipping_address" id="shipping_address" class="form-control @error('shipping_address') is-invalid @enderror" value="{{ old('shipping_address', $defaultAddress->shipping_address ?? $user->shipping_address) }}" required>
+                        @error('shipping_address')
+                        <div class="invalid-feedback">{{ $message }}</div>
+                        @enderror
                     </div>
                     <div class="form-group">
                         <label for="shipping_city">Shipping City</label>
-                        <input type="text" name="shipping_city" id="shipping_city" class="form-control" value="{{ old('shipping_city', $defaultAddress->shipping_city ?? $user->shipping_city) }}" required>
+                        <input type="text" name="shipping_city" id="shipping_city" class="form-control @error('shipping_city') is-invalid @enderror" value="{{ old('shipping_city', $defaultAddress->shipping_city ?? $user->shipping_city) }}" required>
+                        @error('shipping_city')
+                        <div class="invalid-feedback">{{ $message }}</div>
+                        @enderror
                     </div>
                     <div class="form-group">
                         <label for="shipping_province">Shipping Province</label>
-                        <input type="text" name="shipping_province" id="shipping_province" class="form-control" value="{{ old('shipping_province', $defaultAddress->shipping_province ?? $user->shipping_province) }}" required>
+                        <input type="text" name="shipping_province" id="shipping_province" class="form-control @error('shipping_province') is-invalid @enderror" value="{{ old('shipping_province', $defaultAddress->shipping_province ?? $user->shipping_province) }}" required>
+                        @error('shipping_province')
+                        <div class="invalid-feedback">{{ $message }}</div>
+                        @enderror
                     </div>
                     <div class="form-group">
                         <label for="shipping_country">Shipping Country</label>
-                        <input type="text" name="shipping_country" id="shipping_country" class="form-control" value="{{ old('shipping_country', $defaultAddress->shipping_country ?? $user->shipping_country) }}" required>
+                        <input type="text" name="shipping_country" id="shipping_country" class="form-control @error('shipping_country') is-invalid @enderror" value="{{ old('shipping_country', $defaultAddress->shipping_country ?? $user->shipping_country) }}" required>
+                        @error('shipping_country')
+                        <div class="invalid-feedback">{{ $message }}</div>
+                        @enderror
                     </div>
                     <div class="form-group">
                         <label for="shipping_postal_code">Shipping Postal Code</label>
-                        <input type="text" name="shipping_postal_code" id="shipping_postal_code" class="form-control" value="{{ old('shipping_postal_code', $defaultAddress->shipping_postal_code ?? $user->shipping_postal_code) }}" required>
+                        <input type="text" name="shipping_postal_code" id="shipping_postal_code" class="form-control @error('shipping_postal_code') is-invalid @enderror" value="{{ old('shipping_postal_code', $defaultAddress->shipping_postal_code ?? $user->shipping_postal_code) }}" required>
+                        @error('shipping_postal_code')
+                        <div class="invalid-feedback">{{ $message }}</div>
+                        @enderror
                     </div>
                     <div class="form-group">
                         <label for="shipping_email">Shipping Email</label>
-                        <input type="email" name="shipping_email" id="shipping_email" class="form-control" value="{{ old('shipping_email', $defaultAddress->shipping_email ?? $user->shipping_email) }}" required>
+                        <input type="email" name="shipping_email" id="shipping_email" class="form-control @error('shipping_email') is-invalid @enderror" value="{{ old('shipping_email', $defaultAddress->shipping_email ?? $user->shipping_email) }}" required>
+                        @error('shipping_email')
+                        <div class="invalid-feedback">{{ $message }}</div>
+                        @enderror
                     </div>
                     <div class="form-group">
                         <label for="shipping_phone">Shipping Phone</label>
-                        <input type="tel" name="shipping_phone" id="shipping_phone" class="form-control" value="{{ old('shipping_phone', $defaultAddress->shipping_phone ?? $user->shipping_phone) }}" required>
+                        <input type="tel" name="shipping_phone" id="shipping_phone" class="form-control @error('shipping_phone') is-invalid @enderror" value="{{ old('shipping_phone', $defaultAddress->shipping_phone ?? $user->shipping_phone) }}" required>
+                        @error('shipping_phone')
+                        <div class="invalid-feedback">{{ $message }}</div>
+                        @enderror
                     </div>
                     <hr>
                     <div class="form-group">
                         <label for="billing_name">Billing Name</label>
-                        <input type="text" name="billing_name" id="billing_name" class="form-control" value="{{ old('billing_name', $defaultAddress->billing_name ?? $user->billing_name) }}" required>
+                        <input type="text" name="billing_name" id="billing_name" class="form-control @error('billing_name') is-invalid @enderror" value="{{ old('billing_name', $defaultAddress->billing_name ?? $user->billing_name) }}" required>
+                        @error('billing_name')
+                        <div class="invalid-feedback">{{ $message }}</div>
+                        @enderror
                     </div>
                     <div class="form-group">
                         <label for="billing_address">Billing Address</label>
-                        <input type="text" name="billing_address" id="billing_address" class="form-control" value="{{ old('billing_address', $defaultAddress->billing_address ?? $user->billing_address) }}" required>
+                        <input type="text" name="billing_address" id="billing_address" class="form-control @error('billing_address') is-invalid @enderror" value="{{ old('billing_address', $defaultAddress->billing_address ?? $user->billing_address) }}" required>
+                        @error('billing_address')
+                        <div class="invalid-feedback">{{ $message }}</div>
+                        @enderror
                     </div>
                     <div class="form-group">
                         <label for="billing_city">Billing City</label>
-                        <input type="text" name="billing_city" id="billing_city" class="form-control" value="{{ old('billing_city', $defaultAddress->billing_city ?? $user->billing_city) }}" required>
+                        <input type="text" name="billing_city" id="billing_city" class="form-control @error('billing_city') is-invalid @enderror" value="{{ old('billing_city', $defaultAddress->billing_city ?? $user->billing_city) }}" required>
+                        @error('billing_city')
+                        <div class="invalid-feedback">{{ $message }}</div>
+                        @enderror
                     </div>
                     <div class="form-group">
                         <label for="billing_province">Billing Province</label>
-                        <input type="text" name="billing_province" id="billing_province" class="form-control" value="{{ old('billing_province', $defaultAddress->billing_province ?? $user->billing_province) }}" required>
+                        <input type="text" name="billing_province" id="billing_province" class="form-control @error('billing_province') is-invalid @enderror" value="{{ old('billing_province', $defaultAddress->billing_province ?? $user->billing_province) }}" required>
+                        @error('billing_province')
+                        <div class="invalid-feedback">{{ $message }}</div>
+                        @enderror
                     </div>
                     <div class="form-group">
                         <label for="billing_country">Billing Country</label>
-                        <input type="text" name="billing_country" id="billing_country" class="form-control" value="{{ old('billing_country', $defaultAddress->billing_country ?? $user->billing_country) }}" required>
+                        <input type="text" name="billing_country" id="billing_country" class="form-control @error('billing_country') is-invalid @enderror" value="{{ old('billing_country', $defaultAddress->billing_country ?? $user->billing_country) }}" required>
+                        @error('billing_country')
+                        <div class="invalid-feedback">{{ $message }}</div>
+                        @enderror
                     </div>
                     <div class="form-group">
                         <label for="billing_postal_code">Billing Postal Code</label>
-                        <input type="text" name="billing_postal_code" id="billing_postal_code" class="form-control" value="{{ old('billing_postal_code', $defaultAddress->billing_postal_code ?? $user->billing_postal_code) }}" required>
+                        <input type="text" name="billing_postal_code" id="billing_postal_code" class="form-control @error('billing_postal_code') is-invalid @enderror" value="{{ old('billing_postal_code', $defaultAddress->billing_postal_code ?? $user->billing_postal_code) }}" required>
+                        @error('billing_postal_code')
+                        <div class="invalid-feedback">{{ $message }}</div>
+                        @enderror
                     </div>
                     <div class="form-group">
                         <label for="billing_email">Billing Email</label>
-                        <input type="email" name="billing_email" id="billing_email" class="form-control" value="{{ old('billing_email', $defaultAddress->billing_email ?? $user->billing_email) }}" required>
+                        <input type="email" name="billing_email" id="billing_email" class="form-control @error('billing_email') is-invalid @enderror" value="{{ old('billing_email', $defaultAddress->billing_email ?? $user->billing_email) }}" required>
+                        @error('billing_email')
+                        <div class="invalid-feedback">{{ $message }}</div>
+                        @enderror
                     </div>
                     <div class="form-group">
                         <label for="billing_phone">Billing Phone</label>
-                        <input type="tel" name="billing_phone" id="billing_phone" class="form-control" value="{{ old('billing_phone', $defaultAddress->billing_phone ?? $user->billing_phone) }}" required>
+                        <input type="tel" name="billing_phone" id="billing_phone" class="form-control @error('billing_phone') is-invalid @enderror" value="{{ old('billing_phone', $defaultAddress->billing_phone ?? $user->billing_phone) }}" required>
+                        @error('billing_phone')
+                        <div class="invalid-feedback">{{ $message }}</div>
+                        @enderror
                     </div>
 
                     <button type="submit" id="update_button" class="btn btn-primary">Update Default Address</button>
@@ -244,7 +287,7 @@
                             <p class="review-text">{{ $review->review_text }}</p>
                             @if($review->image)
                             <div class="review-image">
-                                <img src="{{ asset('storage/' . $review->image) }}" alt="Review Image" class="img-fluid" style="max-width: 150px;">
+                                <img src="{{ url( $review->image) }}" alt="Review Image" class="img-fluid" style="max-width: 150px;">
                             </div>
                             @endif
                         </div>
