@@ -10,19 +10,19 @@
 
 <div class="container contact">
     <div class="row mb-5">
-        <div class="col-md-6 contact-info">
+        <div class="col-md-4 contact-info">
             <!-- Contact Info Section -->
             <div class="contact-info-box">
                 <!-- Contact Icons Section -->
                 <div class="contact-icons">
                     <p>
-                        <img src="{{ asset('images/about/email_icon.png') }}" alt="Email Icon" class="contact-icon"> Email: <a href="mailto:well@personalcare.com">well@personalcare.com</a>
+                        <img src="{{ asset('images/about/email_icon.png') }}" alt="Email Icon" class="contact-icon"> Email: &nbsp<a href="mailto:well@personalcare.com">well@personalcare.com</a>
                     </p>
                     <p>
                         <img src="{{ asset('images/about/phone_icon.png') }}" alt="Phone Icon" class="contact-icon"> Phone: +1 204-400-1234
                     </p>
                     <p>
-                        <img src="{{ asset('images/about/www_icon.png') }}" alt="Website Icon" class="contact-icon"> Website: <a href="http://www.wellcare.com" target="_blank">www.wellcare.com</a>
+                        <img src="{{ asset('images/about/www_icon.png') }}" alt="Website Icon" class="contact-icon"> Website: &nbsp<a href="http://www.wellcare.com" target="_blank">www.wellcare.com</a>
                     </p>
                 </div>
                 <!-- Social Icons Section -->
@@ -34,7 +34,7 @@
                 </p>
             </div>
         </div>
-        <div class="col-md-6">
+        <div class="col-md-8">
 
             <!-- Contact Form -->
             <form method="POST" action="{{ route('contact.submit') }}">
