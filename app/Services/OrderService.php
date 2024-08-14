@@ -78,21 +78,21 @@ class OrderService
         $productId = $item->product_id;
         $mProduct  = Product::find($productId);
         $quantity  = $item->quantity;
-        $stock     = $mProduct->stock - $quantity;
+        $stock     = $mProduct->stock;
 
-        if ($stock < 0) {
-            throw new Exception("{$mProduct->name} out of stock");
+        if ($quantity > $stock) {
+            throw new Exception("You have added {$quantity} items of {$mProduct->name} to your cart, but only {$stock} items are available in stock.");
         }
 
-        $mProduct->stock = $stock;
+        $mProduct->stock = $stock - $quantity;
         $mProduct->save();
 
         OrderDetail::create([
-          'order_id'    => $order->id,
-          'product_id'  => $productId,
-          'price'       => $mProduct->price,
-          'quantity'    => $quantity,
-          'total_price' => $quantity * $mProduct->price,
+            'order_id'    => $order->id,
+            'product_id'  => $productId,
+            'price'       => $mProduct->price,
+            'quantity'    => $quantity,
+            'total_price' => $quantity * $mProduct->price,
         ]);
     }
 }
