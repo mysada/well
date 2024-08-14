@@ -49,7 +49,7 @@
                                 <img src="{{ asset($product->image_url) }}"  alt="{{ htmlspecialchars($product->name) }}">
                                 <div class="card-body d-flex flex-column">
                                     <h5 class="card-title">{{ htmlspecialchars($product->name) }}</h5>
-                                    <div class="product-list-card-add" style="display: flex">
+                                    <div class="mt-5 product-list-card-add" style="display: flex">
                                         <p class="card-text mt-auto">$ {{ number_format($product->price, 2) }}</p>
                                         <div style="display: flex; justify-content: center; align-items: center;">
                                             <form action="{{ route('CartItemStore') }}" method="POST" style="display: inline;">
