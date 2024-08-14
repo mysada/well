@@ -1,8 +1,10 @@
 @extends('admin.admin')
 
 @section('content')
-<div class="container mx-auto p-4">
-    <h1 class="text-2xl font-bold mb-6">Query Details</h1>
+<div class="container flex flex-col gap-8">
+    <div class="flex justify-end">
+        <a href="{{ route('admin.queries') }}" class="btn btn-primary">Back to Queries</a>
+    </div>
 
     <div class="mb-6 p-4 border rounded-lg shadow-sm bg-white">
         <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -47,6 +49,5 @@
         </form>
     </div>
 
-    <a href="{{ route('admin.queries') }}" class="btn btn-secondary">Back to Queries</a>
 </div>
 @endsection

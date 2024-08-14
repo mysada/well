@@ -5,7 +5,7 @@
 <div class="container mx-auto p-4">
     <!-- Review Statistics -->
     <div class="stats shadow mb-6 grid grid-cols-1 md:grid-cols-2 gap-4">
-        <div class="stat bg-blue-100 p-4 rounded-lg flex items-center">
+        <div class="stat p-4 rounded-lg flex items-center">
             <div class="stat-icon text-blue-600 text-3xl mr-4">
                 <i class="fas fa-star"></i>
             </div>
@@ -14,7 +14,7 @@
                 <div class="stat-value text-3xl">{{ number_format($averageRating, 2) }}</div>
             </div>
         </div>
-        <div class="stat bg-green-100 p-4 rounded-lg flex items-center">
+        <div class="stat p-4 rounded-lg flex items-center">
             <div class="stat-icon text-green-600 text-3xl mr-4">
                 <i class="fas fa-comment-dots"></i>
             </div>
@@ -26,8 +26,8 @@
     </div>
 
     <!-- Search and Filters -->
-    <div class="bg-white p-4 rounded-lg shadow mb-6">
-        <form action="" method="GET" class="grid grid-cols-1 md:grid-cols-2 gap-4">
+    <div >
+        <form action="" method="GET" class="grid grid-cols-1 md:grid-cols-4 gap-4">
             <div class="w-full">
                 <label for="search" class="block text-sm font-medium text-gray-700">Search</label>
                 <input type="text" name="search" value="{{ old('search', $search) }}" placeholder="Search by product, user, review text..." class="input input-bordered w-full">
@@ -73,9 +73,10 @@
                 <label for="end_date" class="block text-sm font-medium text-gray-700">End Date</label>
                 <input type="date" name="end_date" value="{{ old('end_date', $end_date) }}" class="input input-bordered w-full">
             </div>
-            <div class="flex gap-4">
-                <button type="submit" class="btn btn-primary">Filter</button>
-                <a href="{{ route('AdminReviewList') }}" class="btn btn-secondary">Reset Filters</a>
+            <div></div>
+            <div class="w-full flex join items-end">
+                <a href="{{ route('AdminReviewList') }}" class="w-full flex-1 btn btn-neutral join-item">Reset Filters</a>
+                <button type="submit" class="w-full flex-1 btn btn-primary join-item">Filter</button>
             </div>
         </form>
     </div>
@@ -124,7 +125,7 @@
                     <form action="{{ route('AdminReviewUpdateStatus', $review->id) }}" method="POST">
                         @csrf
                         @method('PATCH')
-                        <select name="status" class="select select-bordered" onchange="if(confirm('Do you really want to change the status of this review?')) { this.form.submit(); } else { this.value = '{{ $review->status }}'; }">
+                        <select name="status" class=" h-8 badge" onchange="if(confirm('Do you really want to change the status of this review?')) { this.form.submit(); } else { this.value = '{{ $review->status }}'; }">
                             <option value="active" {{ $review->status == 'active' ? 'selected' : '' }}>Active</option>
                             <option value="flagged" {{ $review->status == 'flagged' ? 'selected' : '' }}>Flagged</option>
                             <option value="pending" {{ $review->status == 'pending' ? 'selected' : '' }}>Pending</option>
