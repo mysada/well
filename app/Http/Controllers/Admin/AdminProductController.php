@@ -54,16 +54,58 @@ class AdminProductController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-          'name'             => 'required|string|max:255',
-          'description'      => 'required|string',
-          'long_description' => 'nullable|string',
-          'price'            => 'required|numeric',
-          'category_id'      => 'required|integer',
-          'stock'            => 'required|integer',
-          'image'            => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
-          'color'            => 'nullable|string|max:50',
-          'rating'           => 'nullable|numeric|min:0|max:5',
-          'discount'         => 'nullable|numeric|min:0|max:100',
+            'name' => [
+                'required',
+                'string',
+                'max:255',
+                'regex:/^[a-zA-Z0-9\s\-_.]+$/'
+            ],
+            'description' => [
+                'required',
+                'string'
+            ],
+            'long_description' => [
+                'nullable',
+                'string'
+            ],
+            'price' => [
+                'required',
+                'numeric',
+                'min:0'
+            ],
+            'category_id' => [
+                'required',
+                'integer',
+                'exists:categories,id'
+            ],
+            'stock' => [
+                'required',
+                'integer',
+                'min:0'
+            ],
+            'image' => [
+                'nullable',
+                'image',
+                'mimes:jpeg,png,jpg,gif',
+                'max:2048'
+            ],
+            'color' => [
+                'nullable',
+                'string',
+                'max:50'
+            ],
+            'rating' => [
+                'nullable',
+                'numeric',
+                'min:0',
+                'max:5'
+            ],
+            'discount' => [
+                'nullable',
+                'numeric',
+                'min:0',
+                'max:100'
+            ],
         ]);
 
         $imagePath = null;
@@ -116,16 +158,58 @@ class AdminProductController extends Controller
     public function update(Request $request, Product $product)
     {
         $request->validate([
-          'name'             => 'required|string|max:255',
-          'description'      => 'required|string',
-          'long_description' => 'nullable|string',
-          'price'            => 'required|numeric',
-          'category_id'      => 'required|integer',
-          'stock'            => 'required|integer',
-          'image'            => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
-          'color'            => 'nullable|string|max:50',
-          'rating'           => 'nullable|numeric|min:0|max:5',
-          'discount'         => 'nullable|numeric|min:0|max:100',
+            'name' => [
+                'required',
+                'string',
+                'max:255',
+                'regex:/^[a-zA-Z0-9\s\-_.]+$/'
+            ],
+            'description' => [
+                'required',
+                'string'
+            ],
+            'long_description' => [
+                'nullable',
+                'string'
+            ],
+            'price' => [
+                'required',
+                'numeric',
+                'min:0'
+            ],
+            'category_id' => [
+                'required',
+                'integer',
+                'exists:categories,id'
+            ],
+            'stock' => [
+                'required',
+                'integer',
+                'min:0'
+            ],
+            'image' => [
+                'nullable',
+                'image',
+                'mimes:jpeg,png,jpg,gif',
+                'max:2048'
+            ],
+            'color' => [
+                'nullable',
+                'string',
+                'max:50'
+            ],
+            'rating' => [
+                'nullable',
+                'numeric',
+                'min:0',
+                'max:5'
+            ],
+            'discount' => [
+                'nullable',
+                'numeric',
+                'min:0',
+                'max:100'
+            ],
         ]);
 
         // Handle image upload
