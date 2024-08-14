@@ -157,7 +157,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: #f9f9f9; /* Light background for contrast */
+    background-color: #f9f9f9; 
     border-radius: 5px;
     padding: 5px;
     border: none;
@@ -301,28 +301,28 @@
 }
 
 .shop-link {
-    color: #20c997; /* Preferred color */
+    color: #20c997; 
     font-size: 18px;
     font-weight: 600;
     text-decoration: none;
     padding: 0 5px;
-    border-bottom: 2px solid transparent; /* Subtle underline effect */
+    border-bottom: 2px solid transparent;
     transition: border-color 0.3s ease, color 0.3s ease;
 }
 
 .shop-link:hover {
-    color: #17a589; /* Slightly darker color on hover */
-    border-bottom: 2px solid #20c997; /* Underline appears on hover */
+    color: #17a589; 
+    border-bottom: 2px solid #20c997; 
 }
 
 .shop-link:active {
-    color: #148f77; /* Darker color when clicked */
+    color: #148f77; 
 }
 
 .shop-link span {
     margin-left: 10px;
-    font-weight: 400; /* Slightly lighter for the product name */
-    color: #555; /* Neutral color for the product name */
+    font-weight: 400;
+    color: #555; 
 }
 
 
