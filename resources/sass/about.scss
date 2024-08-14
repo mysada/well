@@ -48,11 +48,12 @@ h1, h2, h3 {
 .hero-content p {
     font-size: 1.1rem;
     margin-bottom: 1.5rem;
+    color: #777;
 }
 
 .hero-content .btn {
     font-size: 1.1rem;
-    padding: 0.5rem 2.5rem;
+    padding: 0.8rem 2.8rem;
     background-color: #00A875;
     color: #fff;
     border: none;
@@ -62,6 +63,12 @@ h1, h2, h3 {
 
 .hero-content .btn:hover {
     background-color: #333;
+}
+
+.btn-primary:active {
+    background-color: #008E65 !important;
+    transform: scale(0.95);
+    color: #fff;
 }
 
 .hero-image img {
@@ -90,6 +97,7 @@ h1, h2, h3 {
 
 .content p {
     font-size: 1.1rem;
+    color: #777;
 }
 
 .contact-info {
