@@ -27,7 +27,7 @@
                         <input class="product-qty" type="number" name="quantity" min="1" max="{{ $product->stock }}" value="1" data-product-id="{{ $product->id }}">
                         <button class="qty-count qty-count--add" data-action="add" type="button">+</button>
                     </div>
-                    <span id="stock" class="text-success product-stock-display" style="margin-left: 30px;">{{ $product->stock }} in stock</span>
+                    <span id="stock" class="text-success product-stock-display" style="margin-left: 20px;">{{ $product->stock }} in stock</span>
                 </div>
                 <div class="d-flex gap-4">
                     <form action="{{ route('CartItemStore') }}" method="POST" class="mr-3 w-50">
