@@ -8,7 +8,7 @@
         <!-- Product Details -->
         <div class="row">
             <div class="col-md-12 mb-3">
-                <a href="{{ url('/products') }}">Shop</a> / <span>{{ $product->name }}</span>
+                <a href="{{ url('/products') }}" id="shop_link">Shop</a> / <span>{{ $product->name }}</span>
             </div>
             <div class="col-md-12 mb-3">
                 <h2 class="product-title">Product Details</h2>
@@ -22,12 +22,12 @@
                 <p class="product-price text-danger">$ {{ number_format($product->price, 2) }}</p>
                 <label for="quantity" class="mr-2 custom-margin">Quantity</label>
                 <div class="d-flex align-items-center mb-4">
-                    <div class="qty-input">
+                    <div id="quantity" class="qty-input">
                         <button class="qty-count qty-count--minus" data-action="minus" type="button">-</button>
-                        <input class="product-qty" type="number" name="quantity" min="1" max="{{ $product->stock }}" value="1">
+                        <input class="product-qty" type="number" name="quantity" min="1" max="{{ $product->stock }}" value="1" data-product-id="{{ $product->id }}">
                         <button class="qty-count qty-count--add" data-action="add" type="button">+</button>
                     </div>
-                    <span class="text-success" style="margin-left: 30px;">{{ $product->stock }} in stock</span>
+                    <span id="stock" class="text-success product-stock-display" style="margin-left: 30px;">{{ $product->stock }} in stock</span>
                 </div>
                 <div class="d-flex gap-4">
                     <form action="{{ route('CartItemStore') }}" method="POST" class="mr-3 w-50">
@@ -40,7 +40,7 @@
                     <form action="{{ route('WishlistStore') }}" method="POST" class="mr-3 w-50">
                         @csrf
                         <input type="hidden" name="product_id" value="{{ $product->id }}">
-                        <button type="submit" class="btn-product btn-outline-dark w-100">
+                        <button type="submit" id="wishlist" class="btn-product btn-outline-dark w-100">
                             Wishlist
                             @if($wishlist)
                             <img src="/images/detail_view/wishlist-true.svg" width="25px" alt="wishlist"/>
