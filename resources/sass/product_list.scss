@@ -17,21 +17,27 @@ h2 {
     font-weight: bold;
     color: #333;
     padding-bottom: 10px;
-    border-radius: unset!important;
+    border-radius: unset !important;
     margin-bottom: 15px;
 }
 
-.category-list a {
+.category-list {
     display: flex;
-    align-items: center;
-    padding: 10px 5px;
-    margin-bottom: 10px;
-    font-size: 17px;
-    font-weight: 400;
-    color: #666;
-    text-decoration: none;
-    border: 2px solid transparent;
-    border-radius: unset!important;
+    flex-direction: column;
+    gap: 2rem;
+
+    a {
+        display: flex;
+        align-items: center;
+        margin-bottom: 10px;
+        font-size: 17px;
+        font-weight: 400;
+        color: #666;
+        text-decoration: none;
+        border: 2px solid transparent;
+        border-radius: unset !important;
+        height: 20px;
+    }
 }
 
 .category-list a svg {
@@ -47,16 +53,14 @@ h2 {
 
 .category-list a:hover,
 .category-list .active-category {
-    // border-color: #00AB7A;
-    background-color: #333;
-    color: #fff;
-    // color: #00AB7A;
+    color: #000;
     text-decoration: none;
+    border-bottom: 1px solid #333;
 }
 
 .product-card {
     border: 1px solid #eee;
-    border-radius: unset!important;
+    border-radius: unset !important;
     margin-bottom: 20px;
     position: relative;
 }
@@ -122,7 +126,7 @@ h2 {
     background-color: #00AB7A;
     color: #fff;
     border: none;
-    border-radius: unset!important;
+    border-radius: unset !important;
     padding: 10px 20px;
     font-size: 16px;
     font-weight: 700;
@@ -144,7 +148,7 @@ h2 {
 }
 
 .page-item {
-    border-radius: unset!important;
+    border-radius: unset !important;
     margin: 0 5px;
 }
 
@@ -202,7 +206,7 @@ h2 {
             color: #008E65;
             background-color: #fff;
             border: 1px solid #eee;
-            border-radius: unset!important;
+            border-radius: unset !important;
             transition: background-color 0.3s, color 0.3s;
         }
 
@@ -232,11 +236,11 @@ h2 {
     }
 
     #search_button {
-        border-radius: unset!important;
+        border-radius: unset !important;
         color: #00AB7A;
         font-size: 16px;
         font-weight: 700;
-        padding:15px;
+        padding: 15px;
         margin-left: 10px;
         transition: background-color 0.3s, color 0.3s;
     }
@@ -249,14 +253,14 @@ h2 {
         border-radius: unset;
         border: 1px solid #ddd;
         font-size: 1rem;
-        padding:15px;
+        padding: 15px;
         margin-bottom: 20px;
     }
 }
 
 .product-card {
     border: 1px solid #eee;
-    border-radius: unset!important;
+    border-radius: unset !important;
     overflow: hidden;
     transition: box-shadow 0.3s ease;
 }
