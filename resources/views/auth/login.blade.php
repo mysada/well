@@ -5,7 +5,9 @@
     <div class="row">
         <!-- Left side: Image (40%) -->
         <div class="col-md-5 d-none d-md-block">
-            <img src="/images/login.jpg" alt="Side Image" class="img-fluid h-100 w-100 object-cover">
+            <div class="image-container">
+                <img src="/images/login.jpg" alt="Side Image" class="img-fluid">
+            </div>
         </div>
 
         <!-- Right side: Login Form (60%) -->
