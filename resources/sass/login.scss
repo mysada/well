@@ -1,78 +1,178 @@
-.card-header {
-    background-color: #ffffff;
-    border-bottom: none;
-    font-size: 1.5rem;
-    font-weight: lighter;
-    border: 1px solid #00A875;
-    border-radius: unset !important;
-}
 
-.card-body {
+// Card styling
+.card {
+    border: none;
+    border-radius: 0px!important;
     padding: 2rem;
-    background-color: #f9f9f9;
-    border-radius: unset!important;
+    max-width: 550px;
+    margin: 0 auto;
 }
 
-.form-label {
+// Header styling
+.card-header {
+    background-color: #fff!important;
+    border-bottom: none!important;
+    font-size: 1.75rem;
     font-weight: bold;
-    font-size: 1rem;
+    text-align: center;
+    margin-bottom: 1.5rem;
 }
 
-
+// Input fields styling
 .form-control {
+    border: 1px solid #ccc;
+    border-radius: 2px;
     padding: 0.75rem;
-    border: 1px solid #ced4da;
-    border-radius: 5px;
-    margin-bottom: 30px;
-    width: 100%;
-
-    &:focus {
-        border-color: #00A875 !important;
-        box-shadow: #00A875 !important;
-        outline: none;
-    }
+    font-size: 1rem;
+    margin-bottom: 1rem;
+    transition: border-color 0.3s ease;
 }
 
-.btn-dark {
-    background-color: #000000;
+.form-control:focus {
+    border-color: #20c997;
+    box-shadow: none;
+}
+
+// Button styling
+#login-button {
+    background-color: #333;
+    color: #fff;
     border: none;
     padding: 0.75rem;
     font-size: 1rem;
-    border-radius: unset !important;
-
-}
-
-#forgot-password-link {
-    font-size: 0.875rem;
-    background-color: #000;
-    color: #fff;
-    text-decoration: none;
-    padding: 0.5rem 1rem;
+    border-radius: 2px;
+    width: 100%;
     transition: background-color 0.3s ease;
-    border-radius: unset !important;
 }
 
+#login-button:hover {
+    background-color: #1b9573;
+}
 
-#login-form .mt-3 p {
-    font-size: 0.875rem;
+// Links styling
+.btn-link {
+    color: #333;
+    font-weight: bold;
+    text-decoration: none;
+    margin-top: 1rem;
+    display: block;
+    text-align: center;
+}
+
+.btn-link:hover {
+    color: #00AB7A;
 }
 
 #create-account-link {
-    background-color: #00A875;
-    padding: 5px;
-    font-size: 14px;
-    color: #fff;
+    display: inline-block;
+    padding: 0.75rem 2rem;
+    border: 1px solid #333;
+    border-radius: 2px;
+    text-align: center;
+    font-size: 1rem;
+    font-weight: 500;
+    color: #333;
     text-decoration: none;
-    transition: color 0.3s ease;
+    margin-top: 1.5rem;
+    width: 100%;
+    max-width: 550px;
+}
+
+#create-account-link:hover {
+    border-color: #00AB7A;
+    color: #00AB7A;
 }
 
 
-@media (max-width: 768px) {
-    .container {
-        padding: 1rem;
-    }
-
-    .card-body {
-        padding: 1rem;
-    }
+.image-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
 }
+
+#forgot-password-link {
+    color:#00AB7A;
+    text-decoration: none;
+}
+
+#forgot-password-link:hover {
+    color: #0D916C;
+}
+// .card-header {
+//     background-color: #ffffff;
+//     border-bottom: none;
+//     font-size: 1.5rem;
+//     font-weight: lighter;
+//     border: 1px solid #00A875;
+//     border-radius: unset !important;
+// }
+
+// .card-body {
+//     padding: 2rem;
+//     background-color: #f9f9f9;
+//     border-radius: unset!important;
+// }
+
+// .form-label {
+//     font-weight: bold;
+//     font-size: 1rem;
+// }
+
+
+// .form-control {
+//     padding: 0.75rem;
+//     border: 1px solid #ced4da;
+//     border-radius: 5px;
+//     margin-bottom: 30px;
+//     width: 100%;
+
+//     &:focus {
+//         border-color: #00A875 !important;
+//         box-shadow: #00A875 !important;
+//         outline: none;
+//     }
+// }
+
+// .btn-dark {
+//     background-color: #000000;
+//     border: none;
+//     padding: 0.75rem;
+//     font-size: 1rem;
+//     border-radius: unset !important;
+
+// }
+
+// #forgot-password-link {
+//     font-size: 0.875rem;
+//     background-color: #000;
+//     color: #fff;
+//     text-decoration: none;
+//     padding: 0.5rem 1rem;
+//     transition: background-color 0.3s ease;
+//     border-radius: unset !important;
+// }
+
+
+// #login-form .mt-3 p {
+//     font-size: 0.875rem;
+// }
+
+// #create-account-link {
+//     background-color: #00A875;
+//     padding: 5px;
+//     font-size: 14px;
+//     color: #fff;
+//     text-decoration: none;
+//     transition: color 0.3s ease;
+// }
+
+
+// @media (max-width: 768px) {
+//     .container {
+//         padding: 1rem;
+//     }
+
+//     .card-body {
+//         padding: 1rem;
+//     }
+// }
