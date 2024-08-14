@@ -26,9 +26,9 @@ class ContactQueryController extends Controller
               return $query->where('status', $status);
           }
         )
-                               ->orderByDesc('id')
-                               ->get();
-        $title   = 'Queries Management - List';
+                             ->orderByDesc('id')
+                             ->get();
+        $title = 'Queries Management - List';
 
         return view('admin.pages.queries.index', compact('items', 'title'));
     }
@@ -44,10 +44,11 @@ class ContactQueryController extends Controller
     {
         $query         = ContactQuery::findOrFail($id);
         $followUpNotes = Session::get("follow_up_notes.{$id}", '');
+        $title         = 'Queries Management - Detail';
 
         return view(
           'admin.pages.queries.show',
-          compact('query', 'followUpNotes')
+          compact('query', 'followUpNotes', 'title')
         );
     }
 
@@ -84,8 +85,8 @@ class ContactQueryController extends Controller
     public function edit($id)
     {
         $query = ContactQuery::findOrFail($id);
-
-        return view('admin.pages.queries.edit', compact('query'));
+        $title = 'Queries Management - Detail';
+        return view('admin.pages.queries.edit', compact('query', 'title'));
     }
 
     /**
