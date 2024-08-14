@@ -17,7 +17,7 @@
                     <img src="{{ asset($product->image_url) }}" alt="Product Image" class="img-fluid">
                 </div>
                 <div class="col-md-6">
-                    <h3 class="product-title">{{ $product->name }}</h3>
+                    <h3 class="product-title-single">{{ $product->name }}</h3>
                     <p class="product-description">{{ $product->description }}</p>
                     <p class="product-price text-danger">$ {{ number_format($product->price, 2) }}</p>
                     <div>

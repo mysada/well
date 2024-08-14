@@ -74,15 +74,22 @@
     margin-bottom: 10px;
 }
 
+.product-title-single{
+    font-size: 32px;
+}
+
 .product-description {
-    margin-bottom: 20px;
+    margin-top: 20px;
+    margin-bottom: 30px;
     font-size: 18px;
+    color: #666;
 }
 
 .product-price {
-    font-size: 1.5rem;
+    font-size: 32px;
     font-weight: bold;
     margin-bottom: 20px;
+    color: #F26151!important;
 }
 
 .quantity-label {
