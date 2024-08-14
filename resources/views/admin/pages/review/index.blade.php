@@ -66,15 +66,6 @@
                 </select>
             </div>
             <div class="w-full">
-                <label for="status" class="block text-sm font-medium text-gray-700">Status</label>
-                <select name="status" class="select select-bordered w-full" id="status-dropdown">
-                    <option value="" class="bg-white">All Statuses</option>
-                    <option value="active" {{ old('status', $status) == 'active' ? 'selected' : '' }} >Active</option>
-                    <option value="flagged" {{ old('status', $status) == 'flagged' ? 'selected' : '' }} >Flagged</option>
-                    <option value="pending" {{ old('status', $status) == 'pending' ? 'selected' : '' }} >Pending</option>
-                </select>
-            </div>
-            <div class="w-full">
                 <label for="start_date" class="block text-sm font-medium text-gray-700">Start Date</label>
                 <input type="date" name="start_date" value="{{ old('start_date', $start_date) }}" class="input input-bordered w-full">
             </div>
