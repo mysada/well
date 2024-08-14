@@ -3,22 +3,36 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\File;
 use App\Models\EventLog;
-
+use App\Models\Order;
+use Illuminate\Http\Request;
 
 class AdminHomeController extends Controller
 {
+
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
         $title = 'Dashboard';
-        $logs = $this->getLogs();
+        $logs  = $this->getLogs();
 
-        return view('admin.pages.home', compact('title', 'logs'));
+        $totalOrders = Order::count();
+        $totalRevenue = Order::sum('pre_tax_amount');
+        $averageRevenue = Order::average('pre_tax_amount');
+
+        $totalOrdersDelivered = Order::where('status', 'Delivered')->count();
+        $totalOrdersPending = Order::where('status', 'Pending')->count();
+
+        $stats = [
+          'totalOrders' => $totalOrders,
+          'totalRevenue' => $totalRevenue,
+          'averageRevenue' => $averageRevenue,
+          'totalOrdersDelivered' => $totalOrdersDelivered,
+          'totalOrdersPending' => $totalOrdersPending,
+        ];
+        return view('admin.pages.home', compact('title', 'logs', 'stats'));
     }
 
     private function getLogs()
@@ -61,10 +75,7 @@ class AdminHomeController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
-    {
-
-    }
+    public function update(Request $request, string $id) {}
 
     /**
      * Remove the specified resource from storage.
@@ -73,4 +84,5 @@ class AdminHomeController extends Controller
     {
         //
     }
+
 }

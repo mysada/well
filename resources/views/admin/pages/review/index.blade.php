@@ -66,15 +66,6 @@
                 </select>
             </div>
             <div class="w-full">
-                <label for="status" class="block text-sm font-medium text-gray-700">Status</label>
-                <select name="status" class="select select-bordered w-full" id="status-dropdown">
-                    <option value="" class="bg-white">All Statuses</option>
-                    <option value="active" {{ old('status', $status) == 'active' ? 'selected' : '' }} class="bg-green-500 text-white">Active</option>
-                    <option value="flagged" {{ old('status', $status) == 'flagged' ? 'selected' : '' }} class="bg-red-500 text-white">Flagged</option>
-                    <option value="pending" {{ old('status', $status) == 'pending' ? 'selected' : '' }} class="bg-yellow-500 text-white">Pending</option>
-                </select>
-            </div>
-            <div class="w-full">
                 <label for="start_date" class="block text-sm font-medium text-gray-700">Start Date</label>
                 <input type="date" name="start_date" value="{{ old('start_date', $start_date) }}" class="input input-bordered w-full">
             </div>
@@ -103,7 +94,6 @@
                 <th>Image</th>
                 <th>Status</th>
                 <th>Create Time</th>
-                <th>Action</th>
             </tr>
             </thead>
             <tbody>
@@ -135,12 +125,13 @@
                         @csrf
                         @method('PATCH')
                         <select name="status" class="select select-bordered" onchange="if(confirm('Do you really want to change the status of this review?')) { this.form.submit(); } else { this.value = '{{ $review->status }}'; }">
-                            <option value="active" {{ $review->status == 'active' ? 'selected' : '' }} >Active</option>
-                            <option value="flagged" {{ $review->status == 'flagged' ? 'selected' : '' }} >Flagged</option>
-                            <option value="pending" {{ $review->status == 'pending' ? 'selected' : '' }} >Pending</option>
+                            <option value="active" {{ $review->status == 'active' ? 'selected' : '' }}>Active</option>
+                            <option value="flagged" {{ $review->status == 'flagged' ? 'selected' : '' }}>Flagged</option>
+                            <option value="pending" {{ $review->status == 'pending' ? 'selected' : '' }}>Pending</option>
                         </select>
                     </form>
                 </td>
+
                 <td>{{ $review->created_at }}</td>
             </tr>
             @endforeach
