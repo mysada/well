@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\EventLog;
 use App\Models\Order;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class AdminHomeController extends Controller
@@ -25,12 +26,17 @@ class AdminHomeController extends Controller
         $totalOrdersDelivered = Order::where('status', 'Delivered')->count();
         $totalOrdersPending = Order::where('status', 'Pending')->count();
 
+        $totalUser = User::count();
+        $latestUser = User::orderByDesc('id')->first();
+
         $stats = [
           'totalOrders' => $totalOrders,
           'totalRevenue' => $totalRevenue,
           'averageRevenue' => $averageRevenue,
           'totalOrdersDelivered' => $totalOrdersDelivered,
           'totalOrdersPending' => $totalOrdersPending,
+          'totalUser' => $totalUser,
+          'latestUser' => $latestUser->name,
         ];
         return view('admin.pages.home', compact('title', 'logs', 'stats'));
     }
