@@ -286,8 +286,13 @@
 }
 
 #wishlist{
-    background-color: #DC3545;
-    color: #fff;
+    color: #333;
+    border: 1px solid #333;
+}
+
+#wishlist:hover {
+    color: #F26151;
+    border: 1px solid #F26151;
 }
 
 #stock{

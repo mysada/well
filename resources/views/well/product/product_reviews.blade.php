@@ -40,7 +40,7 @@
                     <form action="{{ route('WishlistStore') }}" method="POST" class="mr-3 w-50">
                         @csrf
                         <input type="hidden" name="product_id" value="{{ $product->id }}">
-                        <button type="submit" id="wishlist" class="btn-product btn-outline-dark btn-wishlist w-100">
+                        <button type="submit" id="wishlist" class="btn-product btn-outline-dark w-100">
                             Wishlist
                             @if($wishlist)
                             <img src="/images/detail_view/wishlist-true.svg" width="25px" alt="wishlist"/>
