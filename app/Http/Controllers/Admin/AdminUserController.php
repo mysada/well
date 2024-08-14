@@ -73,34 +73,60 @@ class AdminUserController extends Controller
     /**
      * Store a newly created resource in storage.
      */
+//    public function store(Request $request)
+//    {
+//        // Validate the incoming request data
+//        $validatedData = $request->validate([
+//            'name' => 'required|string|max:255',
+//            'email' => 'required|email|unique:users,email',
+//            'password' => 'required|string|min:8',
+//            'role' => 'required|string|max:255',
+//            'phone' => 'nullable|string|max:15',
+//        ]);
+//
+//        // Determine if the user is an admin
+//        $isAdmin = $validatedData['role'] === 'admin' ? 1 : 0;
+//
+//        // Hash the password before storing
+//        $validatedData['password'] = Hash::make($validatedData['password']);
+//        $validatedData['full_name'] = $validatedData['name'];
+//        $validatedData['is_admin'] = $isAdmin;
+//
+//        // Create a new user
+//        User::create($validatedData);
+//
+//        // Redirect to the user list page with a success message
+//        return redirect()->route('AdminUserList')->with('success', 'User created successfully!');
+//    }
+
+// STORE method now added by aman to prevents sql injection, xss threats
     public function store(Request $request)
     {
         // Validate the incoming request data
         $validatedData = $request->validate([
-          'name'     => 'required|string|max:255',
-          'email'    => 'required|email|unique:users,email',
-          'password' => 'required|string|min:8',
-          'role'     => 'required|string|max:255',
-          'phone'    => 'nullable|string|max:15',
+            'name' => 'required|string|max:255|regex:/^[a-zA-Z\s]+$/', // Allow only letters and spaces
+            'email' => 'required|email|unique:users,email',
+            'password' => 'required|string|min:8',
+            'role' => 'required|string|max:255|in:admin,user', // Allow only 'admin' or 'user'
+            'phone' => 'nullable|string|max:15|regex:/^[\d\-\+\(\)\s]+$/', // Allow only digits, dashes, and spaces
         ]);
 
         // Determine if the user is an admin
         $isAdmin = $validatedData['role'] === 'admin' ? 1 : 0;
 
         // Hash the password before storing
-        $validatedData['password']  = Hash::make($validatedData['password']);
+        $validatedData['password'] = Hash::make($validatedData['password']);
         $validatedData['full_name'] = $validatedData['name'];
-        $validatedData['is_admin']  = $isAdmin;
+        $validatedData['is_admin'] = $isAdmin;
 
         // Create a new user
         User::create($validatedData);
 
         // Redirect to the user list page with a success message
-        return redirect()->route('AdminUserList')->with(
-          'success',
-          'User created successfully!'
-        );
+        return redirect()->route('AdminUserList')->with('success', 'User created successfully!');
     }
+// STORE method ends here
+
 
     /**
      * Display the specified resource.
@@ -245,28 +271,111 @@ class AdminUserController extends Controller
     /**
      * Update the specified resource in storage.
      */
+//    public function update(Request $request, $id)
+//    {
+//        // Validate the incoming request data
+//        $request->validate([
+//            'name' => 'required|string|max:255',
+//            'email' => 'required|string|email|max:255|unique:users,email,' . $id,
+//            'phone' => 'nullable|string|max:15',
+//            'shipping_address' => 'nullable|string',
+//            'shipping_city' => 'nullable|string',
+//            'shipping_province' => 'nullable|string',
+//            'shipping_country' => 'nullable|string',
+//            'shipping_postal_code' => 'nullable|string',
+//            'shipping_email' => 'nullable|string|email',
+//            'shipping_phone' => 'nullable|string',
+//            'billing_address' => 'nullable|string',
+//            'billing_city' => 'nullable|string',
+//            'billing_province' => 'nullable|string',
+//            'billing_country' => 'nullable|string',
+//            'billing_postal_code' => 'nullable|string',
+//            'billing_email' => 'nullable|string|email',
+//            'billing_phone' => 'nullable|string',
+//        ]);
+//
+//        // Fetch the user by ID
+//        $user = User::findOrFail($id);
+//
+//        // Update the user's basic information
+//        $user->update([
+//            'name' => $request->input('name'),
+//            'full_name' => $request->input('name'),
+//            'email' => $request->input('email'),
+//            'phone' => $request->input('phone'),
+//        ]);
+//
+//        // Update the default addresses
+//        $defaultAddress = DefaultAddress::where('user_id', $id)->first();
+//
+//        if ($defaultAddress) {
+//            $defaultAddress->update([
+//                'shipping_name' => $request->input('shipping_name'),
+//                'shipping_address' => $request->input('shipping_address'),
+//                'shipping_city' => $request->input('shipping_city'),
+//                'shipping_province' => $request->input('shipping_province'),
+//                'shipping_country' => $request->input('shipping_country'),
+//                'shipping_postal_code' => $request->input('shipping_postal_code'),
+//                'shipping_email' => $request->input('shipping_email'),
+//                'shipping_phone' => $request->input('shipping_phone'),
+//                'billing_name' => $request->input('billing_name'),
+//                'billing_address' => $request->input('billing_address'),
+//                'billing_city' => $request->input('billing_city'),
+//                'billing_province' => $request->input('billing_province'),
+//                'billing_country' => $request->input('billing_country'),
+//                'billing_postal_code' => $request->input('billing_postal_code'),
+//                'billing_email' => $request->input('billing_email'),
+//                'billing_phone' => $request->input('billing_phone'),
+//            ]);
+//        } else {
+//            // If no default address exists for the user, create a new one
+//            DefaultAddress::create([
+//                'user_id' => $id,
+//                'shipping_name' => $request->input('shipping_name'),
+//                'shipping_address' => $request->input('shipping_address'),
+//                'shipping_city' => $request->input('shipping_city'),
+//                'shipping_province' => $request->input('shipping_province'),
+//                'shipping_country' => $request->input('shipping_country'),
+//                'shipping_postal_code' => $request->input('shipping_postal_code'),
+//                'shipping_email' => $request->input('shipping_email'),
+//                'shipping_phone' => $request->input('shipping_phone'),
+//                'billing_name' => $request->input('billing_name'),
+//                'billing_address' => $request->input('billing_address'),
+//                'billing_city' => $request->input('billing_city'),
+//                'billing_province' => $request->input('billing_province'),
+//                'billing_country' => $request->input('billing_country'),
+//                'billing_postal_code' => $request->input('billing_postal_code'),
+//                'billing_email' => $request->input('billing_email'),
+//                'billing_phone' => $request->input('billing_phone'),
+//            ]);
+//        }
+//
+//        // Redirect back to the user list page with a success message
+//        return redirect()->route('AdminUserList')->with('success', 'User updated successfully.');
+//    }
+
+//UPDATE method added by aman to protect sql injection and xss
     public function update(Request $request, $id)
     {
         // Validate the incoming request data
-        $request->validate([
-          'name'                 => 'required|string|max:255',
-          'email'                => 'required|string|email|max:255|unique:users,email,'
-                                    .$id,
-          'phone'                => 'nullable|string|max:15',
-          'shipping_address'     => 'nullable|string',
-          'shipping_city'        => 'nullable|string',
-          'shipping_province'    => 'nullable|string',
-          'shipping_country'     => 'nullable|string',
-          'shipping_postal_code' => 'nullable|string',
-          'shipping_email'       => 'nullable|string|email',
-          'shipping_phone'       => 'nullable|string',
-          'billing_address'      => 'nullable|string',
-          'billing_city'         => 'nullable|string',
-          'billing_province'     => 'nullable|string',
-          'billing_country'      => 'nullable|string',
-          'billing_postal_code'  => 'nullable|string',
-          'billing_email'        => 'nullable|string|email',
-          'billing_phone'        => 'nullable|string',
+        $validatedData = $request->validate([
+            'name' => 'required|string|max:255|regex:/^[\pL\s\-]+$/u', // Only allows letters, spaces, and hyphens
+            'email' => 'required|string|email|max:255|unique:users,email,' . $id,
+            'phone' => 'nullable|string|max:15|regex:/^\+?[0-9\-]*$/', // Allows only numbers, +, and -
+            'shipping_address' => 'nullable|string|max:255|regex:/^[\pL\s0-9\-.,]+$/u',
+            'shipping_city' => 'nullable|string|max:255|regex:/^[\pL\s\-]+$/u',
+            'shipping_province' => 'nullable|string|max:255|regex:/^[\pL\s\-]+$/u',
+            'shipping_country' => 'nullable|string|max:255|regex:/^[\pL\s\-]+$/u',
+            'shipping_postal_code' => 'nullable|string|max:20|regex:/^[A-Za-z0-9\- ]+$/',
+            'shipping_email' => 'nullable|string|email|max:255',
+            'shipping_phone' => 'nullable|string|max:15|regex:/^\+?[0-9\-]*$/',
+            'billing_address' => 'nullable|string|max:255|regex:/^[\pL\s0-9\-.,]+$/u',
+            'billing_city' => 'nullable|string|max:255|regex:/^[\pL\s\-]+$/u',
+            'billing_province' => 'nullable|string|max:255|regex:/^[\pL\s\-]+$/u',
+            'billing_country' => 'nullable|string|max:255|regex:/^[\pL\s\-]+$/u',
+            'billing_postal_code' => 'nullable|string|max:20|regex:/^[A-Za-z0-9\- ]+$/',
+            'billing_email' => 'nullable|string|email|max:255',
+            'billing_phone' => 'nullable|string|max:15|regex:/^\+?[0-9\-]*$/',
         ]);
 
         // Fetch the user by ID
@@ -274,10 +383,10 @@ class AdminUserController extends Controller
 
         // Update the user's basic information
         $user->update([
-          'name'      => $request->input('name'),
-          'full_name' => $request->input('name'),
-          'email'     => $request->input('email'),
-          'phone'     => $request->input('phone'),
+            'name' => $validatedData['name'],
+            'full_name' => $validatedData['name'],
+            'email' => $validatedData['email'],
+            'phone' => $validatedData['phone'],
         ]);
 
         // Update the default addresses
@@ -285,56 +394,52 @@ class AdminUserController extends Controller
 
         if ($defaultAddress) {
             $defaultAddress->update([
-              'shipping_name'        => $request->input('shipping_name'),
-              'shipping_address'     => $request->input('shipping_address'),
-              'shipping_city'        => $request->input('shipping_city'),
-              'shipping_province'    => $request->input('shipping_province'),
-              'shipping_country'     => $request->input('shipping_country'),
-              'shipping_postal_code' => $request->input('shipping_postal_code'),
-              'shipping_email'       => $request->input('shipping_email'),
-              'shipping_phone'       => $request->input('shipping_phone'),
-              'billing_name'         => $request->input('billing_name'),
-              'billing_address'      => $request->input('billing_address'),
-              'billing_city'         => $request->input('billing_city'),
-              'billing_province'     => $request->input('billing_province'),
-              'billing_country'      => $request->input('billing_country'),
-              'billing_postal_code'  => $request->input('billing_postal_code'),
-              'billing_email'        => $request->input('billing_email'),
-              'billing_phone'        => $request->input('billing_phone'),
+                'shipping_name' => $validatedData['name'],
+                'shipping_address' => $validatedData['shipping_address'],
+                'shipping_city' => $validatedData['shipping_city'],
+                'shipping_province' => $validatedData['shipping_province'],
+                'shipping_country' => $validatedData['shipping_country'],
+                'shipping_postal_code' => $validatedData['shipping_postal_code'],
+                'shipping_email' => $validatedData['shipping_email'],
+                'shipping_phone' => $validatedData['shipping_phone'],
+                'billing_name' => $validatedData['name'],
+                'billing_address' => $validatedData['billing_address'],
+                'billing_city' => $validatedData['billing_city'],
+                'billing_province' => $validatedData['billing_province'],
+                'billing_country' => $validatedData['billing_country'],
+                'billing_postal_code' => $validatedData['billing_postal_code'],
+                'billing_email' => $validatedData['billing_email'],
+                'billing_phone' => $validatedData['billing_phone'],
             ]);
         } else {
             // If no default address exists for the user, create a new one
             DefaultAddress::create([
-              'user_id'              => $id,
-              'shipping_name'        => $request->input('shipping_name'),
-              'shipping_address'     => $request->input('shipping_address'),
-              'shipping_city'        => $request->input('shipping_city'),
-              'shipping_province'    => $request->input('shipping_province'),
-              'shipping_country'     => $request->input('shipping_country'),
-              'shipping_postal_code' => $request->input('shipping_postal_code'),
-              'shipping_email'       => $request->input('shipping_email'),
-              'shipping_phone'       => $request->input('shipping_phone'),
-              'billing_name'         => $request->input('billing_name'),
-              'billing_address'      => $request->input('billing_address'),
-              'billing_city'         => $request->input('billing_city'),
-              'billing_province'     => $request->input('billing_province'),
-              'billing_country'      => $request->input('billing_country'),
-              'billing_postal_code'  => $request->input('billing_postal_code'),
-              'billing_email'        => $request->input('billing_email'),
-              'billing_phone'        => $request->input('billing_phone'),
+                'user_id' => $id,
+                'shipping_name' => $validatedData['name'],
+                'shipping_address' => $validatedData['shipping_address'],
+                'shipping_city' => $validatedData['shipping_city'],
+                'shipping_province' => $validatedData['shipping_province'],
+                'shipping_country' => $validatedData['shipping_country'],
+                'shipping_postal_code' => $validatedData['shipping_postal_code'],
+                'shipping_email' => $validatedData['shipping_email'],
+                'shipping_phone' => $validatedData['shipping_phone'],
+                'billing_name' => $validatedData['name'],
+                'billing_address' => $validatedData['billing_address'],
+                'billing_city' => $validatedData['billing_city'],
+                'billing_province' => $validatedData['billing_province'],
+                'billing_country' => $validatedData['billing_country'],
+                'billing_postal_code' => $validatedData['billing_postal_code'],
+                'billing_email' => $validatedData['billing_email'],
+                'billing_phone' => $validatedData['billing_phone'],
             ]);
         }
 
         // Redirect back to the user list page with a success message
-        return redirect()->route('AdminUserList')->with(
-          'success',
-          'User updated successfully.'
-        );
+        return redirect()->route('AdminUserList')->with('success', 'User updated successfully.');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
+//
+  
     public function destroy($id)
     {
         $user = User::findOrFail($id);
