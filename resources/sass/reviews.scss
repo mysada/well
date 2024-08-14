@@ -317,19 +317,31 @@
     font-weight: bold;
 }
 
+.is-invalid {
+    border-color: #e3342f;
+    background-color: #fdd;
+    box-shadow: 0 0 5px rgba(227, 52, 47, 0.5);
+}
 
-#review_form_warning.alert-danger {
-    background-color: #F44336;
-    color: #fff;
+.invalid-feedback {
+    color: #e3342f;
+    font-size: 0.875em;
+    margin-top: 0.25rem;
     font-weight: bold;
-    margin-bottom: 15px;
-    padding: 10px;
-    width: 50%;
+    display: flex;
+    align-items: center;
 }
 
-#review_form_warning.alert-danger ul {
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
+.invalid-feedback::before {
+    display: inline-block;
+    margin-right: 0.5rem;
+    color: #e3342f;
 }
+
+.is-invalid:focus {
+    border-color: #e3342f;
+    outline: none;
+    box-shadow: 0 0 5px rgba(227, 52, 47, 0.7);
+}
+
 
