@@ -234,8 +234,7 @@ h2 {
 
     #search_button {
         border-radius: unset!important;
-        background-color: #00AB7A;
-        color: #fff;
+        color: #00AB7A;
         font-size: 16px;
         font-weight: 700;
         padding:15px;
@@ -243,9 +242,13 @@ h2 {
         transition: background-color 0.3s, color 0.3s;
     }
 
+    #search_button:hover {
+        color: #0D916C;
+    }
+
     .search-bar {
         border-radius: unset;
-        border: 2px solid #00A875;
+        border: 1px solid #ddd;
         font-size: 1rem;
         padding:15px;
         margin-bottom: 20px;
