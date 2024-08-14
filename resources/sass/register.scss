@@ -1,63 +1,79 @@
-.card-header {
-    background-color: #ffffff;
-    border-bottom: none;
-    font-size: 1.5rem;
-    font-weight: lighter;
-    text-align: center;
-    border: 1px solid #00A875;
-    border-radius: unset !important;
-}
-
-
-.card-body {
+// Card styling
+.card {
+    border: none;
+    border-radius: 0px !important;
     padding: 2rem;
-    background-color: #f9f9f9;
-    border-radius: 5px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    border: 1px solid #00A875;
-    border-radius: unset !important;
+    max-width: 550px;
+    margin: 0 auto;
 }
 
-
-.col-form-label {
-    font-weight: bold !important;
-    font-size: 1rem;
+// Header styling
+.card-header {
+    background-color: #fff !important;
+    border-bottom: none !important;
+    font-size: 1.75rem;
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 1.5rem;
 }
 
-
+// Input fields styling
 .form-control {
+    border: 1px solid #ccc;
+    border-radius: 2px;
     padding: 0.75rem;
-    border: 1px solid #ced4da;
-    border-radius: 5px;
-    margin-bottom: 30px;
-
-    &:focus {
-        border-color: #00A875 !important;
-        box-shadow: #00A875 !important;
-        outline: none;
-    }
+    font-size: 1rem;
+    margin-bottom: 1rem;
+    transition: border-color 0.3s ease;
 }
 
-.btn-primary {
-    background-color: #00A875 !important;
+.form-control:focus {
+    border-color: #20c997;
+    box-shadow: none;
+}
+
+// Button styling
+#register-button {
+    background-color: #333;
+    color: #fff;
     border: none;
     padding: 0.75rem;
     font-size: 1rem;
-    border-radius: unset !important;
-    border: none !important;
+    border-radius: 2px;
+    width: 100%;
+    transition: background-color 0.3s ease;
 }
 
-.card-body .row.mb-0 {
+#register-button:hover {
+    background-color: #1b9573;
+}
+
+// Links styling
+#login-link {
+    text-decoration: none;
+    color: #00AB7A;
+    margin-top: 1rem;
+    display: block;
     text-align: center;
-    margin-top: 20px;
 }
 
-@media (max-width: 768px) {
-    .container {
-        padding: 1rem;
-    }
+#login-link:hover {
+    color: #0D916C;
+}
 
-    .card-body {
-        padding: 1rem;
-    }
+.image-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.container{
+  width: 100%;
+  max-width: 1200px!important;
+}
+
+.card{
+  margin: 0!important;
+  padding: 0!important;
+  border: 1px solid #f1f1f1;
 }

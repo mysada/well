@@ -11,15 +11,15 @@
     <div class="container">
         <div class="row">
             <div class="col-md-3">
-                <div class="category-heading">Filter by Category</div>
+                <div class="category-heading">Category</div>
                 <div class="category-list">
                     @foreach ($categories as $category)
                     <a href="{{ route('products.index', ['category_id' => $category->id]) }}"
                        class="{{ isset($category_id) && $category_id == $category->id ? 'active-category' : '' }}">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-tag" viewBox="0 0 16 16">
+                        <!-- <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-tag" viewBox="0 0 16 16">
                             <path d="M1 2a1 1 0 0 1 1-1h4.586a1 1 0 0 1 .707.293l6.414 6.414a1 1 0 0 1 0 1.414l-6.414 6.414a1 1 0 0 1-1.414 0L1.293 9.707A1 1 0 0 1 1 9V2z"/>
                             <path d="M6.5 4a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0z"/>
-                        </svg>
+                        </svg> -->
                         {!! htmlspecialchars($category->name, ENT_QUOTES) !!}
                     </a>
                     @endforeach

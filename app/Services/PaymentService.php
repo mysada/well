@@ -110,7 +110,7 @@ class PaymentService
                   'discount'            => 0,
                   'status'              => 'Completed',
                   'payer_name'          => $req['card-name'],
-                  'payer_card'          => $req['card-number'],
+                  'payer_card'          => substr($req['card-number'], -4),
                   'billing_name'        => $billingName,
                   'billing_email'       => $billingEmail,
                   'billing_phone'       => $billingPhone,
