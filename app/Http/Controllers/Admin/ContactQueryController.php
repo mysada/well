@@ -122,6 +122,6 @@ class ContactQueryController extends Controller
         $query = ContactQuery::findOrFail($id);
         $query->delete();
 
-        return redirect()->route('admin.queries.index')->with('success', 'Query deleted successfully.');
+        return redirect()->route('admin.queries')->with('success', 'Query deleted successfully.');
     }
 }
