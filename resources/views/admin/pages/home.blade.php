@@ -55,10 +55,11 @@
                         <div class="">Latest User:{{$stats['latestUser']}}</div>
                     </div>
                 </div>
+
                 <div class="stat">
-                    <div class="stat-value">86%</div>
-                    <div class="stat-title">Tasks done</div>
-                    <div class="stat-desc text-secondary">31 tasks remaining</div>
+                    <div class="stat-value">{{$stats['totalProduct']}}</div>
+                    <div class="stat-title">Products For Sale</div>
+                    <div class="stat-desc text-secondary">{{$stats['totalCat']}} Categories</div>
                 </div>
             </div>
         </div>

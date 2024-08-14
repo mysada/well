@@ -3,8 +3,10 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Category;
 use App\Models\EventLog;
 use App\Models\Order;
+use App\Models\Product;
 use App\Models\User;
 use Illuminate\Http\Request;
 
@@ -19,25 +21,30 @@ class AdminHomeController extends Controller
         $title = 'Dashboard';
         $logs  = $this->getLogs();
 
-        $totalOrders = Order::count();
-        $totalRevenue = Order::sum('pre_tax_amount');
+        $totalOrders    = Order::count();
+        $totalRevenue   = Order::sum('pre_tax_amount');
         $averageRevenue = Order::average('pre_tax_amount');
 
         $totalOrdersDelivered = Order::where('status', 'Delivered')->count();
-        $totalOrdersPending = Order::where('status', 'Pending')->count();
+        $totalOrdersPending   = Order::where('status', 'Pending')->count();
+        $totalUser            = User::count();
+        $latestUser           = User::orderByDesc('id')->first();
 
-        $totalUser = User::count();
-        $latestUser = User::orderByDesc('id')->first();
+        $totalProduct = Product::count();
+        $totalCat     = Category::count();
 
         $stats = [
-          'totalOrders' => $totalOrders,
-          'totalRevenue' => $totalRevenue,
-          'averageRevenue' => $averageRevenue,
+          'totalOrders'          => $totalOrders,
+          'totalRevenue'         => $totalRevenue,
+          'averageRevenue'       => $averageRevenue,
           'totalOrdersDelivered' => $totalOrdersDelivered,
-          'totalOrdersPending' => $totalOrdersPending,
-          'totalUser' => $totalUser,
-          'latestUser' => $latestUser->name,
+          'totalOrdersPending'   => $totalOrdersPending,
+          'totalUser'            => $totalUser,
+          'latestUser'           => $latestUser->name,
+          'totalProduct'        => $totalProduct,
+          'totalCat'            => $totalCat,
         ];
+
         return view('admin.pages.home', compact('title', 'logs', 'stats'));
     }
 
