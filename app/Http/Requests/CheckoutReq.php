@@ -15,7 +15,7 @@ class CheckoutReq extends FormRequest
     {
         return [
             'order-id'         => 'required|exists:orders,id',
-            'card-number'      => 'required|digits:16',
+            'card-number'      => 'required|digits_between:13,16',
             'card-name'        => 'required|string',
             'card-expiry'      => 'required|size:4',
             'card-cvc'         => 'required|digits:3',
@@ -47,8 +47,8 @@ class CheckoutReq extends FormRequest
             'card-number.regex'         => 'Card number must be exactly 16 digits.',
             'card-name.required'        => 'Please enter a valid cardholder name.',
             'card-name.regex'           => 'Cardholder name must only contain letters and spaces.',
-            'card-expiry.required'      => 'Please enter a valid expiry date in MMYY format.',
-            'card-expiry.regex'         => 'Expiry date must be in MMYY format.',
+            'card-expiry.required'      => 'Please enter a valid expiry date in MM/YY format.',
+            'card-expiry.regex'         => 'Expiry date must be in MM/YY format.',
             'card-cvc.required'         => 'Please enter a valid 3-digit CVC.',
             'card-cvc.regex'            => 'CVC must be exactly 3 digits.',
             'card-type.required'        => 'Please select a card type.',
