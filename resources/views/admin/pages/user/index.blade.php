@@ -19,7 +19,8 @@
                     <option value="50" {{ request('per_page') == 50 ? 'selected' : '' }}>50</option>
                 </select>
                 <div class="flex join">
-                    <button type="submit" class="btn btn-neutral join-item">Apply</button>
+                    <button type="submit" class="btn  join-item">Apply</button>
+                    <a href="{{ route('AdminUserList') }}" class="btn btn-neutral join-item">Reset</a>
                     <a href="{{ route('AdminUserCreate') }}" class="btn btn-primary join-item">Add User</a>
                 </div>
             </div>
