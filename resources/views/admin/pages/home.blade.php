@@ -22,7 +22,7 @@
                     </div>
                     <div class="stat-title">Total Revenue</div>
                     <div class="stat-value text-primary">${{$stats['totalRevenue']}}</div>
-                    <div class="stat-desc">Average Revenue: ${{$stats['averageRevenue']}}</div>
+                    <div class="stat-desc">Average: ${{$stats['averageRevenue']}}</div>
                 </div>
 
                 <div class="stat">
@@ -49,14 +49,17 @@
                 </div>
 
                 <div class="stat">
-                    <div class="stat-value">86%</div>
-                    <div class="stat-title">Tasks done</div>
-                    <div class="stat-desc text-secondary">31 tasks remaining</div>
+                    <div class="stat-title">Total User</div>
+                    <div class="stat-value text-accent">{{$stats['totalUser']}}</div>
+                    <div class="stat-desc flex justify-between">
+                        <div class="">Latest User:{{$stats['latestUser']}}</div>
+                    </div>
                 </div>
+
                 <div class="stat">
-                    <div class="stat-value">86%</div>
-                    <div class="stat-title">Tasks done</div>
-                    <div class="stat-desc text-secondary">31 tasks remaining</div>
+                    <div class="stat-value">{{$stats['totalProduct']}}</div>
+                    <div class="stat-title">Products For Sale</div>
+                    <div class="stat-desc text-secondary">{{$stats['totalCat']}} Categories</div>
                 </div>
             </div>
         </div>
@@ -68,53 +71,33 @@
                 <table class="w-full">
                     <thead>
                         <tr>
-                            <th class="text-left text-gray-600">ID</th>
+                            <th class="text-left text-gray-600">#</th>
                             <th class="text-left text-gray-600">Name</th>
                             <th class="text-left text-gray-600">Popularity</th>
                             <th class="text-left text-gray-600">Sales</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr class="border-b">
-                            <td class="py-4">01</td>
-                            <td class="py-4">Home Decor Range</td>
-                            <td class="py-4">
-                                <div class="relative w-56 bg-gray-100 rounded-full h-2">
-                                    <div class="bg-primary h-2 rounded-full" style="width: 80%;"></div>
-                                </div>
-                            </td>
-                            <td class="py-4 text-primary font-medium">453</td>
-                        </tr>
-                        <tr class="border-b">
-                            <td class="py-4">02</td>
-                            <td class="py-4">Disney Princess Pink Bag 18'</td>
-                            <td class="py-4">
-                                <div class="relative w-56 bg-gray-100 rounded-full h-2">
-                                    <div class="bg-secondary h-2 rounded-full" style="width: 65%;"></div>
-                                </div>
-                            </td>
-                            <td class="py-4 text-secondary font-medium">290</td>
-                        </tr>
-                        <tr class="border-b">
-                            <td class="py-4">03</td>
-                            <td class="py-4">Bathroom Essentials</td>
-                            <td class="py-4">
-                                <div class="relative w-56 bg-gray-100 rounded-full h-2">
-                                    <div class="bg-accent h-2 rounded-full" style="width: 50%;"></div>
-                                </div>
-                            </td>
-                            <td class="py-4 text-accen font-medium">186</td>
-                        </tr>
-                        <tr>
-                            <td class="py-4">04</td>
-                            <td class="py-4">Apple Smartwatches</td>
-                            <td class="py-4">
-                                <div class="relative w-56 bg-gray-100 rounded-full h-2">
-                                    <div class="bg-warning h-2 rounded-full" style="width: 30%;"></div>
-                                </div>
-                            </td>
-                            <td class="py-4 text-warning font-medium">110</td>
-                        </tr>
+                        @foreach($stats['topSeller'] as $index => $seller)
+                            @if($index < 4)
+                                <tr class="border-b">
+                                    <td class="py-4">{{ str_pad($index + 1, 2, '0', STR_PAD_LEFT) }}</td>
+                                    <td class="py-4">{{ $seller['name'] }}</td>
+                                    <td class="py-4">
+                                        <div class="relative w-56 bg-gray-100 rounded-full h-2">
+                                            @php
+                                                $width = [80, 65, 50, 30][$index] . '%';
+                                                $bgClass = ['bg-primary', 'bg-secondary', 'bg-accent', 'bg-warning'][$index]; // Background classes
+                                            @endphp
+                                            <div class="{{ $bgClass }} h-2 rounded-full"
+                                                 style="width: {{ $width }};"></div>
+                                        </div>
+                                    </td>
+                                    <td class="py-4 text-{{ ['primary', 'secondary', 'accent', 'warning'][$index] }} font-medium">{{ [453, 290, 186, 110][$index] }}</td>
+                                </tr>
+                            @endif
+                        @endforeach
+
                     </tbody>
                 </table>
             </div>
