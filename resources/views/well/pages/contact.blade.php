@@ -35,12 +35,6 @@
             </div>
         </div>
         <div class="col-md-6">
-            <!-- Success Message -->
-            @if(session('success'))
-            <div class="alert alert-success">
-                {{ session('success') }}
-            </div>
-            @endif
 
             <!-- Contact Form -->
             <form method="POST" action="{{ route('contact.submit') }}">
