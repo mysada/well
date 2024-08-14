@@ -66,7 +66,7 @@
             <div class="col-md-12 mb-3">
                 <h2 class="product-title text-center">Introduction</h2>
             </div>
-            <p class="product-description text-center">{{ $product->long_description }}</p>
+            <p class="product-description">{{ $product->long_description }}</p>
             <div class="row">
                 <div class="col-md-6">
                     <img src="{{ asset('images/detail_view/intro1.jpg') }}" alt="Introduction Image 1">
