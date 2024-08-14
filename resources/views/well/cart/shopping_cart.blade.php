@@ -33,7 +33,7 @@
                                             <td>${{ number_format($cartItem->product->price, 2) }}</td>
                                             <td>
                                                 <select class="form-control quantity-select" data-cart-item-id="{{ $cartItem->id }}" data-price="{{ $cartItem->product->price }}">
-                                                    @for($i = 1; $i <= 100; $i++)
+                                                    @for($i = 1; $i <= $cartItem->product->stock; $i++)
                                                         <option value="{{ $i }}" {{ $cartItem->quantity == $i ? 'selected' : '' }}>{{ $i }}</option>
                                                     @endfor
                                                 </select>
