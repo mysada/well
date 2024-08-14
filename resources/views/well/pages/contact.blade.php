@@ -84,11 +84,12 @@
                 <div class="form-group">
                     <label for="captcha">CAPTCHA</label>
                     <div class="g-recaptcha" data-sitekey="{{ env('RECAPTCHA_SITE_KEY') }}"></div>
-                    @error('captcha')
+                    @error('g-recaptcha-response')
                     <div class="invalid-feedback">{{ $message }}</div>
                     @enderror
                 </div>
                 @endif
+
 
                 <!-- Submit Button -->
                 <div class="text-right">

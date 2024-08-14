@@ -47,7 +47,7 @@ class ContactController extends Controller
                 'max:500',
             ],
             'g-recaptcha-response' => [
-                'required_if:env,production',
+                app()->environment('production') ? 'required' : 'nullable',
                 function ($attribute, $value, $fail) {
                     if (app()->environment('production')) {
                         $response = file_get_contents('https://www.google.com/recaptcha/api/siteverify?secret=' . env('RECAPTCHA_SECRET_KEY') . '&response=' . $value);
