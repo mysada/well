@@ -43,7 +43,7 @@
                 <!-- Products -->
                 <div class="row">
                     @forelse ($products as $product)
-                    <div class="col-md-4 mb-4">
+                    <div class="col-md-4 mb-4 custom-height">
                         <a href="{{ route('products.show', $product->id) }}" class="text-decoration-none text-dark">
                             <div class="card product-card h-100">
                                 <img src="{{ asset($product->image_url) }}"  alt="{{ htmlspecialchars($product->name) }}">
