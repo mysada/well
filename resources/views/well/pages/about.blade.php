@@ -7,7 +7,7 @@
             <div class="hero-content">
                 <h1>We provide you the best products</h1>
                 <p>At Well, our mission is to deliver exceptional products that enhance your lifestyle. We are committed to quality and innovation, ensuring that each item we offer meets the highest standards. Our team is dedicated to sourcing and creating products that not only satisfy your needs but also bring you joy and convenience.</p>
-                <a href="#products" class="btn">Buy Now</a>
+                <a href="{{ route('products.index') }}" class="btn">Buy Now</a>
             </div>
             <div class="hero-image">
                 <img src="{{ asset('images/about/about_us_banner.jpg') }}" alt="Product" class="img-fluid" style="border-radius: unset!important;">
