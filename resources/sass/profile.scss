@@ -321,3 +321,34 @@ h1, h2, h3, h4, h5 {
         margin-top: 10px;
     }
 }
+
+
+.is-invalid {
+    border-color: #e3342f;
+    background-color: #fdd;
+    box-shadow: 0 0 5px rgba(227, 52, 47, 0.5);
+}
+
+.invalid-feedback {
+    color: #e3342f;
+    font-size: 0.875em;
+    margin-top: 0.25rem;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+}
+
+.invalid-feedback::before {
+    content: "\f06a";
+    font-family: 'FontAwesome';
+    display: inline-block;
+    margin-right: 0.5rem;
+    color: #e3342f;
+}
+
+
+.is-invalid:focus {
+    border-color: #e3342f;
+    outline: none;
+    box-shadow: 0 0 5px rgba(227, 52, 47, 0.7);
+}
