@@ -57,12 +57,17 @@
 }
 
 #see_reviews{
-    padding: 15px;
-    background-color: #00A875;
-    color: #fff9ea;
-    font-size: 20px;
+    padding: 0.7rem 2.2rem;
+    border: 1px solid #00AB7A!important;
+    color: #00AB7A;
+    font-size: 16px;
     border-radius: unset;
     border: none;
+}
+
+#see_reviews:hover {
+    color: #fff;
+    background-color: #00AB7A;
 }
 
 .product-title h1{
@@ -74,15 +79,22 @@
     margin-bottom: 10px;
 }
 
+.product-title-single{
+    font-size: 32px;
+}
+
 .product-description {
-    margin-bottom: 20px;
-    font-size: 18px;
+    margin-top: 20px;
+    margin-bottom: 30px;
+    font-size: 17px;
+    color: #666;
 }
 
 .product-price {
-    font-size: 1.5rem;
+    font-size: 32px;
     font-weight: bold;
     margin-bottom: 20px;
+    color: #F26151!important;
 }
 
 .quantity-label {
@@ -98,9 +110,9 @@
 }
 
 #quantity{
-    -webkit-box-shadow: rgba(14, 30, 37, 0.12) 0px 2px 4px 0px, rgba(14, 30, 37, 0.32) 0px 2px 16px 0px;
-    box-shadow: rgba(14, 30, 37, 0.12) 0px 2px 4px 0px, rgba(14, 30, 37, 0.32) 0px 2px 16px 0px;
-    border:1px solid #00A875;
+    border:1px solid #ddd;
+    border-radius: 30px;
+    background-color: #F6F7F6;
 }
 
 .btn-product {
@@ -115,6 +127,11 @@
     color: #fff;
 }
 
+.btn-dark:hover {
+    background-color: #000;
+    color: #fff;
+}
+
 .btn-outline-dark {
     border: 1px solid #eee;
     color: #333;
@@ -126,6 +143,7 @@
 }
 .custom-margin {
     margin-top: 80px;
+    margin-bottom: 10px;
 }
 .custom-margin-bottom {
     margin-bottom: 2rem;
@@ -136,50 +154,50 @@
 }
 
 .qty-input {
-    margin-top: 10px;
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: #f9f9f9; /* Light background for contrast */
+    background-color: #f9f9f9; 
     border-radius: 5px;
     padding: 5px;
     border: none;
 }
 
 .qty-input input.product-qty {
-    width: 50px; /* Adjust as needed */
+    width: 50px;
     text-align: center;
-    border: none; /* Remove border */
+    border: none; 
     background: transparent;
-    font-size: 16px;
-    font-weight: 600;
-    color: #333; /* Darker text color */
-    outline: none; /* Remove outline on focus */
+    font-size: 17px;
+    font-weight: 700;
+    color: #333; 
+    outline: none; 
 }
 
 .qty-count {
-    background-color: #e0e0e0; /* Light grey background */
-    color: #333; /* Darker text color */
-    border: none; /* Remove border */
-    border-radius: 50%; /* Make buttons circular */
+    background-color: #fff; 
+    color: #00AB7A; 
+    border: none; 
+    border-radius: 50%;
     width: 30px;
     height: 30px;
-    font-size: 18px;
+    font-size: 20px;
     font-weight: bold;
     display: flex;
     align-items: center;
     justify-content: center;
     cursor: pointer;
     transition: background-color 0.3s ease, color 0.3s ease;
+    border: 1px solid #20c997;
 }
 
 .qty-count:hover {
-    background-color: #20c997; /* Your preferred color on hover */
-    color: #fff; /* White text on hover */
+    background-color: #20c997; 
+    color: #fff;
 }
 
 .qty-count:active {
-    background-color: #17a589; /* Slightly darker when clicked */
+    background-color: #17a589; 
 }
 
 .related-products {
@@ -268,37 +286,43 @@
 }
 
 #wishlist{
-    background-color: #DC3545;
-    color: #fff;
+    color: #333;
+    border: 1px solid #333;
+}
+
+#wishlist:hover {
+    color: #F26151;
+    border: 1px solid #F26151;
 }
 
 #stock{
-    font-weight: bold;
+    font-weight: 500;
+    color: #00AB7A!important;
 }
 
 .shop-link {
-    color: #20c997; /* Preferred color */
+    color: #20c997; 
     font-size: 18px;
     font-weight: 600;
     text-decoration: none;
     padding: 0 5px;
-    border-bottom: 2px solid transparent; /* Subtle underline effect */
+    border-bottom: 2px solid transparent;
     transition: border-color 0.3s ease, color 0.3s ease;
 }
 
 .shop-link:hover {
-    color: #17a589; /* Slightly darker color on hover */
-    border-bottom: 2px solid #20c997; /* Underline appears on hover */
+    color: #17a589; 
+    border-bottom: 2px solid #20c997; 
 }
 
 .shop-link:active {
-    color: #148f77; /* Darker color when clicked */
+    color: #148f77; 
 }
 
 .shop-link span {
     margin-left: 10px;
-    font-weight: 400; /* Slightly lighter for the product name */
-    color: #555; /* Neutral color for the product name */
+    font-weight: 400;
+    color: #555; 
 }
 
 

@@ -20,8 +20,6 @@
                 <div class="col-md-3">
                     <h5 class="footer-nav">SUPPORT</h5>
                     <ul class="list-unstyled">
-                        <li><a href="#" class="text-white">Help Centre</a></li>
-                        <li><a href="#" class="text-white">Contact Us</a></li>
                         <li><a  href="{{ url('/faq') }}" class="text-white">FAQ's</a></li>
                         <li><a  href="{{ url('/privacy-policy') }}" class="text-white">Privacy Policy</a></li>
                         <li><a  href="{{ url('/cancellation-refunds') }}" class="text-white">Cancellation & Refunds</a></li>

@@ -16,15 +16,20 @@ h2 {
     font-size: 38px;
     font-weight: bold;
     color: #333;
-    padding-bottom: 10px;
+    padding-bottom: 28px;
     border-radius: unset !important;
     margin-bottom: 15px;
+}
+.product-list-card-add {
+    display: flex;
+    justify-content: space-between;
 }
 
 .category-list {
     display: flex;
     flex-direction: column;
     gap: 2rem;
+    width: 280px;
 
     a {
         display: flex;
@@ -267,18 +272,29 @@ h2 {
 
 
 .product-card .card-title {
-    font-size: 1.1rem;
-    font-weight: bold;
+    font-size: 18px;
+    font-weight: 400;
+    color: #333;
     margin-bottom: 10px;
-    text-align: center;
+    text-align: left;
 }
 
 .product-card .card-text {
-    font-size: 1rem;
+    font-size: 20px;
+    font-weight: 700;
+    color: #333;
     text-align: center;
     margin-bottom: 10px;
 }
 
+.custom-height {
+    height: 420px;
+}
+
+.custom-padding {
+    padding-left: 30px!important;
+    padding-right: 30px!important;
+}
 .add-to-cart-btn {
     width: 40px;
     height: 40px;

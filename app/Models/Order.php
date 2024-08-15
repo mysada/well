@@ -8,7 +8,6 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
 /**
- * MANISH KUMAR
  * Class Order
  *
  * @package App\Models
@@ -17,7 +16,6 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
  */
 class Order extends Model
 {
-
     use HasFactory;
 
     /**
@@ -25,8 +23,7 @@ class Order extends Model
      *
      * @var array
      */
-    protected $fillable
-      = [
+    protected $fillable = [
         'user_id',
         'pre_tax_amount',
         'post_tax_amount',
@@ -45,23 +42,23 @@ class Order extends Model
         'coupon_code',
         'status',
         'delivery_date',
-      ];
+    ];
 
-    protected $casts
-      = [
+    /**
+     * The attributes that should be cast to native types.
+     *
+     * @var array
+     */
+    protected $casts = [
         'delivery_date' => 'date',
-      ];
+    ];
 
     /**
      * Get the order details associated with the order.
      *
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
-     *
-     * This method defines a one-to-many relationship between the Order and
-     *   OrderDetail models. It retrieves all the order details associated with
-     *   a particular order.
      */
-    public function orderDetails()
+    public function orderDetails(): HasMany
     {
         return $this->hasMany(OrderDetail::class, 'order_id');
     }
@@ -70,30 +67,39 @@ class Order extends Model
      * Get the payments associated with the order.
      *
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
-     *
-     * This method defines a one-to-many relationship between the Order and
-     *   Payment models. It retrieves all the payments associated with a
-     *   particular order.
      */
     public function payments(): HasMany
     {
         return $this->hasMany(Payment::class);
     }
 
+    /**
+     * Get the country associated with the order's shipping address.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
     public function country(): BelongsTo
     {
         return $this->belongsTo(Country::class, 'shipping_country', 'code');
     }
 
+    /**
+     * Get the user who placed the order.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
     public function user(): BelongsTo
     {
         return $this->belongsTo(User::class);
     }
 
+    /**
+     * Get the transactions associated with the order.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
     public function transactions(): HasMany
     {
         return $this->hasMany(Transaction::class);
     }
-
-
 }

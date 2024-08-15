@@ -236,7 +236,7 @@
                     </div>
 
                     <!-- Submit Button -->
-                    <div class="form-section">
+                    <div class="form-section" style="background-color: #fff; border: none; padding-left: 0px">
                         <button type="submit" class="btn btn-primary">Place Order</button>
                     </div>
                 </form>

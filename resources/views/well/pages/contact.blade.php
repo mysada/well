@@ -79,18 +79,6 @@
                     @enderror
                 </div>
 
-                <!-- CAPTCHA Field -->
-                @if(app()->environment('production'))
-                <div class="form-group">
-                    <label for="captcha">CAPTCHA</label>
-                    <div class="g-recaptcha" data-sitekey="{{ env('RECAPTCHA_SITE_KEY') }}"></div>
-                    @error('g-recaptcha-response')
-                    <div class="invalid-feedback">{{ $message }}</div>
-                    @enderror
-                </div>
-                @endif
-
-
                 <!-- Submit Button -->
                 <div class="text-right">
                     <button type="submit" class="btn-black">Send Now</button>
@@ -101,5 +89,3 @@
 </div>
 @endsection
 
-<!-- Google reCAPTCHA script -->
-<script src="https://www.google.com/recaptcha/api.js" async defer></script>

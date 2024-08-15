@@ -13,10 +13,14 @@ use App\Http\Requests\ReviewRequest;
 
 class ReviewController extends Controller
 {
+    /**
+     * Store a newly created review in storage.
+     *
+     * @param \App\Http\Requests\ReviewRequest $request
+     * @return \Illuminate\Http\RedirectResponse
+     */
     public function store(ReviewRequest $request)
     {
-        // At this point, the request has already been validated
-
         // Ensure the user has purchased the product and the order status is 'CONFIRMED'
         $orderDetails = DB::table('order_details')
             ->join('orders', 'order_details.order_id', '=', 'orders.id')
