@@ -31,10 +31,20 @@ class CheckoutReq extends FormRequest
           'card-name'        => 'required|string',
           'card-expiry'      => [
             'required',
-            'regex:/^(0[1-9]|1[0-2])([0-9]{2})$/',
+            'regex:/^(0[1-9]|1[0-2])[0-9]{2}$/',
             function ($attribute, $value, $fail) {
-                if ($this->formatMMYY($value) < new DateTime()) {
-                    $fail(
+                $date = DateTime::createFromFormat('my', $value);
+                if ( ! $date) {
+                   return $fail(
+                      'Expiry date must be in MMYY format'
+                    );
+                }
+                $date->modify(
+                  'last day of this month'
+                );
+
+                if ($date < new DateTime()) {
+                 return   $fail(
                       'The card expiry date is invalid or has expired.'
                     );
                 }
@@ -105,17 +115,4 @@ class CheckoutReq extends FormRequest
             'billing-phone.regex'       => 'Phone number must be between 10 and 15 digits.',
         ];
     }
-
-    /**
-     * @param $value
-     *
-     * @return \DateTime|false
-     */
-    private function formatMMYY($value): false|DateTime
-    {
-        return DateTime::createFromFormat('my', $value)->modify(
-          'last day of this month'
-        );
-    }
-
 }
