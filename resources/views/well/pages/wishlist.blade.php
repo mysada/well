@@ -4,7 +4,7 @@
 <!-- Wishlist Section -->
 <section class="wishlist-section">
     <div class="container">
-        <h1 style="font-size: 50px;">Wishlist</h1>
+        <h1 style="font-size: 50px; margin-bottom: 30px">Wishlist</h1>
 
         @if($wishlists->isEmpty())
         <div class="empty-wishlist">

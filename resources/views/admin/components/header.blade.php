@@ -14,7 +14,9 @@
                     <div class="w-10 rounded-full">
                         <img
                                 alt="avatar"
-                                src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp"/>
+                                width="10px"
+                                height="10px"
+                                src="/images/logo/header_logo.png"/>
                     </div>
                 </div>
                 <ul tabindex="0"
