@@ -98,81 +98,14 @@
 #forgot-password-link:hover {
     color: #0D916C;
 }
-// .card-header {
-//     background-color: #ffffff;
-//     border-bottom: none;
-//     font-size: 1.5rem;
-//     font-weight: lighter;
-//     border: 1px solid #00A875;
-//     border-radius: unset !important;
-// }
 
-// .card-body {
-//     padding: 2rem;
-//     background-color: #f9f9f9;
-//     border-radius: unset!important;
-// }
+.container{
+  width: 100%;
+  max-width: 1200px!important;
+}
 
-// .form-label {
-//     font-weight: bold;
-//     font-size: 1rem;
-// }
-
-
-// .form-control {
-//     padding: 0.75rem;
-//     border: 1px solid #ced4da;
-//     border-radius: 5px;
-//     margin-bottom: 30px;
-//     width: 100%;
-
-//     &:focus {
-//         border-color: #00A875 !important;
-//         box-shadow: #00A875 !important;
-//         outline: none;
-//     }
-// }
-
-// .btn-dark {
-//     background-color: #000000;
-//     border: none;
-//     padding: 0.75rem;
-//     font-size: 1rem;
-//     border-radius: unset !important;
-
-// }
-
-// #forgot-password-link {
-//     font-size: 0.875rem;
-//     background-color: #000;
-//     color: #fff;
-//     text-decoration: none;
-//     padding: 0.5rem 1rem;
-//     transition: background-color 0.3s ease;
-//     border-radius: unset !important;
-// }
-
-
-// #login-form .mt-3 p {
-//     font-size: 0.875rem;
-// }
-
-// #create-account-link {
-//     background-color: #00A875;
-//     padding: 5px;
-//     font-size: 14px;
-//     color: #fff;
-//     text-decoration: none;
-//     transition: color 0.3s ease;
-// }
-
-
-// @media (max-width: 768px) {
-//     .container {
-//         padding: 1rem;
-//     }
-
-//     .card-body {
-//         padding: 1rem;
-//     }
-// }
+.card{
+  margin: 0!important;
+  padding: 0!important;
+  border: 1px solid #f1f1f1;
+}

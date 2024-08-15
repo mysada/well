@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\well;
 
+use App\Http\Requests\SetDefaultAddressRequest;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -56,27 +57,8 @@ class UserController extends Controller
         return view('well.pages.profile', compact('user', 'orders', 'lastOrders', 'reviews', 'pendingReviews', 'defaultAddress', 'title', 'firstName', 'lastName'));
     }
 
-    public function setDefaultAddress(Request $request)
+    public function setDefaultAddress(SetDefaultAddressRequest $request)
     {
-        $request->validate([
-            'shipping_name' => 'required|regex:/^[a-zA-Z\s]+$/|max:255',
-            'shipping_address' => 'required|regex:/^[a-zA-Z0-9\s,.-]+$/|max:255',
-            'shipping_city' => 'required|regex:/^[a-zA-Z\s]+$/|max:255',
-            'shipping_province' => 'required|regex:/^[a-zA-Z\s]+$/|max:255',
-            'shipping_country' => 'required|regex:/^[a-zA-Z\s]+$/|max:255',
-            'shipping_postal_code' => 'required|regex:/^[a-zA-Z0-9\s-]+$/|max:255',
-            'shipping_email' => 'required|email|max:255',
-            'shipping_phone' => 'required|regex:/^(\+?[0-9\s\-\(\)]*)$/|max:25|min:9',
-            'billing_name' => 'required|regex:/^[a-zA-Z\s]+$/|max:255',
-            'billing_address' => 'required|regex:/^[a-zA-Z0-9\s,.-]+$/|max:255',
-            'billing_city' => 'required|regex:/^[a-zA-Z\s]+$/|max:255',
-            'billing_province' => 'required|regex:/^[a-zA-Z\s]+$/|max:255',
-            'billing_country' => 'required|regex:/^[a-zA-Z\s]+$/|max:255',
-            'billing_postal_code' => 'required|regex:/^[a-zA-Z0-9\s-]+$/|max:255',
-            'billing_email' => 'required|email|max:255',
-            'billing_phone' => 'required|regex:/^(\+?[0-9\s\-\(\)]*)$/|max:25|min:9',
-        ]);
-
         $defaultAddress = DefaultAddress::updateOrCreate(
             ['user_id' => Auth::id()],
             [
@@ -101,6 +83,8 @@ class UserController extends Controller
 
         return back()->with('success', 'Default address set successfully.');
     }
+
+
 
     public function update(Request $request)
     {

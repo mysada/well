@@ -157,7 +157,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: #f9f9f9; 
+    background-color: #f9f9f9;
     border-radius: 5px;
     padding: 5px;
     border: none;
@@ -166,18 +166,18 @@
 .qty-input input.product-qty {
     width: 50px;
     text-align: center;
-    border: none; 
+    border: none;
     background: transparent;
     font-size: 17px;
     font-weight: 700;
-    color: #333; 
-    outline: none; 
+    color: #333;
+    outline: none;
 }
 
 .qty-count {
-    background-color: #fff; 
-    color: #00AB7A; 
-    border: none; 
+    background-color: #fff;
+    color: #00AB7A;
+    border: none;
     border-radius: 50%;
     width: 30px;
     height: 30px;
@@ -192,12 +192,12 @@
 }
 
 .qty-count:hover {
-    background-color: #20c997; 
+    background-color: #20c997;
     color: #fff;
 }
 
 .qty-count:active {
-    background-color: #17a589; 
+    background-color: #17a589;
 }
 
 .related-products {
@@ -301,7 +301,7 @@
 }
 
 .shop-link {
-    color: #20c997; 
+    color: #20c997;
     font-size: 18px;
     font-weight: 600;
     text-decoration: none;
@@ -311,18 +311,18 @@
 }
 
 .shop-link:hover {
-    color: #17a589; 
-    border-bottom: 2px solid #20c997; 
+    color: #17a589;
+    border-bottom: 2px solid #20c997;
 }
 
 .shop-link:active {
-    color: #148f77; 
+    color: #148f77;
 }
 
 .shop-link span {
     margin-left: 10px;
     font-weight: 400;
-    color: #555; 
+    color: #555;
 }
 
 

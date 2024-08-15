@@ -1,5 +1,6 @@
 @extends('layouts.app')
 @vite('resources/sass/reviews.scss')
+@vite('resources/js/product_review.js')
 @vite('resources/js/qty-input.js')
 
 @section('content')
@@ -98,7 +99,7 @@
                             <p class="review-text">{{ $review->review_text }}</p>
                             @if($review->image)
                             <div class="review-image">
-                                <img src="{{ asset('storage/' . $review->image) }}" alt="Review Image" class="img-fluid">
+                                <img src="{{ url( $review->image) }}" alt="Review Image Upload" class="img-fluid">
                             </div>
                             @endif
                         </div>
@@ -107,21 +108,10 @@
                 </div>
             </div>
         </div>
-
         @auth
         @if($hasPurchased)
         <div id="write-review" class="row mt-5">
             <div class="col-md-12">
-                <!-- Display validation errors -->
-                @if ($errors->any())
-                <div id="review_form_warning" class="alert-danger">
-                    <ul>
-                        @foreach ($errors->all() as $error)
-                        <li>{{ $error }}</li>
-                        @endforeach
-                    </ul>
-                </div>
-                @endif
                 <h4>Write a Review</h4>
                 <form action="{{ route('reviews.store', ['id' => $product->id]) }}" class="review-form" method="POST" enctype="multipart/form-data">
                     @csrf
@@ -129,22 +119,33 @@
 
                     <div class="form-group">
                         <label for="rating">Rating</label>
-                        <select name="rating" id="rating" class="form-control" required>
+                        <select name="rating" id="rating" class="form-control @error('rating') is-invalid @enderror" required>
                             <option value="">Select Rating</option>
-                            <option value="5">5 Star</option>
-                            <option value="4">4 Star</option>
-                            <option value="3">3 Star</option>
-                            <option value="2">2 Star</option>
-                            <option value="1">1 Star</option>
+                            <option value="5" {{ old('rating') == 5 ? 'selected' : '' }}>5 Star</option>
+                            <option value="4" {{ old('rating') == 4 ? 'selected' : '' }}>4 Star</option>
+                            <option value="3" {{ old('rating') == 3 ? 'selected' : '' }}>3 Star</option>
+                            <option value="2" {{ old('rating') == 2 ? 'selected' : '' }}>2 Star</option>
+                            <option value="1" {{ old('rating') == 1 ? 'selected' : '' }}>1 Star</option>
                         </select>
+                        @error('rating')
+                        <div id="first-error" class="invalid-feedback">{{ $message }}</div> <!-- Added ID here -->
+                        @enderror
                     </div>
+
                     <div class="form-group">
                         <label for="review_text">Review</label>
-                        <textarea name="review_text" id="review_text" class="form-control" required>{{ old('review_text') }}</textarea>
+                        <textarea name="review_text" id="review_text" class="form-control @error('review_text') is-invalid @enderror" required>{{ old('review_text') }}</textarea>
+                        @error('review_text')
+                        <div id="first-error" class="invalid-feedback">{{ $message }}</div> <!-- Added ID here if first -->
+                        @enderror
                     </div>
+
                     <div class="form-group">
                         <label for="image">Upload Image</label>
-                        <input type="file" name="image" id="image" class="form-control">
+                        <input type="file" name="image" id="image" class="form-control @error('image') is-invalid @enderror">
+                        @error('image')
+                        <div id="first-error" class="invalid-feedback">{{ $message }}</div> <!-- Added ID here if first -->
+                        @enderror
                     </div>
 
                     <button type="submit" class="btn btn-primary">Submit Review</button>
@@ -153,6 +154,9 @@
         </div>
         @endif
         @endauth
+
     </div>
 </section>
 @endsection
+
+
