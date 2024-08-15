@@ -21,7 +21,7 @@ class ReviewRequest extends FormRequest
                 'required',
                 'string',
                 'max:1000',
-                'regex:/^[a-zA-Z0-9\s]+$/',
+                'regex:/^[a-zA-Z0-9\s.]+$/',
             ],
             'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ];
