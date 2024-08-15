@@ -44,7 +44,7 @@
                                                     <form action="{{ route('CartItemDestroy', $cartItem->id) }}" method="POST" class="d-inline" >
                                                         @csrf
                                                         @method('DELETE')
-                                                        <button type="submit" class="btn btn-link text-danger p-0">Remove</button>
+                                                        <button type="submit" class="btn btn-link p-0">Remove</button>
                                                     </form>
                                                 </div>
                                             </td>

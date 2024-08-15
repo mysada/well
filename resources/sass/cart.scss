@@ -49,7 +49,6 @@
                     }
 
                     .actions {
-                        text-align: right;
                         margin-top: auto;
                     }
                 }
@@ -84,7 +83,7 @@
                 padding: 10px 32px;
                 border-radius: unset!important;
                 border: none;
-                font-size: 16px;
+                font-size: 15px;
                 cursor: pointer;
             }
 
@@ -142,20 +141,16 @@
         vertical-align: middle;
 
         button {
-            background-color: #ff4d4d;
             text-decoration: none;
-            color: white !important;
-            font-weight: bold;
-            padding: 6px 14px !important;
             border: none;
-            border-radius: unset!important;
             cursor: pointer;
             transition: background-color 0.3s, color 0.3s;
-            margin: 0px;
+            margin: 0 auto;
+            color: #666;
+            text-decoration: underline;
 
             &:hover {
-                background-color: #cc0000;
-                color: #fff;
+                color: #000;
             }
         }
     }
