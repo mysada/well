@@ -217,7 +217,7 @@
                         </div>
 
                         <div class="error-container">
-                            <input type="text" name="card-expiry" placeholder="Expiration Date (MM/YY)"
+                            <input type="text" name="card-expiry" placeholder="Expiration Date (MMYY)"
                                    class="form-control @error('card-expiry') is-invalid @enderror"
                                    value="{{ old('card-expiry') }}">
                             @error('card-expiry')

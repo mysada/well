@@ -1,7 +1,6 @@
 @extends('layouts.app')
 @vite('resources/sass/reviews.scss')
 @vite('resources/js/product_review.js')
-@vite('resources/js/qty-input.js')
 
 @section('content')
 <section class="product-review py-5">
