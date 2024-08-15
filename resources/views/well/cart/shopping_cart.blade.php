@@ -12,7 +12,7 @@
                 <div class="cart-layout">
                     <div class="cart-items">
                         <div class="table-responsive">
-                            <table class="table table-striped">
+                            <table class="table">
                                 <thead>
                                 <tr>
                                     <th scope="col">Product</th>
@@ -61,7 +61,7 @@
                     </div>
                     <div class="cart-summary">
                         <h4 class="summary-title">Order Summary</h4>
-                        <p style="display: flex; justify-content: space-between;">Quantity: <span id="item-count">{{ $cartItems->sum('quantity') }}</span></p>
+                        <p style="display: flex; justify-content: space-between;">Items: <span id="item-count">{{ $cartItems->sum('quantity') }}</span></p>
                         <p style="display: flex; justify-content: space-between;">Subtotal: <span id="subtotal">${{ number_format($cartItems->sum(fn($item) => $item->product ? $item->product->price * $item->quantity : 0), 2) }}</span></p>
                         <p style="display: flex; justify-content: space-between; color: #333; font-weight:700"class="total">Total: <span id="cart-total">${{ number_format($cartItems->sum(fn($item) => $item->product ? $item->product->price * $item->quantity : 0), 2) }}</span></p>
                         <form action="{{ route('OrderStore') }}" method="POST">
