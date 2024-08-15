@@ -7,6 +7,15 @@ use App\Services\OrderService;
 
 class OrderServiceProvider extends ServiceProvider
 {
+    /**
+     * Register services in the container.
+     *
+     * This method binds the OrderService class into the service container
+     * as a singleton, ensuring only one instance of OrderService is created
+     * during the application's lifecycle.
+     *
+     * @return void
+     */
     public function register(): void
     {
         $this->app->singleton(OrderService::class, function ($app) {
@@ -14,6 +23,11 @@ class OrderServiceProvider extends ServiceProvider
         });
     }
 
+    /**
+     * Bootstrap any application services.
+     *
+     * @return void
+     */
     public function boot()
     {
         //

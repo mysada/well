@@ -13,18 +13,20 @@ use Illuminate\Support\Facades\Log;
 
 class CartItemController extends Controller
 {
-
     /**
-     * Fetch cart items for the logged-in user (Creatd by Manish to Fetch Cart Summary in Checkput)
+     * Fetch cart items for the logged-in user (Created by Manish to Fetch Cart Summary in Checkout).
+     *
+     * @return \Illuminate\Database\Eloquent\Collection
      */
     public function fetchCartItems()
     {
         return CartItem::with('product')->where('user_id', Auth::id())->get();
     }
 
-
     /**
-     * Display the cart of the user
+     * Display the cart of the user.
+     *
+     * @return \Illuminate\Contracts\View\View
      */
     public function index()
     {
@@ -35,6 +37,12 @@ class CartItemController extends Controller
         return view('well.cart.shopping_cart', compact('cartItems', 'title'));
     }
 
+    /**
+     * Store a newly created cart item in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\RedirectResponse
+     */
     public function store(Request $request)
     {
         $request->validate([
@@ -74,7 +82,12 @@ class CartItemController extends Controller
         return redirect()->route('CartIndex')->with('success', 'Product added to cart successfully.');
     }
 
-
+    /**
+     * Update the totals for the cart.
+     *
+     * @param  int  $userId
+     * @return void
+     */
     private function updateCartTotals($userId)
     {
         $cartItems = CartItem::where('user_id', $userId)->get();
@@ -88,7 +101,11 @@ class CartItemController extends Controller
     }
 
     /**
-     * Update the number of items in the cart
+     * Update the number of items in the cart.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  string  $id
+     * @return \Illuminate\Http\JsonResponse
      */
     public function update(Request $request, string $id)
     {
@@ -125,9 +142,11 @@ class CartItemController extends Controller
         return response()->json(['message' => 'Update failed'], 400);
     }
 
-
-   /**
+    /**
      * Delete the cart item.
+     *
+     * @param  string  $id
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function destroy(string $id)
     {
@@ -144,7 +163,10 @@ class CartItemController extends Controller
     }
 
     /**
-     * Show a specific product and related products
+     * Show a specific product and related products.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Contracts\View\View
      */
     public function show($id)
     {
@@ -162,7 +184,11 @@ class CartItemController extends Controller
     }
 
     /**
-     * Success message
+     * Success message.
+     *
+     * @param  string  $msg
+     * @param  int|null  $id
+     * @return \Illuminate\Http\RedirectResponse
      */
     private function success($msg, $id = null): RedirectResponse
     {
@@ -173,12 +199,13 @@ class CartItemController extends Controller
     }
 
     /**
-     * Error message
+     * Error message.
+     *
+     * @param  string  $msg
+     * @return \Illuminate\Http\RedirectResponse
      */
     private function error($msg): RedirectResponse
     {
         return redirect(url('/cart_items'))->with('error', $msg);
     }
-
-
 }

@@ -9,6 +9,11 @@ class DefaultAddress extends Model
 {
     use HasFactory;
 
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @var array
+     */
     protected $fillable = [
         'user_id',
         'billing_name',
@@ -29,7 +34,11 @@ class DefaultAddress extends Model
         'shipping_phone',
     ];
 
-    // Define the relationship with the User model
+    /**
+     * Get the user that owns the default address.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
     public function user()
     {
         return $this->belongsTo(User::class);

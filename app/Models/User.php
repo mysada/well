@@ -20,12 +20,12 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
-        'full_name', //added
-        'address', //added
-        'phone', //added
-        'billing_address', //added
-        'shipping_address', //added
-        'is_admin', //added
+        'full_name',
+        'address',
+        'phone',
+        'billing_address',
+        'shipping_address',
+        'is_admin',
     ];
 
     /**
@@ -41,7 +41,7 @@ class User extends Authenticatable
     /**
      * The attributes that should be cast.
      *
-     * @return array<string, string>
+     * @var array<string, string>
      */
     protected $casts = [
         'email_verified_at' => 'datetime',
@@ -50,6 +50,8 @@ class User extends Authenticatable
 
     /**
      * Get the reviews for the user.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
     public function reviews()
     {
@@ -58,26 +60,43 @@ class User extends Authenticatable
 
     /**
      * Get the payments associated with the user.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasManyThrough
      */
     public function payments()
     {
         return $this->hasManyThrough(Payment::class, Order::class, 'user_id', 'order_id', 'id', 'id');
     }
 
+    /**
+     * Get the default address associated with the user.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasOne
+     */
     public function defaultAddress()
     {
         return $this->hasOne(DefaultAddress::class);
     }
 
-    //defined by --AMAN to get shipping address on admin side for user management
+    /**
+     * Get the orders associated with the user.
+     * Defined by AMAN to get shipping address on admin side for user management.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
     public function orders()
     {
         return $this->hasMany(Order::class);
     }
-    //defined by --AMAN
+
+    /**
+     * Check if the user is an admin.
+     * Defined by AMAN.
+     *
+     * @return bool
+     */
     public function isAdmin()
     {
         return $this->is_admin === 1; // Check if the is_admin field is set to 1
     }
-
 }

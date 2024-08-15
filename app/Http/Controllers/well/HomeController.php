@@ -9,11 +9,10 @@ use App\Models\Product;
 
 class HomeController extends Controller
 {
-
     /**
      * Show the application dashboard.
      *
-     * @return \Illuminate\Contracts\Support\Renderable
+     * @return \Illuminate\Contracts\View\View
      */
     public function index()
     {
@@ -32,5 +31,4 @@ class HomeController extends Controller
 
         return view('well.pages.home', compact('title', 'randomHeroSection', 'categories', 'bestSellers'));
     }
-
 }
