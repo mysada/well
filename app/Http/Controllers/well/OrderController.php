@@ -50,8 +50,17 @@ class OrderController extends Controller
      */
     public function details($orderId)
     {
-        $order = Order::with('orderDetails.product')->findOrFail($orderId);
+        // Get the authenticated user
+        $user = Auth::user();
 
+        // Fetch the order and ensure it belongs to the authenticated user
+        $order = Order::with('orderDetails.product')
+            ->where('id', $orderId)
+            ->where('user_id', $user->id)
+            ->firstOrFail();
+
+        // Pass the order details to the view
         return view('well.order.order_detail', compact('order'));
     }
+
 }
