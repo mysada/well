@@ -54,83 +54,48 @@ class AdminProductController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'name' => [
-                'required',
-                'string',
-                'max:255',
-                'regex:/^[a-zA-Z0-9\s\-_.]+$/'
-            ],
-            'description' => [
-                'required',
-                'string'
-            ],
-            'long_description' => [
-                'nullable',
-                'string'
-            ],
-            'price' => [
-                'required',
-                'numeric',
-                'min:0'
-            ],
-            'category_id' => [
-                'required',
-                'integer',
-                'exists:categories,id'
-            ],
-            'stock' => [
-                'required',
-                'integer',
-                'min:0'
-            ],
-            'image' => [
-                'nullable',
-                'image',
-                'mimes:jpeg,png,jpg,gif',
-                'max:2048'
-            ],
-            'color' => [
-                'nullable',
-                'string',
-                'max:50'
-            ],
-            'rating' => [
-                'nullable',
-                'numeric',
-                'min:0',
-                'max:5'
-            ],
-            'discount' => [
-                'nullable',
-                'numeric',
-                'min:0',
-                'max:100'
-            ],
+            'name' => 'required|string|max:255|regex:/^[a-zA-Z0-9\s\-_.]+$/',
+            'description' => 'required|string',
+            'long_description' => 'required|string',
+            'price' => 'required|numeric|min:0',
+            'category_id' => 'required|integer|exists:categories,id',
+            'stock' => 'required|integer|min:0',
+            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'color' => 'nullable|string|max:50',
+            'rating' => 'nullable|numeric|min:0|max:5',
+            'discount' => 'nullable|numeric|min:0|max:100',
         ]);
 
-        $imagePath = null;
+        // Handle the image upload
         if ($request->hasFile('image')) {
-            $imagePath = $request->file('image')->store('images');
+            $imagePath = $request->file('image')->store('images/home');
+
+            if (!$imagePath) {
+                return redirect()->back()->withErrors(['image' => 'Image upload failed.']);
+            }
+        } else {
+            $imagePath = null;
         }
 
+//        dd($request->all());
+        // Create the new product
         Product::create([
-          'name'             => $request->name,
-          'description'      => $request->description,
-          'long_description' => $request->long_description,
-          'price'            => $request->price,
-          'category_id'      => $request->category_id,
-          'stock'            => $request->stock,
-          'image_url'        => $imagePath ? Storage::url($imagePath) : null,
-          'color'            => $request->color,
-          'rating'           => $request->rating,
-          'discount'         => $request->discount,
+            'name' => $request->name,
+            'description' => $request->description,
+            'long_description' => $request->long_description,
+            'price' => $request->price,
+            'category_id' => $request->category_id,
+            'stock' => $request->stock,
+            'image_url' => $imagePath,
+            'color' => $request->color,
+            'rating' => $request->rating,
+            'discount' => $request->discount,
         ]);
 
-        return redirect()->route('AdminProductList')->with(
-          'success',
-          'Product created successfully.'
-        );
+        // Redirect to the product list with a success message
+        return redirect()->route('AdminProductList')->with('success', 'Product created successfully.');
     }
+
 
     /**
      * Display the specified resource.
@@ -152,97 +117,56 @@ class AdminProductController extends Controller
         return view('admin.pages.product.edit', compact('product', 'title'));
     }
 
-    /**
+
+       /**
      * Update the specified resource in storage.
      */
     public function update(Request $request, Product $product)
     {
+        // Validate the incoming request data
         $request->validate([
-            'name' => [
-                'required',
-                'string',
-                'max:255',
-                'regex:/^[a-zA-Z0-9\s\-_.]+$/'
-            ],
-            'description' => [
-                'required',
-                'string'
-            ],
-            'long_description' => [
-                'nullable',
-                'string'
-            ],
-            'price' => [
-                'required',
-                'numeric',
-                'min:0'
-            ],
-            'category_id' => [
-                'required',
-                'integer',
-                'exists:categories,id'
-            ],
-            'stock' => [
-                'required',
-                'integer',
-                'min:0'
-            ],
-            'image' => [
-                'nullable',
-                'image',
-                'mimes:jpeg,png,jpg,gif',
-                'max:2048'
-            ],
-            'color' => [
-                'nullable',
-                'string',
-                'max:50'
-            ],
-            'rating' => [
-                'nullable',
-                'numeric',
-                'min:0',
-                'max:5'
-            ],
-            'discount' => [
-                'nullable',
-                'numeric',
-                'min:0',
-                'max:100'
-            ],
+            'name' => 'required|string|max:255|regex:/^[a-zA-Z0-9\s\-_.]+$/',
+            'description' => 'required|string',
+            'long_description' => 'nullable|string',
+            'price' => 'required|numeric|min:0',
+            'category_id' => 'required|integer|exists:categories,id',
+            'stock' => 'required|integer|min:0',
+            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'color' => 'nullable|string|max:50',
+            'rating' => 'nullable|numeric|min:0|max:5',
+            'discount' => 'nullable|numeric|min:0|max:100',
         ]);
 
         // Handle image upload
         if ($request->hasFile('image')) {
-            // Delete the old image if exists
-            if ($product->image_url && Storage::exists($product->image_url)) {
-                Storage::delete($product->image_url);
+            // Delete the old image if it exists
+            if ($product->image_url) {
+                Storage::delete('public/' . $product->image_url);
             }
 
-            $imagePath= $request->file('image')->store('images/products');
-            $product->image_url = $imagePath;
+            // Save the new image and update the image path
+            $product->image_url = $request->file('image')->store('images/home');
         }
 
-        // Update other product fields
-        $product->update($request->except('image'));
+        // Save the updated product
+        $product->save();
 
-        return redirect()->route('AdminProductList')->with(
-          'success',
-          'Product updated successfully.'
-        );
+        // Redirect to the product list with a success message
+        return redirect()->route('AdminProductList')->with('success', 'Product updated successfully.');
     }
+
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Product $product)
+    public function destroy(string $id)
     {
+        // Find the product by ID and delete it
+        $product = Product::findOrFail($id);
         $product->delete();
 
-        return redirect()->route('AdminProductList')->with(
-          'success',
-          'Product deleted successfully.'
-        );
+        return redirect()->route('AdminProductList')->with('success', 'Product deleted successfully.');
     }
+
 
 }
