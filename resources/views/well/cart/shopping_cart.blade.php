@@ -61,12 +61,12 @@
                     </div>
                     <div class="cart-summary">
                         <h4 class="summary-title">Order Summary</h4>
-                        <p>Items: <span id="item-count">{{ $cartItems->sum('quantity') }}</span></p>
-                        <p>Subtotal: $<span id="subtotal">{{ number_format($cartItems->sum(fn($item) => $item->product ? $item->product->price * $item->quantity : 0), 2) }}</span></p>
-                        <p class="total">Total: $<span id="cart-total">{{ number_format($cartItems->sum(fn($item) => $item->product ? $item->product->price * $item->quantity : 0), 2) }}</span></p>
+                        <p style="display: flex; justify-content: space-between;">Quantity: <span id="item-count">{{ $cartItems->sum('quantity') }}</span></p>
+                        <p style="display: flex; justify-content: space-between;">Subtotal: <span id="subtotal">${{ number_format($cartItems->sum(fn($item) => $item->product ? $item->product->price * $item->quantity : 0), 2) }}</span></p>
+                        <p style="display: flex; justify-content: space-between; color: #333; font-weight:700"class="total">Total: <span id="cart-total">${{ number_format($cartItems->sum(fn($item) => $item->product ? $item->product->price * $item->quantity : 0), 2) }}</span></p>
                         <form action="{{ route('OrderStore') }}" method="POST">
                             @csrf
-                            <button type="submit" class="btn btn-black btn-block">Go to Checkout</button>
+                            <button type="submit" class="btn btn-black btn-block">Checkout</button>
                         </form>
                     </div>
                 </div>
