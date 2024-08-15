@@ -97,7 +97,7 @@
                             <p class="review-text">{{ $review->review_text }}</p>
                             @if($review->image)
                             <div class="review-image">
-                                <img src="{{ url( $review->image) }}" alt="Review Image" class="img-fluid">
+                                <img src="{{ url( $review->image) }}" alt="Review Image Upload" class="img-fluid">
                             </div>
                             @endif
                         </div>

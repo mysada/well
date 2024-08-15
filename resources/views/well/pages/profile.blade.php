@@ -235,7 +235,7 @@
                             <p class="review-text">{{ $review->review_text }}</p>
                             @if($review->image)
                             <div class="review-image">
-                                <img src="{{ asset('storage/' . $review->image) }}" alt="Review Image" class="img-fluid" style="max-width: 150px;">
+                                <img src="{{ url( $review->image) }}" alt="Review Image" class="img-fluid" style="max-width: 150px;">
                             </div>
                             @endif
                         </div>
