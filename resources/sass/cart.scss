@@ -18,9 +18,7 @@
 
         .cart-items {
             flex: 3;
-            padding: 20px;
             background: #fff;
-            border: 2px solid #00A875;
             border-radius: unset!important;
             overflow-x: auto;
             min-width: 0;
@@ -45,7 +43,7 @@
                     text-align: left;
 
                     img {
-                        width: 60px;
+                        width: 120px;
                         height: auto;
                         border-radius: unset!important;
                     }
@@ -61,7 +59,7 @@
         .cart-summary {
             flex: 1;
             padding: 20px;
-            background-color: #f8f9fa;
+            // background-color: #f8f9fa;
             border: 1px solid #eee;
             border-radius: unset!important;
             margin-left: 20px;
@@ -69,6 +67,7 @@
 
             h4 {
                 color: #333;
+                font-weight: 700;
                 margin-bottom: 20px;
             }
 
@@ -80,18 +79,17 @@
 
             .btn-block {
                 border: 1px solid #eee;
-                background-color: #018F64;
+                background-color: #333;
                 color: #ffffff !important;
-                font-weight: bold;
-                padding: 10px 20px;
+                padding: 10px 32px;
                 border-radius: unset!important;
                 border: none;
-                font-size: 1.2em;
+                font-size: 16px;
                 cursor: pointer;
             }
 
             .btn-block:hover {
-                background-color: #00A875;
+                background-color: #000;
                 color: #fff;
             }
         }

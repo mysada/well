@@ -66,7 +66,7 @@
                         <p class="total">Total: $<span id="cart-total">{{ number_format($cartItems->sum(fn($item) => $item->product ? $item->product->price * $item->quantity : 0), 2) }}</span></p>
                         <form action="{{ route('OrderStore') }}" method="POST">
                             @csrf
-                            <button type="submit" class="btn btn-primary btn-block">Go to Checkout</button>
+                            <button type="submit" class="btn btn-black btn-block">Go to Checkout</button>
                         </form>
                     </div>
                 </div>
