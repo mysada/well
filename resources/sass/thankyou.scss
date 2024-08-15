@@ -1,3 +1,8 @@
+.thank-you-message {
+    p {
+        color: #666;
+    }
+}
 .thank-you-page {
     .border-custom {
         border-radius: 10px;
@@ -18,21 +23,22 @@
 
     .status-badge {
         display: inline-block;
-        padding: 10px 20px;
-        font-size: 24px;
+        padding: 0.6rem 2.5rem;
+        font-size: 16px;
         border-radius: 5px;
-        background-color: #00A875;
+        background-color: #00AB7A;
         color: #fff;
         margin-top: 10px;
     }
 
     .order-info p {
         margin: 5px 0;
+        color: #333;
     }
 
     .order-status {
         margin-top: 20px;
-        text-align: center;
+        // text-align: center;
 
         .status-badge {
             margin: 0 auto;
@@ -51,7 +57,7 @@
 
     .card-body {
         padding: 20px;
-        border: 2px solid #00A875;
+        // border: 2px solid #00A875;
     }
 
     .list-group-item {

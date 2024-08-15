@@ -17,20 +17,20 @@
                     <img src="{{ asset($product->image_url) }}" alt="Product Image" class="img-fluid">
                 </div>
                 <div class="col-md-6">
-                    <h3 class="product-title">{{ $product->name }}</h3>
+                    <h3 class="product-title-single">{{ $product->name }}</h3>
                     <p class="product-description">{{ $product->description }}</p>
                     <p class="product-price text-danger">$ {{ number_format($product->price, 2) }}</p>
                     <div>
-                        <a href="{{ route('product.reviews', $product->id) }}" class="btn btn-primary mt-3" id="see_reviews">See Reviews</a>
+                        <a href="{{ route('product.reviews', $product->id) }}" class="btn mt-3" id="see_reviews">See Reviews</a>
                     </div>
-                    <label for="quantity" class="mr-2 custom-margin">Quantity</label>
+                    <label for="quantity" class="mr-2 custom-margin" style="color: #666">Quantity</label>
                     <div class="d-flex align-items-center mb-4">
                         <div id="quantity" class="qty-input">
                             <button class="qty-count qty-count--minus" data-action="minus" type="button">-</button>
                             <input class="product-qty" type="number" name="quantity" min="1" max="{{ $product->stock }}" value="1" data-product-id="{{ $product->id }}">
                             <button class="qty-count qty-count--add" data-action="add" type="button">+</button>
                         </div>
-                        <span id="stock" class="text-success product-stock-display" style="margin-left: 30px;">{{ $product->stock }} in stock</span>
+                        <span id="stock" class="text-success product-stock-display" style="margin-left: 20px;">{{ $product->stock }} in stock</span>
                     </div>
 
                     <div class="d-flex gap-4">
@@ -66,7 +66,7 @@
             <div class="col-md-12 mb-3">
                 <h2 class="product-title text-center">Introduction</h2>
             </div>
-            <p class="product-description text-center">{{ $product->long_description }}</p>
+            <p class="product-description">{{ $product->long_description }}</p>
             <div class="row">
                 <div class="col-md-6">
                     <img src="{{ asset('images/detail_view/intro1.jpg') }}" alt="Introduction Image 1">
