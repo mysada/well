@@ -93,7 +93,9 @@
                                                  style="width: {{ $width }};"></div>
                                         </div>
                                     </td>
-                                    <td class="py-4 text-{{ ['primary', 'secondary', 'accent', 'warning'][$index] }} font-medium">{{ [453, 290, 186, 110][$index] }}</td>
+                                    <td class="py-4 text-{{ ['primary', 'secondary', 'accent', 'warning'][$index] }} font-medium">
+                                        {{ $seller['quantity'] }}
+                                    </td>
                                 </tr>
                             @endif
                         @endforeach
