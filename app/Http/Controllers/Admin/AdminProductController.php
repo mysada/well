@@ -10,36 +10,40 @@ use Illuminate\Support\Facades\Storage;
 
 class AdminProductController extends Controller
 {
-
     /**
      * Display a listing of the resource.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Contracts\View\View
      */
     public function index(Request $request)
     {
         $search = $request->input('search');
 
         $items = Product::with('category')
-                        ->when($search, function ($query, $search) {
-                            return $query->where(
-                              'name',
-                              'like',
-                              "%{$search}%"
-                            );
-                        })
-                        ->orderByDesc('id')
-                        ->paginate(20);
+            ->when($search, function ($query, $search) {
+                return $query->where(
+                    'name',
+                    'like',
+                    "%{$search}%"
+                );
+            })
+            ->orderByDesc('id')
+            ->paginate(20);
 
         $title = 'Product Management - List';
         Log::info('Manual log test');
 
         return view(
-          'admin.pages.product.index',
-          compact('items', 'title', 'search')
+            'admin.pages.product.index',
+            compact('items', 'title', 'search')
         );
     }
 
     /**
      * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Contracts\View\View
      */
     public function create()
     {
@@ -50,6 +54,9 @@ class AdminProductController extends Controller
 
     /**
      * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function store(Request $request)
     {
@@ -114,26 +121,29 @@ class AdminProductController extends Controller
         }
 
         Product::create([
-          'name'             => $request->name,
-          'description'      => $request->description,
-          'long_description' => $request->long_description,
-          'price'            => $request->price,
-          'category_id'      => $request->category_id,
-          'stock'            => $request->stock,
-          'image_url'        => $imagePath ? Storage::url($imagePath) : null,
-          'color'            => $request->color,
-          'rating'           => $request->rating,
-          'discount'         => $request->discount,
+            'name'             => $request->name,
+            'description'      => $request->description,
+            'long_description' => $request->long_description,
+            'price'            => $request->price,
+            'category_id'      => $request->category_id,
+            'stock'            => $request->stock,
+            'image_url'        => $imagePath ? Storage::url($imagePath) : null,
+            'color'            => $request->color,
+            'rating'           => $request->rating,
+            'discount'         => $request->discount,
         ]);
 
         return redirect()->route('AdminProductList')->with(
-          'success',
-          'Product created successfully.'
+            'success',
+            'Product created successfully.'
         );
     }
 
     /**
      * Display the specified resource.
+     *
+     * @param  \App\Models\Product  $product
+     * @return \Illuminate\Contracts\View\View
      */
     public function show(Product $product)
     {
@@ -144,6 +154,9 @@ class AdminProductController extends Controller
 
     /**
      * Show the form for editing the specified resource.
+     *
+     * @param  \App\Models\Product  $product
+     * @return \Illuminate\Contracts\View\View
      */
     public function edit(Product $product)
     {
@@ -154,6 +167,10 @@ class AdminProductController extends Controller
 
     /**
      * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Models\Product  $product
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function update(Request $request, Product $product)
     {
@@ -219,7 +236,7 @@ class AdminProductController extends Controller
                 Storage::delete($product->image_url);
             }
 
-            $imagePath= $request->file('image')->store('images/products');
+            $imagePath = $request->file('image')->store('images/products');
             $product->image_url = $imagePath;
         }
 
@@ -227,22 +244,24 @@ class AdminProductController extends Controller
         $product->update($request->except('image'));
 
         return redirect()->route('AdminProductList')->with(
-          'success',
-          'Product updated successfully.'
+            'success',
+            'Product updated successfully.'
         );
     }
 
     /**
      * Remove the specified resource from storage.
+     *
+     * @param  \App\Models\Product  $product
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function destroy(Product $product)
     {
         $product->delete();
 
         return redirect()->route('AdminProductList')->with(
-          'success',
-          'Product deleted successfully.'
+            'success',
+            'Product deleted successfully.'
         );
     }
-
 }

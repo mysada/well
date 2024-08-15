@@ -8,12 +8,14 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Payment extends Model
 {
+    use HasFactory, SoftDeletes;
 
-    use HasFactory;
-    use SoftDeletes;
-
-    protected $fillable
-      = [
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @var array
+     */
+    protected $fillable = [
         'order_id',
         'method',
         'amount',
@@ -31,12 +33,15 @@ class Payment extends Model
         'billing_province',
         'billing_country',
         'billing_postal_code',
-      ];
+    ];
 
-    // Define the relationship to the Order model
+    /**
+     * Get the order that this payment is associated with.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
     public function order()
     {
         return $this->belongsTo(Order::class);
     }
-
 }

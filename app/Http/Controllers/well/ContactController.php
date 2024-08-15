@@ -46,19 +46,6 @@ class ContactController extends Controller
                 'string',
                 'max:500',
             ],
-            'g-recaptcha-response' => [
-                app()->environment('production') ? 'required' : 'nullable',
-                function ($attribute, $value, $fail) {
-                    if (app()->environment('production')) {
-                        $response = file_get_contents('https://www.google.com/recaptcha/api/siteverify?secret=' . env('RECAPTCHA_SECRET_KEY') . '&response=' . $value);
-                        $responseKeys = json_decode($response, true);
-
-                        if (!$responseKeys['success']) {
-                            $fail('The CAPTCHA verification failed.');
-                        }
-                    }
-                },
-            ],
         ], [
             'name.required' => 'Please enter your name.',
             'name.string' => 'Name should only contain alphabetic characters and spaces.',
@@ -79,10 +66,6 @@ class ContactController extends Controller
             'message.required' => 'Please enter your message.',
             'message.string' => 'Message should only contain certain characters.',
             'message.max' => 'Message cannot exceed 500 characters.',
-
-            'captcha.required' => 'Please complete the CAPTCHA.',
-            'security_question.required' => 'Please answer the security question.',
-            'security_question.in' => 'The answer to the security question is incorrect.',
         ]);
 
         $contactData = $request->all();

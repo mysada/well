@@ -11,7 +11,13 @@ use App\Models\Category;
 
 class AdminReviewController extends Controller
 {
-   public function index(Request $request)
+    /**
+     * Display a listing of the resource.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Contracts\View\View
+     */
+    public function index(Request $request)
     {
         $search = $request->input('search');
         $category_id = $request->input('category_id');
@@ -68,12 +74,30 @@ class AdminReviewController extends Controller
             return $query->where('category_id', $category_id);
         })->get();
 
-        return view('admin.pages.review.index', compact('items', 'title', 'search', 'category_id', 'product_id', 'rating', 'status', 'start_date', 'end_date', 'averageRating', 'totalReviews', 'categories', 'products'));
+        return view('admin.pages.review.index', compact(
+            'items',
+            'title',
+            'search',
+            'category_id',
+            'product_id',
+            'rating',
+            'status',
+            'start_date',
+            'end_date',
+            'averageRating',
+            'totalReviews',
+            'categories',
+            'products'
+        ));
     }
 
-
-
-
+    /**
+     * Update the status of the specified review.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  string  $id
+     * @return \Illuminate\Http\RedirectResponse
+     */
     public function updateStatus(Request $request, $id)
     {
         if ($request->status == 'flagged') {
@@ -122,7 +146,4 @@ class AdminReviewController extends Controller
             return redirect()->route('AdminReviewList')->with('success', 'Review status updated successfully.');
         }
     }
-
-
-
 }

@@ -11,6 +11,11 @@ class Product extends Model
 {
     use HasFactory, SoftDeletes;
 
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @var array
+     */
     protected $fillable = [
         'name',
         'description',
@@ -23,19 +28,33 @@ class Product extends Model
         'discount'
     ];
 
+    /**
+     * Get the category that this product belongs to.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
     public function category(): BelongsTo
     {
         return $this->belongsTo(Category::class);
     }
 
+    /**
+     * Get the reviews for this product.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
     public function reviews()
     {
         return $this->hasMany(Review::class);
     }
 
+    /**
+     * Get the order details associated with this product.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
     public function orderDetails()
     {
         return $this->hasMany(OrderDetail::class, 'product_id');
     }
-
 }

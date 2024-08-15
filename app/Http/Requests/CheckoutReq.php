@@ -7,52 +7,66 @@ use Illuminate\Foundation\Http\FormRequest;
 
 class CheckoutReq extends FormRequest
 {
-
+    /**
+     * Determine if the user is authorized to make this request.
+     *
+     * @return bool
+     */
     public function authorize(): bool
     {
         return true;
     }
 
+    /**
+     * Get the validation rules that apply to the request.
+     *
+     * @return array
+     */
     public function rules(): array
     {
         return [
-          'order-id'         => 'required|exists:orders,id',
-          'card-number'      => 'required|digits_between:13,16',
-          'card-name'        => 'required|string',
-          'card-expiry'      => [
-            'required',
-            'regex:/^(0[1-9]|1[0-2])([0-9]{2})$/',
-            function ($attribute, $value, $fail) {
-                $month      = substr($value, 0, 2);
-                $year       = '20'.substr($value, 2, 2);
-                $expiryDate = DateTime::createFromFormat('Y-m', "$year-$month")
-                                       ->modify('last day of this month');
-                if ($expiryDate < new DateTime()) {
-                    $fail('The card expiry date is invalid or has expired.');
-                }
-            },
-          ],
-          'card-cvc'         => 'required|digits:3',
-          'shipping-name'    => 'required|string',
-          'shipping-address' => 'required|string',
-          'shipping-city'    => 'required|string',
-          'shipping-country' => 'required|exists:countries,code',
-          'shipping-zip'     => 'required|string',
-          'shipping-email'   => 'required|email',
-          'shipping-phone'   => 'required|digits_between:10,15',
-          'shipping-state'   => 'nullable|string',
-          'ca-province'      => 'nullable|string',
-          'billing-name'     => 'nullable|string',
-          'billing-address'  => 'nullable|string',
-          'billing-city'     => 'nullable|string',
-          'billing-country'  => 'nullable|exists:countries,code',
-          'billing-zip'      => 'nullable|string',
-          'billing-email'    => 'nullable|email',
-          'billing-phone'    => 'nullable|digits_between:10,15',
-          'same-address'     => 'nullable',
+            'order-id'         => 'required|exists:orders,id',
+            'card-number'      => 'required|digits_between:13,16',
+            'card-name'        => 'required|string',
+            'card-expiry'      => [
+                'required',
+                'regex:/^(0[1-9]|1[0-2])([0-9]{2})$/',
+                function ($attribute, $value, $fail) {
+                    $month      = substr($value, 0, 2);
+                    $year       = '20'.substr($value, 2, 2);
+                    $expiryDate = DateTime::createFromFormat('Y-m', "$year-$month")
+                        ->modify('last day of this month');
+                    if ($expiryDate < new DateTime()) {
+                        $fail('The card expiry date is invalid or has expired.');
+                    }
+                },
+            ],
+            'card-cvc'         => 'required|digits:3',
+            'shipping-name'    => 'required|string',
+            'shipping-address' => 'required|string',
+            'shipping-city'    => 'required|string',
+            'shipping-country' => 'required|exists:countries,code',
+            'shipping-zip'     => 'required|string',
+            'shipping-email'   => 'required|email',
+            'shipping-phone'   => 'required|digits_between:10,15',
+            'shipping-state'   => 'nullable|string',
+            'ca-province'      => 'nullable|string',
+            'billing-name'     => 'nullable|string',
+            'billing-address'  => 'nullable|string',
+            'billing-city'     => 'nullable|string',
+            'billing-country'  => 'nullable|exists:countries,code',
+            'billing-zip'      => 'nullable|string',
+            'billing-email'    => 'nullable|email',
+            'billing-phone'    => 'nullable|digits_between:10,15',
+            'same-address'     => 'nullable',
         ];
     }
 
+    /**
+     * Get the custom validation error messages.
+     *
+     * @return array
+     */
     public function messages(): array
     {
         return [
@@ -92,5 +106,4 @@ class CheckoutReq extends FormRequest
             'billing-phone.regex'       => 'Phone number must be between 10 and 15 digits.',
         ];
     }
-
 }

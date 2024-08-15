@@ -7,6 +7,11 @@ use Illuminate\Http\Request;
 
 class CancellationRefundsController extends Controller
 {
+    /**
+     * Display the "Cancellation & Refunds" page.
+     *
+     * @return \Illuminate\Contracts\View\View
+     */
     public function index()
     {
         $title = 'Cancellation & Refunds';

@@ -8,6 +8,12 @@ use App\Models\Country;
 
 class ThankYouController extends Controller
 {
+    /**
+     * Display the Thank You page for the given order.
+     *
+     * @param int $orderId
+     * @return \Illuminate\Contracts\View\View
+     */
     public function show($orderId)
     {
         $order = Order::with('orderDetails', 'payments')->findOrFail($orderId);

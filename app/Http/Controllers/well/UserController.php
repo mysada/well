@@ -15,6 +15,11 @@ use App\Models\DefaultAddress;
 
 class UserController extends Controller
 {
+    /**
+     * Display the user's profile, orders, reviews, and other related data.
+     *
+     * @return \Illuminate\Contracts\View\View
+     */
     public function index()
     {
         $user = Auth::user();
@@ -34,7 +39,6 @@ class UserController extends Controller
 
         // Get reviews written by the user
         $reviews = Review::where('user_id', Auth::id())->with('product')->get();
-
 
         // Get pending reviews
         $pendingReviews = Order::where('user_id', Auth::id())
@@ -57,6 +61,12 @@ class UserController extends Controller
         return view('well.pages.profile', compact('user', 'orders', 'lastOrders', 'reviews', 'pendingReviews', 'defaultAddress', 'title', 'firstName', 'lastName'));
     }
 
+    /**
+     * Set the default shipping and billing address for the user.
+     *
+     * @param \App\Http\Requests\SetDefaultAddressRequest $request
+     * @return \Illuminate\Http\RedirectResponse
+     */
     public function setDefaultAddress(SetDefaultAddressRequest $request)
     {
         $defaultAddress = DefaultAddress::updateOrCreate(
@@ -84,8 +94,12 @@ class UserController extends Controller
         return back()->with('success', 'Default address set successfully.');
     }
 
-
-
+    /**
+     * Update the user's profile information.
+     *
+     * @param \Illuminate\Http\Request $request
+     * @return \Illuminate\Http\RedirectResponse
+     */
     public function update(Request $request)
     {
         $request->validate([
@@ -108,6 +122,12 @@ class UserController extends Controller
         }
     }
 
+    /**
+     * Reorder items from a previous order.
+     *
+     * @param int $orderId
+     * @return \Illuminate\Http\RedirectResponse
+     */
     public function reorder($orderId)
     {
         // Find the order by ID and ensure it belongs to the authenticated user
@@ -142,6 +162,5 @@ class UserController extends Controller
         }
 
         return redirect()->route('CartIndex')->with('success', 'Items from the previous order have been added to your cart.');
-
     }
 }

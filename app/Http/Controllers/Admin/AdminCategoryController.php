@@ -11,16 +11,20 @@ class AdminCategoryController extends Controller
 {
     /**
      * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
      */
     public function index()
     {
         $title = 'Category Management - List';
         $categories = Category::all();
-        return view('admin.pages.category.index', compact('categories','title'));
+        return view('admin.pages.category.index', compact('categories', 'title'));
     }
 
     /**
      * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
      */
     public function create()
     {
@@ -30,12 +34,15 @@ class AdminCategoryController extends Controller
 
     /**
      * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
     {
         // Validate the incoming request data
         $request->validate([
-            'name' => 'required|string|max:255',
+            'name'  => 'required|string|max:255',
             'image' => 'required|image|mimes:jpg,jpeg,png,gif|max:2048',
         ]);
 
@@ -46,20 +53,22 @@ class AdminCategoryController extends Controller
 
             // Create the new category
             Category::create([
-                'name' => $request->name,
+                'name'  => $request->name,
                 'image' => $imagePath,  // Save the path to the image
             ]);
 
             // Redirect to the category list with a success message
             return redirect()->route('AdminCategoryList')->with('success', 'Category created successfully.');
         } else {
-
             return redirect()->back()->withErrors(['image' => 'Image upload failed.']);
         }
     }
 
     /**
      * Display the specified resource.
+     *
+     * @param  string  $id
+     * @return \Illuminate\Http\Response
      */
     public function show(string $id)
     {
@@ -68,6 +77,9 @@ class AdminCategoryController extends Controller
 
     /**
      * Show the form for editing the specified resource.
+     *
+     * @param  string  $id
+     * @return \Illuminate\Http\Response
      */
     public function edit(string $id)
     {
@@ -76,17 +88,20 @@ class AdminCategoryController extends Controller
 
         // Return the edit view with the category data
         return view('admin.pages.category.edit', compact('category'));
-
     }
 
     /**
      * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  string  $id
+     * @return \Illuminate\Http\Response
      */
     public function update(Request $request, string $id)
     {
         // Validate the incoming request data
         $request->validate([
-            'name' => 'required|string|max:255',
+            'name'  => 'required|string|max:255',
             'image' => 'nullable|image|mimes:jpg,jpeg,png,gif|max:2048',
         ]);
 
@@ -114,6 +129,9 @@ class AdminCategoryController extends Controller
 
     /**
      * Remove the specified resource from storage.
+     *
+     * @param  string  $id
+     * @return \Illuminate\Http\Response
      */
     public function destroy(string $id)
     {
@@ -124,6 +142,5 @@ class AdminCategoryController extends Controller
 
         // Redirect to the category list with a success message
         return redirect()->route('AdminCategoryList')->with('success', 'Category deleted successfully.');
-
     }
 }
