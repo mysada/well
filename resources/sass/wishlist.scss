@@ -77,7 +77,7 @@
 }
 
 .btn-primary {
-    background-color: #333;
+    background-color: #00AB7A;
     width: 182px;
     color: #fff;
     border: none;
@@ -95,12 +95,13 @@
 
 .btn-primary:hover {
     background-color: #fff !important;
-    color: #00AB7A;
-    border: 1px solid #00AB7A;
+    color: #00AB7A!important;
+    border: 1px solid #00AB7A!important;
 }
 
 .btn-primary:active {
     background-color: #008E65 !important;
+    color: #fff!important;
 }
 
 .btn-primary:focus,
