@@ -360,3 +360,44 @@
     font-size: 16px;
     margin-bottom: 0px!important;
 }
+
+.btn-primary {
+    background-color: #00AB7A;
+    width: 182px;
+    height: 50px;
+    color: #fff;
+    border: none;
+    border-radius: unset !important;
+    padding: 12px 20px;
+    font-size: 17px;
+    font-weight: 700;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    text-decoration: none;
+    display: inline-block;
+    z-index: 2;
+    position: relative;
+}
+
+.btn-primary:hover {
+    background-color: #fff;
+    color: #00AB7A;
+    border: 1px solid #00AB7A;
+}
+
+.btn-primary:active {
+    background-color: #008E65 !important;
+    transform: scale(0.95);
+    color: #fff;
+}
+
+.btn-primary:focus,
+.btn-primary:focus-visible,
+.btn-primary:focus:active,
+.btn-primary:focus:hover,
+.btn-primary:focus:visited {
+    outline: none;
+
+    color: #fff;
+    background-color: #00AB7A;
+    border: none;
+}
