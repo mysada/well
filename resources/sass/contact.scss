@@ -11,18 +11,21 @@
 .contact {
     .contact-info-box {
         padding: 2rem;
-        border-radius: 8px;
-        border: 2px solid #00A875;
+        border-radius: 2px;
+        background-color: #333;
         box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 
+        .contact-icons {
+            margin-top: 6px;
+        }
         .contact-icons {
             p {
                 display: flex;
                 align-items: center;
-                font-size: 1.2rem;
+                font-size: 15px;
                 margin-bottom: 1.5rem;
                 font-weight: 500;
-                color: #555;
+                color: #eee;
 
                 .contact-icon {
                     width: 35px;
@@ -44,8 +47,8 @@
         .social-icons {
             display: flex;
             justify-content: space-around;
-            margin-top: 1rem;
-            border: 2px solid #00A875;
+            margin-top: 2.5rem;
+            border: 1px solid #666;
 
             i {
                 font-size: 2rem;
@@ -88,16 +91,16 @@
         }
 
         .btn-black {
-            background-color: #000;
+            background-color: #333;
             color: #fff;
             border: none;
-            padding: 0.75rem 1.5rem;
+            padding: 0.75rem 2.3rem;
             cursor: pointer;
             font-size: 1rem;
             transition: background-color 0.3s ease;
 
             &:hover {
-                background-color: #333;
+                background-color: #000;
             }
         }
 
