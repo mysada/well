@@ -23,7 +23,7 @@
     border-bottom: 1px solid #ddd;
     padding: 15px;
     flex-wrap: wrap;
-    border: 2px solid #00A875;
+    border: 1px solid #eee;
     margin-bottom: 10px;
 }
 
@@ -56,7 +56,7 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    flex: 0 0 10%;
+    flex: 1 1 10%;
     margin-top: 10px;
     margin-left: 5px !important;
 
@@ -77,12 +77,12 @@
 }
 
 .btn-primary {
-    background-color: #00AB7A;
+    background-color: #333;
     width: 182px;
     color: #fff;
     border: none;
     border-radius: unset!important;
-    padding: 14px !important;
+    padding: 12px !important;
     font-size: 17px !important;
     font-weight: 400;
     transition: background-color 0.2s ease, transform 0.2s ease;
