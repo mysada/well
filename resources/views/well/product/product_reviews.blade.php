@@ -57,20 +57,21 @@
         <div class="row mt-5">
             <div class="col-md-12">
                 <h2>Reviews</h2>
+                <p class="ml-3" style="color: #666">{{ $product->reviews->count() }} Reviews</p>
                 <div class="overall-rating d-flex align-items-center mb-4">
-                    <h3 class="overall-rating-value">{{ number_format($product->reviews->avg('rating'), 1) }}</h3>
+                    <h3 class="overall-rating-value" style="margin-right:10px">{{ number_format($product->reviews->avg('rating'), 1) }}</h3>
                     <div class="overall-rating-stars">
                         @for ($i = 0; $i < 5; $i++)
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="{{ $i < $product->reviews->avg('rating') ? '#f8ce0b' : '#ccc' }}" viewBox="0 0 24 24" width="20" height="20">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="{{ $i < $product->reviews->avg('rating') ? '#f8ce0b' : '#ccc' }}" viewBox="0 0 24 24" width="14" height="14">
                             <path d="M12 17.27L18.18 21 16.54 14.19 22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.95L5.82 21z"/>
                             <path d="M0 0h24v24H0z" fill="none"/>
                         </svg>
                         @endfor
                     </div>
-                    <p class="ml-3">{{ $product->reviews->count() }} Reviews</p>
-                    @if($hasPurchased)
+
+                    <!-- @if($hasPurchased)
                     <a class="review_btn" href="#write-review">Write a Review</a>
-                    @endif
+                    @endif -->
                 </div>
                 <div class="review-list">
                     @foreach ($product->reviews as $review)
@@ -111,7 +112,7 @@
         @if($hasPurchased)
         <div id="write-review" class="row mt-5">
             <div class="col-md-12">
-                <h4 style="font-size: 30px; font-weight: 700; margin-bottom: 10px">Write a Review</h4>
+                <h4 style="font-size: 28px; font-weight: 500; margin-bottom: 10px">Write a Review</h4>
                 <form action="{{ route('reviews.store', ['id' => $product->id]) }}" class="review-form" method="POST" enctype="multipart/form-data">
                     @csrf
                     <input type="hidden" name="product_id" value="{{ $product->id }}">
@@ -147,7 +148,7 @@
                         @enderror
                     </div>
 
-                    <button type="submit" class="btn btn-primary">Submit Review</button>
+                    <button type="submit" class="btn btn-primary" style="margin-top:10px">Submit Review</button>
                 </form>
             </div>
         </div>
