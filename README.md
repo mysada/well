@@ -15,6 +15,18 @@ This is a Laravel-based personal health care website project designed by Mydasa.
   - shivangikoradiya9@gmail.com
 - Dongqing
   - dqnican@gmail.com
+  
+
+### Login Details
+
+## Regular User
+* well.mydasa@gmail.com
+* Mydasa@123
+
+## Admin 
+* well.yongdong@gmail.com
+* Mydasa@123
+
 
 ### Server
 - https://team2.uwpace.ca/

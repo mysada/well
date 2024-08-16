@@ -10,6 +10,6 @@ document.addEventListener('DOMContentLoaded', function () {
             setTimeout(() => {
                 flashMessage.remove();
             }, 500);
-        }, 2000);
+        }, 2500);
     }
 });
