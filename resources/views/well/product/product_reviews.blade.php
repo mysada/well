@@ -13,7 +13,7 @@
             <div class="col-md-12 mb-3">
                 <h2 class="product-title">Product Details</h2>
             </div>
-            <div class="col-md-6 product-image position-relative">
+            <div  class="col-md-6 product-image position-relative">
                 <img src="{{ asset($product->image_url) }}" alt="Product Image" class="img-fluid">
             </div>
             <div class="col-md-6">
@@ -99,7 +99,7 @@
                             <p class="review-text">{{ $review->review_text }}</p>
                             @if($review->image)
                             <div class="review-image">
-                                <img src="{{ url( $review->image) }}" alt="Review Image Upload" class="img-fluid">
+                                <img src="{{ asset($review->image) }}" alt="Review Image Upload" id="review_image" >
                             </div>
                             @endif
                         </div>
