@@ -28,8 +28,10 @@ This is a Laravel-based personal health care website project designed by Mydasa.
 * Mydasa@123
 
 
-### Server
-- https://team2.uwpace.ca/
+### Links
+- Server: https://team2.uwpace.ca/
+- Github: https://github.com/mysada/well
+- Figma: https://www.figma.com/design/ZMuptq9w9fU1ukVaXF2Cg4/e-commerce-design?node-id=0-1&t=d19fi5VOAbwnSj5P-0
 
 ## Requirements
 
