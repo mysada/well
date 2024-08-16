@@ -36,7 +36,7 @@
                 </div>
             </div>
             <div class="copyright text-center mt-4">
-                <p>&copy; {{ date('Y') }} Natural Balance Ltd. All rights reserved.</p>
+                <p>Copyright © Well {{ date('Y') }} - All rights reserved</p>
             </div>
         </div>
     </footer>
