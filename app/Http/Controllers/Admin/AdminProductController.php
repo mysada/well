@@ -147,7 +147,16 @@ class AdminProductController extends Controller
             // Save the new image and update the image path
             $product->image_url = $request->file('image')->store('images/home');
         }
-
+        // Update the other fields
+        $product->name = $request->name;
+        $product->description = $request->description;
+        $product->long_description = $request->long_description;
+        $product->price = $request->price;
+        $product->category_id = $request->category_id;
+        $product->stock = $request->stock;
+        $product->color = $request->color;
+        $product->rating = $request->rating;
+        $product->discount = $request->discount;
         // Save the updated product
         $product->save();
 
