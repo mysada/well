@@ -436,3 +436,14 @@
     color: #20c997;
     font-weight: 700;
 }
+
+#review_image {
+    width: 150px;
+    height: auto;
+    object-fit: cover;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+
