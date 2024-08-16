@@ -3,13 +3,18 @@
 ## Overview
 
 This is a Laravel-based personal health care website project designed by Mydasa. 
-### Mydasa Members
-
+## Team Mydasa
+### Team Members
 - Manish
+  - moneybhangal@gmail.com
 - Aman
+  - amandawar333@gmail.com
 - YongDong
+  - paracidex@gmail.com
 - Shivangi
+  - shivangikoradiya9@gmail.com
 - Dongqing
+  - dqnican@gmail.com
 
 ### Server
 - https://team2.uwpace.ca/
