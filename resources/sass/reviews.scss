@@ -343,8 +343,8 @@
 
 .review-list {
     background-color: #fff;
-    box-shadow: 0px 4px 8px rgba(48, 49, 49, 0.1);
     padding: 20px 20px 10px 20px;
+    border: 1px solid #eee;
 }
 
 .user-name {
@@ -362,11 +362,11 @@
 }
 
 .btn-primary {
-    background-color: #00AB7A;
+    background-color: #00AB7A!important;
     width: 182px;
     height: 50px;
     color: #fff;
-    border: none;
+    border: none!important;
     border-radius: unset !important;
     padding: 12px 20px;
     font-size: 17px;
@@ -379,15 +379,15 @@
 }
 
 .btn-primary:hover {
-    background-color: #fff;
-    color: #00AB7A;
-    border: 1px solid #00AB7A;
+    background-color: #fff!important;
+    color: #00AB7A!important;
+    border: 1px solid #00AB7A!important;
 }
 
 .btn-primary:active {
     background-color: #008E65 !important;
     transform: scale(0.95);
-    color: #fff;
+    color: #fff!important;
 }
 
 .btn-primary:focus,
@@ -396,8 +396,43 @@
 .btn-primary:focus:hover,
 .btn-primary:focus:visited {
     outline: none;
-
     color: #fff;
     background-color: #00AB7A;
     border: none;
+}
+
+.form-group {
+    padding: 10px 0px;
+
+    label {
+        font-weight: 500;
+        color: #333;
+    }
+}
+
+
+.review_btn {
+    margin-top: 20px!important;
+    text-decoration: none;
+    color:#00AB7A;
+    border:1px solid #00AB7A;
+    padding: 0.7rem 2.4rem;
+
+}
+
+.review_btn:hover {
+        background-color: #00AB7A!important;
+        color: #fff!important;
+    }
+
+
+#write-review {
+// box-shadow: 0px 4px 8px rgba(48, 48, 48, 0.1);
+// padding: 10px 10px;
+}
+
+#shop_link {
+    text-decoration: none;
+    color: #00AB7A;
+    font-weight: 700;
 }
