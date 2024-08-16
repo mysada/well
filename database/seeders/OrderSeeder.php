@@ -38,7 +38,7 @@ class OrderSeeder extends Seeder
               'shipping_postal_code' => 'R3C 1A1',
 
               'coupon_code'          => 'hello-world',
-              'status'               => 'Pending',
+              'status'               => 'Delivered',
               'created_at'           => Carbon::now(),
               'updated_at'           => Carbon::now(),
               'deleted_at'           => null,
@@ -65,7 +65,7 @@ class OrderSeeder extends Seeder
                 'method'     => 'Credit Card',
                 'amount'     => 100.00,
                 'discount'   => 0.00,
-                'status'     => 'Pending',
+                'status'     => 'Completed',
                 'payer_name' => 'Tom',
                 'payer_card' => '****4312',
                 'billing_name'         => 'John Doe', // Assuming billing info is the same as shipping info
