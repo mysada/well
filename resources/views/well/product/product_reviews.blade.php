@@ -111,7 +111,7 @@
         @if($hasPurchased)
         <div id="write-review" class="row mt-5">
             <div class="col-md-12">
-                <h4>Write a Review</h4>
+                <h4 style="font-size: 30px; font-weight: 700; margin-bottom: 10px">Write a Review</h4>
                 <form action="{{ route('reviews.store', ['id' => $product->id]) }}" class="review-form" method="POST" enctype="multipart/form-data">
                     @csrf
                     <input type="hidden" name="product_id" value="{{ $product->id }}">
