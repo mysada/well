@@ -7,63 +7,76 @@
             <h2 class="cart-title">Shopping Cart</h2>
 
             @if($cartItems->isEmpty())
-            <p>Your cart is empty. Start adding items to your cart to see them here!</p>
+                <p>Your cart is empty. Start adding items to your cart to see them here!</p>
             @else
                 <div class="cart-layout">
                     <div class="cart-items">
                         <div class="table-responsive">
                             <table class="table">
                                 <thead>
-                                <tr>
-                                    <th scope="col">Product</th>
-                                    <th scope="col">Price</th>
-                                    <th scope="col">Quantity</th>
-                                    <th scope="col">Total</th>
-                                    <th scope="col">Actions</th>
-                                </tr>
+                                    <tr>
+                                        <th scope="col">Product</th>
+                                        <th scope="col">Price</th>
+                                        <th scope="col">Quantity</th>
+                                        <th scope="col">Total</th>
+                                        <th scope="col">Actions</th>
+                                    </tr>
                                 </thead>
                                 <tbody>
-                                @foreach($cartItems as $cartItem)
-                                    @if($cartItem->product)
-                                        <tr>
-                                            <td>
-                                                <img src="{{ asset($cartItem->product->image_url) }}" alt="{{ $cartItem->product->name }}" class="img-thumbnail">
-                                                <span>{{ $cartItem->product->name }}</span>
-                                            </td>
-                                            <td>${{ number_format($cartItem->product->price, 2) }}</td>
-                                            <td>
-                                                <select class="form-control quantity-select" data-cart-item-id="{{ $cartItem->id }}" data-price="{{ $cartItem->product->price }}">
-                                                    @for($i = 1; $i <= $cartItem->product->stock; $i++)
-                                                        <option value="{{ $i }}" {{ $cartItem->quantity == $i ? 'selected' : '' }}>{{ $i }}</option>
-                                                    @endfor
-                                                </select>
-                                            </td>
-                                            <td class="item-total">${{ number_format($cartItem->product->price * $cartItem->quantity, 2) }}</td>
-                                            <td>
-                                                <div class="actions">
-                                                    <form action="{{ route('CartItemDestroy', $cartItem->id) }}" method="POST" class="d-inline" >
-                                                        @csrf
-                                                        @method('DELETE')
-                                                        <button type="submit" class="btn btn-link p-0">Remove</button>
-                                                    </form>
-                                                </div>
-                                            </td>
-                                        </tr>
-                                    @else
-                                        <tr>
-                                            <td colspan="6">Product information not available for cart item ID: {{ $cartItem->id }}</td>
-                                        </tr>
-                                    @endif
-                                @endforeach
+                                    @foreach($cartItems as $cartItem)
+                                        @if($cartItem->product)
+                                            <tr>
+                                                <td>
+                                                    <img src="{{ asset($cartItem->product->image_url) }}"
+                                                         alt="{{ $cartItem->product->name }}" class="img-thumbnail">
+                                                    <span>{{ $cartItem->product->name }}</span>
+                                                </td>
+                                                <td>${{ number_format($cartItem->product->price, 2) }}</td>
+                                                <td>
+                                                    <select class="form-control quantity-select"
+                                                            data-cart-item-id="{{ $cartItem->id }}"
+                                                            data-price="{{ $cartItem->product->price }}">
+                                                        @for($i = 1; $i <= $cartItem->product->stock; $i++)
+                                                            <option value="{{ $i }}" {{ $cartItem->quantity == $i ? 'selected' : '' }}>{{ $i }}</option>
+                                                        @endfor
+                                                    </select>
+                                                </td>
+                                                <td class="item-total">
+                                                    ${{ number_format($cartItem->product->price * $cartItem->quantity, 2) }}</td>
+                                                <td>
+                                                    <div class="actions">
+                                                        <form action="{{ route('CartItemDestroy', $cartItem->id) }}"
+                                                              method="POST" class="d-inline">
+                                                            @csrf
+                                                            @method('DELETE')
+                                                            <button type="submit" class="btn btn-link p-0">Remove
+                                                            </button>
+                                                        </form>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        @else
+                                            <tr>
+                                                <td colspan="6">Product information not available for cart item
+                                                    ID: {{ $cartItem->id }}</td>
+                                            </tr>
+                                        @endif
+                                    @endforeach
                                 </tbody>
                             </table>
                         </div>
                     </div>
                     <div class="cart-summary">
                         <h4 class="summary-title">Order Summary</h4>
-                        <p style="display: flex; justify-content: space-between;">Items: <span id="item-count">{{ $cartItems->sum('quantity') }}</span></p>
-                        <p style="display: flex; justify-content: space-between;">Subtotal: <span id="subtotal">${{ number_format($cartItems->sum(fn($item) => $item->product ? $item->product->price * $item->quantity : 0), 2) }}</span></p>
-                        <p style="display: flex; justify-content: space-between; color: #333; font-weight:700"class="total">Total: <span id="cart-total">${{ number_format($cartItems->sum(fn($item) => $item->product ? $item->product->price * $item->quantity : 0), 2) }}</span></p>
+                        <p style="display: flex; justify-content: space-between;">Items: <span
+                                    id="item-count">{{ $cartItems->sum('quantity') }}</span></p>
+                        <p style="display: flex; justify-content: space-between;">Subtotal: <span
+                                    id="subtotal">${{ number_format($cartItems->sum(fn($item) => $item->product ? $item->product->price * $item->quantity : 0), 2) }}</span>
+                        </p>
+                        <p style="display: flex; justify-content: space-between; color: #333; font-weight:700"
+                           class="total">Total: <span
+                                    id="cart-total">${{ number_format($cartItems->sum(fn($item) => $item->product ? $item->product->price * $item->quantity : 0), 2) }}</span>
+                        </p>
                         <form action="{{ route('OrderStore') }}" method="POST">
                             @csrf
                             <button type="submit" class="btn btn-black btn-block">Checkout</button>

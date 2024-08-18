@@ -9,14 +9,18 @@ use Illuminate\Notifications\Notifiable;
 
 class User extends Authenticatable
 {
-    use HasFactory, Notifiable, SoftDeletes;
+
+    use HasFactory;
+    use Notifiable;
+    use SoftDeletes;
 
     /**
      * The attributes that are mass assignable.
      *
      * @var array<int, string>
      */
-    protected $fillable = [
+    protected $fillable
+      = [
         'name',
         'email',
         'password',
@@ -26,27 +30,29 @@ class User extends Authenticatable
         'billing_address',
         'shipping_address',
         'is_admin',
-    ];
+      ];
 
     /**
      * The attributes that should be hidden for serialization.
      *
      * @var array<int, string>
      */
-    protected $hidden = [
+    protected $hidden
+      = [
         'password',
         'remember_token',
-    ];
+      ];
 
     /**
      * The attributes that should be cast.
      *
      * @var array<string, string>
      */
-    protected $casts = [
+    protected $casts
+      = [
         'email_verified_at' => 'datetime',
-        'password' => 'hashed',
-    ];
+        'password'          => 'hashed',
+      ];
 
     /**
      * Get the reviews for the user.
@@ -65,7 +71,14 @@ class User extends Authenticatable
      */
     public function payments()
     {
-        return $this->hasManyThrough(Payment::class, Order::class, 'user_id', 'order_id', 'id', 'id');
+        return $this->hasManyThrough(
+          Payment::class,
+          Order::class,
+          'user_id',
+          'order_id',
+          'id',
+          'id'
+        );
     }
 
     /**
@@ -80,7 +93,8 @@ class User extends Authenticatable
 
     /**
      * Get the orders associated with the user.
-     * Defined by AMAN to get shipping address on admin side for user management.
+     * Defined by AMAN to get shipping address on admin side for user
+     * management.
      *
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
@@ -99,4 +113,5 @@ class User extends Authenticatable
     {
         return $this->is_admin === 1; // Check if the is_admin field is set to 1
     }
+
 }

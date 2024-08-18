@@ -7,7 +7,8 @@
             <a href="{{ route('admin.queries') }}" class="btn  btn-primary mb-3">Back to Product List</a>
         </div>
 
-        <form class="w-full grid grid-cols-2 place-items-center gap-4" action="{{ route('admin.queries.update', $query->id) }}" method="POST" >
+        <form class="w-full grid grid-cols-2 place-items-center gap-4"
+              action="{{ route('admin.queries.update', $query->id) }}" method="POST">
             @csrf
             @method('PUT')
 

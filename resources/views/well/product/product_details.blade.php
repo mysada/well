@@ -21,20 +21,23 @@
                     <p class="product-description">{{ $product->description }}</p>
                     <p class="product-price text-danger">$ {{ number_format($product->price, 2) }}</p>
                     <div>
-                        <a href="{{ route('product.reviews', $product->id) }}" class="btn mt-3" id="see_reviews">See Reviews</a>
+                        <a href="{{ route('product.reviews', $product->id) }}" class="btn mt-3" id="see_reviews">See
+                            Reviews</a>
                     </div>
                     <label for="quantity" class="mr-2 custom-margin" style="color: #666">Quantity</label>
                     <div class="d-flex align-items-center mb-4">
                         <div id="quantity" class="qty-input">
                             <button class="qty-count qty-count--minus" data-action="minus" type="button">-</button>
-                            <input class="product-qty" type="number" name="quantity" min="1" max="{{ $product->stock }}" value="1" data-product-id="{{ $product->id }}">
+                            <input class="product-qty" type="number" name="quantity" min="1" max="{{ $product->stock }}"
+                                   value="1" data-product-id="{{ $product->id }}">
                             <button class="qty-count qty-count--add" data-action="add" type="button">+</button>
                         </div>
                         <span id="stock" class="text-success product-stock-display" style="margin-left: 20px;">{{ $product->stock }} in stock</span>
                     </div>
 
                     <div class="d-flex gap-4">
-                        <form id="add-to-cart-form" action="{{ route('CartItemStore') }}" method="POST" class="mr-3 w-50">
+                        <form id="add-to-cart-form" action="{{ route('CartItemStore') }}" method="POST"
+                              class="mr-3 w-50">
                             @csrf
                             <input type="hidden" name="product_id" value="{{ $product->id }}">
                             <input type="hidden" name="quantity" class="product-qty-input" value="1">
@@ -87,7 +90,8 @@
             <div class="row">
                 @foreach($relatedProducts as $relatedProduct)
                     <div class="col-md-3">
-                        <a href="{{ route('products.show', $relatedProduct->id) }}" style="text-decoration: none; color: inherit;">
+                        <a href="{{ route('products.show', $relatedProduct->id) }}"
+                           style="text-decoration: none; color: inherit;">
                             <div class="card shadow-sm">
                                 <img src="{{ asset($relatedProduct->image_url) }}" class="card-img-top"
                                      alt="{{ $relatedProduct->name }}">
@@ -96,12 +100,15 @@
                                     <h5 class="card-title">{{ $relatedProduct->name }}</h5>
                                     <div class="d-flex justify-content-between align-items-center">
                                         <p class="card-text">$ {{ number_format($relatedProduct->price, 2) }}</p>
-                                        <form action="{{ route('CartItemStore') }}" method="POST" style="display: inline; padding-top: 30px">
+                                        <form action="{{ route('CartItemStore') }}" method="POST"
+                                              style="display: inline; padding-top: 30px">
                                             @csrf
                                             <input type="hidden" name="product_id" value="{{ $relatedProduct->id }}">
                                             <input type="hidden" name="quantity" value="1">
-                                            <button type="submit" style="background-color: #00AA79; border: none; border-radius: 50%; width: 40px; height: 40px;  display: flex; align-items: center; justify-content: center;">
-                                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="white" class="bi bi-plus" viewBox="0 0 16 16">
+                                            <button type="submit"
+                                                    style="background-color: #00AA79; border: none; border-radius: 50%; width: 40px; height: 40px;  display: flex; align-items: center; justify-content: center;">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
+                                                     fill="white" class="bi bi-plus" viewBox="0 0 16 16">
                                                     <path d="M8 8v5a.5.5 0 0 0 1 0V8h5a.5.5 0 0 0 0-1H9V2a.5.5 0 0 0-1 0v5H2a.5.5 0 0 0 0 1h5z"/>
                                                 </svg>
                                             </button>
@@ -114,7 +121,8 @@
                 @endforeach
             </div>
             <div class="text-center mt-4">
-                <a href="{{ route('products.index') }}" class="btn-product btn-outline-dark load-more">View More Products</a>
+                <a href="{{ route('products.index') }}" class="btn-product btn-outline-dark load-more">View More
+                    Products</a>
             </div>
         </div>
     </section>

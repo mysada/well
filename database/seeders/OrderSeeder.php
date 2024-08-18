@@ -3,12 +3,14 @@
 namespace Database\Seeders;
 
 use Carbon\Carbon;
+use Exception;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 
 class OrderSeeder extends Seeder
 {
+
     /**
      * Seed the application's database.
      *
@@ -27,7 +29,7 @@ class OrderSeeder extends Seeder
               'post_tax_amount'      => 110.00,
               'gst'                  => 5.00,
               'pst'                  => 5.00,
-              'shipping_rate'                  => 5.00,
+              'shipping_rate'        => 5.00,
               'shipping_name'        => 'John Doe',
               'shipping_email'       => 'john@gmail.com',
               'shipping_phone'       => '+1-431-123-1234',
@@ -37,11 +39,11 @@ class OrderSeeder extends Seeder
               'shipping_country'     => 'Canada',
               'shipping_postal_code' => 'R3C 1A1',
 
-              'coupon_code'          => 'hello-world',
-              'status'               => 'Delivered',
-              'created_at'           => Carbon::now(),
-              'updated_at'           => Carbon::now(),
-              'deleted_at'           => null,
+              'coupon_code' => 'hello-world',
+              'status'      => 'Delivered',
+              'created_at'  => Carbon::now(),
+              'updated_at'  => Carbon::now(),
+              'deleted_at'  => null,
             ]);
 
             // Insert order details for the order
@@ -61,24 +63,25 @@ class OrderSeeder extends Seeder
             // Insert payment details for the order
             DB::table('payments')->insert([
               [
-                'order_id'   => $orderId,
-                'method'     => 'Credit Card',
-                'amount'     => 100.00,
-                'discount'   => 0.00,
-                'status'     => 'Completed',
-                'payer_name' => 'Tom',
-                'payer_card' => '****4312',
-                'billing_name'         => 'John Doe', // Assuming billing info is the same as shipping info
-                'billing_email'        => 'john@gmail.com',
-                'billing_phone'        => '+1-431-123-1234',
-                'billing_address'      => '123 Main St',
-                'billing_city'         => 'Winnipeg',
-                'billing_province'     => 'MB',
-                'billing_country'      => 'Canada',
-                'billing_postal_code'  => 'R3C 1A1',
-                'created_at' => Carbon::now(),
-                'updated_at' => Carbon::now(),
-                'deleted_at' => null,
+                'order_id'            => $orderId,
+                'method'              => 'Credit Card',
+                'amount'              => 100.00,
+                'discount'            => 0.00,
+                'status'              => 'Completed',
+                'payer_name'          => 'Tom',
+                'payer_card'          => '****4312',
+                'billing_name'        => 'John Doe',
+                // Assuming billing info is the same as shipping info
+                'billing_email'       => 'john@gmail.com',
+                'billing_phone'       => '+1-431-123-1234',
+                'billing_address'     => '123 Main St',
+                'billing_city'        => 'Winnipeg',
+                'billing_province'    => 'MB',
+                'billing_country'     => 'Canada',
+                'billing_postal_code' => 'R3C 1A1',
+                'created_at'          => Carbon::now(),
+                'updated_at'          => Carbon::now(),
+                'deleted_at'          => null,
               ],
             ]);
 
@@ -100,9 +103,10 @@ class OrderSeeder extends Seeder
 
             DB::commit();
             Log::info('OrderSeeder completed successfully.');
-        } catch (\Exception $e) {
+        } catch (Exception $e) {
             DB::rollBack();
-            Log::error('OrderSeeder failed: ' . $e->getMessage());
+            Log::error('OrderSeeder failed: '.$e->getMessage());
         }
     }
+
 }

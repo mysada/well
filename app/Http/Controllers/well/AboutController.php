@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 
 class AboutController extends Controller
 {
+
     /**
      * Display the "About Us" page.
      *
@@ -17,4 +18,5 @@ class AboutController extends Controller
 
         return view('well.pages.about', compact('title'));
     }
+
 }

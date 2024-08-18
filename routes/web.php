@@ -11,8 +11,10 @@ Route::middleware('auth')->group(function () {
     require __DIR__.'/web/user.php';
 });
 
-Route::middleware(AdminAuthInterceptor::class)->prefix('admin')->group(function () {
-    require __DIR__.'/web/admin.php';
-});
+Route::middleware(AdminAuthInterceptor::class)->prefix('admin')->group(
+  function () {
+      require __DIR__.'/web/admin.php';
+  }
+);
 
 Auth::routes();

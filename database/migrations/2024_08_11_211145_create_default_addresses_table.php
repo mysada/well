@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Schema;
 
 class CreateDefaultAddressesTable extends Migration
 {
+
     public function up()
     {
         Schema::create('default_addresses', function (Blueprint $table) {
@@ -29,7 +30,9 @@ class CreateDefaultAddressesTable extends Migration
             $table->string('shipping_phone')->nullable();
             $table->timestamps();
 
-            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete(
+              'cascade'
+            );
         });
     }
 
@@ -37,4 +40,5 @@ class CreateDefaultAddressesTable extends Migration
     {
         Schema::dropIfExists('default_addresses');
     }
+
 }

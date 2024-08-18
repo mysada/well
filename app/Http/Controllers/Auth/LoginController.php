@@ -23,6 +23,11 @@ class LoginController extends Controller
         $this->middleware('guest')->except('logout');
     }
 
+    public function showLoginForm()
+    {
+        return view('auth.login')->with('title', 'Login');
+    }
+
     /**
      * Handle actions after a user is authenticated.
      *
@@ -67,11 +72,6 @@ class LoginController extends Controller
         //        ]);
 
         return redirect('/');
-    }
-
-    public function showLoginForm()
-    {
-        return view('auth.login')->with('title', 'Login');
     }
 
 }

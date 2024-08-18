@@ -16,6 +16,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
  */
 class Order extends Model
 {
+
     use HasFactory;
 
     /**
@@ -23,7 +24,8 @@ class Order extends Model
      *
      * @var array
      */
-    protected $fillable = [
+    protected $fillable
+      = [
         'user_id',
         'pre_tax_amount',
         'post_tax_amount',
@@ -42,16 +44,17 @@ class Order extends Model
         'coupon_code',
         'status',
         'delivery_date',
-    ];
+      ];
 
     /**
      * The attributes that should be cast to native types.
      *
      * @var array
      */
-    protected $casts = [
+    protected $casts
+      = [
         'delivery_date' => 'date',
-    ];
+      ];
 
     /**
      * Get the order details associated with the order.
@@ -102,4 +105,5 @@ class Order extends Model
     {
         return $this->hasMany(Transaction::class);
     }
+
 }

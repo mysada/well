@@ -25,7 +25,8 @@
                 <div>
                     <label class="input input-bordered flex items-center gap-2 ">
                         <span>Price</span>
-                        <input type="number" step="0.01" class="grow" id="price" name="price" value="{{ old('price', $product->price) }}"
+                        <input type="number" step="0.01" class="grow" id="price" name="price"
+                               value="{{ old('price', $product->price) }}"
                                placeholder="Enter price"/>
                     </label>
                     @error('price')
@@ -47,7 +48,8 @@
                 <div>
                     <label class="input input-bordered flex items-center gap-2 ">
                         <span>Stock</span>
-                        <input type="number" class="grow" id="stock" name="stock" value="{{ old('stock', $product->stock) }}"
+                        <input type="number" class="grow" id="stock" name="stock"
+                               value="{{ old('stock', $product->stock) }}"
                                placeholder="Enter stock quantity"/>
                     </label>
                     @error('stock')
@@ -58,7 +60,8 @@
                 <div>
                     <label class="input input-bordered flex items-center gap-2 ">
                         <span>Color</span>
-                        <input type="text" class="grow" id="color" name="color" value="{{ old('color', $product->color) }}"
+                        <input type="text" class="grow" id="color" name="color"
+                               value="{{ old('color', $product->color) }}"
                                placeholder="Enter color"/>
                     </label>
                     @error('color')
@@ -70,7 +73,8 @@
                     <label class="input input-bordered flex items-center gap-2 ">
                         <span>Rating</span>
                         <input type="number" step="0.01" class="grow" id="rating" name="rating"
-                               value="{{ old('rating', $product->rating) }}" min="0" max="5" placeholder="Enter rating"/>
+                               value="{{ old('rating', $product->rating) }}" min="0" max="5"
+                               placeholder="Enter rating"/>
                     </label>
                     @error('rating')
                     <div class="text-red-500 text-sm mt-1">{{ $message }}</div>
@@ -81,7 +85,8 @@
                     <label class="input input-bordered flex items-center gap-2 ">
                         <span>Discount (%)</span>
                         <input type="number" step="0.01" class="grow" id="discount" name="discount"
-                               value="{{ old('discount', $product->discount) }}" min="0" max="100" placeholder="Enter discount"/>
+                               value="{{ old('discount', $product->discount) }}" min="0" max="100"
+                               placeholder="Enter discount"/>
                     </label>
                     @error('discount')
                     <div class="text-red-500 text-sm mt-1">{{ $message }}</div>
@@ -92,7 +97,8 @@
                     <div class="flex items-center gap-4">
                         @if ($product->image_url)
                             <div class="mb-2">
-                                <img src="{{ asset($product->image_url) }}" alt="{{ $product->name }}" width="100px" height="100px" class="max-w-xs rounded-md">
+                                <img src="{{ asset($product->image_url) }}" alt="{{ $product->name }}" width="100px"
+                                     height="100px" class="max-w-xs rounded-md">
                             </div>
                         @endif
                         <input type="file" class="file-input file-input-bordered grow w-full " id="image" name="image"/>
@@ -114,7 +120,8 @@
                 <div>
                     <textarea class="textarea textarea-bordered w-full " id="long_description"
                               name="long_description"
-                              rows="5" placeholder="Enter long description">{{ old('long_description', $product->long_description) }}</textarea>
+                              rows="5"
+                              placeholder="Enter long description">{{ old('long_description', $product->long_description) }}</textarea>
                     @error('long_description')
                     <div class="text-red-500 text-sm mt-1">{{ $message }}</div>
                     @enderror

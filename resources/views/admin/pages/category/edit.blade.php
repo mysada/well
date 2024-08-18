@@ -12,11 +12,14 @@
                 <div class="md:flex">
                     <div class="w-1/3 flex justify-center items-center">
                         <figure>
-                            <img class="w-full h-full object-cover" src="{{ asset($category->image) }}" alt="{{ $category->name }}" >
+                            <img class="w-full h-full object-cover" src="{{ asset($category->image) }}"
+                                 alt="{{ $category->name }}">
                         </figure>
                     </div>
                     <div class="w-2/3 p-6">
-                        <form class="flex flex-col justify-between gap-8" action="{{ route('AdminCategoryUpdate', $category->id) }}" method="POST" enctype="multipart/form-data">
+                        <form class="flex flex-col justify-between gap-8"
+                              action="{{ route('AdminCategoryUpdate', $category->id) }}" method="POST"
+                              enctype="multipart/form-data">
                             @csrf
                             @method('PUT')
 
@@ -24,14 +27,16 @@
                                 <label class="label" for="name">
                                     <span class="label-text">Category Name</span>
                                 </label>
-                                <input type="text" name="name" id="name" class="input input-bordered w-full" value="{{ $category->name }}" required>
+                                <input type="text" name="name" id="name" class="input input-bordered w-full"
+                                       value="{{ $category->name }}" required>
                             </div>
 
                             <div class="form-control mb-4">
                                 <label class="label" for="image">
                                     <span class="label-text">Category Image</span>
                                 </label>
-                                <input type="file" name="image" id="image" class="file-input file-input-bordered w-full">
+                                <input type="file" name="image" id="image"
+                                       class="file-input file-input-bordered w-full">
                             </div>
 
                             <div class="form-control mb-4">

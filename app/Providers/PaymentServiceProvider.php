@@ -7,6 +7,7 @@ use Illuminate\Support\ServiceProvider;
 
 class PaymentServiceProvider extends ServiceProvider
 {
+
     /**
      * Register services in the container.
      *
@@ -33,4 +34,5 @@ class PaymentServiceProvider extends ServiceProvider
      * @return void
      */
     public function boot(): void {}
+
 }

@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class EventLog extends Model
 {
+
     use HasFactory;
 
     /**
@@ -14,14 +15,15 @@ class EventLog extends Model
      *
      * @var array
      */
-    protected $fillable = [
+    protected $fillable
+      = [
         'event',
         'url',
         'method',
         'ip_address',
         'user_agent',
         'user_id',
-    ];
+      ];
 
     /**
      * Get the user that owns the event log.
@@ -30,4 +32,5 @@ class EventLog extends Model
     {
         return $this->belongsTo(User::class);
     }
+
 }

@@ -11,12 +11,13 @@ body {
   font-family: 'Poppins', 'Arial', 'Avenir Next Georgian', Arial, sans-serif;
 }
 
-#app{
+#app {
   height: 100vh;
   display: flex;
   flex-direction: column;
-  main{
-    flex:1;
+
+  main {
+    flex: 1;
   }
 }
 
@@ -31,7 +32,7 @@ h2 {
   font-size: 60px;
 }
 
-a{
+a {
   text-decoration: none;
 }
 
@@ -42,7 +43,7 @@ a{
   }
 }
 
-#navbarNav{
+#navbarNav {
   justify-content: flex-end;
 }
 
@@ -67,7 +68,7 @@ a{
   &:hover {
     background-color: #ffffff;
     color: #000;
-    border-radius: unset!important;
+    border-radius: unset !important;
   }
 
   &.active {
@@ -82,7 +83,7 @@ a{
       right: 0;
       height: 2px;
       background-color: #000;
-      border-radius: unset!important;
+      border-radius: unset !important;
     }
   }
 }
@@ -111,8 +112,9 @@ a{
     font-size: 15px;
     font-weight: 400;
     text-decoration: none;
+
     &:hover {
-      color: #aaa!important;
+      color: #aaa !important;
     }
   }
 }
@@ -130,7 +132,7 @@ a{
 .alert {
   padding: 20px;
   border: 1px solid #eee;
-  border-radius: unset!important;
+  border-radius: unset !important;
   margin-bottom: 0px;
 }
 
@@ -148,25 +150,25 @@ a{
 
 //cart icon
 .custom-cart-icon {
-    font-size: 24px; /* Adjust the size as needed */
-    position: relative;
+  font-size: 24px; /* Adjust the size as needed */
+  position: relative;
 }
 
 #cart-item-count {
-    position: absolute;
-    top: -5px;
-    right: -5px;
-    background-color: red;
-    color: white;
-    border-radius: 50%;
-    width: 21px;
-    height: 21px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 12px;
-    line-height: 1;
-    padding: 0;
+  position: absolute;
+  top: -5px;
+  right: -5px;
+  background-color: red;
+  color: white;
+  border-radius: 50%;
+  width: 21px;
+  height: 21px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  line-height: 1;
+  padding: 0;
 }
 
 

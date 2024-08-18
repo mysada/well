@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Province extends Model
 {
+
     use HasFactory;
 
     /**
@@ -19,4 +20,5 @@ class Province extends Model
     {
         return $this->belongsTo(Country::class, 'country_code', 'code');
     }
+
 }

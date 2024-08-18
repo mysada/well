@@ -3,10 +3,10 @@
 namespace App\Http\Controllers\well;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
 
 class FaqController extends Controller
 {
+
     /**
      * Display the FAQ page.
      *
@@ -18,4 +18,5 @@ class FaqController extends Controller
 
         return view('well.pages.faq', compact('title'));
     }
+
 }

@@ -42,7 +42,8 @@
                     <tr class="hover">
                         <td>{{ $payment->id }}</td>
                         <td>
-                            <a class="link-primary link" href="{{ route('AdminOrderShow', $payment->order_id) }}"> {{ $payment->order_id }}</a>
+                            <a class="link-primary link"
+                               href="{{ route('AdminOrderShow', $payment->order_id) }}"> {{ $payment->order_id }}</a>
                         </td>
                         <td>{{ $payment->method }}</td>
                         <td>${{ number_format($payment->amount, 2) }}</td>

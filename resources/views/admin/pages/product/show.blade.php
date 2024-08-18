@@ -45,7 +45,8 @@
                             <p>Created: {{ $product->created_at->format('Y-m-d H:i') }}</p>
                             <p>Updated: {{ $product->updated_at->format('Y-m-d H:i') }}</p>
                         </div>
-                        <a href="{{ route('AdminProductEdit', $product->id) }}" class="btn  btn-primary">Edit Product</a>
+                        <a href="{{ route('AdminProductEdit', $product->id) }}" class="btn  btn-primary">Edit
+                            Product</a>
                     </div>
                 </div>
             </div>

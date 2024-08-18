@@ -8,14 +8,17 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Transaction extends Model
 {
-    use HasFactory, SoftDeletes;
+
+    use HasFactory;
+    use SoftDeletes;
 
     /**
      * The attributes that are mass assignable.
      *
      * @var array
      */
-    protected $fillable = [
+    protected $fillable
+      = [
         'order_id',
         'user_id',
         'amount',
@@ -23,7 +26,7 @@ class Transaction extends Model
         'currency',
         'status',
         'response',
-    ];
+      ];
 
     /**
      * Get the order that this transaction is associated with.
@@ -34,4 +37,5 @@ class Transaction extends Model
     {
         return $this->belongsTo(Order::class);
     }
+
 }

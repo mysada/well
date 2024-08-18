@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class DefaultAddress extends Model
 {
+
     use HasFactory;
 
     /**
@@ -14,7 +15,8 @@ class DefaultAddress extends Model
      *
      * @var array
      */
-    protected $fillable = [
+    protected $fillable
+      = [
         'user_id',
         'billing_name',
         'billing_address',
@@ -32,7 +34,7 @@ class DefaultAddress extends Model
         'shipping_postal_code',
         'shipping_email',
         'shipping_phone',
-    ];
+      ];
 
     /**
      * Get the user that owns the default address.
@@ -43,4 +45,5 @@ class DefaultAddress extends Model
     {
         return $this->belongsTo(User::class);
     }
+
 }

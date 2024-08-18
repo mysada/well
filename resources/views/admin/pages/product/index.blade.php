@@ -54,7 +54,8 @@
                                     </div>
                                 </div>
                                 <div>
-                                    <a class="link-primary link" href="{{ route('AdminProductShow', $product->id) }}">{{ $product->name }}</a>
+                                    <a class="link-primary link"
+                                       href="{{ route('AdminProductShow', $product->id) }}">{{ $product->name }}</a>
                                     <p class="opacity-75 text-sm">{{$product->category->name}}</p>
                                 </div>
                             </div>

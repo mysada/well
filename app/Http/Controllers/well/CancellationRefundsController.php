@@ -3,10 +3,10 @@
 namespace App\Http\Controllers\well;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
 
 class CancellationRefundsController extends Controller
 {
+
     /**
      * Display the "Cancellation & Refunds" page.
      *
@@ -18,4 +18,5 @@ class CancellationRefundsController extends Controller
 
         return view('well.pages.cancellation_refunds');
     }
+
 }

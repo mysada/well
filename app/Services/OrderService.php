@@ -12,6 +12,7 @@ use Illuminate\Support\Facades\DB;
 
 /**
  * Class OrderService for creating orders
+ *
  * @package App\Services
  */
 class OrderService
@@ -19,6 +20,7 @@ class OrderService
 
     /**
      * Create a new order from the cart items
+     *
      * @return \App\Models\Order
      * @throws \Exception
      */
@@ -67,6 +69,7 @@ class OrderService
 
     /**
      * Create order details
+     *
      * @param  mixed  $item
      * @param  \App\Models\Order  $order
      *
@@ -81,18 +84,21 @@ class OrderService
         $stock     = $mProduct->stock;
 
         if ($quantity > $stock) {
-            throw new Exception("You have added {$quantity} items of {$mProduct->name} to your cart, but only {$stock} items are available in stock.");
+            throw new Exception(
+              "You have added {$quantity} items of {$mProduct->name} to your cart, but only {$stock} items are available in stock."
+            );
         }
 
         $mProduct->stock = $stock - $quantity;
         $mProduct->save();
 
         OrderDetail::create([
-            'order_id'    => $order->id,
-            'product_id'  => $productId,
-            'price'       => $mProduct->price,
-            'quantity'    => $quantity,
-            'total_price' => $quantity * $mProduct->price,
+          'order_id'    => $order->id,
+          'product_id'  => $productId,
+          'price'       => $mProduct->price,
+          'quantity'    => $quantity,
+          'total_price' => $quantity * $mProduct->price,
         ]);
     }
+
 }

@@ -9,14 +9,17 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Product extends Model
 {
-    use HasFactory, SoftDeletes;
+
+    use HasFactory;
+    use SoftDeletes;
 
     /**
      * The attributes that are mass assignable.
      *
      * @var array
      */
-    protected $fillable = [
+    protected $fillable
+      = [
         'name',
         'description',
         'long_description',
@@ -26,8 +29,8 @@ class Product extends Model
         'image_url',
         'color',
         'rating',
-        'discount'
-    ];
+        'discount',
+      ];
 
     /**
      * Get the category that this product belongs to.
@@ -58,4 +61,5 @@ class Product extends Model
     {
         return $this->hasMany(OrderDetail::class, 'product_id');
     }
+
 }

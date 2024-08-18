@@ -90,16 +90,17 @@
             @foreach ($order->payments as $payment)
                 <div>
                     <h3 class="text-lg font-bold">Payment Information</h3>
-                        <p><strong>Method:</strong> {{ $payment->method }}</p>
-                        <p><strong>Amount:</strong> ${{ number_format($payment->amount, 2) }}</p>
-                        <p><strong>Status:</strong> <span class="badge badge-ghost">{{ $payment->status }}</span></p>
-                        <p><strong>Payer Name:</strong> {{ $payment->payer_name }}</p>
-                        <p><strong>Card:</strong> {{ $payment->payer_card }}</p>
+                    <p><strong>Method:</strong> {{ $payment->method }}</p>
+                    <p><strong>Amount:</strong> ${{ number_format($payment->amount, 2) }}</p>
+                    <p><strong>Status:</strong> <span class="badge badge-ghost">{{ $payment->status }}</span></p>
+                    <p><strong>Payer Name:</strong> {{ $payment->payer_name }}</p>
+                    <p><strong>Card:</strong> {{ $payment->payer_card }}</p>
                 </div>
                 <div>
                     <h3 class="text-lg font-bold">Billing Address</h3>
                     <p>{{ $payment->billing_address }}</p>
-                    <p>{{ $payment->billing_city }}, {{ $payment->billing_province }} {{ $payment->billing_postal_code }}</p>
+                    <p>{{ $payment->billing_city }}
+                        , {{ $payment->billing_province }} {{ $payment->billing_postal_code }}</p>
                     <p>{{ $payment->billing_country }}</p>
                 </div>
             @endforeach

@@ -8,16 +8,19 @@ use Illuminate\Support\Facades\Schema;
  * * MANISH KUMAR
  * Class AddAddressesToUsersTable
  *
- * This migration adds billing_address and shipping_address columns to the users table.
+ * This migration adds billing_address and shipping_address columns to the
+ * users table.
  */
 class AddAddressesToUsersTable extends Migration
 {
+
     /**
      * Run the migrations.
      *
      * @return void
      *
-     * This method adds the billing_address and shipping_address columns to the users table.
+     * This method adds the billing_address and shipping_address columns to the
+     *   users table.
      */
     public function up()
     {
@@ -32,7 +35,8 @@ class AddAddressesToUsersTable extends Migration
      *
      * @return void
      *
-     * This method removes the billing_address and shipping_address columns from the users table.
+     * This method removes the billing_address and shipping_address columns
+     *   from the users table.
      */
     public function down()
     {
@@ -41,4 +45,5 @@ class AddAddressesToUsersTable extends Migration
             $table->dropColumn('shipping_address');
         });
     }
+
 }

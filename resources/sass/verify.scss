@@ -1,49 +1,49 @@
 .card-header {
-    background-color: #ffffff;
-    border-bottom: none;
-    font-size: 1.5rem;
-    font-weight: lighter;
-    border: 1px solid #00A875;
-    border-radius: unset !important;
+  background-color: #ffffff;
+  border-bottom: none;
+  font-size: 1.5rem;
+  font-weight: lighter;
+  border: 1px solid #00A875;
+  border-radius: unset !important;
 }
 
 .card-body {
-    padding: 2rem;
-    background-color: #f9f9f9;
-    border-radius: 5px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    border: 1px solid #00A875;
-    border-radius: unset !important;
+  padding: 2rem;
+  background-color: #f9f9f9;
+  border-radius: 5px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border: 1px solid #00A875;
+  border-radius: unset !important;
 }
 
 .alert-success {
-    font-size: 1rem;
-    padding: 1rem;
-    border-radius: 5px;
+  font-size: 1rem;
+  padding: 1rem;
+  border-radius: 5px;
 }
 
 .card-body p {
-    font-size: 1rem;
-    margin-bottom: 1rem;
+  font-size: 1rem;
+  margin-bottom: 1rem;
 }
 
 
 .btn-link {
-    color: #00A875 !important;
-    font-weight: bold;
-    text-decoration: none !important;
+  color: #00A875 !important;
+  font-weight: bold;
+  text-decoration: none !important;
 
-    &:hover {
-        color: #007B5E;
-    }
+  &:hover {
+    color: #007B5E;
+  }
 }
 
 @media (max-width: 768px) {
-    .container {
-        padding: 1rem;
-    }
+  .container {
+    padding: 1rem;
+  }
 
-    .card-body {
-        padding: 1rem;
-    }
+  .card-body {
+    padding: 1rem;
+  }
 }

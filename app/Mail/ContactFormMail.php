@@ -8,14 +8,17 @@ use Illuminate\Queue\SerializesModels;
 
 class ContactFormMail extends Mailable
 {
-    use Queueable, SerializesModels;
+
+    use Queueable;
+    use SerializesModels;
 
     public $contactData;
 
     /**
      * Create a new message instance.
      *
-     * @param array $contactData
+     * @param  array  $contactData
+     *
      * @return void
      */
     public function __construct(array $contactData)
@@ -31,8 +34,9 @@ class ContactFormMail extends Mailable
     public function build()
     {
         return $this->from(env('MAIL_FROM_ADDRESS'))
-            ->subject('New Contact Form Submission')
-            ->view('well.pages.contact')
-            ->with('contactData', $this->contactData);
+                    ->subject('New Contact Form Submission')
+                    ->view('well.pages.contact')
+                    ->with('contactData', $this->contactData);
     }
+
 }

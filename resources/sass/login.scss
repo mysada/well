@@ -1,111 +1,110 @@
-
 // Card styling
 .card {
-    border: none;
-    border-radius: 0px!important;
-    padding: 2rem;
-    max-width: 550px;
-    margin: 0 auto;
+  border: none;
+  border-radius: 0px !important;
+  padding: 2rem;
+  max-width: 550px;
+  margin: 0 auto;
 }
 
 // Header styling
 .card-header {
-    background-color: #fff!important;
-    border-bottom: none!important;
-    font-size: 1.75rem;
-    font-weight: bold;
-    text-align: center;
-    margin-bottom: 1.5rem;
+  background-color: #fff !important;
+  border-bottom: none !important;
+  font-size: 1.75rem;
+  font-weight: bold;
+  text-align: center;
+  margin-bottom: 1.5rem;
 }
 
 // Input fields styling
 .form-control {
-    border: 1px solid #ccc;
-    border-radius: 2px;
-    padding: 0.75rem;
-    font-size: 1rem;
-    margin-bottom: 1rem;
-    transition: border-color 0.3s ease;
+  border: 1px solid #ccc;
+  border-radius: 2px;
+  padding: 0.75rem;
+  font-size: 1rem;
+  margin-bottom: 1rem;
+  transition: border-color 0.3s ease;
 }
 
 .form-control:focus {
-    border-color: #20c997;
-    box-shadow: none;
+  border-color: #20c997;
+  box-shadow: none;
 }
 
 // Button styling
 #login-button {
-    background-color: #333;
-    color: #fff;
-    border: none;
-    padding: 0.75rem;
-    font-size: 1rem;
-    border-radius: 2px;
-    width: 100%;
-    transition: background-color 0.3s ease;
+  background-color: #333;
+  color: #fff;
+  border: none;
+  padding: 0.75rem;
+  font-size: 1rem;
+  border-radius: 2px;
+  width: 100%;
+  transition: background-color 0.3s ease;
 }
 
 #login-button:hover {
-    background-color: #1b9573;
+  background-color: #1b9573;
 }
 
 // Links styling
 .btn-link {
-    color: #333;
-    font-weight: bold;
-    text-decoration: none;
-    margin-top: 1rem;
-    display: block;
-    text-align: center;
+  color: #333;
+  font-weight: bold;
+  text-decoration: none;
+  margin-top: 1rem;
+  display: block;
+  text-align: center;
 }
 
 .btn-link:hover {
-    color: #00AB7A;
+  color: #00AB7A;
 }
 
 #create-account-link {
-    display: inline-block;
-    padding: 0.75rem 2rem;
-    border: 1px solid #333;
-    border-radius: 2px;
-    text-align: center;
-    font-size: 1rem;
-    font-weight: 500;
-    color: #333;
-    text-decoration: none;
-    margin-top: 1.5rem;
-    width: 100%;
-    max-width: 550px;
+  display: inline-block;
+  padding: 0.75rem 2rem;
+  border: 1px solid #333;
+  border-radius: 2px;
+  text-align: center;
+  font-size: 1rem;
+  font-weight: 500;
+  color: #333;
+  text-decoration: none;
+  margin-top: 1.5rem;
+  width: 100%;
+  max-width: 550px;
 }
 
 #create-account-link:hover {
-    border-color: #00AB7A;
-    color: #00AB7A;
+  border-color: #00AB7A;
+  color: #00AB7A;
 }
 
 
 .image-container img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
 #forgot-password-link {
-    color:#00AB7A;
-    text-decoration: none;
+  color: #00AB7A;
+  text-decoration: none;
 }
 
 #forgot-password-link:hover {
-    color: #0D916C;
+  color: #0D916C;
 }
 
-.container{
+.container {
   width: 100%;
-  max-width: 1200px!important;
+  max-width: 1200px !important;
 }
 
-.card{
-  margin: 0!important;
-  padding: 0!important;
+.card {
+  margin: 0 !important;
+  padding: 0 !important;
   border: 1px solid #f1f1f1;
 }

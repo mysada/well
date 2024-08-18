@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Country extends Model
 {
+
     use HasFactory;
 
     /**
@@ -19,4 +20,5 @@ class Country extends Model
     {
         return $this->hasMany(Province::class, 'country_code', 'code');
     }
+
 }

@@ -2,11 +2,12 @@
 
 namespace App\Providers;
 
-use Illuminate\Support\ServiceProvider;
 use App\Services\OrderService;
+use Illuminate\Support\ServiceProvider;
 
 class OrderServiceProvider extends ServiceProvider
 {
+
     /**
      * Register services in the container.
      *
@@ -32,4 +33,5 @@ class OrderServiceProvider extends ServiceProvider
     {
         //
     }
+
 }

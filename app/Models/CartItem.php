@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class CartItem extends Model
 {
+
     use HasFactory;
 
     /**
@@ -15,14 +16,15 @@ class CartItem extends Model
      *
      * @var array
      */
-    protected $fillable = [
+    protected $fillable
+      = [
         'user_id',
         'product_id',
         'quantity',
         'subtotal',
         'total',
-        'items'
-    ];
+        'items',
+      ];
 
     /**
      * Get the product associated with the cart item.
@@ -33,4 +35,5 @@ class CartItem extends Model
     {
         return $this->belongsTo(Product::class);
     }
+
 }

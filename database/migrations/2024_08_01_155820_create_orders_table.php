@@ -14,7 +14,7 @@ return new class extends Migration {
         Schema::create('orders', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')
-                ->constrained('users');
+                  ->constrained('users');
             $table->integer('quantity')->nullable();
             $table->decimal('pre_tax_amount', 10, 2)->nullable();
             $table->decimal('post_tax_amount', 10, 2)->nullable();
@@ -32,8 +32,8 @@ return new class extends Migration {
             $table->string('coupon_code', 20)->nullable();
             $table->date('delivery_date')->nullable();
             $table->enum(
-                'status',
-                ['Pending', 'Confirmed', 'Shipped', 'Delivered', 'Cancelled']
+              'status',
+              ['Pending', 'Confirmed', 'Shipped', 'Delivered', 'Cancelled']
             );
             $table->timestamps();
             $table->softDeletes();

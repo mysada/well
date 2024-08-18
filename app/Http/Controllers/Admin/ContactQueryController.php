@@ -86,7 +86,27 @@ class ContactQueryController extends Controller
     {
         $query = ContactQuery::findOrFail($id);
         $title = 'Queries Management - Detail';
+
         return view('admin.pages.queries.edit', compact('query', 'title'));
+    }
+
+    /**
+     * Update the status of the query.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
+     *
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function updateStatus(Request $request, $id)
+    {
+        $query = ContactQuery::findOrFail($id);
+        $query->update(['status' => $request->status]);
+
+        return redirect()->route('admin.queries')->with(
+          'success',
+          'Query status updated successfully.'
+        );
     }
 
     /**
@@ -114,25 +134,6 @@ class ContactQueryController extends Controller
         return redirect()->route('admin.queries')->with(
           'success',
           'Query details updated successfully.'
-        );
-    }
-
-    /**
-     * Update the status of the query.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     *
-     * @return \Illuminate\Http\RedirectResponse
-     */
-    public function updateStatus(Request $request, $id)
-    {
-        $query = ContactQuery::findOrFail($id);
-        $query->update(['status' => $request->status]);
-
-        return redirect()->route('admin.queries')->with(
-          'success',
-          'Query status updated successfully.'
         );
     }
 

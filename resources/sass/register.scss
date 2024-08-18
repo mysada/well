@@ -1,79 +1,79 @@
 // Card styling
 .card {
-    border: none;
-    border-radius: 0px !important;
-    padding: 2rem;
-    max-width: 550px;
-    margin: 0 auto;
+  border: none;
+  border-radius: 0px !important;
+  padding: 2rem;
+  max-width: 550px;
+  margin: 0 auto;
 }
 
 // Header styling
 .card-header {
-    background-color: #fff !important;
-    border-bottom: none !important;
-    font-size: 1.75rem;
-    font-weight: bold;
-    text-align: center;
-    margin-bottom: 1.5rem;
+  background-color: #fff !important;
+  border-bottom: none !important;
+  font-size: 1.75rem;
+  font-weight: bold;
+  text-align: center;
+  margin-bottom: 1.5rem;
 }
 
 // Input fields styling
 .form-control {
-    border: 1px solid #ccc;
-    border-radius: 2px;
-    padding: 0.75rem;
-    font-size: 1rem;
-    margin-bottom: 1rem;
-    transition: border-color 0.3s ease;
+  border: 1px solid #ccc;
+  border-radius: 2px;
+  padding: 0.75rem;
+  font-size: 1rem;
+  margin-bottom: 1rem;
+  transition: border-color 0.3s ease;
 }
 
 .form-control:focus {
-    border-color: #20c997;
-    box-shadow: none;
+  border-color: #20c997;
+  box-shadow: none;
 }
 
 // Button styling
 #register-button {
-    background-color: #333;
-    color: #fff;
-    border: none;
-    padding: 0.75rem;
-    font-size: 1rem;
-    border-radius: 2px;
-    width: 100%;
-    transition: background-color 0.3s ease;
+  background-color: #333;
+  color: #fff;
+  border: none;
+  padding: 0.75rem;
+  font-size: 1rem;
+  border-radius: 2px;
+  width: 100%;
+  transition: background-color 0.3s ease;
 }
 
 #register-button:hover {
-    background-color: #1b9573;
+  background-color: #1b9573;
 }
 
 // Links styling
 #login-link {
-    text-decoration: none;
-    color: #00AB7A;
-    margin-top: 1rem;
-    display: block;
-    text-align: center;
+  text-decoration: none;
+  color: #00AB7A;
+  margin-top: 1rem;
+  display: block;
+  text-align: center;
 }
 
 #login-link:hover {
-    color: #0D916C;
+  color: #0D916C;
 }
 
 .image-container img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-}
-
-.container{
   width: 100%;
-  max-width: 1200px!important;
+  height: 100%;
+  object-fit: cover;
 }
 
-.card{
-  margin: 0!important;
-  padding: 0!important;
+.container {
+  width: 100%;
+  max-width: 1200px !important;
+}
+
+.card {
+  margin: 0 !important;
+  padding: 0 !important;
   border: 1px solid #f1f1f1;
 }

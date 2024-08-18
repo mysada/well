@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class FlaggedReview extends Model
 {
+
     use HasFactory;
 
     /**
@@ -14,7 +15,8 @@ class FlaggedReview extends Model
      *
      * @var array
      */
-    protected $fillable = [
+    protected $fillable
+      = [
         'product_id',
         'user_id',
         'rating',
@@ -22,7 +24,7 @@ class FlaggedReview extends Model
         'image',
         'created_at',
         'updated_at',
-    ];
+      ];
 
     /**
      * Get the product that this review belongs to.
@@ -43,4 +45,5 @@ class FlaggedReview extends Model
     {
         return $this->belongsTo(User::class);
     }
+
 }

@@ -16,8 +16,14 @@ return new class extends Migration {
             $table->unsignedBigInteger('previous_order_id')->nullable();
 
             // Add foreign key constraints
-            $table->foreign('last_order_id')->references('id')->on('orders')->onDelete('set null');
-            $table->foreign('previous_order_id')->references('id')->on('orders')->onDelete('set null');
+            $table->foreign('last_order_id')
+                  ->references('id')
+                  ->on('orders')
+                  ->onDelete('set null');
+            $table->foreign('previous_order_id')
+                  ->references('id')
+                  ->on('orders')
+                  ->onDelete('set null');
         });
     }
 
@@ -32,4 +38,5 @@ return new class extends Migration {
             $table->dropColumn(['last_order_id', 'previous_order_id']);
         });
     }
+
 };

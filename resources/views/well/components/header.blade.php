@@ -1,4 +1,5 @@
-<!-- Header Section -->
+@php use App\Models\CartItem; @endphp
+        <!-- Header Section -->
 <nav class="navbar navbar-expand-lg navbar-light bg-light" style="flex-direction: column;">
     <div id="header-content" class="d-flex justify-content-between my-2">
         <a class="navbar-brand" href="{{ route('home') }}">
@@ -56,7 +57,7 @@
                         <a class="nav-link" href="{{ route('CartIndex') }}">
                             <i class="fas fa-shopping-cart custom-cart-icon"></i>
                             <span class="badge bg-danger" id="cart-item-count">
-                                {{ \App\Models\CartItem::where('user_id', Auth::id())->sum('quantity') }}
+                                {{ CartItem::where('user_id', Auth::id())->sum('quantity') }}
                             </span>
                         </a>
                     </li>
