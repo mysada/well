@@ -13,11 +13,11 @@ return new class extends Migration {
     {
         Schema::create('provinces', function (Blueprint $table) {
             $table->id();
-            $table->string('country_code',10);
-            $table->string('name',255);
-            $table->string('short_name',255);
-            $table->decimal('gst_rate',4,2);
-            $table->decimal('pst_rate',4,2);
+            $table->string('country_code', 10);
+            $table->string('name', 255);
+            $table->string('short_name', 255);
+            $table->decimal('gst_rate', 4, 2);
+            $table->decimal('pst_rate', 4, 2);
         });
     }
 

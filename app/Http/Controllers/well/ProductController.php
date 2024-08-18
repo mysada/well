@@ -12,18 +12,20 @@ use Illuminate\Support\Facades\DB;
 
 class ProductController extends Controller
 {
+
     /**
      * Display a listing of products.
      *
-     * @param \Illuminate\Http\Request $request
+     * @param  \Illuminate\Http\Request  $request
+     *
      * @return \Illuminate\Contracts\View\View
      */
     public function index(Request $request)
     {
         // Validate input
         $request->validate([
-            'category_id' => 'nullable|integer|exists:categories,id',
-            'search'      => 'nullable|string|max:255',
+          'category_id' => 'nullable|integer|exists:categories,id',
+          'search'      => 'nullable|string|max:255',
         ]);
 
         $category_id = $request->get('category_id');
@@ -45,15 +47,16 @@ class ProductController extends Controller
         $title = 'Products';
 
         return view(
-            'well.product.product_list',
-            compact('products', 'categories', 'title', 'category_id', 'search')
+          'well.product.product_list',
+          compact('products', 'categories', 'title', 'category_id', 'search')
         );
     }
 
     /**
      * Display the specified product.
      *
-     * @param string $id
+     * @param  string  $id
+     *
      * @return \Illuminate\Contracts\View\View
      */
     public function show(string $id)
@@ -63,28 +66,29 @@ class ProductController extends Controller
 
         // Fetch related products from the same category
         $relatedProducts = Product::where('category_id', $product->category_id)
-            ->where('id', '!=', $id)
-            ->limit(4)
-            ->get();
+                                  ->where('id', '!=', $id)
+                                  ->limit(4)
+                                  ->get();
 
         // Check if the product is in the wishlist when logged in
         $wishlist = false;
         if (Auth::check()) {
             $wishlist = Wishlist::where('user_id', Auth::id())
-                ->where('product_id', $product->id)
-                ->exists();
+                                ->where('product_id', $product->id)
+                                ->exists();
         }
 
         return view(
-            'well.product.product_details',
-            compact('product', 'title', 'relatedProducts', 'wishlist')
+          'well.product.product_details',
+          compact('product', 'title', 'relatedProducts', 'wishlist')
         );
     }
 
     /**
      * Display the reviews of the specified product.
      *
-     * @param int $id
+     * @param  int  $id
+     *
      * @return \Illuminate\Contracts\View\View
      */
     public function showReviews($id)
@@ -93,28 +97,34 @@ class ProductController extends Controller
 
         // Fetch related products from the same category
         $relatedProducts = Product::where('category_id', $product->category_id)
-            ->where('id', '!=', $id)
-            ->limit(4)
-            ->get();
+                                  ->where('id', '!=', $id)
+                                  ->limit(4)
+                                  ->get();
 
         // Check if the product is in the wishlist when logged in
         $wishlist = false;
         if (Auth::check()) {
             $wishlist = Wishlist::where('user_id', Auth::id())
-                ->where('product_id', $product->id)
-                ->exists();
+                                ->where('product_id', $product->id)
+                                ->exists();
         }
 
         $hasPurchased = DB::table('order_details')
-            ->join('orders', 'order_details.order_id', '=', 'orders.id')
-            ->where('orders.user_id', auth()->id())
-            ->where('order_details.product_id', $id)
-            ->where('orders.status', 'CONFIRMED')
-            ->exists();
+                          ->join(
+                            'orders',
+                            'order_details.order_id',
+                            '=',
+                            'orders.id'
+                          )
+                          ->where('orders.user_id', auth()->id())
+                          ->where('order_details.product_id', $id)
+                          ->where('orders.status', 'CONFIRMED')
+                          ->exists();
 
         return view(
-            'well.product.product_reviews',
-            compact('product', 'relatedProducts', 'hasPurchased', 'wishlist')
+          'well.product.product_reviews',
+          compact('product', 'relatedProducts', 'hasPurchased', 'wishlist')
         );
     }
+
 }

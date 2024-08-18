@@ -8,14 +8,24 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class ContactQuery extends Model
 {
-    use HasFactory, SoftDeletes;
+
+    use HasFactory;
+    use SoftDeletes;
 
     /**
      * The attributes that are mass assignable.
      *
      * @var array
      */
-    protected $fillable = ['name', 'email', 'phone', 'subject', 'message', 'status'];
+    protected $fillable
+      = [
+        'name',
+        'email',
+        'phone',
+        'subject',
+        'message',
+        'status',
+      ];
 
     /**
      * The attributes that should be mutated to dates.
@@ -23,4 +33,5 @@ class ContactQuery extends Model
      * @var array
      */
     protected $dates = ['deleted_at'];
+
 }

@@ -35,7 +35,7 @@ class CheckoutReq extends FormRequest
             function ($attribute, $value, $fail) {
                 $date = DateTime::createFromFormat('my', $value);
                 if ( ! $date) {
-                   return $fail(
+                    return $fail(
                       'Expiry date must be in MMYY format'
                     );
                 }
@@ -44,7 +44,7 @@ class CheckoutReq extends FormRequest
                 );
 
                 if ($date < new DateTime()) {
-                 return   $fail(
+                    return $fail(
                       'The card expiry date is invalid or has expired.'
                     );
                 }
@@ -115,4 +115,5 @@ class CheckoutReq extends FormRequest
             'billing-phone.regex'       => 'Phone number must be between 10 and 15 digits.',
         ];
     }
+
 }

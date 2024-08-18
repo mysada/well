@@ -15,12 +15,13 @@ use Illuminate\Support\Facades\Auth;
 
 class CheckoutController extends Controller
 {
+
     protected PaymentService $paymentService;
 
     /**
      * Constructor to initialize PaymentService.
      *
-     * @param \App\Services\PaymentService $paymentService
+     * @param  \App\Services\PaymentService  $paymentService
      */
     public function __construct(PaymentService $paymentService)
     {
@@ -31,6 +32,7 @@ class CheckoutController extends Controller
      * Show the checkout page for the given order ID.
      *
      * @param  int  $id
+     *
      * @return \Illuminate\Contracts\View\View|\Illuminate\Http\RedirectResponse
      */
     public function showCheckout(int $id)
@@ -41,9 +43,9 @@ class CheckoutController extends Controller
 
         if ($order['status'] !== 'Pending') {
             return RouterTools::success(
-                'This order has been confirmed',
-                'thankyou',
-                ['orderId' => $id]
+              'This order has been confirmed',
+              'thankyou',
+              ['orderId' => $id]
             );
         }
 
@@ -51,8 +53,46 @@ class CheckoutController extends Controller
         $defaultAddr = DefaultAddress::where('user_id', $user->id)->first();
 
         return view(
-            'well.order.checkout',
-            compact('countries', 'order', 'id', 'provinces', 'user', 'defaultAddr')
+          'well.order.checkout',
+          compact(
+            'countries',
+            'order',
+            'id',
+            'provinces',
+            'user',
+            'defaultAddr'
+          )
+        );
+    }
+
+    /**
+     * Process the checkout request.
+     *
+     * @param  \App\Http\Requests\CheckoutReq  $request
+     *
+     * @return \Illuminate\Http\RedirectResponse
+     * @throws \Exception
+     */
+    public function process(CheckoutReq $request)
+    {
+        $order = Order::find($request['order-id']);
+
+        if ($order['status'] !== 'Pending') {
+            return RouterTools::success(
+              'This order has been confirmed',
+              'thankyou',
+              ['orderId' => $order['id']]
+            );
+        }
+
+        // Process payment and retrieve order details
+        $this->paymentService->checkout($request);
+
+        // Redirect to the thank you page with order ID
+        return RouterTools::success(
+          "Payment processed successfully.",
+          'thankyou',
+          ['orderId' => $order->id]
         );
     }
 
@@ -66,33 +106,4 @@ class CheckoutController extends Controller
         return CartItem::with('product')->where('user_id', Auth::id())->get();
     }
 
-    /**
-     * Process the checkout request.
-     *
-     * @param  \App\Http\Requests\CheckoutReq  $request
-     * @return \Illuminate\Http\RedirectResponse
-     * @throws \Exception
-     */
-    public function process(CheckoutReq $request)
-    {
-        $order = Order::find($request['order-id']);
-
-        if ($order['status'] !== 'Pending') {
-            return RouterTools::success(
-                'This order has been confirmed',
-                'thankyou',
-                ['orderId' => $order['id']]
-            );
-        }
-
-        // Process payment and retrieve order details
-        $this->paymentService->checkout($request);
-
-        // Redirect to the thank you page with order ID
-        return RouterTools::success(
-            "Payment processed successfully.",
-            'thankyou',
-            ['orderId' => $order->id]
-        );
-    }
 }

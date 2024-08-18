@@ -82,7 +82,8 @@
                     <label class="input input-bordered flex items-center gap-2 ">
                         <span>Discount (%)</span>
                         <input type="text" class="grow" id="discount" name="discount"
-                               value="{{ old('discount') }}" min="0" max="100" placeholder="Enter discount" pattern="\d*"
+                               value="{{ old('discount') }}" min="0" max="100" placeholder="Enter discount"
+                               pattern="\d*"
                                title="Only whole numbers are allowed"/>
                     </label>
                     @error('discount')
@@ -107,7 +108,8 @@
 
                 <div>
                         <textarea class="textarea textarea-bordered w-full" id="long_description"
-                                  name="long_description" rows="5" placeholder="Enter long description">{{ old('long_description') }}</textarea>
+                                  name="long_description" rows="5"
+                                  placeholder="Enter long description">{{ old('long_description') }}</textarea>
                     @error('long_description')
                     <div class="text-red-500 text-sm mt-1">{{ $message }}</div>
                     @enderror

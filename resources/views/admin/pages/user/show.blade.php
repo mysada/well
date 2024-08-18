@@ -32,9 +32,12 @@
                         <ul class="space-y-2">
                             <li><span class="font-medium">Address:</span> {{ $shippingAddress ?? 'Not provided' }}</li>
                             <li><span class="font-medium">City:</span> {{ $shippingCity ?? 'Not provided' }}</li>
-                            <li><span class="font-medium">Province:</span> {{ $shippingProvince ?? 'Not provided' }}</li>
+                            <li><span class="font-medium">Province:</span> {{ $shippingProvince ?? 'Not provided' }}
+                            </li>
                             <li><span class="font-medium">Country:</span> {{ $shippingCountry ?? 'Not provided' }}</li>
-                            <li><span class="font-medium">Postal Code:</span> {{ $shippingPostalCode ?? 'Not provided' }}</li>
+                            <li>
+                                <span class="font-medium">Postal Code:</span> {{ $shippingPostalCode ?? 'Not provided' }}
+                            </li>
                             <li><span class="font-medium">Email:</span> {{ $shippingEmail ?? 'Not provided' }}</li>
                             <li><span class="font-medium">Phone:</span> {{ $shippingPhone ?? 'Not provided' }}</li>
                         </ul>
@@ -46,7 +49,8 @@
                             <li><span class="font-medium">City:</span> {{ $billingCity ?? 'Not provided' }}</li>
                             <li><span class="font-medium">Province:</span> {{ $billingProvince ?? 'Not provided' }}</li>
                             <li><span class="font-medium">Country:</span> {{ $billingCountry ?? 'Not provided' }}</li>
-                            <li><span class="font-medium">Postal Code:</span> {{ $billingPostalCode ?? 'Not provided' }}</li>
+                            <li><span class="font-medium">Postal Code:</span> {{ $billingPostalCode ?? 'Not provided' }}
+                            </li>
                             <li><span class="font-medium">Email:</span> {{ $billingEmail ?? 'Not provided' }}</li>
                             <li><span class="font-medium">Phone:</span> {{ $billingPhone ?? 'Not provided' }}</li>
                         </ul>

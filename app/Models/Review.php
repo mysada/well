@@ -9,21 +9,24 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Review extends Model
 {
-    use HasFactory, SoftDeletes;
+
+    use HasFactory;
+    use SoftDeletes;
 
     /**
      * The attributes that are mass assignable.
      *
      * @var array
      */
-    protected $fillable = [
+    protected $fillable
+      = [
         'product_id',
         'user_id',
         'rating',
         'review_text',
         'image',
         'status',
-    ];
+      ];
 
     /**
      * Get the user who wrote the review.
@@ -44,4 +47,5 @@ class Review extends Model
     {
         return $this->belongsTo(Product::class);
     }
+
 }

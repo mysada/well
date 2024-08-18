@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Store extends Model
 {
+
     use HasFactory;
 
     /**
@@ -14,10 +15,11 @@ class Store extends Model
      *
      * @var array
      */
-    protected $fillable = [
+    protected $fillable
+      = [
         'name',
         'feedback',
-    ];
+      ];
 
     /**
      * Get the products associated with the store.
@@ -28,4 +30,5 @@ class Store extends Model
     {
         return $this->hasMany(Product::class);
     }
+
 }

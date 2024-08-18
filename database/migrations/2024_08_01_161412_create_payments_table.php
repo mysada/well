@@ -19,8 +19,8 @@ return new class extends Migration {
             $table->decimal('amount', 10, 2);
             $table->decimal('discount', 5, 2)->nullable();
             $table->enum('status', ['Pending', 'Completed', 'Failed']);
-            $table->string('payer_name',255);
-            $table->string('payer_card',255);
+            $table->string('payer_name', 255);
+            $table->string('payer_card', 255);
             $table->string('billing_name', 255)->nullable();
             $table->string('billing_email', 255)->nullable();
             $table->string('billing_phone', 255)->nullable();

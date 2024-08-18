@@ -22,7 +22,9 @@ return new class extends Migration {
             // Add indexes to the foreign key columns
             $table->index('product_id');
             $table->string('image')->nullable();
-            $table->enum('status', ['active', 'flagged', 'pending'])->default('active');
+            $table->enum('status', ['active', 'flagged', 'pending'])->default(
+              'active'
+            );
             $table->timestamps();
             $table->softDeletes();
         });

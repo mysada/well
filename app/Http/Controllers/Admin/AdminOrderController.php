@@ -60,6 +60,8 @@ class AdminOrderController extends Controller
 
         $order->status = $validatedData['status'];
         $order->save();
+
         return RouterTools::successBack('Order status updated successfully');
     }
+
 }

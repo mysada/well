@@ -1,243 +1,241 @@
 
 body {
-    line-height: 1.6;
-    color: #333;
-    margin: 0;
-    padding: 0;
-    font-family: 'Poppins', 'Avenir Next Georgian', Arial, sans-serif;
+  line-height: 1.6;
+  color: #333;
+  margin: 0;
+  padding: 0;
+  font-family: 'Poppins', 'Avenir Next Georgian', Arial, sans-serif;
 }
 
 h1, h2, h3 {
-    font-weight: 700;
+  font-weight: 700;
 }
 
 .container {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
 }
 
 .text-center {
-    text-align: center;
+  text-align: center;
 }
 
 .my-5 {
-    margin-top: 3rem;
-    margin-bottom: 3rem;
+  margin-top: 3rem;
+  margin-bottom: 3rem;
 }
 
 .hero {
-    margin-top: 2rem;
+  margin-top: 2rem;
 }
 
 .hero-box {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 2rem;
-    // background-color: #e0f7fa;
-    background-color: #EFF8F5;
-    border-radius: unset!important;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 2rem;
+  // background-color: #e0f7fa;
+  background-color: #EFF8F5;
+  border-radius: unset !important;
 }
 
 .hero-content h1 {
-    font-size: 2.5rem;
-    margin-bottom: 1rem;
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
 }
 
 .hero-content p {
-    font-size: 1.1rem;
-    margin-bottom: 1.5rem;
-    color: #777;
+  font-size: 1.1rem;
+  margin-bottom: 1.5rem;
+  color: #777;
 }
 
 .hero-content .btn {
-    font-size: 1.1rem;
-    padding: 0.7rem 3rem;
-    background-color: #00A875;
-    color: #fff;
-    border: none;
-    border-radius: unset!important;
-    text-align: right;
+  font-size: 1.1rem;
+  padding: 0.7rem 3rem;
+  background-color: #00A875;
+  color: #fff;
+  border: none;
+  border-radius: unset !important;
+  text-align: right;
 }
 
 .hero-content .btn:hover {
-    background-color: #333;
-    color: #fff;
+  background-color: #333;
+  color: #fff;
 }
 
 .btn-primary:active {
-    background-color: #008E65 !important;
-    transform: scale(0.95);
-    color: #fff;
+  background-color: #008E65 !important;
+  transform: scale(0.95);
+  color: #fff;
 }
 
 .hero-image img {
-    max-width: 100%;
-    border-radius: unset!important;
+  max-width: 100%;
+  border-radius: unset !important;
 }
 
 .section-title h2 {
-    font-size: 2.5rem;
-    margin-bottom: 2rem;
+  font-size: 2.5rem;
+  margin-bottom: 2rem;
 }
 
 .content .row {
-    margin-bottom: 3rem;
+  margin-bottom: 3rem;
 }
 
 .content img {
-    width: 100%;
-    border-radius: unset!important;
+  width: 100%;
+  border-radius: unset !important;
 }
 
 .content h3 {
-    font-size: 1.8rem;
-    margin-bottom: 1rem;
+  font-size: 1.8rem;
+  margin-bottom: 1rem;
 }
 
 .content p {
-    font-size: 1.1rem;
-    color: #777;
+  font-size: 1.1rem;
+  color: #777;
 }
 
 .contact-info {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .contact-info-box {
-    background-color: #333;
-    padding: 20px;
-    border-radius: unset!important;
-    color: #fff;
-    text-align: left;
-    margin-bottom: 20px;
-    flex-direction: column;
-    display: flex;
-    align-items: center;
+  background-color: #333;
+  padding: 20px;
+  border-radius: unset !important;
+  color: #fff;
+  text-align: left;
+  margin-bottom: 20px;
+  flex-direction: column;
+  display: flex;
+  align-items: center;
 }
 
 .contact-info p {
-    font-size: 1.1rem;
-    margin-bottom: 1rem;
-    color: #fff;
+  font-size: 1.1rem;
+  margin-bottom: 1rem;
+  color: #fff;
 }
 
 
 .contact-info a {
-    color: #fff;
-    text-decoration: none;
+  color: #fff;
+  text-decoration: none;
 }
 
 
 .contact form .form-group {
-    margin-bottom: 1rem;
+  margin-bottom: 1rem;
 }
-
 
 
 //about-icon page starts
 
 .contact-icon, .social-icon {
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    border: 2px solid #ccc;
-    padding: 5px;
-    background-color: #fff;
-    background-image: radial-gradient(circle, #f9f9f9 40%, #fff 100%);
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 2px solid #ccc;
+  padding: 5px;
+  background-color: #fff;
+  background-image: radial-gradient(circle, #f9f9f9 40%, #fff 100%);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
 
-    transition: all 0.3s ease;
-    vertical-align: middle;
-    margin-right: 8px;
-    box-sizing: border-box;
-    position: relative;
+  transition: all 0.3s ease;
+  vertical-align: middle;
+  margin-right: 8px;
+  box-sizing: border-box;
+  position: relative;
 }
 
 .contact-icon img, .social-icon img {
-    width: 60%;
-    height: auto;
-    transition: transform 0.3s ease;
+  width: 60%;
+  height: auto;
+  transition: transform 0.3s ease;
 }
 
 .contact-icon::before, .social-icon::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    border-radius: 50%;
-    background: radial-gradient(circle, rgba(0,0,0,0.1) 20%, transparent 80%);
-    opacity: 0;
-    transition: opacity 0.3s ease;
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(0, 0, 0, 0.1) 20%, transparent 80%);
+  opacity: 0;
+  transition: opacity 0.3s ease;
 }
 
 .contact-icon:hover, .social-icon:hover {
-    background-color: #e0e0e0;
-    border-color: #007bff;
+  background-color: #e0e0e0;
+  border-color: #007bff;
 
-    transform: scale(1.1) rotate(10deg);
+  transform: scale(1.1) rotate(10deg);
 }
 
 .contact-icon:hover::before, .social-icon:hover::before {
-    opacity: 1;
+  opacity: 1;
 }
 
 .contact-icon:hover img, .social-icon:hover img {
-    transform: scale(1.1);
+  transform: scale(1.1);
 }
 
 //about icons page ends
 
 
-
 .footer {
-    background-color: #000;
-    color: #fff;
-    padding: 2rem 0;
+  background-color: #000;
+  color: #fff;
+  padding: 2rem 0;
 }
 
 .footer-logo {
-    margin-bottom: 2rem;
+  margin-bottom: 2rem;
 }
 
 .footer-logo img {
-    max-width: 150px;
-    margin-bottom: 1rem;
+  max-width: 150px;
+  margin-bottom: 1rem;
 }
 
 .footer p {
-    margin: 0.5rem 0;
+  margin: 0.5rem 0;
 }
 
 .footer-nav p {
-    margin: 0.5rem 0;
+  margin: 0.5rem 0;
 }
 
 .footer-nav a {
-    color: #fff;
-    text-decoration: none;
+  color: #fff;
+  text-decoration: none;
 }
 
 .footer-nav a:hover {
-    text-decoration: underline;
+  text-decoration: underline;
 }
 
 .footer-nav i {
-    margin-right: 0.5rem;
+  margin-right: 0.5rem;
 }
 
 .footer-nav a.text-white {
-    color: #fff;
+  color: #fff;
 }
 
 .footer i {
-    margin: 0 0.5rem;
+  margin: 0 0.5rem;
 }
 

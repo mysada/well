@@ -14,6 +14,7 @@ use Illuminate\Support\Facades\DB;
 
 class AdminHomeController extends Controller
 {
+
     /**
      * Display a listing of the resource.
      *
@@ -36,26 +37,42 @@ class AdminHomeController extends Controller
         $totalProduct = Product::count();
         $totalCat     = Category::count();
 
-        $topSeller = OrderDetail::join('orders as o', 'o.id', '=', 'order_details.order_id')
-            ->join('products as p', 'p.id', '=', 'order_details.product_id')
-            ->select('p.name', DB::raw('SUM(order_details.quantity) as quantity'))
-            ->whereIn('o.status', ['Confirmed', 'Delivered'])
-            ->groupBy('p.name')
-            ->orderByDesc('quantity')
-            ->limit(4)
-            ->get();
+        $topSeller = OrderDetail::join(
+          'orders as o',
+          'o.id',
+          '=',
+          'order_details.order_id'
+        )
+                                ->join(
+                                  'products as p',
+                                  'p.id',
+                                  '=',
+                                  'order_details.product_id'
+                                )
+                                ->select(
+                                  'p.name',
+                                  DB::raw(
+                                    'SUM(order_details.quantity) as quantity'
+                                  )
+                                )
+                                ->whereIn('o.status', ['Confirmed', 'Delivered']
+                                )
+                                ->groupBy('p.name')
+                                ->orderByDesc('quantity')
+                                ->limit(4)
+                                ->get();
 
         $stats = [
-            'totalOrders'          => $totalOrders,
-            'totalRevenue'         => $totalRevenue,
-            'averageRevenue'       => $averageRevenue,
-            'totalOrdersDelivered' => $totalOrdersDelivered,
-            'totalOrdersPending'   => $totalOrdersPending,
-            'totalUser'            => $totalUser,
-            'latestUser'           => $latestUser->name,
-            'totalProduct'         => $totalProduct,
-            'totalCat'             => $totalCat,
-            'topSeller'            => $topSeller,
+          'totalOrders'          => $totalOrders,
+          'totalRevenue'         => $totalRevenue,
+          'averageRevenue'       => $averageRevenue,
+          'totalOrdersDelivered' => $totalOrdersDelivered,
+          'totalOrdersPending'   => $totalOrdersPending,
+          'totalUser'            => $totalUser,
+          'latestUser'           => $latestUser->name,
+          'totalProduct'         => $totalProduct,
+          'totalCat'             => $totalCat,
+          'topSeller'            => $topSeller,
         ];
 
         return view('admin.pages.home', compact('title', 'logs', 'stats'));
@@ -85,6 +102,7 @@ class AdminHomeController extends Controller
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
+     *
      * @return void
      */
     public function store(Request $request)
@@ -96,6 +114,7 @@ class AdminHomeController extends Controller
      * Display the specified resource.
      *
      * @param  string  $id
+     *
      * @return void
      */
     public function show(string $id)
@@ -107,6 +126,7 @@ class AdminHomeController extends Controller
      * Show the form for editing the specified resource.
      *
      * @param  string  $id
+     *
      * @return void
      */
     public function edit(string $id)
@@ -119,6 +139,7 @@ class AdminHomeController extends Controller
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  string  $id
+     *
      * @return void
      */
     public function update(Request $request, string $id)
@@ -130,10 +151,12 @@ class AdminHomeController extends Controller
      * Remove the specified resource from storage.
      *
      * @param  string  $id
+     *
      * @return void
      */
     public function destroy(string $id)
     {
         //
     }
+
 }

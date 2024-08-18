@@ -1,107 +1,107 @@
 .bold {
-    font-weight: 700;
+  font-weight: 700;
 }
 
 .container {
-    width: 100%;
-    margin: auto;
+  width: 100%;
+  margin: auto;
 }
 
 .wishlist-section {
-    padding: 60px 0;
+  padding: 60px 0;
 
-    h2 {
-        margin-bottom: 30px;
-        text-align: left;
-    }
+  h2 {
+    margin-bottom: 30px;
+    text-align: left;
+  }
 }
 
 .product-item {
-    display: flex;
-    align-items: flex-start;
-    justify-content: space-between;
-    border-bottom: 1px solid #ddd;
-    padding: 15px;
-    flex-wrap: wrap;
-    border: 1px solid #eee;
-    margin-bottom: 10px;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  border-bottom: 1px solid #ddd;
+  padding: 15px;
+  flex-wrap: wrap;
+  border: 1px solid #eee;
+  margin-bottom: 10px;
 }
 
 .product-info {
-    display: flex;
-    align-items: flex-start;
-    flex: 1 1 60%;
+  display: flex;
+  align-items: flex-start;
+  flex: 1 1 60%;
 
-    img {
-        width: 150px;
-        height: 150px;
-        object-fit: cover;
-        margin-right: 20px;
-    }
+  img {
+    width: 150px;
+    height: 150px;
+    object-fit: cover;
+    margin-right: 20px;
+  }
 
-    .product-title {
-        font-size: 24px;
-        font-weight: 700;
-        margin-bottom: 5px;
-    }
+  .product-title {
+    font-size: 24px;
+    font-weight: 700;
+    margin-bottom: 5px;
+  }
 
-    .product-price {
-        font-size: 18px;
-        color: #F26151;
-        font-weight: 700;
-    }
+  .product-price {
+    font-size: 18px;
+    color: #F26151;
+    font-weight: 700;
+  }
 }
 
 .product-actions {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    flex: 1 1 10%;
-    margin-top: 10px;
-    margin-left: 5px !important;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex: 1 1 10%;
+  margin-top: 10px;
+  margin-left: 5px !important;
 
-    .btn-remove {
-        // color: #fff !important;
-        // background-color: #f44336;
-        // padding: 14px !important;
-        // font-size: 17px !important;
-        // border-radius: unset !important;
-        // margin-left: 10px !important;
-        transition: background-color 0.2s ease, color 0.2s ease;
+  .btn-remove {
+    // color: #fff !important;
+    // background-color: #f44336;
+    // padding: 14px !important;
+    // font-size: 17px !important;
+    // border-radius: unset !important;
+    // margin-left: 10px !important;
+    transition: background-color 0.2s ease, color 0.2s ease;
 
-        &:hover {
-            // background-color: #d32f2f;
-            color: #000!important;
-        }
+    &:hover {
+      // background-color: #d32f2f;
+      color: #000 !important;
     }
+  }
 }
 
 .btn-primary {
-    background-color: #00AB7A;
-    width: 182px;
-    color: #fff;
-    border: none;
-    border-radius: unset!important;
-    padding: 12px !important;
-    font-size: 17px !important;
-    font-weight: 400;
-    transition: background-color 0.2s ease, transform 0.2s ease;
-    text-decoration: none;
-    display: inline-block;
-    z-index: 2;
-    position: relative;
-    margin-left: 25px;
+  background-color: #00AB7A;
+  width: 182px;
+  color: #fff;
+  border: none;
+  border-radius: unset !important;
+  padding: 12px !important;
+  font-size: 17px !important;
+  font-weight: 400;
+  transition: background-color 0.2s ease, transform 0.2s ease;
+  text-decoration: none;
+  display: inline-block;
+  z-index: 2;
+  position: relative;
+  margin-left: 25px;
 }
 
 .btn-primary:hover {
-    background-color: #fff !important;
-    color: #00AB7A!important;
-    border: 1px solid #00AB7A!important;
+  background-color: #fff !important;
+  color: #00AB7A !important;
+  border: 1px solid #00AB7A !important;
 }
 
 .btn-primary:active {
-    background-color: #008E65 !important;
-    color: #fff!important;
+  background-color: #008E65 !important;
+  color: #fff !important;
 }
 
 .btn-primary:focus,
@@ -109,68 +109,68 @@
 .btn-primary:focus:active,
 .btn-primary:focus:hover,
 .btn-primary:focus:visited {
-    outline: none;
+  outline: none;
 
-    color: #fff;
-    background-color: #00AB7A;
-    border: none;
+  color: #fff;
+  background-color: #00AB7A;
+  border: none;
 }
 
 .product-description {
-    font-size: 16px;
-    color: #666;
-    margin-bottom: 20px;
-    max-width: 100%;
-    flex: 1 1 100%;
+  font-size: 16px;
+  color: #666;
+  margin-bottom: 20px;
+  max-width: 100%;
+  flex: 1 1 100%;
 
-    // Responsive adjustments
-    @media (max-width: 768px) {
-        .product-item {
-            flex-direction: column;
-            align-items: flex-start;
-        }
-
-        .product-info, .product-actions {
-            flex: 1 1 100%;
-            margin-bottom: 10px;
-        }
-
-        .btn-primary, .btn-remove {
-            width: 100%;
-            margin-right: 5px;
-        }
+  // Responsive adjustments
+  @media (max-width: 768px) {
+    .product-item {
+      flex-direction: column;
+      align-items: flex-start;
     }
+
+    .product-info, .product-actions {
+      flex: 1 1 100%;
+      margin-bottom: 10px;
+    }
+
+    .btn-primary, .btn-remove {
+      width: 100%;
+      margin-right: 5px;
+    }
+  }
 
 }
 
 .empty-wishlist {
-    text-align: center;
-    padding: 100px 0;
+  text-align: center;
+  padding: 100px 0;
 
-    h2 {
-        font-size: 36px;
-        color: #333;
-        margin-bottom: 20px;
-    }
+  h2 {
+    font-size: 36px;
+    color: #333;
+    margin-bottom: 20px;
+  }
 
-    p {
-        font-size: 18px;
-        color: #666;
-        margin-bottom: 40px;
-    }
+  p {
+    font-size: 18px;
+    color: #666;
+    margin-bottom: 40px;
+  }
 
-    .btn-primary {
-        background-color: #00AB7A;
-        padding: 15px 30px;
-        font-size: 18px;
-        border-radius: 5px;
-        text-transform: uppercase;
-        text-decoration: none;
-    }
+  .btn-primary {
+    background-color: #00AB7A;
+    padding: 15px 30px;
+    font-size: 18px;
+    border-radius: 5px;
+    text-transform: uppercase;
+    text-decoration: none;
+  }
 
-    .btn-primary:hover {
-        background-color: #008E65;
-        color: #fff;
-        border: 1px solid #eee;
-    }
+  .btn-primary:hover {
+    background-color: #008E65;
+    color: #fff;
+    border: 1px solid #eee;
+  }
 }

@@ -36,7 +36,7 @@
                     <th>Phone</th>
                     <th>Role</th>
                     <th>Created Time</th>
-                    <th  class="px-0">Actions</th>
+                    <th class="px-0">Actions</th>
                 </tr>
             </thead>
             <tbody>

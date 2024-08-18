@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Wishlist extends Model
 {
+
     use HasFactory;
 
     /**
@@ -26,4 +27,5 @@ class Wishlist extends Model
     {
         return $this->belongsTo(Product::class);
     }
+
 }

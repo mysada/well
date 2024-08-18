@@ -1,127 +1,129 @@
 .thank-you-message {
-    p {
-        color: #666;
-    }
+  p {
+    color: #666;
+  }
 }
+
 .thank-you-page {
-    .border-custom {
-        border-radius: 10px;
-        border: unset !important;
-    }
+  .border-custom {
+    border-radius: 10px;
+    border: unset !important;
+  }
 
-    .bg-custom {
-        background-color: #1a1a1a;
-        color: #fff;
-        padding: 10px 20px;
-        border-radius: 10px 10px 0 0;
-    }
+  .bg-custom {
+    background-color: #1a1a1a;
+    color: #fff;
+    padding: 10px 20px;
+    border-radius: 10px 10px 0 0;
+  }
 
-    .status-label {
-        font-weight: bold;
-        font-size: 1.2em;
-    }
+  .status-label {
+    font-weight: bold;
+    font-size: 1.2em;
+  }
+
+  .status-badge {
+    display: inline-block;
+    padding: 0.6rem 2.5rem;
+    font-size: 16px;
+    border-radius: 5px;
+    background-color: #00AB7A;
+    color: #fff;
+    margin-top: 10px;
+  }
+
+  .order-info p {
+    margin: 5px 0;
+    color: #333;
+  }
+
+  .order-status {
+    margin-top: 20px;
+    // text-align: center;
 
     .status-badge {
-        display: inline-block;
-        padding: 0.6rem 2.5rem;
-        font-size: 16px;
-        border-radius: 5px;
-        background-color: #00AB7A;
-        color: #fff;
-        margin-top: 10px;
+      margin: 0 auto;
     }
+  }
 
-    .order-info p {
-        margin: 5px 0;
-        color: #333;
-    }
+  .card {
+    margin-bottom: 20px;
+    height: fit-content;
+  }
 
-    .order-status {
-        margin-top: 20px;
-        // text-align: center;
+  .card-title {
+    font-size: 1.5em;
+    font-weight: bold;
+  }
 
-        .status-badge {
-            margin: 0 auto;
-        }
-    }
+  .card-body {
+    padding: 20px;
+    // border: 2px solid #00A875;
+  }
 
-    .card {
-        margin-bottom: 20px;
-        height: fit-content;
-    }
-
-    .card-title {
-        font-size: 1.5em;
-        font-weight: bold;
-    }
-
-    .card-body {
-        padding: 20px;
-        // border: 2px solid #00A875;
-    }
-
-    .list-group-item {
-        display: flex;
-        justify-content: space-between;
-        padding: 10px 0;
-        border: none;
-
-        .item-image img {
-            max-width: 120px;
-            height: auto;
-            margin-right: 15px;
-        }
-
-        .item-details {
-            flex: 1;
-            padding-left: 15px;
-
-            .item-price {
-                color: #00AB7A;
-                font-weight: bold;
-            }
-        }
-    }
-
-    .row > .col-md-6 {
-        margin-bottom: 40px;
-    }
-
-    .btn-custom {
-        background-color: #00AB7A;
-        border: none;
-        color: #fff;
-        font-size: 1.2em;
-        padding: 15px;
-        border-radius: unset !important;
-
-        &:hover {
-            background-color: #00AB7A !important;
-            color: #fff !important;
-        }
-    }
-}
-.buttons-section {
+  .list-group-item {
     display: flex;
-    justify-content: center;
-    gap: 10px;
+    justify-content: space-between;
+    padding: 10px 0;
+    border: none;
+
+    .item-image img {
+      max-width: 120px;
+      height: auto;
+      margin-right: 15px;
+    }
+
+    .item-details {
+      flex: 1;
+      padding-left: 15px;
+
+      .item-price {
+        color: #00AB7A;
+        font-weight: bold;
+      }
+    }
+  }
+
+  .row > .col-md-6 {
+    margin-bottom: 40px;
+  }
+
+  .btn-custom {
+    background-color: #00AB7A;
+    border: none;
+    color: #fff;
+    font-size: 1.2em;
+    padding: 15px;
+    border-radius: unset !important;
+
+    &:hover {
+      background-color: #00AB7A !important;
+      color: #fff !important;
+    }
+  }
+}
+
+.buttons-section {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
 }
 
 .btn-custom {
-    padding: 14px;
-    border-radius: 0;
-    background-color: #00A875;
-    color: white;
-    font-weight: bold;
-    transition: background-color 0.3s ease, transform 0.3s ease;
+  padding: 14px;
+  border-radius: 0;
+  background-color: #00A875;
+  color: white;
+  font-weight: bold;
+  transition: background-color 0.3s ease, transform 0.3s ease;
 }
 
 .btn-custom:hover {
-    background-color: #00A875;
-    transform: scale(1.05);
+  background-color: #00A875;
+  transform: scale(1.05);
 }
 
 .btn-custom:active {
-    background-color: #00A875;
-    transform: scale(0.95);
+  background-color: #00A875;
+  transform: scale(0.95);
 }

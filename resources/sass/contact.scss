@@ -1,112 +1,113 @@
 .section-title {
-    margin-bottom: 2rem;
+  margin-bottom: 2rem;
 
-    h2 {
-        font-size: 2rem;
-        font-weight: 600;
-        color: #333;
-    }
+  h2 {
+    font-size: 2rem;
+    font-weight: 600;
+    color: #333;
+  }
 }
 
 .contact {
-    .contact-info-box {
-        padding: 2rem;
-        border-radius: 2px;
-        background-color: #333;
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  .contact-info-box {
+    padding: 2rem;
+    border-radius: 2px;
+    background-color: #333;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 
-        .contact-icons {
-            margin-top: 6px;
-        }
-        .contact-icons {
-            p {
-                display: flex;
-                align-items: center;
-                font-size: 15px;
-                margin-bottom: 1.5rem;
-                font-weight: 500;
-                color: #eee;
-
-                .contact-icon {
-                    width: 35px;
-                    margin-right: 15px;
-                    display: inline-block;
-                }
-
-                a {
-                    color: #00AB7A;
-                    text-decoration: none;
-
-                    &:hover {
-                        text-decoration: underline;
-                    }
-                }
-            }
-        }
-
-        .social-icons {
-            display: flex;
-            justify-content: space-around;
-            margin-top: 2.5rem;
-            border: 1px solid #666;
-
-            i {
-                font-size: 2rem;
-                color: #00AB7A;
-                transition: color 0.3s ease;
-
-                &:hover {
-                    color: #007b5e;
-                }
-            }
-        }
+    .contact-icons {
+      margin-top: 6px;
     }
 
-    form {
-        .form-group {
-            margin-bottom: 1.5rem;
+    .contact-icons {
+      p {
+        display: flex;
+        align-items: center;
+        font-size: 15px;
+        margin-bottom: 1.5rem;
+        font-weight: 500;
+        color: #eee;
 
-            .form-control {
-                border: 1px solid #ddd;
-                border-radius: 5px;
-                padding: 10px;
-                font-size: 1rem;
-                color: #333;
-                box-shadow: none;
-                transition: border-color 0.3s ease;
-
-                &:focus {
-                    border-color: #00AB7A;
-                    box-shadow: none;
-                }
-
-                &.is-invalid {
-                    border-color: #dc3545;
-                }
-            }
-
-            .invalid-feedback {
-                color: #dc3545;
-            }
+        .contact-icon {
+          width: 35px;
+          margin-right: 15px;
+          display: inline-block;
         }
 
-        .btn-black {
-            background-color: #333;
-            color: #fff;
-            border: none;
-            padding: 0.75rem 2.3rem;
-            cursor: pointer;
-            font-size: 1rem;
-            transition: background-color 0.3s ease;
+        a {
+          color: #00AB7A;
+          text-decoration: none;
 
-            &:hover {
-                background-color: #000;
-            }
+          &:hover {
+            text-decoration: underline;
+          }
         }
-
-
-        @media (max-width: 768px) {
-            margin-top: 2rem;
-        }
+      }
     }
+
+    .social-icons {
+      display: flex;
+      justify-content: space-around;
+      margin-top: 2.5rem;
+      border: 1px solid #666;
+
+      i {
+        font-size: 2rem;
+        color: #00AB7A;
+        transition: color 0.3s ease;
+
+        &:hover {
+          color: #007b5e;
+        }
+      }
+    }
+  }
+
+  form {
+    .form-group {
+      margin-bottom: 1.5rem;
+
+      .form-control {
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        padding: 10px;
+        font-size: 1rem;
+        color: #333;
+        box-shadow: none;
+        transition: border-color 0.3s ease;
+
+        &:focus {
+          border-color: #00AB7A;
+          box-shadow: none;
+        }
+
+        &.is-invalid {
+          border-color: #dc3545;
+        }
+      }
+
+      .invalid-feedback {
+        color: #dc3545;
+      }
+    }
+
+    .btn-black {
+      background-color: #333;
+      color: #fff;
+      border: none;
+      padding: 0.75rem 2.3rem;
+      cursor: pointer;
+      font-size: 1rem;
+      transition: background-color 0.3s ease;
+
+      &:hover {
+        background-color: #000;
+      }
+    }
+
+
+    @media (max-width: 768px) {
+      margin-top: 2rem;
+    }
+  }
 }

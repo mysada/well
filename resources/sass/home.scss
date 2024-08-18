@@ -97,8 +97,8 @@ h2 {
 
 .card {
   flex-direction: row;
-  border-radius: 0!important;
-  border: 0!important;
+  border-radius: 0 !important;
+  border: 0 !important;
 
 }
 
@@ -213,7 +213,8 @@ h2 {
 
 .products-section {
   margin-bottom: 100px;
-  .row{
+
+  .row {
     text-align: left;
   }
 }
@@ -255,7 +256,7 @@ h2 {
   height: 50px;
   color: #fff;
   border: none;
-  border-radius: unset!important;
+  border-radius: unset !important;
   padding: 12px 20px;
   font-size: 17px;
   font-weight: 700;
@@ -296,7 +297,7 @@ h2 {
   height: 50px;
   color: #333;
   border: none;
-  border-radius: unset!important;
+  border-radius: unset !important;
   padding: 12px 20px;
   font-size: 17px;
   font-weight: 700;

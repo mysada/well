@@ -4,8 +4,8 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-return new class extends Migration
-{
+return new class extends Migration {
+
     /**
      * Run the migrations.
      */
@@ -18,7 +18,9 @@ return new class extends Migration
             $table->string('phone')->nullable();
             $table->string('subject');
             $table->text('message');
-            $table->enum('status', ['new', 'in_progress', 'resolved'])->default('new');
+            $table->enum('status', ['new', 'in_progress', 'resolved'])->default(
+              'new'
+            );
             $table->timestamps();
             $table->softDeletes();
         });
@@ -31,4 +33,5 @@ return new class extends Migration
     {
         Schema::dropIfExists('contact_queries');
     }
+
 };

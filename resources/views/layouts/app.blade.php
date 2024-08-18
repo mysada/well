@@ -34,6 +34,6 @@
             </main>
 
             @include('well.components.footer')
-    </div>
-</body>
+        </div>
+    </body>
 </html>
