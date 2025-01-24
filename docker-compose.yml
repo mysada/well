@@ -1,0 +1,36 @@
+version: '3.8'
+
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: laravel_app
+    volumes:
+      - .:/var/www/html
+      - ./docker/php/php.ini:/usr/local/etc/php/php.ini
+    ports:
+      - "8000:9000"
+    environment:
+      - APP_ENV=local
+      - APP_DEBUG=true
+      - APP_KEY= # 填入实际的 APP_KEY
+    depends_on:
+      - mysql
+
+  mysql:
+    image: mysql:8.0
+    container_name: laravel_mysql
+    volumes:
+      - ./docker/mysql/my.cnf:/etc/mysql/my.cnf
+      - mysql_data:/var/lib/mysql
+    environment:
+      MYSQL_DATABASE: well
+      MYSQL_USER: well
+      MYSQL_PASSWORD: laravel_password
+      MYSQL_ROOT_PASSWORD: root_password
+    ports:
+      - "3306:3306"
+
+volumes:
+  mysql_data:

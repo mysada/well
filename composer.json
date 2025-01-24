@@ -12,8 +12,7 @@
     "google/recaptcha": "^1.3",
     "laravel/framework": "^11.9",
     "laravel/tinker": "^2.9",
-    "laravel/ui": "^4.5",
-    "pacewdd/5bx-client-library": "^1.0"
+    "laravel/ui": "^4.5"
   },
   "require-dev": {
     "fakerphp/faker": "^1.23",
@@ -67,12 +66,5 @@
     }
   },
   "minimum-stability": "stable",
-  "prefer-stable": true,
-  "repositories": [
-    {
-      "type": "git",
-      "name": "pacewdd/5bx-client-library",
-      "url": "https://github.com/pacewdd/5bx-client-library"
-    }
-  ]
+  "prefer-stable": true
 }

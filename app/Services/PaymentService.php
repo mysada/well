@@ -10,7 +10,6 @@ use App\Models\Transaction;
 use Carbon\Carbon;
 use Exception;
 use Illuminate\Support\Facades\DB;
-use Pacewdd\Bx\_5bx;
 
 /**
  * Class PaymentService
@@ -19,22 +18,6 @@ use Pacewdd\Bx\_5bx;
  */
 class PaymentService
 {
-
-    protected _5bx $transaction;
-
-    /**
-     * PaymentService constructor.
-     *
-     * Initializes the payment transaction object using the _5bx payment
-     * gateway.
-     */
-    public function __construct()
-    {
-        $this->transaction = new _5bx(
-          config('payment.bx_login'),
-          config('payment.bx_key')
-        );
-    }
 
     /**
      * Process the checkout request and handle payment.
@@ -94,101 +77,61 @@ class PaymentService
         $billingProvince   = $req['billing-state'] ?? $shippingProvince ?? null;
         $billingCountry    = $req['billing-country'] ?? $countryCode;
         $billingPostalCode = $req['billing-zip'] ?? $req['shipping-zip'];
-        $fiveBxResp        = $this->fiveBx(
-          $totalAmount,
-          $req['card-number'],
-          $req['card-expiry'],
-          $req['card-cvc'],
-          $req['order-id'],
-          $this->getCardType($req['card-number'])
-        );
 
-        if ($fiveBxResp->result_code === 'ok') {
-            DB::beginTransaction();
-            try {
-                // Update order with pricing and address information
-                $order->update([
-                  'pre_tax_amount'       => $amount,
-                  'post_tax_amount'      => $totalAmount,
-                  'gst'                  => $gstAmount,
-                  'pst'                  => $pstAmount,
-                  'status'               => 'Confirmed',
-                  'shipping_rate'        => $shippingRate,
-                  'shipping_name'        => $req['shipping-name'],
-                  'shipping_email'       => $req['shipping-email'],
-                  'shipping_phone'       => $req['shipping-phone'],
-                  'shipping_address'     => $req['shipping-address'],
-                  'shipping_city'        => $req['shipping-city'],
-                  'shipping_province'    => $shippingProvince ?? null,
-                  'shipping_country'     => $countryCode,
-                  'shipping_postal_code' => $req['shipping-zip'],
-                ]);
-                // Create payment record
-                Payment::create([
-                  'order_id'            => $req['order-id'],
-                  'method'              => 'Credit Card',
-                  'amount'              => $totalAmount,
-                  'discount'            => 0,
-                  'status'              => 'Completed',
-                  'payer_name'          => $req['card-name'],
-                  'payer_card'          => substr($req['card-number'], -4),
-                  'billing_name'        => $billingName,
-                  'billing_email'       => $billingEmail,
-                  'billing_phone'       => $billingPhone,
-                  'billing_address'     => $billingAddress,
-                  'billing_city'        => $billingCity,
-                  'billing_province'    => $billingProvince,
-                  'billing_country'     => $billingCountry,
-                  'billing_postal_code' => $billingPostalCode,
-                ]);
-                // Create transaction record
-                Transaction::create([
-                  'order_id'         => $req['order-id'],
-                  'user_id'          => auth()->id(),
-                  'amount'           => $totalAmount,
-                  'transaction_type' => 'Payment',
-                  'currency'         => 'CAD',
-                  'status'           => 'Completed',
-                  'response'         => null,
-                ]);
-                DB::commit();
+        DB::beginTransaction();
+        try {
+            // Update order with pricing and address information
+            $order->update([
+              'pre_tax_amount'       => $amount,
+              'post_tax_amount'      => $totalAmount,
+              'gst'                  => $gstAmount,
+              'pst'                  => $pstAmount,
+              'status'               => 'Confirmed',
+              'shipping_rate'        => $shippingRate,
+              'shipping_name'        => $req['shipping-name'],
+              'shipping_email'       => $req['shipping-email'],
+              'shipping_phone'       => $req['shipping-phone'],
+              'shipping_address'     => $req['shipping-address'],
+              'shipping_city'        => $req['shipping-city'],
+              'shipping_province'    => $shippingProvince ?? null,
+              'shipping_country'     => $countryCode,
+              'shipping_postal_code' => $req['shipping-zip'],
+            ]);
+            // Create payment record
+            Payment::create([
+              'order_id'            => $req['order-id'],
+              'method'              => 'Credit Card',
+              'amount'              => $totalAmount,
+              'discount'            => 0,
+              'status'              => 'Completed',
+              'payer_name'          => $req['card-name'],
+              'payer_card'          => substr($req['card-number'], -4),
+              'billing_name'        => $billingName,
+              'billing_email'       => $billingEmail,
+              'billing_phone'       => $billingPhone,
+              'billing_address'     => $billingAddress,
+              'billing_city'        => $billingCity,
+              'billing_province'    => $billingProvince,
+              'billing_country'     => $billingCountry,
+              'billing_postal_code' => $billingPostalCode,
+            ]);
+            // Create transaction record
+            Transaction::create([
+              'order_id'         => $req['order-id'],
+              'user_id'          => auth()->id(),
+              'amount'           => $totalAmount,
+              'transaction_type' => 'Payment',
+              'currency'         => 'CAD',
+              'status'           => 'Completed',
+              'response'         => null,
+            ]);
+            DB::commit();
 
-                return $order;
-            } catch (Exception $e) {
-                DB::rollBack();
-                throw $e;
-            }
+            return $order;
+        } catch (Exception $e) {
+            DB::rollBack();
+            throw $e;
         }
-    }
-
-    /**
-     * Process the payment through the _5bx payment gateway.
-     *
-     * @param  float  $amount  The amount to be charged.
-     * @param  string  $cardNum  The credit card number.
-     * @param  string  $expDate  The card's expiration date in MMYY format.
-     * @param  int  $cvv  The card's CVV code.
-     * @param  string  $refNum  The reference number for the transaction.
-     * @param  string  $cardType  The type of card (visa, mastercard, amex).
-     *
-     * @return mixed The response from the _5bx payment gateway.
-     */
-    private function fiveBx(
-      float $amount,
-      string $cardNum,
-      string $expDate,
-      int $cvv,
-      string $refNum,
-      string $cardType
-    ) {
-        $this->transaction->amount($amount);
-        $this->transaction->card_num($cardNum);
-        $this->transaction->exp_date($expDate);
-        $this->transaction->cvv($cvv);
-        $this->transaction->ref_num($refNum);
-        $this->transaction->card_type($cardType);
-
-        return $this->transaction->authorize_and_capture();
     }
 
     /**
