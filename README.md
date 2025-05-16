@@ -70,6 +70,18 @@ sudo chmod -R 775 storage
 sudo chmod g+s storage
 ```
 
+## Docker Develop
+### Images
+```bash
+./vendor/bin/sail artisan storage:link
+```
+
+### Database
+```bash
+./vendor/bin/sail artisan migrate:fresh --seed
+```
+
+
 ## Technology Stack
 ### Front-End
 

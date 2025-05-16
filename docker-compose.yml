@@ -1,31 +1,55 @@
-version: '3.8'
-
 services:
-  app:
-    build:
-      context: .
-      dockerfile: Dockerfile
-      args: # Build arguments can also differ per environment if needed
-        APP_ENV: ${APP_ENV:-development} # Default to development if not set
-    container_name: well-project-app
-    restart: unless-stopped
-    tty: true
-    # Environment variables can be set here as defaults
-    # or entirely within the env_file specified by override files
-    volumes:
-      - .:/var/www/html # Good for dev, consider removing for prod build image
-      # If storage/bootstrap/cache are not part of the main volume, define them separately:
-      # - well_storage:/var/www/html/storage
-      # - well_bootstrap_cache:/var/www/html/bootstrap/cache
-    ports:
-      - "${APP_PORT:-8000}:80" # Use an env var for the host port too
-    networks:
-      - wellnet
-
+    laravel.test:
+        build:
+            context: './vendor/laravel/sail/runtimes/8.4'
+            dockerfile: Dockerfile
+            args:
+                WWWGROUP: '${WWWGROUP}'
+        image: 'sail-8.4/app'
+        extra_hosts:
+            - 'host.docker.internal:host-gateway'
+        ports:
+            - '${APP_PORT:-80}:80'
+            - '${VITE_PORT:-5173}:${VITE_PORT:-5173}'
+        environment:
+            WWWUSER: '${WWWUSER}'
+            LARAVEL_SAIL: 1
+            XDEBUG_MODE: '${SAIL_XDEBUG_MODE:-off}'
+            XDEBUG_CONFIG: '${SAIL_XDEBUG_CONFIG:-client_host=host.docker.internal}'
+            IGNITION_LOCAL_SITES_PATH: '${PWD}'
+        volumes:
+            - '.:/var/www/html'
+        networks:
+            - sail
+        depends_on:
+            - mysql
+    mysql:
+        image: 'mysql/mysql-server:8.0'
+        ports:
+            - '${FORWARD_DB_PORT:-3306}:3306'
+        environment:
+            MYSQL_ROOT_PASSWORD: '${DB_PASSWORD}'
+            MYSQL_ROOT_HOST: '%'
+            MYSQL_DATABASE: '${DB_DATABASE}'
+            MYSQL_USER: '${DB_USERNAME}'
+            MYSQL_PASSWORD: '${DB_PASSWORD}'
+            MYSQL_ALLOW_EMPTY_PASSWORD: 1
+        volumes:
+            - 'sail-mysql:/var/lib/mysql'
+            - './vendor/laravel/sail/database/mysql/create-testing-database.sh:/docker-entrypoint-initdb.d/10-create-testing-database.sh'
+        networks:
+            - sail
+        healthcheck:
+            test:
+                - CMD
+                - mysqladmin
+                - ping
+                - '-p${DB_PASSWORD}'
+            retries: 3
+            timeout: 5s
 networks:
-  wellnet:
-    driver: bridge
-
-# volumes: # Define if using named volumes for storage
-#   well_storage:
-#   well_bootstrap_cache:
+    sail:
+        driver: bridge
+volumes:
+    sail-mysql:
+        driver: local

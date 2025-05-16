@@ -1,8 +1,0 @@
-version: '3.8'
-
-services:
-  app:
-    env_file:
-      - .env.dev
-    ports:
-      - "8000:80" # Development port
