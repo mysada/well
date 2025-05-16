@@ -1,5 +1,35 @@
-node_modules
-vendor
-.env
-*.log
-*.lock
+    # Ignore version control files
+    .git
+    .gitignore
+    .gitattributes
+
+    # Ignore IDE and OS-specific files
+    .idea/
+    .vscode/
+    *.DS_Store
+    Thumbs.db
+
+    # Ignore local development files and directories
+    .env.backup
+    .env.example # Usually not needed in the image, but can be included if your entrypoint generates .env
+    /node_modules/
+    /public/hot
+    /public/storage # Symlink, actual files are in /storage/app/public
+    /storage/*.key
+    /vendor/
+    npm-debug.log*
+    yarn-debug.log*
+    yarn-error.log*
+
+    # Ignore Sail specific files if not needed for production build context
+    # docker-compose.yml # If you are not using it for production orchestration context
+    # Dockerfile # The development Dockerfile, not this production one
+    # ./vendor/laravel/sail # Sail's own files
+
+    # Testing files
+    tests/
+    phpunit.xml
+
+    # Any other files or directories not needed in the production image
+    README.md
+    

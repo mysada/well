@@ -81,6 +81,12 @@ sudo chmod g+s storage
 ./vendor/bin/sail artisan migrate:fresh --seed
 ```
 
+## Create Docker Image
+```bash
+docker-compose -f docker-compose.prod.yml config
+
+
+```
 
 ## Technology Stack
 ### Front-End
