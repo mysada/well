@@ -1,0 +1,14 @@
+version: '3.8'
+
+services:
+  app:
+    env_file:
+      - .env.prod
+    ports:
+      - "80:80" # Production often runs on standard HTTP port
+      # Or your specific production port, e.g., 443 if Nginx handles SSL
+    # For production, you might not mount the source code volume
+    # The code would be baked into the image built with production args.
+    # volumes:
+    #   - well_storage:/var/www/html/storage
+    #   - well_bootstrap_cache:/var/www/html/bootstrap/cache

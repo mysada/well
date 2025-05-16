@@ -5,32 +5,27 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
-    container_name: laravel_app
+      args: # Build arguments can also differ per environment if needed
+        APP_ENV: ${APP_ENV:-development} # Default to development if not set
+    container_name: well-project-app
+    restart: unless-stopped
+    tty: true
+    # Environment variables can be set here as defaults
+    # or entirely within the env_file specified by override files
     volumes:
-      - .:/var/www/html
-      - ./docker/php/php.ini:/usr/local/etc/php/php.ini
+      - .:/var/www/html # Good for dev, consider removing for prod build image
+      # If storage/bootstrap/cache are not part of the main volume, define them separately:
+      # - well_storage:/var/www/html/storage
+      # - well_bootstrap_cache:/var/www/html/bootstrap/cache
     ports:
-      - "8000:9000"
-    environment:
-      - APP_ENV=local
-      - APP_DEBUG=true
-      - APP_KEY= # 填入实际的 APP_KEY
-    depends_on:
-      - mysql
+      - "${APP_PORT:-8000}:80" # Use an env var for the host port too
+    networks:
+      - wellnet
 
-  mysql:
-    image: mysql:8.0
-    container_name: laravel_mysql
-    volumes:
-      - ./docker/mysql/my.cnf:/etc/mysql/my.cnf
-      - mysql_data:/var/lib/mysql
-    environment:
-      MYSQL_DATABASE: well
-      MYSQL_USER: well
-      MYSQL_PASSWORD: laravel_password
-      MYSQL_ROOT_PASSWORD: root_password
-    ports:
-      - "3306:3306"
+networks:
+  wellnet:
+    driver: bridge
 
-volumes:
-  mysql_data:
+# volumes: # Define if using named volumes for storage
+#   well_storage:
+#   well_bootstrap_cache:
