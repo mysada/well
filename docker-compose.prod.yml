@@ -6,49 +6,32 @@ services:
       context: .
       dockerfile: Dockerfile
     image: well
-    volumes:
-      - ./storage:/var/www/storage
-    depends_on:
-      - mysql
-    networks:
-      - app-net
-    environment:
-      DB_HOST: mysql
-      DB_PORT: 3306
-      DB_DATABASE: ${DB_DATABASE}
-      DB_USERNAME: ${DB_USERNAME}
-      DB_PASSWORD: ${DB_PASSWORD}
-
-  nginx:
-    image: nginx:alpine
     ports:
       - "80:80"
     volumes:
-      - ./nginx/conf.d:/etc/nginx/conf.d
-      - ./public:/var/www/public
+      - ./:/var/www/html
+      - ./storage:/var/www/html/storage
+    environment:
+      APP_ENV: production
+      APP_DEBUG: false
+      DB_HOST: mysql
+      DB_PORT: 3306
+      DB_DATABASE: mydasa
+      DB_USERNAME: mydasa
+      DB_PASSWORD: ${DB_PASSWORD}
     depends_on:
-      - app
-    networks:
-      - app-net
+      - mysql
 
   mysql:
-    image: 'mysql/mysql-server:8.0'
-    container_name: mysql
+    image: mysql:latest
     restart: always
     environment:
-      MYSQL_ROOT_PASSWORD: '${DB_PASSWORD}'
-      MYSQL_ROOT_HOST: '%'
-      MYSQL_DATABASE: '${DB_DATABASE}'
-      MYSQL_USER: '${DB_USERNAME}'
-      MYSQL_PASSWORD: '${DB_PASSWORD}'
+      MYSQL_ROOT_PASSWORD: ${DB_PASSWORD}
+      MYSQL_DATABASE: mydasa
+      MYSQL_USER: mydasa
+      MYSQL_PASSWORD: ${DB_PASSWORD}
     volumes:
-      - mysql-data:/var/lib/mysql
-    networks:
-      - app-net
-
-networks:
-  app-net:
-    driver: bridge
+      - mysql_data:/var/lib/mysql
 
 volumes:
-  mysql-data:
+  mysql_data:

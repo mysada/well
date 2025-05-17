@@ -80,12 +80,20 @@ sudo chmod g+s storage
 ```bash
 ./vendor/bin/sail artisan migrate:fresh --seed
 ```
-
-## Create Docker Image
+## Deployment
+### Create Database
+```
+docker run -d \
+  --name mysql \
+  -e MYSQL_ROOT_PASSWORD=kuaidoukid \
+  -v mysql-data:/var/lib/mysql \
+  -p 3306:3306 \
+  mysql:latest
+```
+### Create Docker Image
 ```bash
-docker-compose -f docker-compose.prod.yml config
-
-
+DB_PASSWORD=kuaidoukid \
+docker-compose -f docker-compose.prod.yml up -d --build
 ```
 
 ## Technology Stack
