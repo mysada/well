@@ -1,9 +1,12 @@
-# Base image with PHP 8.2 FPM and Alpine
-FROM php:8.2-fpm-alpine
+#--------------------------------------------------------------------------
+# Stage 1: PHP Base & Dependencies
+#--------------------------------------------------------------------------
+FROM php:8.2-fpm-alpine AS php_base
 
+# 设置工作目录
 WORKDIR /var/www/html
 
-# Install dependencies and PHP extensions
+# 安装系统依赖
 RUN apk add --no-cache \
     nginx \
     supervisor \
@@ -15,41 +18,90 @@ RUN apk add --no-cache \
     jpeg-dev \
     freetype-dev \
     icu-dev \
-    oniguruma-dev && \
-    docker-php-ext-configure gd --with-freetype --with-jpeg && \
-    docker-php-ext-install -j$(nproc) gd pdo pdo_mysql zip bcmath opcache intl exif mbstring pcntl
+    oniguruma-dev \
+    bash \
+    curl \
+    shadow
 
-# Install Composer globally
+# 安装 PHP 扩展
+RUN docker-php-ext-configure gd --with-freetype --with-jpeg \
+ && docker-php-ext-install -j$(nproc) \
+    gd \
+    pdo \
+    pdo_mysql \
+    zip \
+    bcmath \
+    opcache \
+    intl \
+    exif \
+    mbstring \
+    pcntl
+
+# 安装 Composer
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 
-# Copy application files
-COPY . .
 
-# Configure PHP-FPM to listen on all interfaces
-RUN sed -i 's/listen = 127.0.0.1:9000/listen = 0.0.0.0:9000/' /usr/local/etc/php-fpm.d/www.conf
+#--------------------------------------------------------------------------
+# Stage 2: Build Frontend Assets (Vite)
+#--------------------------------------------------------------------------
+FROM node:22-alpine AS frontend_builder
 
-# Copy nginx configuration
+WORKDIR /app
+
+COPY package*.json ./
+RUN npm ci
+
+COPY vite.config.js .
+COPY tailwind.config.js .
+COPY postcss.config.js .
+COPY resources/ resources/
+RUN npm run build
+
+
+#--------------------------------------------------------------------------
+# Stage 3: Production Application Image
+#--------------------------------------------------------------------------
+FROM php_base AS app_production
+
+WORKDIR /var/www/html
+
+# 设置环境变量
+ENV APP_ENV=production
+ENV APP_DEBUG=false
+ENV LOG_CHANNEL=stderr
+
+# 复制项目文件（需使用 .dockerignore 排除无用内容）
+COPY --chown=www-data:www-data . .
+
+# 复制构建好的前端资源
+COPY --from=frontend_builder --chown=www-data:www-data /app/public/build ./public/build
+
+# 安装生产环境依赖
+RUN composer install --no-dev --optimize-autoloader --no-interaction \
+ && composer clear-cache
+
+# 权限配置
+RUN chown -R www-data:www-data storage bootstrap/cache \
+ && chmod -R 775 storage bootstrap/cache
+
+# 预缓存配置（如果 APP_KEY 可用）
+RUN php artisan config:cache \
+ && php artisan route:cache \
+ && php artisan view:cache || true
+
+# 复制 Nginx 配置（确保此文件存在）
 COPY docker/production/nginx.conf /etc/nginx/http.d/default.conf
 
-# Copy supervisor configuration
+# 复制 Supervisor 配置（确保此文件存在）
 COPY docker/production/supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 
-# Set permissions for Laravel storage and cache
-RUN chown -R www-data:www-data storage bootstrap/cache && chmod -R 775 storage bootstrap/cache
-
-# Install composer dependencies (production)
-RUN composer install --no-dev --optimize-autoloader --no-interaction
-
-# Cache Laravel config, routes, views
-RUN php artisan config:cache && php artisan route:cache && php artisan view:cache
-
-# Expose HTTP port
-EXPOSE 80
-
-# Copy entrypoint script (optional, useful for migrations)
+# 复制并设置入口脚本
 COPY docker/production/entrypoint.sh /usr/local/bin/entrypoint.sh
 RUN chmod +x /usr/local/bin/entrypoint.sh
 
-ENTRYPOINT ["/usr/local/bin/entrypoint.sh"]
+# 公开端口
+EXPOSE 80
 
+# 设置入口点与默认命令
+ENTRYPOINT ["/usr/local/bin/entrypoint.sh"]
 CMD ["/usr/bin/supervisord", "-c", "/etc/supervisor/conf.d/supervisord.conf"]
