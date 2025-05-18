@@ -5,12 +5,11 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
-    image: well
+    image: paracide/well
     ports:
       - "80:80"
     volumes:
-      - ./:/var/www/html
-      - ./storage:/var/www/html/storage
+      - storage_data:/var/www/html/storage  # 仅挂载 storage 目录
     environment:
       APP_ENV: production
       APP_DEBUG: false
@@ -35,3 +34,4 @@ services:
 
 volumes:
   mysql_data:
+  storage_data:
